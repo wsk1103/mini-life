@@ -70,27 +70,23 @@ public class CriticController {
             path = "D:/image/";
 //            path += "/image/userPicture/";
             String fileName = Tool.getInstance().getRandom() + new Date().getTime() + ".jpg";
-            File image = new File(path, fileName);
+            File image = new File(path + fileName);
             File isTest = new File(path);
-            if (!isTest.exists()) {
+            if (!isTest.getParentFile().exists()) {
                 path = "C:\\myproject\\image\\";
-                image = new File(path, fileName);
+                image = new File(path + fileName);
                 boolean result = image.mkdir();
                 if (!result){
                     map.put("result", "0");
                     return map;
                 }
-            } else if (!image.exists()) {
+            } else if (!image.getParentFile().exists()) {
                 boolean result = image.mkdir();
                 if (!result){
                     map.put("result", "0");
                     return map;
                 }
             }
-            StringBuilder thumbnails = new StringBuilder();
-            thumbnails.append(path);
-            thumbnails.append("thumbnails/");
-            thumbnails.append(fileName);
             try {
                 file_upload.transferTo(image);
             } catch (Exception e) {
@@ -98,6 +94,10 @@ public class CriticController {
                 e.printStackTrace();
                 return map;
             }
+            StringBuilder thumbnails = new StringBuilder();
+            thumbnails.append(path);
+            thumbnails.append("thumbnails/");
+            thumbnails.append(fileName);
             path = path + fileName;
             //色情图片识别
             if (!Tool.getInstance().checkPornograp(path)){
