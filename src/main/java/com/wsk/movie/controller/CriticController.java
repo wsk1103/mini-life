@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -72,10 +73,15 @@ public class CriticController {
             String fileName = Tool.getInstance().getRandom() + new Date().getTime() + ".jpg";
             File image = new File(path + fileName);
             File isTest = new File(path);
-            if (!isTest.getParentFile().exists()) {
+            if (!isTest.exists()) {
                 path = "C:\\myproject\\image\\";
                 image = new File(path + fileName);
-                boolean result = image.mkdir();
+                boolean result = false;
+                try {
+                    result = image.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if (!result){
                     map.put("result", "0");
                     return map;
