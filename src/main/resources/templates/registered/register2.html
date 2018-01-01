@@ -1,0 +1,98 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>填写用户名和密码</title>
+    <link rel="icon" href="/image/title.ico"/>
+    <link rel="stylesheet" type="text/css" href="/css/register/register3.css"/>
+</head>
+<script src="/js/jquery-3.0.0.js"></script>
+<script src="/js/register/register3.js"></script>
+<body>
+<div class="main">
+    <div>&nbsp;
+        <header>
+            <ul>
+                <br/>
+                <li>
+                    <span class="current-num">1</span>
+                    <span class="current">验证手机号码</span>
+                </li>
+                <span class="cc">--></span>
+                <li class="current2">
+                    <span class="current-num">2</span>
+                    <span class="current">填写用户名和密码</span>
+                </li>
+                <span class="cc">--></span>
+                <li class="c">
+                    <span class="num">3</span>验证成功
+                </li>
+            </ul>
+        </header>
+        <div class="page">
+            <form class="form" id="form" action="fillPassword" method="post">
+                <input type="hidden" name="token" th:value="${token}"/>
+                <table>
+                    <tr>
+                        <td class="text">手机号码：</td>
+                        <td><input type="text" th:value="${phone}" class="phone" id="phone" readonly="readonly" name="phone"/></td>
+                    </tr>
+                    <tr>
+                        <td class="text">用户名：</td>
+                        <td>
+                            <input type="text" placeholder="请输入用户名" class="name" id="name" name="username" autofocus="autofocus" maxlength="18"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="toolname" id="toolname"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">密码：</td>
+                        <td>
+                            <input type="password" placeholder="请输入密码" id="password" name="password" class="password" maxlength="18"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="toolpassword" id="toolpassword"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">确认密码：</td>
+                        <td>
+                            <input type="password" placeholder="请确认密码" id="password2" class="password2" maxlength="18"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="toolpassword2" id="toolpassword2"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="下一步" class="next" id="next" onclick="check()"/>
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("body").keydown(function() {
+            if (event.keyCode == "13") {//keyCode=13是回车键
+                $('.next').click();
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

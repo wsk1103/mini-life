@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>正在热映</title>
+    <link href="/image/title.ico" rel="icon"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <link href="/css/movie/searchMovieResult.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+</head>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content">
+    <main>
+        <div th:with="m=${movie.getData()}">
+            <div class="search_movie_result" th:each="o:${m.getMovies()}">
+                <div class="search_movie_result_img">
+                    <a th:href="'/hot_movie_information/'+${o.getId()}">
+                        <img src="/image/1.jpg" th:src="${o.getImg()}" th:alt="${o.getNm()}"/>
+                    </a>
+                </div>
+                <div class="search_movie_result_information">
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">电影名</span>:
+                        <span class="search_movie_result_information_name_2">
+                            <a th:href="'/hot_movie_information/'+${o.getId()}" th:text="${o.getNm()}">来自WSK的爱</a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_director_1">导演</span>:
+                        <span class="search_movie_result_information_director_2" th:text="${o.getDir()}">
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_cast_1">主演</span>:
+                        <span class="search_movie_result_information_cast_2" th:text="${o.getStar()}">
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">类型</span>:
+                        <span class="search_movie_result_information_name_2" th:text="${o.getCat()}">
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">2/3D</span>:
+                        <span th:text="${o.getVer()}">
+                            </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">评分</span>:
+                        <span class="search_movie_result_information_name_2" th:text="${o.getSc()}">2017</span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">上映时间</span>:
+                        <span class="search_movie_result_information_name_2"
+                              th:text="${o.getRt()}">9.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+<script src="/js/all.js"></script>
+</html>

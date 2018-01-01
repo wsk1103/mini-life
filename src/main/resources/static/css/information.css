@@ -1,0 +1,71 @@
+.letter, .follow, .report {
+    display: inline-block;
+    cursor: pointer;
+    height: 2em;
+    background: #ff8140;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    /*width: 4.5em;*/
+}
+
+.letter:hover, .follow:hover, .report:hover {
+    background: #f7671d;
+}
+
+div#show_information {
+    border: 1px solid white;
+    background: white;
+    margin-top: 2em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px #666666;
+}
+
+div#show_information:hover {
+    box-shadow: 0px 0px 20px 0px black;
+    border-radius: 10px;
+}
+
+figure#show_avatar {
+    float: left;
+    margin-left: 2em;
+    /*margin-top: 3em;*/
+    height: 180px;
+}
+
+div.show_img {
+    margin-left: 50px
+}
+
+img.show_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+
+div.user_action {
+    width: 200px;
+    text-align: center;
+    margin-top: 10px
+}
+
+figure.user_information {
+    /*width: 400px;*/
+    position: relative;
+    margin-left: 230px;
+}
+
+div.user {
+    margin: .5em;
+}
+
+span.content,a.content {
+    color: #000000;
+}
+
+
+span.user_title {
+    font-size: .9em;
+    color: #000000;
+}

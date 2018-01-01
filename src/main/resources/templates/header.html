@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<header class="" th:fragment="copy">
+    <link rel="stylesheet" href="/css/header.css"/>
+    <div>
+        <input type="hidden" th:value="${action}"/>
+        <input type="hidden" th:if="${userInformation.phone}==null" id="user_name_a" value="wsk"/>
+        <input type="hidden" th:if="${userInformation.phone}!=null" th:value="${userInformation.phone}" id="user_name_a"
+               value="wsk"/>
+        <img src="/image/title.ico" style="width: 1.2em;height: 1.2em" class="header_title_img"/>
+        <a href="/home">
+                    <span class="header_title_text">
+                        瓢虫影评-最专业的影评
+                    </span>
+        </a>
+        <ul class="show_header">
+            <li class="header_home">
+                <span class="">
+                    <a href="/home" class="header_home_current header_current" th:if="${action}==1">
+                        <img src="/image/home_current.png" class="img_home"/>首页
+                    </a>
+                    <a href="/home" class="header_home_current " th:if="${action}!=1">
+                        <img src="/image/home.png" class="img_home"/>首页
+                    </a>
+                </span>
+            </li>
+            <li class="header_hot">
+                <span class="header_hot_current header_current" th:if="${action}==2">
+                    <a href="/hotCritic" class="header_current"><img src="/image/hot_current.png"
+                                                                     class="img_hot"/>热门</a>
+                </span>
+                <span class="header_hot_current" th:if="${action}!=2">
+                    <a href="/hotCritic"><img src="/image/hot.png" class="img_hot"/>热门</a>
+                </span>
+            </li>
+            <li class="header_hot" id="header_movie">
+                <span class="header_hot_current header_current" th:if="${action}==3">
+                    <img src="/image/movie_current.png"
+                         class="img_hot"/>电影
+                </span>
+                <span class="header_hot_current" th:if="${action}!=3">
+                    <img src="/image/movie.png" class="img_hot"/>电影
+                </span>
+                <ul id="movie_menu" style="z-index: 9999">
+                    <li class="menu_li">
+                        <a href="/coming_soon">
+                            即将上映
+                        </a>
+                    </li>
+                    <li class="menu_li">
+                        <a href="/top">
+                            高分电影
+                        </a>
+                    </li>
+                    <li class="menu_li">
+                        <a href="/coming">
+                            正在上映
+                        </a>
+                    </li>
+                    <li class="menu_li">
+                        <a href="/us_box">
+                            北美票房
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="header_information" value="0">
+                <span class="header_information_current header_current" th:if="${action}==4">
+                    <img src="/image/information_current.png" class="img_information"/>信息
+                </span>
+                <span class="header_information_current" th:if="${action}!=4">
+                    <img src="/image/information.png" class="img_information"/>信息
+                </span>
+            </li>
+            <li class="header_set" style="">
+                <span class="header_set_current header_current" th:if="${action}==5">
+                    <img src="/image/set_current.png" class="img_set"/>设置
+                </span>
+                <span class="header_set_current" th:if="${action}!=5">
+                    <img src="/image/set.png" class="img_set"/>设置
+                </span>
+                <!--<div class="header_set_ul">-->
+                <ul class="menu" style="z-index: 9999">
+                    <li class="menu_li header_setting">
+                        <a href="/accountSettings">
+                            账号设置
+                        </a>
+                    </li>
+                    <li class="menu_li header_safety">
+                        <a href="/security">
+                            账号安全
+                        </a>
+                    </li>
+                    <li class="menu_li header_feedback">
+                        <a href="#">
+                            意见反馈
+                        </a>
+                    </li>
+                    <li class="menu_li header_help">
+                        <a href="#">
+                            帮助中心
+                        </a>
+                    </li>
+                    <li class="menu_li header_logout">
+                        <a href="/logout">
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <input type="hidden" id="uid" th:value="${userInformation.id}" value="0"/>
+    <script src="/js/header.js">
+    </script>
+</header>
+</html>

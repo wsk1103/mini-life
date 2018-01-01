@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${movie.getData().getCinemaDetailModel().getNm()}+'(瓢虫影评)'">详情</title>
+    <link rel="stylesheet" href="/css/movieInformation.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<!--<script src="/js/information/movieInformation.js"></script>-->
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div>
+            <div class="all_movie" th:with="m=${movie.getData().getCinemaDetailModel()}">
+                <h1 th:text="${m.getNm()}">WSK</h1>
+                <div class="movie_cover">
+                    <img th:src="${movie.getData().getCurrentMovie().getImg()}" class="movie_img"
+                         th:title="${movie.getData().getCurrentMovie().getNm()}" alt="加载中......"/>
+                </div>
+                <div style="padding: 1em 1em 0 1em;">
+                    <div><span class="movie_show">正在上映</span>：
+                        <div class="movie_font">
+                            <a th:href="'/hot_movie_information/'+${movie.getData().getCurrentMovie().getId()}" th:text="${movie.getData().getCurrentMovie().getNm()}"></a>
+                        </div>
+                    </div>
+                    <div><span class="movie_show">评 &nbsp;分</span>：
+                        <div th:text="${movie.getData().getCurrentMovie().getSc()}" class="movie_font">
+                        </div>
+                    </div>
+                    <div><span class="movie_show">2/3D</span>：
+                        <div th:text="${movie.getData().getCurrentMovie().getVer()}" class="movie_font"></div>
+                    </div>
+                    <!--<div style="padding-top: 8.1em"><span class="movie_show"></span>-->
+                        <!--<button id="booking">马上订票</button>-->
+                    <!--</div>-->
+                </div>
+                <div style="clear: both">
+                </div>
+                <div style="padding: 1em;">
+                    <div class="cinema_information">
+                        <span class="movie_show">城市</span>：
+                        <span th:text="${m.getCt()}"></span>
+                    </div>
+                    <div class="cinema_information">
+                        <span class="movie_show">地区</span>：
+                        <span th:text="${m.getArea()}"></span>
+                    </div>
+                    <div class="cinema_information">
+                        <span class="movie_show">地址</span>：
+                        <span th:text="${m.getAddr()}"></span>
+                    </div>
+                    <div class="cinema_information">
+                        <span class="movie_show">评分</span>：
+                        <span th:text="${m.getS()}"></span>
+                    </div>
+                    <div class="cinema_information">
+                        <span class="movie_show">电话</span>：
+                        <span th:each="o:${m.getTel()}">
+                            <span th:text="${o}"></span>
+                        </span>
+                    </div>
+                    <div class="cinema_information">
+                        <span class="movie_show">备注</span>：
+                        <span th:text="${m.getNote()}"></span>
+                    </div>
+                    <div class="cinema_information">
+                        <span class="movie_show">影厅</span>：
+                        <div th:each="o:${m.getFeatureTags()}" style="padding: .5em;">
+                            <span class="movie_show">标签</span>：
+                            <span th:text="${o.getTag()}"></span>
+                            <br/>
+                            <span class="movie_show">说明</span>:
+                            <span th:text="${o.getDesc()}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+                <div>全部电影</div>:
+                <div th:each="m:${movie.getData().getMovies()}">
+                    <div class="movie_cover">
+                        <img th:src="${m.getImg()}" class="movie_img"
+                             th:title="${m.getNm()}" alt="加载中......"/>
+                    </div>
+                    <div style="padding: 1em 1em 0 1em;">
+                        <div><span class="movie_show">电影名</span>：
+                            <div class="movie_font">
+                                <a th:href="'/hot_movie_information/'+${m.getId()}" th:text="${m.getNm()}"></a>
+                            </div>
+                        </div>
+                        <div><span class="movie_show">评 &nbsp;分</span>：
+                            <div th:text="${m.getSc()}" class="movie_font">
+                            </div>
+                        </div>
+                        <div><span class="movie_show">2/3D</span>：
+                            <div th:text="${m.getVer()}" class="movie_font"></div>
+                        </div>
+                        <!--<div style="padding-top: 8.1em"><span class="movie_show"></span>-->
+                            <!--<button class="booking">马上订票</button>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+</html>

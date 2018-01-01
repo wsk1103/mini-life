@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${subject.getTitle()}+'(瓢虫影评)'">详情</title>
+    <link rel="stylesheet" href="/css/movieInformation.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<script src="/js/information/movieInformation.js"></script>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div th:if="${result}=='success'">
+            <div class="all_movie">
+                <h1 th:text="${subject.getTitle()}">WSK</h1>
+                <div class="movie_cover">
+                    <img th:src="${subject.getImages().get('large')}" class="movie_img"
+                         th:title="${subject.getTitle()}" alt="加载中......"/>
+                </div>
+                <div style="padding: 1em 1em 0 1em;">
+                    <!--<div><span class="movie_show">电影名</span>：-->
+                    <!--<div th:text="${subject.getTitle()}" class="movie_font"></div>-->
+                    <!--</div>-->
+                    <div><span class="movie_show">导 &nbsp;演</span>：
+                        <div th:each="o:${subject.getDirectors()}" class="movie_font">
+                            <a th:text="${o.getName()}+'  '" th:href="'/celebrity/'+${o.getId()}"></a>
+                        </div>
+                    </div>
+                    <div><span class="movie_show">主 &nbsp;演</span>：
+                        <div th:each="o :${subject.getCasts()}" class="movie_font">
+                            <a th:text="${o.getName()}+' / '" th:href="'/celebrity/'+${o.getId()}"></a>
+                        </div>
+                    </div>
+                    <div><span class="movie_show">类 &nbsp;型</span>：
+                        <div th:each="tag:${subject.getGenres()}" class="movie_font"><span
+                                th:text="${tag}+' / '"></span></div>
+                    </div>
+                    <div><span class="movie_show">年 &nbsp;份</span>：
+                        <div th:text="${subject.getYear()}" class="movie_font"></div>
+                    </div>
+                    <div><span class="movie_show">评 &nbsp;分</span>：
+                        <div th:text="${subject.getRating().getAverage()}" class="movie_font"></div>
+                    </div>
+                    <div><span class="movie_show">地 &nbsp;区</span>：
+                        <div th:each="o:${subject.getCountries()}" class="movie_font">
+                            <span th:text="${o}+'  '"></span>
+                        </div>
+                    </div>
+                    <div><span class="movie_show">又 &nbsp;名</span>：
+                        <div th:each="o:${subject.getAka()}" class="movie_font">
+                            <span th:text="${o}+' / '"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="movie_desc" style="padding: .5em 1em">
+                <div style="display: inline-block" class="movie_show">简 &nbsp;介：</div>
+                <div th:text="${subject.getSummary().substring(0,subject.getSummary().length()-3)}"
+                     style="display: inline"></div>
+            </div>
+            <div class="movie_playlinks">
+                <div style="clear: both">电影播放地址：</div>
+                <div th:if="${movie.getReason()=='查询成功'}">
+                    <div th:each="o:${movie.getResult().getPlaylinks()}"
+                         style="float: left;padding: 1em;">
+                        <div th:switch="${o.getKey()}">
+                            <a th:case="'kumi'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">酷米</a>
+                            <a th:case="'leshi'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">乐视</a>
+                            <a th:case="'levp'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">乐视</a>
+                            <a th:case="'imgo'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">芒果</a>
+                            <a th:case="'youku'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">优酷</a>
+                            <a th:case="'tudou'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">土豆</a>
+                            <a th:case="'qq'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               href="http://www.baidu.com" class="movie_playlinks_show"
+                               target="_blank">腾讯</a>
+                            <a th:case="'bilibili'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">哔哩哔哩</a>
+                            <a th:case="'qiyi'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">爱奇艺</a>
+                            <a th:case="'m1905'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">M1905</a>
+                            <a th:case="'sohu'" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               class="movie_playlinks_show"
+                               href="http://www.baidu.com" target="_blank">搜狐</a>
+                            <a th:case="*" th:href="${o.getValue()}" th:title="${o.getKey()}"
+                               href="http://www.baidu.com" class="movie_playlinks_show"
+                               th:text="${o.getKey()}" target="_blank">wsk</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="movie_video_down">-->
+                <!--<div style="clear: both">迅雷下载地址：</div>-->
+                <!--<div class="movie_video_down_1"><span-->
+                        <!--th:text="${down}">ftp://www.wsk1103.cc:8088/down/wsk1103.mkv</span></div>-->
+            <!--</div>-->
+            <div class="movie_video_rec">
+                <div style="clear: both">相关电影：</div>
+                <ul style="padding: 0;" th:if="${movie.getReason()=='查询成功'}">
+                    <li th:each="o:${movie.getResult().getVideo_rec()}"
+                        class="movie_information">
+                        <div>
+                            <a th:href="${o.get('detail_url')}" th:title="${o.get('title')}" target="_blank"
+                               href="http://www.baidu.com">
+                                <img th:src="${o.get('cover')}" class="movie_video_rec_cover" alt="加载中......"/>
+                            </a>
+                            <div class="movie_video_rec_name">
+                                <a th:href="${o.get('detail_url')}" th:title="${o.get('title')}" target="_blank"
+                                   href="http://www.baidu.com"><span th:text="${o.get('title')}"
+                                                                     class="movie_video_rec_name_1"></span></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie_atc_s">
+                <div style="clear: both">相关演员：</div>
+                <div th:each="o:${subject.getCasts()}" class="atc_information" th:if="${o.getId()!=null}">
+                    <div>
+                        <img th:src="${o.getAvatars().get('medium')}" th:title="${o.getName()}" class="movie_atc_s_name"
+                             alt="加载中......"/>
+                    </div>
+                    <div style="text-align: center">
+                        <a th:text="${o.getName()}" class="movie_atc_s_name_1" th:href="'/celebrity/'+${o.getId()}"></a>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="all_release">
+                <!--发表内容-->
+                <form action="publishCritic" method="post" enctype="multipart/form-data" class="release_form">
+                    <div class="release_div">
+                        <textarea class="release_message" name="movie_content" placeholder="发表影评"></textarea>
+                    </div>
+                    <div class="release_div_2">
+                        <span class="size_tip">还可以输入122个字</span>
+                        <span class="movie_name">电影名：</span>
+                        <input type="text" class="movie_name_text" name="movie_name" th:value="${subject.getTitle()}"/>
+                        <a class="movie_image_upload"><input type="file" value="图片" class="" id="file_upload"
+                                                             name="file_upload"/>图片</a>
+                        <select class="movie_state" name="isPrivate">
+                            <option value="0">公共圈</option>
+                            <option value="1">好友圈</option>
+                        </select>
+                        <input type="button" th:value="发布" class="movie_release"/>
+                        <!--<button value="发布" class="movie_release">发布</button>-->
+                    </div>
+                </form>
+                <div class="image_container">
+                    <div style="" class="close_img_tip">
+                        ×
+                    </div>
+                    <img id="preview" width="80%" height="" style="position: relative;"/>
+                </div>
+            </div>
+        </div>
+        <div th:if="${result}!='success'">
+            <div style="text-align: center;vertical-align: middle">
+                <h1 style="color: red">未找到该影片</h1>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+</html>

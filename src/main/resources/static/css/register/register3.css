@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+body,html{
+	margin: 0;
+	padding: 0;
+	height: 90%;
+	background: #f4f4f4;
+	/*font-family: KaiTi;*/
+	background: url("../../image/saber.jpg") 50% fixed;
+	opacity: .9;
+	background-size: cover;
+	font-weight: 700;
+	font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+}
+a{
+	color:#1E88C7;
+	text-decoration: none;
+}
+a:HOVER {
+	text-decoration: underline;
+}
+.main{
+	box-shadow: 1px 1px 20px #000000;
+	width:1040px;
+	min-height: 100%;
+	/*height: 100%;*/
+	background:#ffffff;
+	margin: 50px auto;
+}
+header{
+	padding: 0;
+	margin-top: 50px;	
+}
+header ul li{
+	font-size:130%;
+	display: inline-block;
+	margin:10px 10px;
+	padding-right:50px;
+	padding-left: 50px;
+}
+.cc{
+	font-size:150%;
+}
+header ul li .current-num{
+	margin-right:20px;
+	width:25px; 
+	height:25px; 
+	display:inline-block;
+	background-color:#1E88C7;
+	border-radius:25px;
+	color:#FFF; 
+	text-align:center
+}
+header ul li .num{
+	margin-right:20px;
+	width:25px; 
+	height:25px; 
+	display:inline-block;
+	background-color:#ccc; 
+	border-radius:25px;
+	color:#FFF; 
+	text-align:center
+}
+header .current{
+	color:#1E88C7;
+}
+
+
+form{
+	font-weight:500;
+	font-size:20px;
+	padding:0 0;
+	width:390px;
+	height:100%;
+	margin:80px auto ;
+}
+form .text{
+	text-align:right;
+}
+form .name, .password, .password2, .phone{
+	border-radius:5px;
+	margin:5px 0;
+	font-size:18px;
+	height:30px;
+	width:250px;
+}
+form .toolname, .toolpassword, .toolpassword2{
+	color:#1E88C7;
+}
+form .next{
+	border-radius:5px;
+	margin-top:10px;
+	width:253px;
+	height:35px;
+	background:#1E88C7;
+	color:#fff;
+	font-weight:900;
+	cursor: pointer;
+	font-size:18px;
+}
+
+

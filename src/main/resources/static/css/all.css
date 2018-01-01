@@ -1,0 +1,205 @@
+body {
+    padding: 0;
+    margin: 0 auto;
+    font-size: 16px;
+    width: 100%;
+    background: #b4d66b;
+    background-size: cover;
+    opacity: .9;
+    font-weight: 700;
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+}
+/*img:hover{*/
+    /*cursor: zoom-in;*/
+/*}*/
+img.showBigImage:hover{
+    cursor: zoom-out;
+}
+img.friends_img_critic:hover{
+    cursor: zoom-in;
+}
+button{
+    outline: none;
+}
+
+button.go_to_top {
+    display: none;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
+    cursor: pointer;
+    border: none;
+    background: #78C3F3;
+    text-align: center;
+    background: url("/image/timg.jpg");
+    background-size: 100%;
+}
+
+.current {
+    background: #b0d5f3;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #9fbe5d;
+    cursor: pointer;
+}
+
+img.friends_image_header:hover, .friends_username:hover {
+    cursor: pointer;
+    color: #9fbe5d;
+}
+
+div.all_friends_comment, div.all_friends_comment_my {
+    margin: .5em 2em;
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: .5em;
+}
+
+div.specific_comment {
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: .5em;
+    padding-top: .5em;
+}
+
+div.all_content {
+    top: 2.3em;
+    width: 1000px;
+    margin: 0 auto;
+    background: #9fbe5d;
+    min-height: 900px;
+    padding-right: 3em;
+}
+
+img.all_friends_comment_user_img {
+    width: 30px;
+    height: 30px;
+    margin-top: .5em;
+}
+
+img.all_friends_user_img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    position: relative;
+    padding-right: .5em;
+}
+
+button.all_friends_comment_publish {
+    float: right;
+    background: #ffc09f;
+    color: #fff;
+    border: 1px solid #fbbd9e;
+    box-shadow: none;
+    cursor: default;
+    padding: 0 10px 0 10px;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 2px;
+    height: 28px;
+    line-height: 25px;
+    text-decoration: none;
+    font-size: 12px;
+    min-width: 40px;
+    text-align: center;
+    outline: none;
+    margin-top: .7em;
+}
+
+span.all_friends_username {
+    padding: 0;
+    color: #76a513;
+    cursor: pointer;
+}
+
+textarea.content {
+    resize: none;
+    width: 83%;
+    height: 23px;
+    margin-left: .5em;
+    padding: 5px 2px 0px 6px;
+    border: 1px solid;
+    font-size: 12px;
+    word-wrap: break-word;
+    line-height: 18px;
+    overflow: hidden;
+    outline: none;
+    position: relative;
+    /*top: -4px;*/
+}
+
+button.chang_btn, button.chang_btn2,input.chang_btn, input.chang_btn2 {
+    background: #ff8140;
+    border: 1px solid #f77c3d;
+    color: #fff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+button.chang_btn:hover, button.chang_btn2:hover,input.chang_btn:hover, input.chang_btn2:hover {
+    background: #f7671d;
+    border: 1px solid #f06923;
+    cursor: pointer;
+}
+
+.findMoreComment, #findMoreComment {
+    text-align: center;
+    padding-bottom: .5em;
+    cursor: pointer;
+    width: 100px;
+    margin-left: 280px;
+}
+
+.findMoreComment:hover, #findMoreComment:hover {
+    color: #76a513;
+}
+
+#notMoreComment {
+    text-align: center;
+    padding-bottom: .5em;
+    cursor: pointer;
+    width: 100px;
+    margin-left: 280px;
+}
+
+span.action_menu {
+    font-size: .8em;
+}
+
+button.friends_comment, button.friends_good, button.friends_collection, button.friends_collection_current, button.friends_good_current {
+    color: #3d403d;
+    cursor: pointer;
+    width: 180px;
+    padding: 5px 0;
+    border: 0;
+    background: white;
+    font-weight: 800;
+}
+
+button.friends_collection, button.friends_collection_current {
+    width: 33%;
+    border-right: 1px solid #dfdfdf;
+    margin: .6em 0;
+}
+
+button.friends_collection_current {
+    color: #9fbe5d;
+}
+
+button.friends_comment {
+    border-right: 1px solid #dfdfdf;
+    width: 33%;
+}
+
+button.friends_good {
+}
+
+button.friends_good_current {
+    color: #9fbe5d;
+}

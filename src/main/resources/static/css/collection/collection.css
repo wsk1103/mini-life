@@ -1,0 +1,176 @@
+body {
+    padding: 0;
+    margin: 0 auto;
+    font-size: 16px;
+    width: 1000px;
+    /*background: #d4d6cb;*/
+    /*background: url("../image/saber.jpg") repeat fixed;*/
+    background: #b4d66b;
+    background-size: cover;
+    opacity: .9;
+    font-weight: 700;
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+}
+
+.current {
+    background: #b0d5f3;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+header {
+    position: fixed;
+    margin: 0 auto;
+    line-height: 2em;
+    /*border: .2em solid black;*/
+    background: #78C3F3;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 1080px;
+}
+
+header div {
+    text-align: right;
+    margin-right: 2em;
+    /*padding-top: .001em;*/
+    /*padding-bottom: .001em;*/
+}
+
+header div ul {
+    margin-top: 0px;
+    position: absolute;
+    background: #78C3F3;
+    padding-right: 25px;
+    text-align: right;
+    border-radius: 4px;
+    width: 1080px;
+}
+
+header div ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.header_forum, .header_home, .header_hot, .header_set, .header_information {
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.list-line {
+    border-bottom: 1px solid black;
+}
+
+.menu_li {
+    padding: 0 10px;
+}
+
+.menu {
+    padding: 0 20px;
+    display: none;
+    list-style: none;
+    text-align: center;
+    width: 95px;
+}
+
+.clearfix {
+    clear: both;
+    content: ".";
+    display: block;
+    /*height: 0%;*/
+    /*visibility: hidden;*/
+
+}
+
+
+aside {
+    /*position: absolute;*/
+    margin-right: 5%;
+    margin-top: 3em;
+    /*z-index: 2008;*/
+    /*margin-left: 3em;*/
+    float: right;
+    width: 280px;
+    right: 30px;
+    /*border: .2em solid black;*/
+}
+
+.my_header, .my_friends, .my_action {
+    /*margin: 5% auto 2%;*/
+    padding: 25px;
+    background: #78C3F3;
+    border-radius: 10px;
+}
+
+.my_header_center {
+    text-align: center;
+}
+
+.my_image_header {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+
+}
+
+.my_username {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.my_action {
+    margin-top: 1.5em;
+}
+
+.my_action_favorite, .my_action_good, .my_action_home {
+    padding: .3em;
+    width: 100%;
+    /*margin: .3em;*/
+    cursor: pointer;
+}
+
+.my_action_now {
+    background: #b0d5f3;
+    /*width: 280px;*/
+    /*margin: 0px;*/
+}
+
+.my_friends {
+    margin-top: 1.5em;
+}
+
+.my_friends_list {
+    text-align: center;
+}
+
+aside div ul li {
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+}
+
+.add_friends {
+    height: 1.5em;
+}
+.all_search{
+    margin-top: 1.5em;
+    background: #78C3F3;
+    border-radius: 10px;
+    padding: 25px;
+}
+.search{
+    margin: 10px 0 25px 25px;
+    width: 180px;
+}
+.search_movie,.search_publish,.search_user{
+    margin-left: 20px;
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
+    background: url("../../image/1.jpg");
+    cursor: pointer;
+    border: none;
+}

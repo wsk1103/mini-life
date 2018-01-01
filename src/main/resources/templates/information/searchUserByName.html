@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>个人主页</title>
+    <link rel="stylesheet" href="/css/home/home.css"/>
+    <link rel="stylesheet" href="/css/information.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<script src="/js/information/searchUserByName.js"></script>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div style="" id="show_information" th:each="cc:${wsk}">
+            <figure style="" id="show_avatar">
+                <div style="" class="show_img">
+                    <img src="/image/1.jpg" style="" class="show_img" th:src="${cc.avatar}"/>
+                </div>
+                <div style=" " class="user_action" th:if="(${cc.id}!=${userInformation.id})">
+                    <button class="follow" th:if="${cc.getFriend()}==0" th:value="${cc.id}" title="addattention">+关注</button>
+                    <button class="follow" th:if="${cc.getFriend()}==1" th:value="${cc.id}" title="unsubscribe">×关注</button>
+                    <button class="letter" th:value="${cc.id}">◇私信</button>
+                    <button class="report" th:value="${cc.id}" title="report">●举报</button>
+                </div>
+            </figure>
+            <figure class="user_information user">
+                <div class="user_name user">
+                    <span class="user_title">用户名：</span>
+                    <a class="content" th:text="${cc.name}" th:href="'userInformation?id'+${cc.id}">该用户不存在</a>
+                </div>
+                <div class="user_label user">
+                    <span class="user_title">简&nbsp;&nbsp;介：</span>
+                    <span class="content" th:text="${cc.autograph}"></span>
+                </div>
+                <div class="user_gender user">
+                    <span class="user_title">性&nbsp;&nbsp;别：</span>
+                    <span class="content" th:text="${cc.sex}">未知</span>
+                </div>
+                <div class="user_birthday user">
+                    <span class="user_title">生&nbsp;&nbsp;日：</span>
+                    <span class="content">
+                        <span th:text="${cc.birthday}"></span></span>
+                </div>
+                <div class="user_address user">
+                    <span class="user_title">住&nbsp;&nbsp;址：</span>
+                    <span class="content" th:text="${cc.address}">广东-广州-白云</span>
+                </div>
+            </figure>
+            <figure style="clear: both">
+                <input type="hidden" th:value="${cc.id}" id="userId"/>
+            </figure>
+        </div>
+        <div class="not_more">
+            没有更多.......
+        </div>
+        <div class="find_more">
+            查看更多↓
+        </div>
+    </main>
+
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+main {
+    margin-top: 3em;
+    margin-left: 4%;
+    /*margin-right: 3em;*/
+    float: left;
+    /*border: .2em solid black;*/
+    width: 650px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+}
+h1{
+    color:#a1c15e;
+    text-align: center;
+}
+div.movie_cover {
+    float: left;
+    padding: 1em;
+}
+
+div.all_movie {
+    /*height: 400px;*/
+}
+
+img.movie_img {
+    max-width: 250px;
+    max-height: 250px;
+}
+
+div.movie_font {
+    display: inline;
+    /*font-size: 1.2em;*/
+}
+
+div.movie_playlinks {
+    clear: both;
+    margin: 1em;
+}
+div.movie_video_down {
+    margin: 1em;
+    clear:both;
+}
+div.movie_video_down_1{
+    color:forestgreen;
+    padding: 1em;
+}
+
+.movie_video_rec {
+    margin: 1em;
+}
+
+.movie_atc_s {
+    margin: 1em;
+}
+
+div.atc_information {
+    float: left;
+    /*width: 120px;*/
+    padding: 1em;
+}
+
+.movie_information {
+    /*float: left;*/
+    padding: 1em;
+    display: inline-block;
+}
+
+img.movie_video_rec_cover {
+    width: 150px;
+    max-height: 200px;
+    display: block;
+}
+img.movie_atc_s_name{
+    max-width: 120px;
+    max-height:120px;
+    display: block;
+}
+div.movie_video_rec_name{
+    width: 150px;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+}
+
+div.all_release {
+    /*margin: 5% auto 2%;*/
+    background: #fff;
+    border-radius: 10px;
+    /*box-shadow: 2px 2px 2px #666666;*/
+}
+
+div.all_release:hover {
+    /*box-shadow: 0px 0px 20px 0px black;*/
+    border-radius: 10px;
+}
+
+div.release_div {
+    width: 100%;
+    text-align: center;
+}
+
+div.release_div_2 {
+    width: 100%;
+    /*height: 20px;*/
+    padding-bottom: 1em;
+}
+
+span.movie_name {
+    margin-left: .2em;
+}
+.size_tip {
+    margin-left: 2.3em;
+    color: #a2a2a8;
+}
+
+.movie_name_text {
+    box-shadow: inset 1px 1px 0px 0px #e7e7e7;
+    height: 20px;
+}
+
+.movie_name_text:focus {
+    /*border: 1px solid #9fbe5d;*/
+    /*cursor: pointer;*/
+}
+
+button.movie_release ,.movie_release{
+    height: 2em;
+    background: #ffc09f;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    width: 4.5em;
+    cursor: default;
+}
+
+.movie_state {
+    height: 2em;
+}
+
+textarea.release_message {
+    margin: 2em 5% .8em;
+    resize: none;
+    width: 570px;
+    height: 100px;
+    box-shadow: inset 0px 0px 11px 0px #e7e7e7;
+    font-size: 1em;
+}
+
+textarea.release_message:active {
+    /*border: 1px solid #9fbe5d;*/
+}
+
+a.movie_image_upload {
+    /*margin-left: 5em;*/
+    /*height: 22px;*/
+    position: relative;
+    display: inline-block;
+    /*background: #D0EEFF;*/
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 2px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    top: 9px;
+}
+a.movie_image_upload input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+a.movie_image_upload:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+div.image_container {
+    box-shadow: 0px 2px 20px #666666;
+    position: absolute;
+    display: none;
+    border: none;
+    width: 200px;
+    margin-left: 320px;
+    padding: 1em;
+    background: #ffffff;
+}
+
+div.close_img_tip {
+    float: right;
+    cursor: pointer;
+
+}
+
+div.close_img_tip:hover {
+    color: #9fbe5d;
+}
+.movie_desc{
+    clear: both;
+}
+.movie_show{
+    color: #666666;
+}
+.movie_video_rec_name_1,.movie_atc_s_name_1{
+    font-size: 13px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 150px;
+}
+.movie_atc_s_name_1{
+    width: 95px;
+}
+.movie_playlinks_show{
+    color:forestgreen;
+}
+.hot_comment{
+    padding: 1em 0;
+}
+.hot_comment_1{
+
+}
+.hot_comment_1_name{
+
+}
+.hot_comment_1_time{
+    font-size: .8em;
+    color: #666666;
+    float: right;
+    padding-right: 3em;
+}
+.hot_comment_2{
+    padding: .5em;
+}
+.hot_comment_2_comment{
+    font-size: .9em;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 500;
+}
+#booking{
+    background: #b4d66b;
+    width: 100px;
+    height: 3em;
+    border-radius: .5em;
+    font-weight: 900;
+    border-style: none;
+    font-size: .9em;
+    cursor: pointer;
+}

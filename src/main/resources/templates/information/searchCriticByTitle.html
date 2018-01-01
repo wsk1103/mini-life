@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>相关影评</title>
+    <link href="/css/hot/hot_critic.css" rel="stylesheet"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <link href="/image/title.ico" rel="icon"/>
+</head>
+<script src="/js/jquery-3.0.0.js"></script>
+<script src="/js/layer.js"></script>
+<script src="/js/hot/searchCriticByTitle.js"></script>
+<script src="/js/all.js"></script>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="
+    top: 2.3em;
+    width: 1000px;
+    background: #9fbe5d;
+    min-height: 810px;
+    padding-right: 3em;
+">
+    <main>
+        <input type="hidden" id="criticTitle" th:value="${title}"/>
+        <div class="all_stats">
+            <div class="friends_stats_fix">
+                <div class="friends_stats" th:each="o : ${result}">
+                    <div>
+                        <div class="friends_stats_top">
+                            <div>
+                                <img src="" class="friends_image_header" th:src="${o.getAvatar()}" alt="??"
+                                     th:value="${o.uid}"/>
+                            </div>
+                            <div class="friends_name">
+                                <div>
+                                    <span th:text="${o.getName()}" th:value="${o.uid}"
+                                          class="friends_username">用户名</span>
+                                </div>
+                                <!--<br/>-->
+                                <span class="friends_time" th:with="publishTime = ${o.getTime()}"
+                                      th:text="${o.getTime()}">时间</span>
+                                <br/>
+                                <span class="friends_time isPrivate" th:text="${o.isPrivate}==1?'朋友圈':'公共圈'"
+                                      th:value="${o.isPrivate}">朋友圈</span>
+                            </div>
+                            <div class="wsk" style="">
+                                <span class="show_action">Ⅲ</span>
+                                <div style="" class="show_action_menu" th:if="${o.uid}!=${userInformation.id}">
+                                    <span style="" class="action_menu" th:if="${o.friend}==1" th:value="${o.uid}"
+                                          title='unsubscribe'>×关注</span>
+                                    <span style="" class="action_menu" th:if="${o.friend}==0" th:value="${o.uid}"
+                                          title='addattention'>+关注</span>
+                                    <!--<span  style="display: block">添加关注</span>-->
+                                    <span style="" class="action_menu" th:value="${o.pid}" title='report'>●举报</span>
+                                </div>
+                                <div style="" class="show_action_menu" th:if="${o.uid}==${userInformation.id}">
+                                    <span style="" class="action_menu" th:if="${o.isPrivate}==0" th:value="${o.pid}"
+                                          title='translation'>转为朋友圈</span>
+                                    <!--<span  style="display: block">添加关注</span>-->
+                                    <span style="" class="action_menu" th:value="${o.pid}" title='delcritic'>×删除</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="friends_stats_middle clearfix">
+                            <div class="friends_text">
+                            <span th:text="${o.getCritic()}">
+                            </span>
+                            </div>
+                            <span class="friends_title" th:text="'-- '+${o.getTitle()}">
+                        </span>
+                        </div>
+                        <div class="friends_image" th:if="${o.getPicture()}!=''">
+                            <img class="friends_img_critic" src="" th:if="${o.thumbnails==null}"
+                                 th:src="${o.getPicture()}" th:alt="${o.title}" th:title="${o.title}"
+                                 th:value="${o.picture}"/>
+                            <img class="friends_img_critic" src="" th:if="${o.thumbnails!=null}"
+                                 th:src="${o.thumbnails}" th:alt="${o.title}" th:title="${o.title}"
+                                 th:value="${o.picture}"/>
+                        </div>
+                        <div class="friends_action">
+                            <button th:value="${o.pid}" class="friends_collection_current" th:if="${o.collection}==1">
+                                ☆收藏
+                                <span th:text="${o.getCollectionCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_collection" th:if="${o.collection}==0">
+                                ☆收藏
+                                <span th:text="${o.getCollectionCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_comment" title="1">
+                                ◇评论
+                                <span th:text="${o.getCommentCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_good_current" th:if="${o.good}==1">
+                                ♡点赞
+                                <span th:text="${o.getGoodCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_good" th:if="${o.good}==0">
+                                ♡点赞
+                                <span th:text="${o.getGoodCounts()}"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="not_more">
+                没有更多.......
+            </div>
+            <div class="find_more">
+                查看更多↓
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+</html>

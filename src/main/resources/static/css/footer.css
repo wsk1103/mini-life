@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+footer{
+	height:100px;
+	width:100%;
+	background-color:#f0f0f0;
+	clear: both;
+	color:#000;
+	font-size: 18px;
+}
+footer p{
+	text-align:center;
+	/*margin-left:200px;*/
+}
+footer ul{
+	width:800px;
+	margin:0 auto;
+	border-bottom: 1px solid #ccc;
+}
+.footer li{
+  margin-bottom: 0;
+  padding: 10px 0 10px 10px;
+  border-left: 2px solid #c8c8c8;
+  display: inline-block;
+  text-align: left;
+}
+.footer li:first-child {
+  border-left: none;
+}
+.footer a:hover{
+	text-decoration:none;
+	color:red;
+}
+.footer-ul{
+	color:#000;
+}

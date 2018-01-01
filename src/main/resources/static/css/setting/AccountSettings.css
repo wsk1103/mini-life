@@ -1,0 +1,525 @@
+body {
+    padding: 0;
+    margin: 0 auto;
+    font-size: 16px;
+    width: 1000px;
+    /*background: #d4d6cb;*/
+    /*background: url("../image/saber.jpg") repeat fixed;*/
+    background: #b4d66b;
+    background-size: cover;
+    opacity: .9;
+    font-weight: 700;
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.clearfix {
+    clear: both;
+    content: ".";
+    display: block;
+    /*height: 0%;*/
+    /*visibility: hidden;*/
+
+}
+main {
+    margin-top: 3em;
+    margin-left: 4%;
+    /*margin-right: 3em;*/
+    float: left;
+    /*border: .2em solid black;*/
+    width: 650px;
+}
+.all_content{
+    top: 2.3em;
+    width: 1000px;
+    background: #9fbe5d;
+    min-height: 810px;
+    padding-right: 3em;
+}
+
+.main {
+    /*margin-top: 5%;*/
+    width: 80%;
+    float: right;
+    background-color: #f9f9f9;
+    /*opacity: .9;*/
+    height: 100%;
+    /*margin: auto;*/
+    /*border: 1px solid black;*/
+}
+
+div.all {
+    /*float: right;*/
+    margin: 20px;
+    /*padding-top: 20px;*/
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.name, .tel, .address, .birth, .introduction, .sex {
+    line-height: 2.5em;
+    height: 2.5em;
+    background: #f0f0f0;
+    margin: 20px;
+}
+
+.set-name, .set-tel, .set-sex, .set-introduction, .set-address {
+    display: none;
+    /*margin: 20px;*/
+    background: #fff;
+    padding-left: 10%;
+}
+
+.set-introduction {
+    padding: 20px;
+}
+
+.set-address {
+    padding: 20px 15%;
+}
+
+.now-name, .now-tel, .now-introduction {
+    padding: 20px;
+}
+
+.new-name, .new-tel, .new-introduction {
+    padding: 0 20px 20px;
+    vertical-align: top;
+}
+
+.new-name-text, .new-tel-text {
+    box-shadow: inset 0px 0px 2px;
+    margin-left: 15px;
+    height: 1.8em;
+    line-height: 1.8em;
+    width: 50%;
+}
+
+.introduction-text {
+    font-size: 1em;
+    margin-left: 20px;
+    width: 280px;
+    /*height: 3em;*/
+    overflow: auto;
+    resize: none;
+    vertical-align: top;
+}
+
+.name-tip, .introduction-tip, .security-tip {
+    color: #3c763d;
+    font-size: .9em;
+    margin-left: 90px;
+    /*margin: 20px;*/
+}
+
+.introduction-tip {
+    margin-left: 80px;
+}
+
+.set-birth {
+    display: none;
+    /*margin: 20px;*/
+    padding: 30px 20%;
+    background: white;
+}
+
+.select {
+    padding: 20px;
+}
+
+.select-sex {
+    margin-left: 30px;
+}
+
+.preservation, .tel-preservation, .birth-preservation, .sex-preservation, .introduction-preservation, .address-preservation, .security-preservation {
+    /*background: #ffa00a;*/
+    /*border-radius: 5px;*/
+    /*color: white;*/
+    /*cursor: pointer;*/
+    /*width: 5em;*/
+    /*height: 2em;*/
+    /*margin-left: 80px;*/
+    margin-left: 95px;
+    height: 2em;
+    background: #ffc09f;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    width: 4.5em;
+    cursor: pointer;
+}
+
+.introduction-preservation {
+    margin-top: 20px;
+}
+
+select {
+    margin: 20px;
+}
+
+.preservation:hover, .tel-preservation:hover, .birth-preservation:hover, .sex-preservation:hover, .introduction-preservation:hover, .address-preservation:hover, .security-preservation:hover {
+    background: #f7671d;
+}
+
+.close, .tel-close, .birth-close, .sex-close, .introduction-close, .address-close, .security-close {
+    /*border-radius: 5px;*/
+    /*cursor: pointer;*/
+    /*width: 5em;*/
+    /*height: 2em;*/
+    margin-left: 20px;
+    margin-bottom: 20px;
+    /*box-shadow: 0 0 0 black;*/
+    height: 2em;
+    background: #ffc09f;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    width: 4.5em;
+    cursor: pointer;
+}
+
+.name:hover, .tel:hover, .address:hover, .birth:hover, .introduction:hover, .sex:hover {
+    background: #cccccc;
+    cursor: pointer;
+}
+
+.username, .useraddress, .usersex, .userbirth, .userintroduction, .usertel {
+    width: 15%;
+    padding-left: 3%;
+    text-align: right;
+    font-weight: 800;
+}
+
+.name-center, .tel-center, .birth--center, .sex-center, .introduction-center, .address-center {
+    position: relative;
+    text-align: center;
+    left: 15%;
+    color: #838383;
+}
+
+.name-modify, .address-modify, .birth-modify, .sex-modify, .introduction-modify, .tel-modify {
+    position: relative;
+    /*right: 15%;*/
+    /*font-weight: 500;*/
+    font-size: .8em;
+    cursor: pointer;
+    color: #9fbe5d;
+    float: right;
+    margin-right: 5%;
+}
+
+.name-modify:hover, .address-modify:hover, .birth-modify:hover, .sex-modify:hover, .introduction-modify:hover, .tel-modify:hover {
+    text-shadow: 1px 1px 1px black;
+    font-weight: 800;
+}
+
+.all_main {
+    float: left;
+    /*border: 1px solid black;*/
+    width: 20%;
+    /*margin-top: 1.8%;*/
+    /*margin-left: 5%;*/
+    /*padding-left: 5%;*/
+    background: #f0f0f0;
+    /*padding:10px 0 10px 5% ;*/
+    /*text-align: center;*/
+    height: 100%;
+}
+
+.currentSet {
+    background: #f9f9f9;
+}
+
+.set {
+    margin-top: 15%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 5%;
+    /*font-weight: 300;*/
+    font-size: .7em;
+    color: #999999;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.picture, .information, .security {
+    /*padding-bottom: 10px;*/
+    padding-left: 25%;
+    height: 2.5em;
+    line-height: 2.5em;
+}
+
+.picture:hover, .information:hover, .security:hover {
+    cursor: pointer;
+    background: #ccc;
+}
+
+.bottom-line {
+    margin: 10%;
+    border-bottom: 1px solid #ccc;
+}
+
+/*-------------------*/
+.security-main {
+    /*margin-top: 5%;*/
+    /*display: none;*/
+    width: 80%;
+    float: right;
+    background-color: #f9f9f9;
+    /*opacity: .9;*/
+    height: 100%;
+    /*margin: auto;*/
+    /*border: 1px solid black;*/
+}
+
+.security-context {
+    /*margin: 20px;*/
+    background: white;
+    height: 380px;
+    padding: 10% 10%;
+}
+
+.security-old, .security-new {
+    margin: 20px;
+}
+
+.security-old-password, .security-new-password {
+
+    margin: 20px;
+}
+
+aside {
+    /*position: absolute;*/
+    margin-right: 5%;
+    margin-top: 3em;
+    /*z-index: 2008;*/
+    /*margin-left: 3em;*/
+    float: right;
+    width: 280px;
+    right: 30px;
+    /*border: .2em solid black;*/
+}
+
+.my_header, .my_friends, .my_action {
+    /*margin: 5% auto 2%;*/
+    padding: 25px;
+    background: #78C3F3;
+    border-radius: 10px;
+}
+
+.my_header_center {
+    text-align: center;
+}
+
+.my_image_header {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+
+}
+
+.my_username {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.my_action {
+    margin-top: 1.5em;
+}
+
+.my_action_favorite, .my_action_good, .my_action_home {
+    padding: .3em;
+    width: 100%;
+    /*margin: .3em;*/
+    cursor: pointer;
+}
+
+.my_action_now {
+    background: #b0d5f3;
+    /*width: 280px;*/
+    /*margin: 0px;*/
+}
+
+.my_friends {
+    margin-top: 1.5em;
+}
+
+.my_friends_list {
+    text-align: center;
+}
+
+aside div ul li {
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+}
+
+.add_friends {
+    height: 1.5em;
+}
+.search{
+    margin: 10px 0 25px 25px;
+    width: 180px;
+}
+.search_movie,.search_publish,.search_user{
+    margin-left: 20px;
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
+    background: url("../../image/1.jpg");
+    cursor: pointer;
+    border: none;
+}
+.all_search{
+    margin-top: 1.5em;
+    background: #78C3F3;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+
+.list a {
+    padding: 5px;
+    text-decoration: none;
+}
+
+#address {
+    margin-left: 120px;
+    width: 220px;
+    height: 25px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 800;
+}
+
+.area-box {
+    float: right;
+    right: 232px;
+}
+
+.area-box {
+    position: relative;
+    right: 90px;
+    padding-bottom: 30px;
+}
+
+.area-con {
+    display: none;
+    position: absolute;
+    background: #fff;
+    z-index: 1000;
+    left: 90px;
+    width: 288px;
+    border: 1px solid #83a0ff;
+    min-height: 50px;
+}
+
+.area-con .operation {
+    background: #83a0ff;
+    margin-bottom: 4px;
+}
+
+.area-con .operation ul {
+    padding: 0px;
+    width: 100%;
+    zoom: 1;
+    overflow: hidden;
+}
+
+.area-con .operation li {
+    float: left;
+    width: 25%;
+    margin: 0;
+}
+
+.area-con .operation li a {
+    display: block;
+    height: 22px;
+    line-height: 21px;
+    text-align: center;
+    color: #fff;
+}
+
+.area-con .operation li.on a {
+    background: #fff;
+    color: #83a0ff;
+}
+
+.province, .city, .area {
+    display: none;
+}
+
+.province .box {
+    zoom: 1;
+    overflow: hidden;
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 4px;
+    margin-bottom: 5px;
+}
+
+.province .box.last {
+    border-bottom: none;
+}
+
+.province .box .sort {
+    float: left;
+    width: 38px;
+    height: 48px;
+    line-height: 48px;
+    color: #83a0ff;
+    text-align: center;
+    cursor: default;
+}
+
+.province .box .list {
+    float: left;
+    width: 250px;
+}
+
+.province .box .list a, .city .box a, .area .box a {
+    display: block;
+    float: left;
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.province .box .list a:hover, .city .box a:hover, .area .box a:hover {
+    color: #83a0ff;
+    background: #f1f1f1;
+}
+
+.city .box, .area .box {
+    zoom: 1;
+    overflow: hidden;
+    padding: 5px 12px 10px;
+}
+
+.city .box a, .area .box a {
+    width: auto;
+    padding: 0 4px;
+    margin-right: 8px;
+}
+input.new-password,input.old-password{
+    box-shadow: inset 0px 0px 2px;
+    margin-left: 15px;
+    height: 1.8em;
+    line-height: 1.8em;
+    width: 50%;
+}
+input#pickdate{
+    box-shadow: inset 0px 0px 2px;
+    height: 1.8em;
+    line-height: 1.8em;
+    width: 50%;
+    font-size: 1em;
+    font-weight: 800;
+}

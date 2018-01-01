@@ -1,0 +1,66 @@
+main{
+    margin-top: 3em;
+    margin-left: 4%;
+    float: left;
+    width: 650px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+}
+div.search_movie_result {
+    padding: .7em;
+    clear: both;
+}
+div.search_movie_result_img{
+    float: left;
+    min-height: 200px;
+    width: 170px;
+}
+div.search_movie_result_img img{
+    width: 160px;
+    padding-right: .7em;
+}
+div.search_movie_result_information{
+
+}
+div.search_movie_result_information_1{
+    padding: .1em 0;
+}
+div.search_movie_result_information_cast{
+
+}
+
+div.search_movie_result_information_director{
+
+}
+div.search_movie_result_information_name{
+
+}
+div.search_movie_result_summary{
+    clear: both;
+}
+div.search_movie_result_summary_1{
+    color: #666;
+}
+div.search_movie_result_summary_2{
+
+}
+.search_movie_result_information_name_1{
+    color: #666;
+}
+.search_movie_result_information_name_2{
+
+}
+.search_movie_result_information_director_1{
+    color: #666;
+}
+.search_movie_result_information_director_2{
+
+}
+.search_movie_result_information_cast_1{
+    color: #666;
+}
+.search_movie_result_information_cast_2{
+
+}

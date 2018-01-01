@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+body,html{
+	margin: 0;
+	padding: 0;
+	height: 90%;
+	background: #f4f4f4;
+	/*font-family: KaiTi;*/
+	background: url("../../image/saber.jpg") 50% fixed;
+	opacity: .9;
+	background-size: cover;
+	font-weight: 700;
+	font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;;
+
+}
+a{
+	color:#1E88C7;
+	text-decoration: none;
+}
+a:HOVER {
+	text-decoration: underline;
+}
+.main{
+	box-shadow: 1px 1px 20px #000000;
+	width:1040px;
+	min-height: 100%;
+	/*height: 100%;*/
+	background:#ffffff;
+	margin: 50px auto ;
+}
+header{
+	padding: 0;
+}
+header ul li{
+	font-size:130%;
+	display: inline-block;
+	margin:10px 10px;
+	padding-right:50px;
+	padding-left: 50px;
+}
+.cc{
+	font-size:150%;
+	color:#1E88C7;
+}
+header ul li .current-num{
+	margin-right:20px;
+	width:25px; 
+	height:25px; 
+	display:inline-block;
+	background-color:#1E88C7;
+	border-radius:25px;
+	color:#FFF; 
+	text-align:center
+}
+header ul li .num{
+	margin-right:20px;
+	width:25px; 
+	height:25px; 
+	display:inline-block;
+	background-color:#ccc; 
+	border-radius:25px;
+	color:#FFF; 
+	text-align:center
+}
+header .current{
+	color:#1E88C7;
+}
+
+.success{
+	font-size:22px;
+	width:260px;
+	margin:100px auto;
+}
+.next{
+	font-size:18px;
+	margin-top:20px;
+	border-radius: 5px;
+	color:#fff;
+	background: #1E88C7;
+	cursor: pointer;
+	height: 38px;
+	width:240px;
+	font-weight: 900;
+}
+

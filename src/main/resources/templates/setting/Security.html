@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>账号安全</title>
+    <link href="/css/setting/AccountSettings.css" rel="stylesheet"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+</head>
+<body>
+<header th:include="header::copy"></header>
+<div class="all_content">
+    <main>
+        <div class="all_main">
+            <div class="set">
+                账号设置
+            </div>
+            <a href="/accountSettings" style="text-decoration: none;color: black">
+                <div class="information ">
+                    我的信息
+                </div>
+            </a>
+            <a href="/" style="text-decoration: none;color: black">
+                <div class="picture">
+                    头像
+                </div>
+            </a>
+            <div class="bottom-line"></div>
+            <div class="security currentSe">
+                账号安全
+            </div>
+            <div class="">
+                &nbsp;
+            </div>
+            <div class="">
+                &nbsp;
+            </div>
+            <div class="">
+                &nbsp;
+            </div>
+        </div>
+        <div class="security-main">
+            <form action="/password" method="post">
+                <div class="security-context">
+                    <div class="security-old"><span class="security-old-password">原密码</span><input type="password"
+                                                                                                   name="old_password"
+                                                                                                   class="old-password"
+                                                                                                   placeholder="原密码"/>
+                    </div>
+                    <div class="security-new"><span class="security-new-password">新密码</span><input type="password"
+                                                                                                   name="new_password"
+                                                                                                   class="new-password"
+                                                                                                   placeholder="新密码"/>
+                        <br/><span class="security-tip" style="margin-left: 120px ;">请输入6-18个字符</span></div>
+                    <input type="submit" value="保存" class="security-preservation" style="margin-left: 130px"/>
+                    <input type="button" value="关闭" class="security-close"/>
+                </div>
+            </form>
+        </div>
+    </main>
+    <aside th:include="aside::aside"></aside>
+</div>
+</body>
+</html>

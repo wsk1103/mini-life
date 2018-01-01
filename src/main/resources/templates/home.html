@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${userInformation.name}+'の首页'">首页</title>
+    <link rel="stylesheet" href="/css/home/home.css"/>
+    <!--<link rel="icon" href="/image/title.ico" type="image/x-icon"/>-->
+    <link href="/css/all.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+</head>
+<script src="/js/layer.js"></script>
+<script src="/js/home/home.js"></script>
+<script src="/js/all.js"></script>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div class="all_release">
+            <!--发表内容-->
+            <form action="publishCritic" method="post" enctype="multipart/form-data" class="release_form">
+                <div class="release_div">
+                    <textarea class="release_message" name="movie_content"></textarea>
+                </div>
+                <div class="release_div_2">
+                    <span class="size_tip">还可以输入122个字</span>
+                    <span class="movie_name">电影名：</span><input type="text" class="movie_name_text" name="movie_name"/>
+                    <a class="movie_image_upload"><input type="file" value="图片" class="" id="file_upload"
+                                                         name="file_upload"/>图片</a>
+                    <select class="movie_state" name="isPrivate">
+                        <option value="0">公共圈</option>
+                        <option value="1">朋友圈</option>
+                    </select>
+                    <!--<button value="发布" class="movie_release">发布</button>-->
+                    <input type="button" th:value="发布" class="movie_release"/>
+                </div>
+            </form>
+            <div class="image_container"
+                 style="">
+                <div style="" class="close_img_tip">
+                    ×
+                </div>
+                <img id="preview" width="80%" height="" style="position: relative;"/>
+            </div>
+        </div>
+        <div class="all_stats" th:with="uid=${userInformation.id}">
+            <!--<div id="showCritic"></div>-->
+            <div class="friends_stats_fix">
+                <div class="friends_stats" th:each="o : ${result}">
+                    <div>
+                        <div class="friends_stats_top">
+                            <div>
+                                <img src="" class="friends_image_header" th:src="${o.getAvatar()}" alt="??"
+                                     th:value="${o.uid}"/>
+                            </div>
+                            <div class="friends_name">
+                                <div>
+                                    <span th:text="${o.getName()}" th:value="${o.uid}"
+                                          class="friends_username">用户名</span>
+                                </div>
+                                <!--<br/>-->
+                                <span class="friends_time" th:with="publishTime = ${o.getTime()}"
+                                      th:text="${o.getTime()}">时间</span>
+                                <br/>
+                                <span class="friends_time isPrivate" th:text="${o.isPrivate}==1?'朋友圈':'公共圈'"
+                                      th:value="${o.isPrivate}">朋友圈</span>
+                            </div>
+                            <div class="wsk" style="">
+                                <span class="show_action">Ⅲ</span>
+                                <div style="" class="show_action_menu" th:if="${o.uid}!=${userInformation.id}">
+                                    <span style="" class="action_menu" th:value="${o.uid}"
+                                          title="unsubscribe">×关注</span>
+                                    <!--<span  style="display: block">添加关注</span>-->
+                                    <span style="" class="action_menu" th:value="${o.pid}" title="report">●举报</span>
+                                </div>
+                                <div style="" class="show_action_menu" th:if="${o.uid}==${userInformation.id}">
+                                    <span style="" class="action_menu" th:if="${o.isPrivate}==0" th:value="${o.pid}"
+                                          title="translation">转为朋友圈</span>
+                                    <!--<span  style="display: block">添加关注</span>-->
+                                    <span style="" class="action_menu" th:value="${o.pid}" title="delcritic">×删除</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="friends_stats_middle clearfix">
+                            <div class="friends_text">
+                            <span th:text="${o.getCritic()}">
+                            </span>
+                            </div>
+                            <span class="friends_title" th:text="'-- '+${o.getTitle()}">
+                        </span>
+                        </div>
+                        <div class="friends_image" th:if="${o.getPicture()}!=''">
+                            <img class="friends_img_critic" src="" th:if="${o.thumbnails==null}"
+                                 th:src="${o.getPicture()}" th:alt="${o.title}" th:title="${o.title}"
+                                 th:value="${o.picture}"/>
+                            <img class="friends_img_critic" src="" th:if="${o.thumbnails!=null}"
+                                 th:src="${o.thumbnails}" th:alt="${o.title}" th:title="${o.title}"
+                                 th:value="${o.picture}"/>
+                        </div>
+                        <div class="friends_action">
+                            <button th:value="${o.pid}" class="friends_collection_current" th:if="${o.collection}==1">
+                                ☆收藏
+                                <span th:text="${o.getCollectionCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_collection" th:if="${o.collection}==0">
+                                ☆收藏
+                                <span th:text="${o.getCollectionCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_comment" title="1">
+                                ◇评论
+                                <span th:text="${o.getCommentCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_good_current" th:if="${o.good}==1">
+                                ♡点赞
+                                <span th:text="${o.getGoodCounts()}"></span>
+                            </button>
+                            <button th:value="${o.pid}" class="friends_good" th:if="${o.good}==0">
+                                ♡点赞
+                                <span th:text="${o.getGoodCounts()}"></span>
+                            </button>
+                        </div>
+                        <!--<div class="all_friends_comment">-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="not_more">
+                没有更多.......
+            </div>
+            <div class="find_more">
+                查看更多↓
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+
+</body>
+</html>

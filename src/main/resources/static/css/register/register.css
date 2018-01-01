@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+.form2{
+	font-size:150%;
+	margin:0 0px 20px 20px;
+}
+h1{
+	margin-left:150px;
+
+}
+.a1{
+	margin-top:8px;
+	margin-left:84px;
+}
+.submit1{
+	margin-top:5px;
+	margin-left:84px;
+	font-size:80%;
+}
+.submit2{
+	margin-left:12px;
+	margin-top:5px;
+	font-size:80%;
+}
+.input1{
+	margin-bottom:5px;
+	font-size:100%;
+	width:250px;
+}
+body{
+	background:#ccc;
+}
+.password{
+	font-size:100%;
+	width:250px;
+	font-color:#ccc;
+}
+.main{
+	background-color:#80ffff;
+
+	margin:0 auto;
+}
+.register{
+	margin:100px 0px;
+	float:left;
+	width:400px;
+	height:400px;
+	background-color:#fff;
+
+}
+.image{
+	margin-top:100px;
+	margin-left:200px;
+	float:left;
+
+}
+.image .cc{
+	float:right;
+}
+.toolTip{
+	font-size:80%;
+	margin-left:80px;
+}

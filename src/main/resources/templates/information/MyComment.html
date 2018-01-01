@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${userInformation.name}+'の评论'">个人主页</title>
+    <link rel="stylesheet" href="/css/home/home.css"/>
+    <link rel="stylesheet" href="/css/information.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<script src="/js/information/MyComment.js"></script>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div style="" id="show_information">
+            <figure style="" id="show_avatar">
+                <div style="" class="show_img">
+                    <img src="/picture/1.jpg" style="" class="show_img" th:src="${userInformation.avatar}"/>
+                </div>
+                <!--<div style=" " class="user_action" th:if="(${userInformation.id}!=${userInformation.id})">-->
+                <!--<button class="follow" th:if="(${isFriends}==0)" th:value="${userInformation.id}">+关注</button>-->
+                <!--<button class="follow" th:if="(${isFriends}==1)" th:value="${userInformation.id}">×关注</button>-->
+                <!--<button class="letter" th:value="${userInformation.id}">◇私信</button>-->
+                <!--<button class="report" th:value="${userInformation.id}">●举报</button>-->
+                <!--</div>-->
+            </figure>
+            <figure class="user_information user">
+                <div class="user_name user">
+                    <span class="user_title">用户名：</span>
+                    <span class="content" th:text="${userInformation.name}">该用户不存在</span>
+                </div>
+                <div class="user_label user">
+                    <span class="user_title">简&nbsp;&nbsp;介：</span>
+                    <span class="content" th:text="${userInformation.autograph}"></span>
+                </div>
+                <div class="user_gender user">
+                    <span class="user_title">性&nbsp;&nbsp;别：</span>
+                    <span class="content" th:text="${userInformation.sex}">未知</span>
+                </div>
+                <div class="user_birthday user">
+                    <span class="user_title">生&nbsp;&nbsp;日：</span>
+                    <span class="content" th:with="publishTime=${userInformation.birthday}"
+                          th:if="publishTime!=null||publishTime==''">
+                        <span th:text="${#dates.format(publishTime,'yyyy-MM-dd')}"></span></span>
+                </div>
+                <div class="user_address user">
+                    <span class="user_title">住&nbsp;&nbsp;址：</span>
+                    <span class="content" th:text="${userInformation.address}">广东-广州-白云</span>
+                </div>
+            </figure>
+            <figure style="clear: both">
+                <input type="hidden" th:value="${userInformation.id}" id="userId"/>
+            </figure>
+        </div>
+        <div class="all_stats">
+            <div class="friends_stats_fix">
+                <div class="friends_stats" th:each="o : ${result}">
+                    <div>
+                        <div class="friends_stats_top">
+                            <div>
+                                <img src="" class="friends_image_header" th:src="${userInformation.getAvatar()}"
+                                     alt="??" th:value="${userInformation.id}"/>
+                            </div>
+                            <div class="friends_name">
+                                <div>
+                                    <span th:text="${userInformation.getName()}" th:value="${userInformation.id}"
+                                          class="friends_username">用户名</span>
+                                </div>
+                                <!--<br/>-->
+                                <span class="friends_time" th:text="'评论时间：'+${o.getCommentTime()}">时间</span>
+                                <br/>
+                                <!--<span class="friends_time isPrivate" th:text="${o.isprivate}==1?'朋友圈':'公共圈'"-->
+                                <!--th:value="${o.isprivate}">朋友圈</span>-->
+                            </div>
+                            <div class="wsk" style="">
+                                <span class="show_action">Ⅲ</span>
+                                <div style="" class="show_action_menu">
+                                    <span style="" class="action_menu" th:value="${o.cid}" title='delcomment'>×删除</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="friends_stats_middle clearfix">
+                            <div class="friends_text">
+                                <span th:text="${o.getComment()}" style="font-size: .9em"></span>
+                            </div>
+                        </div>
+                        <!--<span class="friends_title" th:text="'&#45;&#45; '+${o.getTitle()}">-->
+                        <!--</span>-->
+                    </div>
+                    <div style="background: #F2F2F5;margin: 0 2em;padding: .5em 1em;font-size: .8em;">
+                        <span th:text="'评论 '+${o.getName()}+'的影评：'" style="color: #808080;"></span>
+                        <a th:text="${o.getCritic()}" th:href="'/criticInformation?pid='+${o.getPid()}"
+                           style="text-decoration: none;"></a>
+                    </div>
+                    <div class="clearfix" style="padding-bottom: 1em"></div>
+                </div>
+            </div>
+        </div>
+        <div style="background: white;margin: 1em 0;border-radius: 10px;vertical-align: middle;width: 100%;"
+             th:value="${userInformation.id}" id="findMoreComment">查看更多...
+        </div>
+        <div style="display: none;background: white;margin: 1em 0;border-radius: 10px;vertical-align: middle;width: 100%;cursor: default"
+             th:value="${userInformation.id}" id="notMoreComment">没有更多...
+        </div>
+        <!--</div>-->
+    </main>
+
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+
+</html>

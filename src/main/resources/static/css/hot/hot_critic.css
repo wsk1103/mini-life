@@ -1,0 +1,312 @@
+.clearfix {
+    clear: both;
+    content: ".";
+    display: block;
+}
+
+main {
+    margin-top: 1em;
+    margin-left: 4%;
+    /*margin-right: 3em;*/
+    float: left;
+    /*border: .2em solid black;*/
+    width: 650px;
+}
+
+main div.all_release {
+    margin: 5% auto 2%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #666666;
+}
+
+main div.all_release:hover {
+    box-shadow: 0px 0px 20px 0px black;
+    border-radius: 10px;
+}
+
+main div div.release_div {
+    width: 100%;
+    text-align: center;
+}
+
+main div div.release_div_2 {
+    width: 100%;
+    /*height: 20px;*/
+    padding-bottom: 1em;
+}
+
+main div div span.movie_name {
+    margin-left: 25px;
+}
+
+.size_tip {
+    margin-left: 2em;
+    color: #a2a2a8;
+}
+
+.movie_name_text {
+    box-shadow: inset 1px 1px 0px 0px #e7e7e7;
+    height: 20px;
+}
+
+.movie_name_text:focus {
+    border: 1px solid #9fbe5d;
+}
+
+.movie_release {
+    height: 2em;
+    background: #ffc09f;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    width: 4.5em;
+    cursor: pointer;
+}
+
+.movie_state {
+    height: 2em;
+}
+
+main div div textarea.release_message {
+    margin: 2em 5% .8em;
+    resize: none;
+    width: 570px;
+    height: 100px;
+    box-shadow: inset 0px 0px 11px 0px #e7e7e7;
+    font-size: 1em;
+}
+
+main div div textarea.release_message:active {
+    border: 1px solid #9fbe5d;
+}
+
+main div div a.movie_image_upload {
+    /*margin-left: 5em;*/
+    /*height: 22px;*/
+    position: relative;
+    display: inline-block;
+    /*background: #D0EEFF;*/
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 2px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    top: 9px;
+}
+
+main div div a.movie_image_upload input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+main div div a.movie_image_upload:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+
+main div.all_stats {
+    /*width: 100%;*/
+    /*!*border: 2px solid black;*!*/
+    /*background: #78C3F3;*/
+    /*border-radius: 10px;*/
+}
+
+main div div.friends_stats {
+    /*margin-left:5% ;*/
+    margin-top: 2em;
+    width: 100%;
+    /*border: 2px solid black;*/
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px #666666
+}
+
+main div div.friends_stats:hover {
+    box-shadow: 0px 0px 20px 0px black;
+    border-radius: 10px;
+}
+
+main div div div.friends_stats_top {
+    margin-bottom: 1em;
+}
+
+main div div div img.friends_image_header {
+    margin-left: 5%;
+    margin-top: 3%;
+    width: 70px;
+    height: 70px;
+    border-radius: 39px;
+    float: left;
+}
+
+main div div div div div.friends_name {
+    float: left;
+    margin-top: 30px;
+    margin-left: 3%;
+}
+
+.friends_stats_middle {
+    width: 520px;
+    padding: 1em;
+    margin-left: 1.5em;
+}
+
+.friends_text {
+    resize: none;
+}
+
+main div div div div span.friends_title {
+    float: right;
+    margin-right: -4em;
+}
+
+main div div div div.friends_action {
+    margin-top: 5%;
+    /*margin-left: 6%;*/
+    /*padding-bottom: 3%;*/
+    border-top: 1px solid #eeeaea;
+}
+
+.friends_comment, .friends_good, .friends_collection {
+    color: #3d403d;
+    cursor: pointer;
+    width: 180px;
+    padding: 5px 0;
+    border: 0;
+    background: white;
+    font-weight: 800;
+}
+
+.friends_collection {
+    width: 33%;
+    border-right: 1px solid #dfdfdf;
+    margin: .6em 0;
+}
+
+.friends_comment {
+    border-right: 1px solid #dfdfdf;
+    width: 33%;
+}
+
+.friends_good {
+}
+
+.friends_comment:hover, .friends_collection:hover, .friends_good:hover,.friends_collection_current,.friends_good_current {
+    /*text-shadow: 1px 1px 1px black;*/
+    color: #9fbe5d;
+}
+
+.friends_time {
+    font-size: .8em;
+    color: #808080;
+}
+
+.friends_title {
+    color: #808080;
+    font-size: .8em
+}
+
+.friends_img_critic {
+    margin-left: 2.5em;
+    padding-top: 1em;
+    cursor: pointer;
+    width: 20%;
+}
+
+.not_more, .find_more {
+
+    margin: 2% auto 2%;
+    background: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.not_more {
+    display: none;
+}
+
+.find_more {
+    cursor: pointer;
+}
+
+div.wsk {
+    float: right;
+    margin: 1.5em;
+    cursor: pointer;
+    padding: .5em;
+}
+
+.show_action:hover {
+    color: #9fbe5d;
+}
+
+.action_menu {
+    display: block;
+    text-align: center;
+    font-size: .8em;
+}
+
+.action_menu:hover {
+    color: #9fbe5d;
+}
+
+div.show_action_menu {
+    position: absolute;
+    margin-left: -2em;
+    background: white;
+    display: none;
+    padding: .5em;
+    box-shadow: 0px 2px 8px 1px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+footer {
+
+}
+
+.go_to_top {
+    display: none;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
+    cursor: pointer;
+    border: none;
+    background: #78C3F3;
+    text-align: center;
+    background: url("../../image/timg.jpg");
+    background-size: 100%;
+}
+
+div.image_container {
+    box-shadow: 0px 2px 20px #666666;
+    position: absolute;
+    display: none;
+    border: none;
+    width: 200px;
+    margin-left: 320px;
+    padding: 1em;
+    background: #ffffff;
+}
+
+div.close_img_tip {
+    float: right;
+    cursor: pointer;
+
+}
+
+div.close_img_tip:hover {
+    color: #9fbe5d;
+}

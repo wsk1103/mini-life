@@ -1,0 +1,272 @@
+aside {
+    /*position: fixed;*/
+    margin-right: 0;
+    margin-top: 3em;
+    /*z-index: 2008;*/
+    /*margin-left: 3em;*/
+    float: right;
+    width: 280px;
+    /*right: 30px;*/
+    /*border: .2em solid black;*/
+}
+
+.my_header, .my_friends, .my_action {
+    /*margin: 5% auto 2%;*/
+    padding: 25px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px #666666
+}
+
+.my_friends:hover, .my_header:hover, .my_action:hover {
+    box-shadow: 0px 0px 20px 0px black;
+    border-radius: 10px;
+}
+
+.my_header_center {
+    text-align: center;
+}
+
+.my_image_header {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+
+}
+
+.my_username {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.my_action {
+    margin-top: 1.5em;
+}
+
+.my_action_favorite, .my_action_good, .my_action_home {
+    padding: .3em;
+    width: 100%;
+    /*margin: .3em;*/
+    /*cursor: pointer;*/
+}
+
+.my_action_now {
+    background: #f2f2f5;
+    /*width: 280px;*/
+    /*margin: 0px;*/
+}
+
+.my_friends {
+    margin-top: 1.5em;
+}
+
+.my_friends_list {
+    text-align: center;
+}
+
+aside div ul li {
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+}
+
+.add_friends {
+    height: 1.5em;
+}
+
+input.add_friend {
+    height: 1.6em;
+    box-shadow: inset 0px 0px 0px 0px #666666;
+}
+
+button.add_friend {
+    height: 2em;
+    background: #ff8140;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    width: 4.5em;
+    cursor: pointer;
+}
+
+button.add_friend:hover, button.my_friends_close:hover, button.my_friends_message:hover, button.my_friends_information:hover {
+    background: #f7671d;
+}
+
+.all_search {
+    margin-top: 1.5em;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 2px 2px 3px #666666
+}
+
+.all_search:hover {
+    box-shadow: 0px 0px 20px 0px black;
+    border-radius: 10px;
+}
+
+input.search {
+    height: 1.6em;
+    box-shadow: inset 0px 0px 0px 0px #666666;
+    margin: 10px 0 25px 25px;
+    width: 180px;
+}
+
+.search_movie, .search_publish, .search_user, .search_forum {
+    margin-left: 10px;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 1.5em;
+    background: url("../image/1.jpg");
+    cursor: pointer;
+    border: none;
+}
+
+.search_movie:hover, .search_publish:hover, .search_user:hover, .search_forum:hover {
+    box-shadow: 0px 0px 1px 1px #9fbe5d;
+}
+
+/*.search_forum{*/
+/*!*background: url("../image/forum.png") no-repeat fixed;*!*/
+/*width: 2.5em;*/
+/*height: 2.5em;*/
+/*}*/
+.all_search_current {
+    width: 230px;
+    position: fixed;
+    margin-top: 1.5em;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    top: 5em;
+    overflow: hidden;
+}
+
+.all_search_current:hover {
+    box-shadow: 0px 0px 20px 0px black;
+    border-radius: 10px;
+}
+
+a.myName, a.myAutograph {
+    white-space: nowrap;
+    max-width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+li.my_friends_li {
+    list-style: none;
+    /*font-size: .9em;*/
+    color: #9fbe5d;
+    display: inline-block;
+    width: 200px;
+    margin-left: -30px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+button.my_friends_close, button.my_friends_message, button.my_friends_information {
+    height: 2em;
+    background: #ff8140;
+    font-weight: 800;
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    width: 4.5em;
+    cursor: pointer;
+}
+
+li.my_friends_btn {
+    list-style: none;
+    display: none;
+    margin-left: -30px;
+    padding-top: .5em;
+}
+
+ul#ui-id-1 {
+    z-index: 1;
+    display: block;
+    position: relative;
+    top: -2907.3px;
+    left: 750px;
+    background: #fff;
+    width: 150px;
+    list-style: none;
+    opacity: .8;
+}
+
+ul li.ui-menu-item {
+    margin-left: -40px;
+    font-size: .9em;
+    padding: .2em;
+}
+
+span.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.show_message {
+    background: white;
+    z-index: 9999;
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px black;
+}
+
+.show_message_title {
+    padding: 10px;
+    text-align: center;
+    /*width: 460px;*/
+}
+
+.show_message_title_close {
+    float: right;
+    cursor: pointer;
+
+}
+
+.show_message_title_close:hover {
+    color: #9fbe5d
+}
+
+.show_message_content_name {
+    font-size: .9em;
+}
+
+.show_message_content {
+    padding: 10px;
+    /*width: 460px;*/
+    height: 260px;
+    border: 1px solid;
+    margin: 10px;
+    overflow: auto;
+}
+
+.show_message_to {
+    padding: 10px;
+}
+
+.show_message_to_button {
+    float: right;
+    background: #ff8140;
+    border: 1px solid #f77c3d;
+    color: #fff;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.show_message_to_content_textarea {
+    resize: none;
+    display: inline;
+    width: 310px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 1em;
+}

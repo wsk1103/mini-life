@@ -1,0 +1,126 @@
+.header_current_li {
+    color: #9fbe5d;
+}
+
+/*a {*/
+    /*text-decoration: none;*/
+    /*color: #000;*/
+/*}*/
+
+header {
+    position: fixed;
+    margin: 0 auto;
+    line-height: 2em;
+    /*border: .2em solid black;*/
+    /*background: #fff;*/
+    /*border-bottom-left-radius: 5px;*/
+    /*border-bottom-right-radius: 5px;*/
+    width: 100%;
+    z-index: 9999;
+}
+
+header div {
+    /*text-align: right;*/
+    margin-right: 2em;
+    /*padding-top: .001em;*/
+    /*padding-bottom: .001em;*/
+}
+
+header div ul {
+    box-shadow: 5px 5px 3px #666666;
+    margin-top: 0px;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    padding-left: 57%;
+    /*margin-left: -251px;*/
+    /*right: -220px;*/
+    /*padding-right: 280px;*/
+}
+
+header div ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+ul li.header_forum, ul li.header_home, ul li.header_hot, ul li.header_set, ul li.header_information {
+    padding: 2px 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.list-line {
+    border-bottom: 1px solid black;
+}
+
+.menu_li, .hot_menu_li {
+    padding: 0 10px;
+}
+
+.menu, .hot_menu, #movie_menu{
+    top: 2.3em;
+    padding: 0 20px;
+    display: none;
+    list-style: none;
+    text-align: center;
+    width: 95px;
+    box-shadow: 2px 2px 10px black;
+}
+img.img_hot,img.img_home,img.img_forum,img.img_information,img.img_set,img.img_home_current{
+    width: 1.5em;
+    padding-bottom: .2em;
+    /*height: 1.2em;*/
+    vertical-align: middle;
+}
+img.img_home,img.img_home_current{
+    width: 1.2em;
+    /*height: 1.2em;*/
+}
+img.img_hot{
+    width: 1.2em;
+    /*height: 1.2em;*/
+}
+img.img_home_current{
+    background: url("../image/home_current.png");
+}
+.header_current {
+    color: #9fbe5d;
+}
+
+.clearfix {
+    clear: both;
+    content: ".";
+    display: block;
+    /*height: 0%;*/
+    /*visibility: hidden;*/
+}
+.show_header li span:hover{
+    color: #9fbe5d;
+}
+ul li.hot_menu_li a:hover{
+    color: #9fbe5d;
+}
+a:hover{
+    color: #9fbe5d;
+}
+
+a.header_forum_current:hover{
+    color: #9fbe5d;
+}
+img.header_title_img{
+    width: 1.2em;
+    height: 1.2em;
+    /*vertical-align: middle;*/
+    /*margin-right: 700px;*/
+    position: absolute;
+    left: 23%;
+    top: .5em;
+    z-index: 9;
+}
+span.header_title_text{
+    position: absolute;
+    left: 24.5%;
+    top: .1em;
+    cursor: pointer;
+    z-index: 9;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>附近影院</title>
+    <link href="/image/title.ico" rel="icon"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <link href="/css/movie/searchMovieResult.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+</head>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content">
+    <main>
+        <div th:with="m=${movie.getData()}">
+            <div class="search_movie_result" th:each="o:${m.get('白云区')}">
+                <div class="search_movie_result_img">
+                    <a th:href="'/cinema/'+${o.getId()}">
+                        <img src="/image/1.jpg" th:src="${img}" th:alt="${o.getNm()}"/>
+                    </a>
+                </div>
+                <div class="search_movie_result_information">
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">影院</span>:
+                        <span class="search_movie_result_information_name_2">
+                            <a th:href="'/cinema/'+${o.getId()}" th:text="${o.getNm()}">来自WSK的爱</a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_director_1">属院</span>:
+                        <span class="search_movie_result_information_director_2" th:text="${o.getBrd()}">
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_cast_1">地址</span>:
+                        <span class="search_movie_result_information_cast_2" th:text="${o.getAddr()}">
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">地区</span>:
+                        <span class="search_movie_result_information_name_2" th:text="${o.getArea()}">
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">票价</span>:
+                        <span th:text="${o.getSellPrice()}">
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+<script src="/js/all.js"></script>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${user.name}+'の的详细内容'">个人主页</title>
+    <link rel="stylesheet" href="/css/home/home.css"/>
+    <link rel="stylesheet" href="/css/information.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<script src="/js/information/criticInformation.js"></script>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div style="" id="show_information">
+            <figure style="" id="show_avatar">
+                <div style="" class="show_img">
+                    <img src="/image/1.jpg" style="" class="show_img" th:src="${user.avatar}"/>
+                </div>
+                <div style=" " class="user_action" th:if="(${user.id}!=${userInformation.id})">
+                    <button class="follow" th:if="(${isFriends}==0)" th:value="${user.id}" title="addattention">+关注</button>
+                    <button class="follow" th:if="(${isFriends}==1)" th:value="${user.id}" title="unsubscribe">×关注</button>
+                    <button class="letter" th:value="${user.id}">◇私信</button>
+                    <button class="report" th:value="${user.id}" title="unsubscribe">〇举报</button>
+                </div>
+            </figure>
+            <figure class="user_information user">
+                <div class="user_name user">
+                    <span class="user_title">用户名：</span>
+                    <span class="content" th:text="${user.name}">该用户不存在</span>
+                </div>
+                <div class="user_label user">
+                    <span class="user_title">简&nbsp;&nbsp;介：</span>
+                    <span class="content" th:text="${user.autograph}"></span>
+                </div>
+                <div class="user_gender user">
+                    <span class="user_title">性&nbsp;&nbsp;别：</span>
+                    <span class="content" th:text="${user.sex}">未知</span>
+                </div>
+                <div class="user_birthday user">
+                    <span class="user_title">生&nbsp;&nbsp;日：</span>
+                    <span class="content" th:with="publishTime=${user.birthday}" th:if="publishTime!=null||publishTime==''"><span
+                            th:text="${#dates.format(publishTime,'yyyy-MM-dd')}"></span></span>
+                </div>
+                <div class="user_address user">
+                    <span class="user_title">住&nbsp;&nbsp;址：</span>
+                    <span class="content" th:text="${user.address}">广东-广州-白云</span>
+                </div>
+            </figure>
+            <figure style="clear: both">
+                <input type="hidden" th:value="${user.id}" id="userId"/>
+            </figure>
+        </div>
+        <div class="all_stats">
+            <div class="friends_stats_fix">
+                <div class="friends_stats">
+                    <div>
+                        <div class="friends_stats_top">
+                            <div>
+                                <img src="" class="friends_image_header" th:src="${user.avatar}" alt="??"
+                                     th:value="${user.id}"/>
+                            </div>
+                            <div class="friends_name">
+                                <div>
+                                    <span th:text="${user.name}" th:value="${user.id}"
+                                          class="friends_username">用户名</span>
+                                </div>
+                                <!--<br/>-->
+                                <span class="friends_time" th:with="publishTime = ${publishCritic.time}"
+                                      th:text="${#dates.format(publishTime,'yyyy-MM-dd HH:mm:ss')}">时间</span>
+                                <br/>
+                                <span class="friends_time isPrivate" th:text="${publishCritic.isprivate}==1?'朋友圈':'公共圈'"
+                                      th:value="${publishCritic.isprivate}">朋友圈</span>
+                            </div>
+                            <div class="wsk" style="">
+                                <span class="show_action">Ⅲ</span>
+                                <div style="" class="show_action_menu"
+                                     th:with="id1=${user.id},id2=${userInformation.id}" th:if="id1!=id2">
+                                    <span class="action_menu" th:if="${isFriends}==1" th:value="${publishCritic.uid}" title='unsubscribe'>×关注</span>
+                                    <span style="" class="action_menu" th:if="${isFriends}==0" th:value="${publishCritic.uid}" title='addattention'>+关注</span>
+                                    <!--<span  style="display: block">添加关注</span>-->
+                                    <span style="" class="action_menu" th:value="${publishCritic.id}" title='report'>●举报</span>
+                                </div>
+                                <div style="" class="show_action_menu" th:if="${user.id}==${userInformation.id}">
+                                    <span style="" class="action_menu"
+                                          th:if="${publishCritic.isprivate}==0" th:value="${publishCritic.id}" title='translation'>转为朋友圈</span>
+                                    <!--<span  style="display: block">添加关注</span>-->
+                                    <span style="" class="action_menu" th:value="${publishCritic.id}" title='delcritic'>×删除</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="friends_stats_middle clearfix">
+                            <div class="friends_text">
+                            <span th:text="${publishCritic.getCritic()}">
+                            </span>
+                            </div>
+                            <span class="friends_title" th:text="'-- '+${publishCritic.getTitle()}">
+                        </span>
+                        </div>
+                        <div class="friends_image" th:if="${publishCritic.getPicture()}!=''">
+                            <img class="friends_img_critic" src="" th:if="${publishCritic.thumbnails==null}"
+                                 th:src="${publishCritic.getPicture()}" th:alt="${publishCritic.title}"
+                                 th:title="${publishCritic.title}"
+                                 th:value="${publishCritic.picture}"/>
+                            <img class="friends_img_critic" src="" th:if="${publishCritic.thumbnails!=null}"
+                                 th:src="${publishCritic.thumbnails}" th:alt="${publishCritic.title}"
+                                 th:title="${publishCritic.title}"
+                                 th:value="${publishCritic.picture}"/>
+                        </div>
+                        <div class="friends_action">
+                            <button th:value="${publishCritic.id}" class="friends_collection"
+                                    th:text="'☆收藏 '+${collection}">☆收藏 0
+                            </button>
+                            <button th:value="${publishCritic.id}" class="friends_comment" th:text="'◇评论 '+${comment}"
+                                    title="1">□评论 0
+                            </button>
+                            <button th:value="${publishCritic.id}" class="friends_good" th:text="'♡点赞 '+${good}">点赞 0
+                            </button>
+                        </div>
+                        <div style="background: #f2f2f5;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;"
+                             class="show_all_friends_comment">
+                            <div class="all_friends_comment_my" style="">
+                                <img class="all_friends_comment_user_img" src="" style=""
+                                     th:title="${userInformation.name}"
+                                     th:src="${userInformation.avatar}"/>
+                                <textarea class="content" style=""></textarea>
+                                <button class="all_friends_comment_publish">评论
+                                </button>
+                            </div>
+                            <!--评论盖楼-->
+                            <div class="all_friends_comment">
+                                <div th:each="o:${CriticCommentBeans}" class="specific_comment">
+                                    <img class="all_friends_user_img" th:src="${o.avatar}" style="" th:title="${o.name}"
+                                         th:value="${o.avatar}"/>
+                                    <div style="padding-left: 36px;font-size: .8em">
+                                <span class="all_friends_username" style="" th:value="${o.uid}"
+                                      th:text="${o.name}+'：'"></span>
+                                        <span th:text="${o.critic}">+data[i].critic+</span>
+                                        <br/>
+                                        <span style="color: #808080;" th:with="data=${o.time}"
+                                              th:text="${o.time}">+data[i].time+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="" th:value="${publishCritic.id}" id="findMoreComment">查看更多...</div>
+                            <div style="display: none" th:value="${publishCritic.id}" id="notMoreComment">没有更多...</div>
+                            <div style="clear: both;content:'.'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+
+</html>

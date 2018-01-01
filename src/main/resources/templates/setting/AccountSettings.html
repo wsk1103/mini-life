@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>账号设置</title>
+    <link rel="icon" href="/image/title.ico"/>
+    <link href="/css/setting/AccountSettings.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/css/setting/datedropper.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/setting/timedropper.min.css"/>
+</head>
+<body>
+<script src="/js/jquery-3.0.0.js"></script>
+<script src="/js/setting/AccountSetting.js"></script>
+<script src="/js/setting/newsArea.js"></script>
+<script src="/js/setting/areaSec.js"></script>
+<script>
+    $(function () {
+        $.areaSelect({
+            id: 'address'
+        });
+    })
+</script>
+<header th:include="header :: copy"></header>
+<div class="all_content">
+    <main>
+        <div class="all_main">
+            <div class="set">
+                账号设置
+            </div>
+            <div class="information currentSet">
+                我的信息
+            </div>
+            <a href="" style="text-decoration: none;color: black">
+                <div class="picture">
+                    头像
+                </div>
+            </a>
+            <div class="bottom-line"></div>
+            <a href="/security" style="text-decoration: none;color: black">
+                <div class="security">
+                    账号安全
+                </div>
+            </a>
+
+            <div class="">
+                &nbsp;
+            </div>
+            <div class="">
+                &nbsp;
+            </div>
+            <div class="">
+                &nbsp;
+            </div>
+        </div>
+        <div class="main" style="display: block;">
+            <div class="all">我的信息</div>
+            <div class="name">
+                <label>
+                    <span class="username">
+                        昵称 &nbsp;&nbsp;
+                    </span>
+                    <span class="name-center" th:text="${userInformation.name}">
+                        wsk1103
+                    </span>
+                </label>
+                <span class="name-modify">
+                    修改
+                </span>
+            </div>
+            <div class="set-name">
+                <div class="now-name">
+                    <span class="">
+                        现昵称
+                    </span>
+                    <span class="now-name" th:text="${userInformation.name}">
+                        wsk1103
+                    </span>
+                </div>
+                <form action="/modified" method="post">
+                    <div class="new-name">
+                        <span class="">
+                            新昵称
+                        </span>
+                        <input type="text" name="name" class="new-name-text" maxlength="11" minlength="4"/>
+                        <br/>
+                        <span class="name-tip">
+                            请输入4-11个字符
+                        </span>
+                    </div>
+                    <input type="submit" value="保存" class="preservation"/>
+                    <input type="button" value="关闭" class="close"/>
+                </form>
+            </div>
+            <div class="tel">
+                <label>
+                    <span class="usertel">
+                        手机号码
+                    </span>
+                    <span class="tel-center" th:text="${userInformation.phone}">
+                        12345678912
+                   </span>
+                    <span class="tel-modify">
+                         修改
+                    </span>
+                </label>
+            </div>
+            <div class="set-tel">
+                <div class="now-tel">
+                    <span class="">
+                        现手机号码
+                    </span>
+                    <span class="now-tel" th:text="${userInformation.phone}">
+                        wsk1103
+                    </span>
+                </div>
+                <form action="/modified" method="post">
+                    <div class="new-tel">
+                        <span class="">
+                            新手机号码
+                        </span>
+                        <input type="tel" name="tel" class="new-tel-text"/>
+                    </div>
+                    <input type="submit" value="保存" class="tel-preservation" style="margin-left: 120px"/>
+                    <input type="button" value="关闭" class="tel-close"/>
+                </form>
+            </div>
+            <div class="sex">
+                <label>
+                    <span class="usersex">
+                        性别&nbsp;&nbsp;
+                    </span>
+                    <span class="sex-center" th:text="${userInformation.sex}">
+                        男
+                    </span>
+                    <span class="sex-modify">
+                        修改
+                    </span>
+                </label>
+                    </div>
+                        <div class="set-sex">
+                            <form action="/modified" method="post">
+                                <div class="select">
+                                    <span>
+                                        性别选择
+                                    </span>
+                                    <input type="radio" value="男" name="sex" checked="checked" class="select-sex"/>男
+                                    <input type="radio" value="女" name="sex" class="select-sex"/>女
+                                </div>
+                                <input type="submit" value="保存" class="sex-preservation"/>
+                                <input type="button" value="关闭" class="sex-close"/>
+                            </form>
+                        </div>
+                    <div class="birth">
+                        <label>
+                            <span class="userbirth">
+                                生日&nbsp;&nbsp;
+                            </span>
+                            <span class="birth--center" th:with="birthday=${userInformation.birthday}" th:text="${#dates.format(birthday,'yyyy-MM-dd')}">
+                                1995-11-03
+                            </span>
+                        </label>
+                        <span class="birth-modify">
+                            修改
+                        </span>
+                    </div>
+                    <div>
+                        <form action="/modified" method="post">
+                            <div class="set-birth">
+                                <p>
+                                    请选择日期：
+                                    <input type="text" class="input" id="pickdate" name="birth"/>
+                                </p>
+                                <br/>
+                                <input type="submit" value="保存" class="birth-preservation"/>
+                                <input type="button" value="关闭" class="birth-close"/>
+                            </div>
+                        </form>
+                    </div>
+                <div class="introduction">
+                    <label>
+                        <span class="userintroduction">
+                            简介&nbsp;&nbsp;
+                        </span>
+                        <span class="introduction-center" th:text="${userInformation.autograph}">
+                            没有人能把谁的幸福没收
+                        </span>
+                    </label>
+                    <span class="introduction-modify">
+                        修改
+                    </span>
+                </div>
+                <div class="set-introduction">
+                    <form action="/modified" method="post">
+                        <div>
+                            <div class="now-introduction">
+                                <span>
+                                    原简介
+                                </span>
+                                <span class="now-introduction" th:text="${userInformation.autograph}">
+                                    没有人能把谁的幸福没收
+                                </span>
+                            </div>
+                            <div class="new-introduction">
+                                <span>
+                                    新简介
+                                </span>
+                                <textarea class="introduction-text" name="introduction" rows="10" cols="30" maxlength="50"></textarea>
+                            </div>
+                            <div>
+                                <span class="introduction-tip">
+                                    请输入0-50个字符来介绍自己
+                                </span>
+                            </div>
+                            <input type="submit" value="保存" class="introduction-preservation"/>
+                            <input type="button" value="关闭" class="introduction-close"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="address">
+                    <label>
+                        <span class="useraddress">
+                            住址&nbsp;&nbsp;
+                        </span>
+                        <sapn class="address-center" th:text="${userInformation.address}">
+                            广东省-广州市
+                        </sapn>
+                        <span class="address-modify">
+                            修改
+                        </span>
+                    </label>
+                </div>
+            <div class="set-address">
+                <form action="/modified" method="post">
+                    <div>
+                        <input type="text" id="address" autocomplete="off" readonly="readonly" class="u-ipt u-ipt-lg" value="请选择城市" name="city"/>
+                    </div>
+                    <input type="submit" value="保存" class="address-preservation"/>
+                    <input type="button" value="关闭" class="address-close"/>
+                </form>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value="" style="top: 0px;
+    position: fixed;
+    right: 0px;
+    display: inline-block;"></button>
+    </div>
+</footer>
+<script src="/js/setting/datedropper.min.js"></script>
+<script src="/js/setting/timedropper.min.js"></script>
+<script>
+    $("#pickdate").dateDropper({
+        animate: false,
+        format: 'Y-m-d',
+        maxYear: '2050'
+    });
+</script>
+<script>
+    window.onload = init('province', 'city');
+</script>
+</body>
+</html>

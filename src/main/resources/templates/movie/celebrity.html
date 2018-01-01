@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${celebrity.getName()}+'(瓢虫影评)'">影人信息</title>
+    <link href="/image/title.ico" rel="icon"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <link href="/css/movie/celebrity.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+</head>
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content">
+    <main>
+        <div th:if="${result}=='success'">
+            <div class="celebrity_information">
+                <h1 th:text="${celebrity.getName()}">WSK</h1>
+                <div class="celebrity_cover">
+                    <img th:src="${celebrity.getAvatars().get('large')}" class="celebrity_img"
+                         th:title="${celebrity.getName()}" alt="加载中......"/>
+                </div>
+                <div style="padding: 1em 1em 0 1em;">
+                    <div><span class="celebrity_show">中文名</span>：
+                        <div class="celebrity_font">
+                            <a th:text="${celebrity.getName()}+' '" th:href="'/celebrity/'+${celebrity.getId()}"></a>
+                        </div>
+                    </div>
+                    <div><span class="celebrity_show">英文名</span>：
+                        <div class="celebrity_font">
+                            <a th:text="${celebrity.getName_en()}" th:href="'/celebrity/'+${celebrity.getId()}"></a>
+                        </div>
+                    </div>
+                    <div><span class="celebrity_show">性 &nbsp;别</span>：
+                        <div  class="celebrity_font">
+                            <span th:text="${celebrity.getGender()}"></span></div>
+                    </div>
+                    <div><span class="celebrity_show">出生地</span>：
+                        <div th:text="${celebrity.getBorn_place()}" class="celebrity_font"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--作品-->
+        <div style="clear: both;padding: 1em;" th:if="${result}=='success'">
+            <span>作品：</span>
+        </div>
+        <div th:each="movie:${celebrity.getWorks()}">
+            <div class="search_movie_result" th:with="o=${movie.getSubject()}">
+                <div class="search_movie_result_img">
+                    <a th:href="'/searchMovieOnly?id='+${o.getId()}">
+                        <img src="/image/1.jpg" th:src="${o.getImages().get('medium')}" th:alt="${o.getTitle()}"/>
+                    </a>
+                </div>
+                <div class="search_movie_result_information">
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">电影名</span>:
+                        <span class="search_movie_result_information_name_2">
+                            <a th:href="'/searchMovieOnly?id='+${o.getId()}" th:text="${o.getTitle()}">来自WSK的爱</a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">外语名</span>:
+                        <span class="search_movie_result_information_name_2">
+                            <a th:href="'/searchMovieOnly?id='+${o.getId()}" th:text="${o.getOriginal_title()}">来自WSK的爱</a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_director_1">导演</span>:
+                        <span class="search_movie_result_information_director_2" th:each="director:${o.getDirectors()}">
+                            <a th:text="${director.getName()}" th:href="'/celebrity/'+${o.getId()}">
+                                SK.W
+                            </a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_director_1">职位</span>:
+                        <span class="search_movie_result_information_director_2" th:each="role:${movie.getRoles()}">
+                            <span th:text="${role}+' / '">
+                                SK.W
+                            </span>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_cast_1">主演</span>:
+                        <span class="search_movie_result_information_cast_2" th:each="cast:${o.getCasts()}">
+                            <a th:text="${cast.getName()}+' / '" th:href="'/celebrity/'+${o.getId()}">
+                                SK.W
+                            </a>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">类型</span>:
+                        <span class="search_movie_result_information_name_2" th:each="gen:${o.getGenres()}">
+                            <span th:text="${gen}+' / '">
+                                SK.W
+                            </span>
+                        </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">编属</span>:
+                        <span th:switch="${o.getSubtype()}">
+                        <span class="search_movie_result_information_name_2"
+                              th:case="'movie'">电影</span>
+                        <span class="search_movie_result_information_name_2"
+                              th:case="'tv'">电视剧</span>
+                         <span class="search_movie_result_information_name_2"
+                               th:case="'*'" th:text="${o.getSubtype()}">电视剧</span>
+                            </span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">年份</span>:
+                        <span class="search_movie_result_information_name_2" th:text="${o.getYear()}">2017</span>
+                    </div>
+                    <div class="search_movie_result_information_1">
+                        <span class="search_movie_result_information_name_1">评分</span>:
+                        <span class="search_movie_result_information_name_2"
+                              th:text="${o.getRating().getAverage()}">9.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${result}!='success'">
+            <div style="text-align: center;vertical-align: middle">
+                <h1 style="color: red">未找到该影人信息</h1>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+</html>

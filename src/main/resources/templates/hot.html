@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>热门信息</title>
+    <link rel="stylesheet" href="/css/hot/hot.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+</head>
+<body>
+<script src="/js/jquery-3.0.0.js"></script>
+<header th:include="header :: copy"></header>
+<main>
+    <div class="all_stats">
+        <div class="friends_stats">
+            <!--用户、好友状态-->
+            <div>
+                <div class="friends_stats_top">
+                    <img src="/image/1.jpg" class="friends_image_header"/>
+                    <div class="friends_name">
+                        <span>用户名：</span>
+                        <br/>
+                        <span>时间</span>
+                    </div>
+                </div>
+                <div class="friends_stats_middle clearfix">
+                    <div class="friends_text"><span>用薯片引诱饱受饥饿的叙利亚儿童，68名儿童就这么被炸死....一名战地记者放下了手中相机想要救助孩子们，在看到地上躺着的孩子们的尸体时，他跪地痛哭...这些饱受战争摧残的叙利亚儿童，真的让人好心疼[心] ​​​​【20个炒鸡实用的拍照技巧】无论出去旅行还是随拍，你一定要试试！ ​ ​​​​</span>
+                    </div>
+                    <span class="friends_title">--题目</span>
+                </div>
+                <div class="friends_action">
+                    <input type="button" value="收藏" class="friends_collection"/>
+                    <input type="button" value="评论" class="friends_comment"/>
+                    <input type="button" value="点赞" class="friends_good"/>
+                </div>
+            </div>
+        </div>
+        <div class="not_more">
+            没有更多.......
+        </div>
+        <div class="find_more">
+            查看更多↓
+        </div>
+    </div>
+</main>
+<aside th:include="aside :: aside"></aside>
+<footer>
+
+</footer>
+<script src="/js/hot/hot.js"></script>
+<script>
+//    $(window).load(function () {
+//        $('.header_current').removeClass('header_current');
+//        $('.img_home_current').attr('src','picture/home.png');
+//        $('.img_hot').attr('src','picture/hot_current.png');
+//        $('.img_forum').attr('src','picture/forum.png');
+//        $('.img_set').attr('src','picture/set.png');
+//        $('.header_hot_current').addClass('header_current');
+//    });
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${movie.getData().getMovieDetailModel().getNm()}+'(瓢虫影评)'">详情</title>
+    <link rel="stylesheet" href="/css/movieInformation.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<!--<script src="/js/information/movieInformation.js"></script>-->
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div>
+            <div class="all_movie" th:with="m=${movie.getData().getMovieDetailModel()}">
+                <h1 th:text="${m.getNm()}">WSK</h1>
+                <div class="movie_cover">
+                    <img th:src="${m.getImg()}" class="movie_img"
+                         th:title="${m.getNm()}" alt="加载中......"/>
+                </div>
+                <div style="padding: 1em 1em 0 1em;">
+                    <!--<div><span class="movie_show">电影名</span>：-->
+                    <!--<div th:text="${subject.getTitle()}" class="movie_font"></div>-->
+                    <!--</div>-->
+                    <div><span class="movie_show">导 &nbsp;演</span>：
+                        <div th:text="${m.getDir()}" class="movie_font">
+                        </div>
+                    </div>
+                    <div><span class="movie_show">主 &nbsp;演</span>：
+                        <div th:text="${m.getStar()}" class="movie_font" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: block;">
+                        </div>
+                    </div>
+                    <div><span class="movie_show">类 &nbsp;型</span>：
+                        <div th:text="${m.getCat()}" class="movie_font">
+                        </div>
+                        <div><span class="movie_show">2 &nbsp;/3D</span>：
+                            <div th:text="${m.getVer()}" class="movie_font"></div>
+                        </div>
+                        <div><span class="movie_show">地 &nbsp;区</span>：
+                            <div th:text="${m.getSrc()}" class="movie_font"></div>
+                        </div>
+                        <div><span class="movie_show">评 &nbsp;分</span>：
+                            <div th:text="${m.getSc()}" class="movie_font">
+                            </div>
+                        </div>
+                        <div><span class="movie_show">上映时间</span>：
+                            <div th:text="${m.getRt()}" class="movie_font">
+                            </div>
+                        </div>
+                        <!--<div style="padding: 1.5em"><span class="movie_show"></span>-->
+                            <!--<a th:href="'/cinemas/'+${movie.getData().getMovieDetailModel().getId()}"><button id="booking">网上订票</button></a>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="movie_desc" style="padding: .5em 1em">
+                    <div style="display: inline-block" class="movie_show">简 &nbsp;介：</div>
+                    <div th:text="${m.getDra()}"
+                         style="display: inline"></div>
+                </div>
+                <div class="movie_playlinks">
+                    <div style="clear: both;padding-bottom: 1em;" class="movie_show">电影预告：</div>
+                    <div>
+                        <video controls="controls" width="600px">
+                            <source th:src="${m.getVd()}" type="video/mp4" src=""/>
+                        </video>
+                    </div>
+                </div>
+                <!--热门短评-->
+                <div class="movie_video_rec">
+                    <div style="clear: both;padding-top: 1em;" class="movie_show">热门评论：</div>
+                    <div th:each="c:${movie.getData().getCommentResponseModel().getHcmts()}" class="hot_comment">
+                        <div class="hot_comment_1">
+                            <span style="color:#666666;">用户：</span>
+                            <span th:text="${c.getNick()}" class="hot_comment_1_name">WSK</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span th:text="${c.getTime()}" class="hot_comment_1_time"></span>
+                        </div>
+                        <div class="hot_comment_2">
+                            <span th:text="${c.getContent()}" class="hot_comment_2_comment">评论</span>
+                        </div>
+                        <div class="movie_comment_border" style="border: 1px solid #a1c15e"></div>
+                    </div>
+                    <!--最新短评-->
+                    <div style="clear: both;padding-top: 1em;" class="movie_show">最新评论：</div>
+                    <div th:each="c:${movie.getData().getCommentResponseModel().getCmts()}" class="hot_comment">
+                        <div class="hot_comment_1">
+                            <span style="color:#666666;">用户：</span>
+                            <span th:text="${c.getNick()}" class="hot_comment_1_name">WSK</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span th:text="${c.getTime()}" class="hot_comment_1_time"></span>
+                        </div>
+                        <div class="hot_comment_2">
+                            <span th:text="${c.getContent()}" class="hot_comment_2_comment">评论</span>
+                        </div>
+                        <div class="movie_comment_border" style="border: 1px solid #a1c15e"></div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+</html>
