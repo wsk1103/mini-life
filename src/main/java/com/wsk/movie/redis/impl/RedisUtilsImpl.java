@@ -25,8 +25,8 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Autowired
     private StringRedisTemplate template;
-    Jedis jedis = new Jedis();
-    Pipeline pipeline = jedis.pipelined();
+    private Jedis jedis = new Jedis();
+    private Pipeline pipeline = jedis.pipelined();
 
     @Override
     public boolean set(String key, String value, long time) {

@@ -88,7 +88,7 @@ public class UserInformationController {
         } else {
             request.getSession().removeAttribute("token");
         }
-//        String password_md5 = Encrypt.getMD5(password);
+//        String password_md5 = encrypt.getMD5(password);
         if (login(username, password, request)) {
             userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
             model.addAttribute("userInformation", userInformation);

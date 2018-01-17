@@ -23,19 +23,19 @@ public class TestController {
     @Autowired
     IRedisUtils utils;
 
-    @RequestMapping(value = "/")
-    @ResponseBody
-    public String go(@Param("name") String name, @Param("password") String password) {
-        service.set("121", "11111");
-//        RedisUtils utils = new RedisUtils();
+//    @RequestMapping(value = "/")
+//    @ResponseBody
+//    public String go(@Param("name") String name, @Param("password") String password) {
+//        service.set("121", "11111");
+////        RedisUtils utils = new RedisUtils();
+////        utils.set(name, password);
 //        utils.set(name, password);
-        utils.set(name, password);
-        System.out.println(utils.get(name));
-        List list = new ArrayList();
-        list.add("2");
-        list.add("3");
-        list.add(password);
-        service.setList(name, list);
-        return "home";
-    }
+//        System.out.println(utils.get(name));
+//        List list = new ArrayList();
+//        list.add("2");
+//        list.add("3");
+//        list.add(password);
+//        service.setList(name, list);
+//        return "home";
+//    }
 }

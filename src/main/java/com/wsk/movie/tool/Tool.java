@@ -1,5 +1,6 @@
 package com.wsk.movie.tool;
 
+import com.alibaba.fastjson.JSON;
 import com.baidu.aip.imagecensor.AipImageCensor;
 import com.wsk.movie.tool.entity.Baidu;
 import net.coobird.thumbnailator.Thumbnails;
@@ -287,6 +288,15 @@ public class Tool {
             return false;
         }
         return "正常".equals(baidu.getConclusion());
+    }
+
+    public <T> T jsonToBean(String json, Class<T> clazz) throws Exception{
+        com.alibaba.fastjson.JSONObject object = com.alibaba.fastjson.JSONObject.parseObject(json);
+        return com.alibaba.fastjson.JSONObject.toJavaObject(object, clazz);
+    }
+
+    public <T> String toJson(T t) {
+        return JSON.toJSONString(t);
     }
 
 //    public static void main(String[] args) {
