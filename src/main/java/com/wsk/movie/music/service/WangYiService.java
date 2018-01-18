@@ -1,6 +1,6 @@
 package com.wsk.movie.music.service;
 
-import com.wsk.movie.music.entity.ResponseEntity;
+import com.wsk.movie.music.entity.BaseEntity;
 
 /**
  * @author: wsk1103
@@ -9,5 +9,5 @@ import com.wsk.movie.music.entity.ResponseEntity;
  */
 public interface WangYiService {
     //获取url
-    ResponseEntity getMusicUrl(String name, String type);
+    BaseEntity getMusicUrl(String name, String type);
 }

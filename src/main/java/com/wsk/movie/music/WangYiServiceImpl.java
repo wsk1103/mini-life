@@ -1,7 +1,8 @@
 package com.wsk.movie.music;
 
 import com.wsk.movie.music.bean.*;
-import com.wsk.movie.music.entity.ResponseEntity;
+import com.wsk.movie.music.entity.BaseEntity;
+import com.wsk.movie.music.entity.WangYiResponseEntity;
 import com.wsk.movie.music.entity.WangYiEntity;
 import com.wsk.movie.music.service.WangYiService;
 import com.wsk.movie.redis.IRedisUtils;
@@ -24,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.wsk.movie.music.WangYiTypeEnum.*;
+
 /**
  * @author: wsk1103
  * @date: 18-1-14 下午1:53
@@ -38,10 +41,6 @@ public class WangYiServiceImpl implements WangYiService {
     private static final String FIRST_PARAM_END = "]\",\"br\":128000,\"csrf_token\":\"\"}";
     private static final Map<String, String> DATA = new HashMap<>();
     private static final Map<String, String> HEADERS = new HashMap<>();
-    private static final String SINGLE = "1";//单曲
-    private static final String ALBUM = "10";//专辑
-    private static final String SINGER = "100";//歌手
-
 //    private static final String SONG_SHEET = "1000";//歌单
 
     @Autowired
@@ -70,23 +69,44 @@ public class WangYiServiceImpl implements WangYiService {
     }
 
     @Transactional
-    public ResponseEntity getMusicUrl(String name, String type) {
-        ResponseEntity responseEntity = new ResponseEntity();
+    public BaseEntity getMusicUrl(String name, String type) {
+        WangYiResponseEntity responseEntity = new WangYiResponseEntity();
         //结果
         List<WangYiEntity> result = new ArrayList<>();
         //从redis查找
-        String list = redisUtils.get("wangyi_music_" + name);
-        if (null != list && list.length() > 0) {
-            try {
-                responseEntity = Tool.getInstance().jsonToBean(list, ResponseEntity.class);
-                return responseEntity;
-            } catch (Exception e1) {
-                e1.printStackTrace();
-                responseEntity.setData(null);
-                responseEntity.setCode(200);
-                responseEntity.setMsg("success");
+//        String list = redisUtils.get("wangyi_music_" + name);
+        List<String> list = redisUtils.lrange("wangyi_music_" + name, 0, -1);
+        if (null != list && list.size() > 0) {
+            for (String en : list) {
+                try {
+                    WangYiEntity entity = Tool.getInstance().jsonToBean(en, WangYiEntity.class);
+                    result.add(entity);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    responseEntity.setData(result);
+                    responseEntity.setCode(500);
+                    responseEntity.setMsg("fail");
+                    return responseEntity;
+                }
             }
+            responseEntity.setData(result);
+            responseEntity.setCode(200);
+            responseEntity.setMsg("success");
+            return responseEntity;
         }
+//        if (null != list && list.length() > 0) {
+//            System.out.println(list);
+//            try {
+//                responseEntity = Tool.getInstance().jsonToBean(list, WangYiResponseEntity.class);
+//                return responseEntity;
+//            } catch (Exception e1) {
+//                e1.printStackTrace();
+//                responseEntity.setData(null);
+//                responseEntity.setCode(200);
+//                responseEntity.setMsg("success");
+//                return responseEntity;
+//            }
+//        }
         init(name);
         switch (type) {
             case SINGLE:
@@ -115,7 +135,9 @@ public class WangYiServiceImpl implements WangYiService {
             for (WangYiSong song : songs) {
                 long song_id = song.getId();
                 System.out.println((song_id));
-                String params = URLEncoder.encode(AES.getParams(FIRST_PARAM_START.append(song_id).append(FIRST_PARAM_END).toString()), "UTF-8");
+                StringBuilder sb = new StringBuilder();
+                sb.append(FIRST_PARAM_START).append(song_id).append(FIRST_PARAM_END);
+                String params = URLEncoder.encode(AES.getParams(sb.toString()), "UTF-8");
                 String encSecKey = AES.getEncSecKey();
 //                System.out.println(params);
 //                System.out.println(encSecKey);
@@ -205,11 +227,12 @@ public class WangYiServiceImpl implements WangYiService {
                 if (Tool.getInstance().isNullOrEmpty(albumService.getByAlbumid(album.getAlbumid()))) {
                     albumService.saveAndFlush(album);
                 }
+                redisUtils.rpush("wangyi_music_" + name, Tool.getInstance().toJson(entity));
             }
             responseEntity.setData(result);
             responseEntity.setCode(200);
             responseEntity.setMsg("success");
-            redisUtils.rpush("wangyi_music_" + name, Tool.getInstance().toJson(responseEntity));
+//            redisUtils.set("wangyi_music_" + name, Tool.getInstance().toJson(responseEntity));
         } catch (Exception e) {
             e.printStackTrace();
             responseEntity.setData(null);

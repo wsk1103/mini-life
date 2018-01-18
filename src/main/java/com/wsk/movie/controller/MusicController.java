@@ -1,7 +1,6 @@
 package com.wsk.movie.controller;
 
-import com.wsk.movie.music.entity.ResponseEntity;
-import com.wsk.movie.music.entity.WangYiEntity;
+import com.wsk.movie.music.entity.BaseEntity;
 import com.wsk.movie.music.service.WangYiService;
 import lombok.Data;
 import org.apache.ibatis.annotations.Param;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 /**
  * @author: wsk1103
@@ -27,7 +24,11 @@ public class MusicController {
 
     @RequestMapping(value = "/music/{id}")
     @ResponseBody
-    public ResponseEntity searchByName(@Param("name") String name, @PathVariable String id) {
+    public BaseEntity searchByName(@Param("name") String name, @PathVariable String id) {
+//        switch (id) {
+//            case SINGLE:
+//
+//        }
         return service.getMusicUrl(name, id);
     }
 }
