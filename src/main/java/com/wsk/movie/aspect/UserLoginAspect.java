@@ -1,5 +1,6 @@
 package com.wsk.movie.aspect;
 
+import com.wsk.movie.error.LoginErrorException;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -28,9 +29,13 @@ public class UserLoginAspect {
     }
 
     @Before(value = "login()")
-    public String test(){
+    public String test() throws LoginErrorException {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        System.out.println("IP地址为：" + getIpAddress(request));
+        String ip = getIpAddress(request);
+        System.out.println("IP地址为：" + ip);
+        if (null == ip || !"127.0.0.1".equals(ip)) {
+            throw new LoginErrorException("How old are you?");
+        }
 //        System.out.println(request.getSession().getId());
 //        System.out.println("aspect login");
         return "redirect:/show";
