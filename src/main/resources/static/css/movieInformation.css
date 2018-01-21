@@ -74,6 +74,8 @@ img.movie_video_rec_cover {
 img.movie_atc_s_name{
     max-width: 120px;
     max-height:120px;
+    min-width: 100px;
+    min-height: 100px;
     display: block;
 }
 div.movie_video_rec_name{

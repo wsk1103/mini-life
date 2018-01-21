@@ -3,8 +3,8 @@
 }
 
 /*a {*/
-    /*text-decoration: none;*/
-    /*color: #000;*/
+/*text-decoration: none;*/
+/*color: #000;*/
 /*}*/
 
 header {
@@ -32,7 +32,7 @@ header div ul {
     position: absolute;
     background: #fff;
     width: 100%;
-    padding-left: 57%;
+    padding-left: 50%;
     /*margin-left: -251px;*/
     /*right: -220px;*/
     /*padding-right: 280px;*/
@@ -43,7 +43,7 @@ header div ul li {
     display: inline-block;
 }
 
-ul li.header_forum, ul li.header_home, ul li.header_hot, ul li.header_set, ul li.header_information {
+ul li.header_forum, ul li.header_home, ul li.header_hot, ul li.header_set, ul li.header_information, ul li.header_music, ul li.header_book {
     padding: 2px 10px;
     cursor: pointer;
     text-align: center;
@@ -57,7 +57,7 @@ ul li.header_forum, ul li.header_home, ul li.header_hot, ul li.header_set, ul li
     padding: 0 10px;
 }
 
-.menu, .hot_menu, #movie_menu{
+.menu, .hot_menu, #movie_menu {
     top: 2.3em;
     padding: 0 20px;
     display: none;
@@ -66,23 +66,29 @@ ul li.header_forum, ul li.header_home, ul li.header_hot, ul li.header_set, ul li
     width: 95px;
     box-shadow: 2px 2px 10px black;
 }
-img.img_hot,img.img_home,img.img_forum,img.img_information,img.img_set,img.img_home_current{
+
+img.img_hot, img.img_home, img.img_forum, img.img_information, img.img_set, img.img_home_current,
+.img_music, .img_music_current, .img_book, .img_book_current {
     width: 1.5em;
     padding-bottom: .2em;
     /*height: 1.2em;*/
     vertical-align: middle;
 }
-img.img_home,img.img_home_current{
+
+img.img_home, img.img_home_current {
     width: 1.2em;
     /*height: 1.2em;*/
 }
-img.img_hot{
+
+img.img_hot {
     width: 1.2em;
     /*height: 1.2em;*/
 }
-img.img_home_current{
+
+img.img_home_current {
     background: url("../image/home_current.png");
 }
+
 .header_current {
     color: #9fbe5d;
 }
@@ -94,20 +100,24 @@ img.img_home_current{
     /*height: 0%;*/
     /*visibility: hidden;*/
 }
-.show_header li span:hover{
-    color: #9fbe5d;
-}
-ul li.hot_menu_li a:hover{
-    color: #9fbe5d;
-}
-a:hover{
+
+.show_header li span:hover {
     color: #9fbe5d;
 }
 
-a.header_forum_current:hover{
+ul li.hot_menu_li a:hover {
     color: #9fbe5d;
 }
-img.header_title_img{
+
+a:hover {
+    color: #9fbe5d;
+}
+
+a.header_forum_current:hover {
+    color: #9fbe5d;
+}
+
+img.header_title_img {
     width: 1.2em;
     height: 1.2em;
     /*vertical-align: middle;*/
@@ -117,7 +127,8 @@ img.header_title_img{
     top: .5em;
     z-index: 9;
 }
-span.header_title_text{
+
+span.header_title_text {
     position: absolute;
     left: 24.5%;
     top: .1em;

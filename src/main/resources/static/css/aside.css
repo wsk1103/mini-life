@@ -114,7 +114,7 @@ input.search {
     width: 180px;
 }
 
-.search_movie, .search_publish, .search_user, .search_forum {
+.search_movie, .search_publish, .search_user, .search_forum, .search_music,.search_book {
     margin-left: 10px;
     width: 2.5em;
     height: 2.5em;
@@ -124,7 +124,7 @@ input.search {
     border: none;
 }
 
-.search_movie:hover, .search_publish:hover, .search_user:hover, .search_forum:hover {
+.search_movie:hover, .search_publish:hover, .search_user:hover, .search_forum:hover, .search_music:hover,.search_book:hover {
     box-shadow: 0px 0px 1px 1px #9fbe5d;
 }
 

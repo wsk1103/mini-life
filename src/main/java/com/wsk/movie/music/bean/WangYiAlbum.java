@@ -13,4 +13,5 @@ public class WangYiAlbum {
     private String name;
     private long publishTime;
     private String picId;
+    private String picUrl;
 }

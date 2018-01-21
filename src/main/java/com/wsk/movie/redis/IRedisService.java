@@ -7,6 +7,7 @@ import java.util.List;
  * @AUTHOR : WuShukai1103
  * @TIME : 2017/12/31  16:30
  */
+@Deprecated
 public interface IRedisService {
 
     public boolean set(String key, String value);

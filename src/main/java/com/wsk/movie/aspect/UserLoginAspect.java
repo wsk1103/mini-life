@@ -33,9 +33,9 @@ public class UserLoginAspect {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String ip = getIpAddress(request);
         System.out.println("IP地址为：" + ip);
-        if (null == ip || !"127.0.0.1".equals(ip)) {
-            throw new LoginErrorException("How old are you?");
-        }
+//        if (null == ip || !"127.0.0.1".equals(ip)) {
+//            throw new LoginErrorException("How old are you?");
+//        }
 //        System.out.println(request.getSession().getId());
 //        System.out.println("aspect login");
         return "redirect:/show";

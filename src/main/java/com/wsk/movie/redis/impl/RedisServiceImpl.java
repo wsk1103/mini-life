@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @TIME : 2017/12/31  16:30
  */
 @Service
+@Deprecated
 public class RedisServiceImpl implements IRedisService {
 
     @Autowired

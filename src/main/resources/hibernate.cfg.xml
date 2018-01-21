@@ -9,7 +9,8 @@
     <mapping class="com.wsk.movie.springdata.entity.WangyialbumEntity"/>
     <mapping class="com.wsk.movie.springdata.entity.WangyimusicEntity"/>
     <mapping class="com.wsk.movie.springdata.entity.WangyisingerEntity"/>
-    <!-- <property name="connection.username"/> -->
+      <mapping resource="com/wsk/movie/springdata/entity/WangyimusicEntity.hbm.xml"/>
+      <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

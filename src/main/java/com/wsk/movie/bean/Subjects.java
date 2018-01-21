@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 /**
  * Created by wsk1103 on 2017/10/21.
+ * 豆瓣搜索
  */
 @Data
 public class Subjects implements Serializable {

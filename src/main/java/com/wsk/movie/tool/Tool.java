@@ -13,11 +13,17 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by wsk1103 on 2017/5/29.
  */
 public class Tool {
+
+
+    private Lock lock = new ReentrantLock();
+
     private Tool() {
     }
 
@@ -36,6 +42,7 @@ public class Tool {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simpleDateFormat.format(date);
     }
+
     public String DateToString(Date date) {
         if (isNullOrEmpty(date)) {
             return "";
@@ -120,6 +127,7 @@ public class Tool {
 
     /**
      * 获得协议
+     *
      * @return
      */
     public String getProtocolTxt() {
@@ -128,6 +136,7 @@ public class Tool {
 
     /**
      * 生成MD5
+     *
      * @param str
      * @return
      */
@@ -145,12 +154,13 @@ public class Tool {
 
     /**
      * 获得随机生成的字符串
+     *
      * @return
      */
     private final static String WSK = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+
     public String getRandom() {
         Random random = new Random();
-
         StringBuilder stringBuffer = new StringBuilder();
         char[] now = WSK.toCharArray();
         for (int i = 0; i < 10; i++) {
@@ -161,6 +171,7 @@ public class Tool {
 
     /**
      * 是否为空
+     *
      * @param obj
      * @return 空-true
      */
@@ -192,20 +203,22 @@ public class Tool {
 
     /**
      * 是否为空
+     *
      * @param obj
      * @return 空-false
      */
-    public boolean isNotNull(Object obj){
+    public boolean isNotNull(Object obj) {
         return !isNullOrEmpty(obj);
     }
 
     /**
      * 将图片生成对应的缩略图
+     *
      * @param path 传尽量图片的路径
      * @param save 保存图片的路径
      * @return 成功-true
      */
-    public boolean thumbnails(String path,String save) {
+    public boolean thumbnails(String path, String save) {
         try {
             Thumbnails.of(path).size(150, 150).toFile(save);
             return true;
@@ -217,6 +230,7 @@ public class Tool {
 
     /**
      * 读取本地需要过滤的文字
+     *
      * @return
      * @throws IOException
      */
@@ -232,7 +246,7 @@ public class Tool {
         InputStreamReader reader = new InputStreamReader(new FileInputStream(file), encoding);
         BufferedReader bufferedReader = new BufferedReader(reader);
         String txt;
-        while ((txt=bufferedReader.readLine())!=null){
+        while ((txt = bufferedReader.readLine()) != null) {
             list.add(txt);
         }
         reader.close();
@@ -241,13 +255,14 @@ public class Tool {
 
     /**
      * 文字过滤
+     *
      * @param test
      * @return 替换后的结果
      */
-    public String txtReplace(String test){
+    public String txtReplace(String test) {
         try {
-            ArrayList<String> list=readTxt();
-            test=test.replaceAll("\\s*|\t|\r|\n", "");
+            ArrayList<String> list = readTxt();
+            test = test.replaceAll("\\s*|\t|\r|\n", "");
             for (String aList : list) {
                 test = test.replaceAll(aList, "**");
             }
@@ -257,6 +272,7 @@ public class Tool {
         }
         return test;
     }
+
     //色情图片识别
     //设置APPID/AK/SK
     private static final String APP_ID = "10608004";
@@ -265,11 +281,12 @@ public class Tool {
 
     /**
      * 色情图片识别
+     *
      * @param path
      * @return 正常-true
      */
-    public boolean checkPornograp(String path){
-        if (!new File(path).exists()){
+    public boolean checkPornograp(String path) {
+        if (!new File(path).exists()) {
             return false;
         }
         // 初始化一个AipImageCensor
@@ -290,17 +307,12 @@ public class Tool {
         return "正常".equals(baidu.getConclusion());
     }
 
-    public <T> T jsonToBean(String json, Class<T> clazz) throws Exception{
-        com.alibaba.fastjson.JSONObject object = com.alibaba.fastjson.JSONObject.parseObject(json);
-        return com.alibaba.fastjson.JSONObject.toJavaObject(object, clazz);
-    }
+    public <T> T jsonToBean(String json, Class<T> clazz) throws Exception {
+        System.out.println(json);
+        return com.alibaba.fastjson.JSONObject.parseObject(json, clazz);
+}
 
     public <T> String toJson(T t) {
         return JSON.toJSONString(t);
     }
-
-//    public static void main(String[] args) {
-//        boolean b = Tool.getInstance().thumbnails("D:/image/2F9D5aQvgLdBrXV1eJXK20161207.jpg");
-//        System.out.println(b);
-//    }
 }

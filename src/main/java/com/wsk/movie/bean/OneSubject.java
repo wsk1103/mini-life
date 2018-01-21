@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 /**
  * Created by wsk1103 on 2017/10/22.
+ * 豆瓣-单个电影具体信息
  */
 @Data
 public class OneSubject implements Serializable {

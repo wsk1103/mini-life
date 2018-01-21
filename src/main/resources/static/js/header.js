@@ -31,7 +31,7 @@ $(function () {
     var $movie_menu = $('#movie_menu');
     $($header_movie).bind({
         mouseenter:function () {
-            $movie_menu.css({left:40.5+'%'});
+            $movie_menu.css({left:43.5+'%'});
             $movie_menu.show(100);
         }
     });
@@ -40,7 +40,7 @@ $(function () {
     });
     $(header_set).bind({
         mouseenter: function () {
-            menu.css({left: 45.8 + "%"});
+            menu.css({left: 49 + "%"});
             menu.show(100);
         },
     });

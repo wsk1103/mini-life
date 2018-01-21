@@ -113,6 +113,22 @@ public class UserInformationController {
         }
     }
 
+    @RequestMapping(value ="/main")
+    public String myself(Model model, HttpServletRequest request){
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+            return "redirect:/login";
+        }
+        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
+        model.addAttribute("userInformation", userInformation);
+        model.addAttribute("username", userInformation.getName());
+        model.addAttribute("autograph", userInformation.getAutograph());
+        model.addAttribute("action", 1);
+        int uid = userInformation.getId();
+        getUserCounts(model, uid);
+        return "main";
+    }
+
     @RequestMapping(value = "/my")
     public String my(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");

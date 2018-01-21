@@ -14,4 +14,5 @@ public class WangYiSong {
     private WangYiArtists[] artists;//歌手
     private WangYiAlbum album;//专辑
     private String[] alias;//包括
+    private long publishTime;//发布时间
 }

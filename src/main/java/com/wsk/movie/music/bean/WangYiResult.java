@@ -8,6 +8,6 @@ import lombok.Data;
  * @description: JAVA8,网易云英语相应实体
  */
 @Data
-public class WangYiResult {
+public class WangYiResult{
     private WangYiSong[] songs;
 }

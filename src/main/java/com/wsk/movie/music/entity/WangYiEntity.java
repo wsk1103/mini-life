@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @description: JAVA8,回显的网易云音乐类
  */
 @Data
-public class WangYiEntity extends BaseEntity implements Serializable{
+public class WangYiEntity implements Serializable{
     private long id;//id
     private long songid;//歌曲id-对于网易云
     private String songname;//歌曲名
@@ -21,4 +21,5 @@ public class WangYiEntity extends BaseEntity implements Serializable{
     private String publishtime;//发布时间戳
     private String alias;
     private String url;//地址
+    private String picurl;//图片地址
 }

@@ -9,5 +9,23 @@ import com.wsk.movie.music.entity.BaseEntity;
  */
 public interface WangYiService {
     //获取url
-    BaseEntity getMusicUrl(String name, String type);
+    BaseEntity getMusic(String name, String type);
+
+    boolean delRedis(String name);
+
+    BaseEntity getMusicComments(String name);
+
+    BaseEntity getMusicComments(long song_id);
+
+    //云音乐飙升榜
+    BaseEntity getHottingMusic();
+
+    //云音乐热歌榜
+    BaseEntity getHotMusic();
+
+    //云音乐新歌榜
+    BaseEntity getNewMusic();
+
+    //根据歌曲id获得url
+    String getMusicUrlById(long song_id);
 }

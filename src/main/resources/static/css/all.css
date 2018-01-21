@@ -1,3 +1,6 @@
+/*::-webkit-scrollbar{*/
+    /*display:none;*/
+/*}*/
 body {
     padding: 0;
     margin: 0 auto;
@@ -69,7 +72,7 @@ div.specific_comment {
     padding-top: .5em;
 }
 
-div.all_content {
+div.all_content, iframe.all_content {
     top: 2.3em;
     width: 1000px;
     margin: 0 auto;

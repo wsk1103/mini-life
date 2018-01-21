@@ -25,6 +25,8 @@ h1{
 .celebrity_img{
     max-width: 250px;
     max-height: 250px;
+    min-width: 200px;
+    min-height: 200px;
 }
 .celebrity_show{
     color:#666666;

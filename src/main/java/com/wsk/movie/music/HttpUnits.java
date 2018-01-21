@@ -6,7 +6,9 @@ import com.wsk.movie.tool.Tool;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -43,7 +45,19 @@ public class HttpUnits {
             return null;
         }
         String response = document.getElementsByTag("body").first().html();
+        System.out.println(response);
         JSONObject object = JSONObject.parseObject(response);
         return JSONObject.toJavaObject(object, clazz);
+    }
+
+    public static Element urlToString(String url) throws IOException {
+        Document document;
+        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(15000);
+        document = connection.get();
+        return document.getElementsByTag("body").first();
+    }
+
+    public static void main(String[] args) throws IOException {
+        System.out.println(urlToString(""));
     }
 }

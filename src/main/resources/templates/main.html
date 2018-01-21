@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>main</title>
+    <link rel="stylesheet" href="/css/home/home.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+</head>
+<script src="/js/jquery-3.0.0.js"></script>
+<script src="/js/layer.js"></script>
+<script src="/js/home/home.js"></script>
+<script src="/js/all.js"></script>
+<script>
+    $(function () {
+        var height = $(window).height();
+        var width = $(window).width();
+//        alert(height);
+        $("#main").attr("height", height);
+        $("#main").attr("width", width);
+    });
+</script>
+<body>
+<!--头文件-->
+<header class="">
+    <link rel="stylesheet" href="/css/header.css"/>
+    <div>
+        <input type="hidden" th:value="${action}"/>
+        <input type="hidden" th:if="${userInformation.phone}==null" id="user_name_a" value="wsk"/>
+        <input type="hidden" th:if="${userInformation.phone}!=null" th:value="${userInformation.phone}" id="user_name_a"
+               value="wsk"/>
+        <img src="/image/title.ico" style="width: 1.2em;height: 1.2em" class="header_title_img"/>
+        <a href="/home">
+                    <span class="header_title_text">
+                        瓢虫影评-最专业的影评
+                    </span>
+        </a>
+        <ul class="show_header">
+            <li class="header_home">
+                <span class="">
+                    <a href="/home" class="header_home_current header_current" th:if="${action}==1">
+                        <img src="/image/home_current.png" class="img_home"/>首页
+                    </a>
+                    <a href="/home" class="header_home_current " th:if="${action}!=1">
+                        <img src="/image/home.png" class="img_home"/>首页
+                    </a>
+                </span>
+            </li>
+            <li class="header_hot">
+                <span class="header_hot_current header_current" th:if="${action}==2">
+                    <a href="/hotCritic" class="header_current"><img src="/image/hot_current.png"
+                                                                     class="img_hot"/>热门</a>
+                </span>
+                <span class="header_hot_current" th:if="${action}!=2">
+                    <a href="/hotCritic"><img src="/image/hot.png" class="img_hot"/>热门</a>
+                </span>
+            </li>
+            <li class="header_hot" id="header_movie">
+                <span class="header_hot_current header_current" th:if="${action}==3">
+                    <img src="/image/movie_current.png"
+                         class="img_hot"/>电影
+                </span>
+                <span class="header_hot_current" th:if="${action}!=3">
+                    <img src="/image/movie.png" class="img_hot"/>电影
+                </span>
+                <ul id="movie_menu" style="z-index: 9999">
+                    <li class="menu_li">
+                        <a href="/coming_soon">
+                            即将上映
+                        </a>
+                    </li>
+                    <li class="menu_li">
+                        <a href="/top">
+                            高分电影
+                        </a>
+                    </li>
+                    <li class="menu_li">
+                        <a href="/coming">
+                            正在上映
+                        </a>
+                    </li>
+                    <li class="menu_li">
+                        <a href="/us_box">
+                            北美票房
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="header_information" value="0">
+                <span class="header_information_current header_current" th:if="${action}==4">
+                    <img src="/image/information_current.png" class="img_information"/>信息
+                </span>
+                <span class="header_information_current" th:if="${action}!=4">
+                    <img src="/image/information.png" class="img_information"/>信息
+                </span>
+            </li>
+            <li class="header_set" style="">
+                <span class="header_set_current header_current" th:if="${action}==5">
+                    <img src="/image/set_current.png" class="img_set"/>设置
+                </span>
+                <span class="header_set_current" th:if="${action}!=5">
+                    <img src="/image/set.png" class="img_set"/>设置
+                </span>
+                <!--<div class="header_set_ul">-->
+                <ul class="menu" style="z-index: 9999">
+                    <li class="menu_li header_setting">
+                        <a href="/accountSettings">
+                            账号设置
+                        </a>
+                    </li>
+                    <li class="menu_li header_safety">
+                        <a href="/security">
+                            账号安全
+                        </a>
+                    </li>
+                    <li class="menu_li header_feedback">
+                        <a href="#">
+                            意见反馈
+                        </a>
+                    </li>
+                    <li class="menu_li header_help">
+                        <a href="#">
+                            帮助中心
+                        </a>
+                    </li>
+                    <li class="menu_li header_logout">
+                        <a href="/logout">
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <input type="hidden" id="uid" th:value="${userInformation.id}" value="0"/>
+    <script src="/js/header.js">
+    </script>
+</header>
+<!--主体内容-->
+<iframe src="/my" id="main" style="border: none;position: absolute; left: 22%; top:0;" class="all_content"></iframe>
+<!--侧边栏-->
+<aside style="margin-right: 0;position: absolute;right: 25%;top: 0">
+    <link rel="stylesheet" href="/css/aside.css"/>
+    <script src="/js/aside/aside.js"></script>
+    <script src="/js/jQueryUI/jquery.ui.core.js"></script>
+    <script src="/js/jQueryUI/jquery.ui.widget.js"></script>
+    <script src="/js/jQueryUI/jquery.ui.position.js"></script>
+    <script src="/js/jQueryUI/jquery.ui.menu.js"></script>
+    <script src="/js/jQueryUI/jquery.ui.autocomplete.js"></script>
+    <div class="my_header">
+        <!--头像-->
+        <div class="my_header_center">
+            <img src="/image/1.jpg" class="my_image_header" th:if="${userInformation.avatar}==null" alt="您还未登录!!"/>
+            <img src="/image/1.jpg" class="my_image_header" th:if="${userInformation.avatar}!=null" id="my_image_header"
+                 th:src="${userInformation.avatar}" alt="您还未登录!!"/>
+        </div>
+        <div class="my_username">
+            <input type="hidden" id="myId" th:value="${userInformation.id}"/>
+            <div>
+                <a th:if="${userInformation.name}==null" href="/login" class="myName clearfix" title="">
+                    请先登录
+                </a>
+                <a th:text="${userInformation.name}" th:href="'/information?id='+${userInformation.id}"
+                   class="myName clearfix" th:if="${userInformation.name}!=null" th:title="${userInformation.name}">
+                    请先登录
+                </a>
+            </div>
+            <div style="font-size: .8em;margin-top: .5em;">
+                <a th:if="${userInformation.name}==null" th:text="${userInformation.autograph}" href="/login"
+                   th:title="${userInformation.autograph}" class="clearfix myAutograph">
+                    我的个性签名
+                </a>
+                <a th:if="${userInformation.name}!=null" th:text="${userInformation.autograph}"
+                   th:href="'/information?id='+${userInformation.id}" th:title="${userInformation.autograph}"
+                   class="clearfix myAutograph">
+                    我的个性签名
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="my_action">
+        <div class="my_action_home"><a href="home" th:href="'/information?id='+${userInformation.id}"
+        >我的影评：<span th:text="${critics}" id="num_critics"></span></a></div>
+        <div class="my_action_home"><a href="/myComment">我的评论：<span th:text="${comments}" id="num_comments"></span></a>
+        </div>
+        <div class="my_action_favorite"><a href="/myCollection"> 我的收藏：<span th:text="${collections}"
+                                                                            id="num_collections"></span></a></div>
+        <div class="my_action_good"><a href="/myGood"> 我的点赞：<span th:text="${goods}" id="num_goods"></span></a></div>
+    </div>
+    <div class="my_friends">
+        <!--好友列表-->
+        <div class="my_friends_list">
+            关注列表
+        </div>
+        <ul th:each="o:${myFriends}">
+            <li th:text="${o.name}" th:value="${o.id}" class="my_friends_li" th:title="${o.name}">wsk1103</li>
+            <span class="show_my_friends_btn" style="float: right">+</span>
+            <li class="my_friends_btn">
+                <div>
+                    <button class="my_friends_close" th:value="${o.fid}" title="unsubscribe">×关注</button>
+                    <button class="my_friends_message" th:value="${o.fid}">◇私信</button>
+                    <button class="my_friends_information" th:value="${o.fid}">⊙详情</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="all_search">
+        <div class="my_friends_list">搜◎索</div>
+        <div>
+            <form action="/searchMovie" method="post" id="searchMovie">
+                <input type="text" name="name" class="search" placeholder="搜索" id="search"/>
+                <input type="hidden" name="action" id="movie_action" value="movie"/>
+            </form>
+        </div>
+        <div style="text-align: center">
+            <img src="/image/movie.png" class="search_movie" title="搜索电影"/>
+            <img class="search_publish" title="搜索影评" src="/image/publish.png"/>
+
+            <img class="search_user" title="搜索用户" src="/image/user.png"/>
+            <!--<button class="search_forum" title="搜索论坛" ></button>-->
+            <!--<img srpicturemage/forum.png" class="search_forum" title="搜索论坛"/>-->
+        </div>
+    </div>
+    <div class="show_message" style="display: none">
+
+    </div>
+</aside>
+</body>
+</html>
