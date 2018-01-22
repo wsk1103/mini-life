@@ -1,5 +1,6 @@
 package com.wsk.movie.music.bean;
 
+import com.wsk.movie.music.entity.WangYiEntity;
 import com.wsk.movie.springdata.entity.WangyimusicEntity;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class MusicRunnableBean {
-    private WangyimusicEntity entity;
+    private WangYiEntity entity;
+    private WangyimusicEntity musicEntity;
     private String fileName;
 }

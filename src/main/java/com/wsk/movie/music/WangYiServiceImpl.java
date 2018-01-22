@@ -1,10 +1,7 @@
 package com.wsk.movie.music;
 
 import com.wsk.movie.music.bean.*;
-import com.wsk.movie.music.entity.BaseEntity;
-import com.wsk.movie.music.entity.WangYiCommentResponseEntity;
-import com.wsk.movie.music.entity.WangYiEntity;
-import com.wsk.movie.music.entity.WangYiResponseEntity;
+import com.wsk.movie.music.entity.*;
 import com.wsk.movie.music.service.WangYiService;
 import com.wsk.movie.music.thread.MusicRunnable;
 import com.wsk.movie.music.thread.MusicThread;
@@ -82,6 +79,7 @@ public class WangYiServiceImpl implements WangYiService {
     }
 
     public BaseEntity getMusic(String name, String type) {
+        result.clear();
         //从redis查找
 //        String list = redisUtils.get("wangyi_music_" + name);
         List<String> list = redisUtils.lrange("wangyi_music_" + name, 0, -1);
@@ -104,8 +102,8 @@ public class WangYiServiceImpl implements WangYiService {
             return responseEntity;
         }
         List<WangyimusicEntity> wangyimusicEntities = musicService.findByNameStartsWith(name + "%");
-        //直接获取数据库已经存好的数据
-        if (null != wangyimusicEntities && wangyimusicEntities.size() > 0) {
+        //直接获取数据库已经存好的数据,只有当相应的歌曲存量大于5首才查询数据库
+        if (null != wangyimusicEntities && wangyimusicEntities.size() > 5) {
             redisUtils.del("wangyi_music_" + name);
             for (WangyimusicEntity music : wangyimusicEntities) {
                 WangyialbumEntity album = albumService.getByAlbumid(music.getAlbumid());
@@ -132,6 +130,7 @@ public class WangYiServiceImpl implements WangYiService {
                 entity.setPublishtime(fullDay.format(null == album.getPublishtime() ? new Date() : album.getPublishtime()));
                 entity.setUrl(music.getUrl());
                 entity.setAlias(music.getAlias());
+                entity.setPicurl(music.getPicurl());
                 result.add(entity);
                 redisUtils.rpush("wangyi_music_" + name, Tool.getInstance().toJson(entity));
             }
@@ -258,6 +257,11 @@ public class WangYiServiceImpl implements WangYiService {
         return entity;
     }
 
+    /**
+     * 通过song_id获取图片
+     * @param song_id
+     * @return
+     */
     private String getMusicPicture(Long song_id) {
         WangYiResult result;
         try {
@@ -302,22 +306,30 @@ public class WangYiServiceImpl implements WangYiService {
 
     //根据歌曲id获得歌曲url
     @Override
-    public String getMusicUrlById(long song_id) {
+    public BaseEntity getMusicUrlById(long song_id) {
+        WangYiUrlEntity wangYiUrlEntity = new WangYiUrlEntity();
+        wangYiUrlEntity.setCode(200);
+        wangYiUrlEntity.setMsg("success");
+        wangYiUrlEntity.setSong_id(song_id);
         System.out.println((song_id));
-        String url = redisUtils.get("wangyi_music_" + song_id);
+        String url = redisUtils.get("wangyi_music_url_" + song_id);
         if (Tool.getInstance().isNotNull(url)) {
-            return url;
+            wangYiUrlEntity.setUrl(url);
+            return wangYiUrlEntity;
         }
         WangyimusicEntity entity = musicService.getBySongid((int) song_id);
         if (Tool.getInstance().isNotNull(entity)) {
-            return entity.getUrl();
+            wangYiUrlEntity.setUrl(entity.getUrl());
+            return wangYiUrlEntity;
         }
         String params;
         try {
             params = URLEncoder.encode(AES.getParams(String.valueOf(FIRST_PARAM_START) + song_id + FIRST_PARAM_END), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
-            return "";
+            wangYiUrlEntity.setCode(500);
+            wangYiUrlEntity.setMsg("fail");
+            return wangYiUrlEntity;
         }
         String encSecKey = AES.getEncSecKey();
         DATA.clear();
@@ -327,16 +339,29 @@ public class WangYiServiceImpl implements WangYiService {
         try {
             songDetail = HttpUnits.urlToBean(GET_MUSIC + "&params=" + params + "&encSecKey=" + encSecKey, WangYiSongDetail.class, DATA, HEADERS, null, HttpMethodType.POST);
             if (Tool.getInstance().isNullOrEmpty(songDetail)) {
-                return "";
+                wangYiUrlEntity.setCode(500);
+                wangYiUrlEntity.setMsg("fail");
+                wangYiUrlEntity.setUrl("");
+                return wangYiUrlEntity;
             }
-            return songDetail.getData()[0].getUrl();
+            wangYiUrlEntity.setUrl(songDetail.getData()[0].getUrl());
+            return wangYiUrlEntity;
         } catch (Exception e) {
             e.printStackTrace();
-            return "";
+            wangYiUrlEntity.setCode(500);
+            wangYiUrlEntity.setMsg("fail");
+            wangYiUrlEntity.setUrl("");
+            return wangYiUrlEntity;
         }
     }
 
+    /**
+     * 获取3种热门音乐
+     * @param url
+     * @return
+     */
     private BaseEntity getHot(String url){
+        result.clear();
         String json = redisUtils.get(url);
         if (Tool.getInstance().isNotNull(json)) {
             WangYiResult wangYiResult;
@@ -371,6 +396,11 @@ public class WangYiServiceImpl implements WangYiService {
                 entity.setAlbumid(song.getAlbum().getId());
                 entity.setAlbumname(song.getAlbum().getName());
                 entity.setPublishtime(fullDay.format(song.getPublishTime()));
+                String song_url = redisUtils.get("wangyi_music_url_" + entity.getSongid());
+                if (Tool.getInstance().isNullOrEmpty(song_url)) {
+                    song_url = musicService.getBySongid((int) entity.getSongid()).getUrl();
+                }
+                entity.setUrl(song_url);
                 String[] aliases = song.getAlias();
                 StringBuilder alia = new StringBuilder();
                 for (int i = 0; i < aliases.length; i ++) {
@@ -416,7 +446,13 @@ public class WangYiServiceImpl implements WangYiService {
         }
     }
 
+    /**
+     * 保存音乐实体
+     * @param songs
+     * @return
+     */
     private WangYiResponseEntity saveMusic(WangYiSong[] songs){
+        result.clear();
         try {
             for (WangYiSong song : songs) {
                 long song_id = song.getId();
@@ -502,8 +538,6 @@ public class WangYiServiceImpl implements WangYiService {
                 System.out.println(music.getName());
                 if (Tool.getInstance().isNullOrEmpty(musicService.getBySongid((int) song_id))) {
                     musicService.saveAndFlush(music);
-                } else {
-                    musicService.update((int) song_id, songDetail.getData()[0].getUrl());
                 }
 
                 WangyialbumEntity album = new WangyialbumEntity();
@@ -518,11 +552,12 @@ public class WangYiServiceImpl implements WangYiService {
                 if (Tool.getInstance().isNullOrEmpty(albumService.getByAlbumid(album.getAlbumid()))) {
                     albumService.saveAndFlush(album);
                 }
-                redisUtils.rpush("wangyi_music_" + DATA.get("s"), Tool.getInstance().toJson(entity));
+                redisUtils.rpush("wangyi_music_" + song.getName(), Tool.getInstance().toJson(entity));
                 MusicRunnableBean musicRunnableBean = new MusicRunnableBean();
                 String fileName = Down.randomName(entity.getUrl());
                 musicRunnableBean.setFileName(fileName);
-                musicRunnableBean.setEntity(music);
+                musicRunnableBean.setEntity(entity);
+                musicRunnableBean.setMusicEntity(music);
                 MusicRunnable runnable = new MusicRunnable(musicRunnableBean, musicService, redisUtils);
                 THREAD.executor(runnable);
             }
@@ -540,7 +575,25 @@ public class WangYiServiceImpl implements WangYiService {
         return responseEntity;
     }
 
-    public static void main(String[] args) {
+    /**
+     * 根据song_id获取图片
+     * @param song_id
+     * @return
+     */
+    @Deprecated
+    private String getMusicPicUrl(long song_id){
+        String url = "http://music.163.com/song?id=" + song_id;
+        try {
+            Element element = HttpUnits.urlToString(url);
+            element = element.getElementsByClass("j-img").first();
+            return element.attr("data-src");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+   public static void main(String[] args) {
         try {
 //            WangYiBean bean = HttpUnits.urlToBean(GET_URL, WangYiBean.class, DATA, HEADERS, null, HttpMethodType.POST);
 //            long song_id = bean.getResult().getSongs()[0].getId();

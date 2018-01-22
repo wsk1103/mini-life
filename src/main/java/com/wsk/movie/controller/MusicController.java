@@ -2,7 +2,6 @@ package com.wsk.movie.controller;
 
 import com.wsk.movie.music.entity.BaseEntity;
 import com.wsk.movie.music.service.WangYiService;
-import lombok.Data;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,19 +15,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @description: JAVA8
  */
 @Controller
-@Data
+@RequestMapping(value = "/search/music")
 public class MusicController {
 
-    @Autowired
-    private WangYiService service;
+    private final WangYiService service;
 
-    @RequestMapping(value = "/search/music/{id}")
+    @Autowired
+    public MusicController(WangYiService service) {
+        this.service = service;
+    }
+
+    @RequestMapping(value = "/{id}")
     @ResponseBody
     public BaseEntity searchByName(@Param("name") String name, @PathVariable String id) {
-//        switch (id) {
-//            case SINGLE:
-//
-//        }
         return service.getMusic(name, id);
     }
 
@@ -39,21 +38,21 @@ public class MusicController {
     }
 
     //获取评论-根据名字
-    @RequestMapping(value = "/search/music/comments")
+    @RequestMapping(value = "/comments")
     @ResponseBody
     public BaseEntity getMusicComments(@Param("name") String name) {
         return service.getMusicComments(name);
     }
 
     //获取评论-根据id
-    @RequestMapping(value = "/search/music/comments/id")
+    @RequestMapping(value = "/comments/id")
     @ResponseBody
     public BaseEntity getMusicComments(@Param("id") long id) {
         return service.getMusicComments(id);
     }
 
     //获取评论-根据id
-    @RequestMapping(value = "/search/music/hot/{type}")
+    @RequestMapping(value = "/hot/{type}")
     @ResponseBody
     public BaseEntity getHotMusic(@PathVariable("type") int type) {
         switch (type) {
@@ -72,5 +71,9 @@ public class MusicController {
     }
 
     //根据歌曲id获得url
-
+    @RequestMapping(value = "/url/{id}")
+    @ResponseBody
+    public BaseEntity getMusicUrlById(@PathVariable("id") long id){
+        return service.getMusicUrlById(id);
+    }
 }

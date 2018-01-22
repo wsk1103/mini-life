@@ -45,7 +45,6 @@ public class HttpUnits {
             return null;
         }
         String response = document.getElementsByTag("body").first().html();
-        System.out.println(response);
         JSONObject object = JSONObject.parseObject(response);
         return JSONObject.toJavaObject(object, clazz);
     }

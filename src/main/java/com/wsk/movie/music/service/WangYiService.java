@@ -27,5 +27,5 @@ public interface WangYiService {
     BaseEntity getNewMusic();
 
     //根据歌曲id获得url
-    String getMusicUrlById(long song_id);
+    BaseEntity getMusicUrlById(long song_id);
 }

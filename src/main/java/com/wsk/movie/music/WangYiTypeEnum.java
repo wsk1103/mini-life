@@ -30,4 +30,14 @@ public class WangYiTypeEnum {
 
     public static final String HOT_MUSIC = "http://music.163.com/discover/toplist?id=3778678";//云音乐热歌榜
 
+    //缓存 音乐实体
+    /**
+     * rpush
+     * wangyi_music_   +   name
+     */
+
+    /**
+     * 缓存歌曲地址
+     * wangyi_music_url_   +   song_id
+     */
 }
