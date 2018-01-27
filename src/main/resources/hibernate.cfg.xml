@@ -6,10 +6,12 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/movie</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <mapping class="com.wsk.movie.springdata.entity.WangyialbumEntity"/>
+      <mapping class="com.wsk.movie.springdata.entity.WangyialbumEntity"/>
     <mapping class="com.wsk.movie.springdata.entity.WangyimusicEntity"/>
     <mapping class="com.wsk.movie.springdata.entity.WangyisingerEntity"/>
-      <mapping resource="com/wsk/movie/springdata/entity/WangyimusicEntity.hbm.xml"/>
+      <mapping class="com.wsk.movie.task.entity.MytaskEntity"/>
+      <mapping class="com.wsk.movie.task.entity.MytaskerrorEntity"/>
+      <mapping class="com.wsk.movie.task.entity.MytasklogEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

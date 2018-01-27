@@ -2,7 +2,7 @@ package com.wsk.movie.tool;
 
 import com.alibaba.fastjson.JSON;
 import com.baidu.aip.imagecensor.AipImageCensor;
-import com.wsk.movie.tool.entity.Baidu;
+import com.wsk.movie.tool.bean.Baidu;
 import net.coobird.thumbnailator.Thumbnails;
 import org.json.JSONObject;
 import sun.misc.BASE64Encoder;

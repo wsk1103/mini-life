@@ -1,4 +1,4 @@
-package com.wsk.movie.tool.entity;
+package com.wsk.movie.tool.bean;
 
 import com.wsk.movie.tool.Tool;
 import lombok.Data;
