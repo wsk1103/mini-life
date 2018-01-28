@@ -7,7 +7,6 @@ import com.wsk.movie.task.runnable.MyQueueBean;
 import com.wsk.movie.task.runnable.MyRunnable;
 import com.wsk.movie.task.service.MyErrorTaskRepository;
 import com.wsk.movie.task.service.MyTaskRepository;
-import com.wsk.movie.task.tool.TimeTransform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -53,7 +52,7 @@ public class MainTask implements CommandLineRunner {
 //        MyErrorTaskRepository errorTaskRepository = context.getApplicationContext().getBean(MyErrorTaskRepository.class);
         SCHEDULED_EXECUTOR_SERVICE.scheduleAtFixedRate(() -> {
             List<MytaskEntity> entities = repository.starts();
-            System.out.println("查询数据库:" + TimeTransform.fullDay.format(new Date()) + ",size:" + entities.size());
+//            System.out.println("查询数据库:" + TimeTransform.fullDay.format(new Date()) + ",size:" + entities.size());
 //            List<MytaskEntity> entities = repository.starts(TimeTransform.fullDay.format(new Date()));
             for (MytaskEntity e : entities) {
                 Timestamp now = new Timestamp(new Date().getTime());

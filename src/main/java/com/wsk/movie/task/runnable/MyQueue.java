@@ -35,7 +35,7 @@ public class MyQueue {
 
     public void offer(MyQueueBean bean) {
         if (SET.contains(bean.getEntity().getId())) {
-            System.out.println("重复" + bean.getRunnable().getClass().getName());
+//            System.out.println("重复" + bean.getRunnable().getClass().getName());
             return;
         }
         SET.add(bean.getEntity().getId());
