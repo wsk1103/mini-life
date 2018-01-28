@@ -3,12 +3,12 @@ package com.wsk.movie.task.entity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * @DESCRIPTION :
  * @AUTHOR : WuShukai1103
- * @TIME : 2018/1/24  23:09
+ * @TIME : 2018/1/27  23:19
  */
 @Entity
 @Component
@@ -17,9 +17,9 @@ public class MytaskEntity {
     private int id;
     private String taskname;
     private Integer status;
-    private Date starttime;
-    private Date nexttime;
-    private Date begintime;
+    private Timestamp starttime;
+    private Timestamp nexttime;
+    private Timestamp begintime;
     private String classname;
     private String expression;
 
@@ -55,31 +55,31 @@ public class MytaskEntity {
 
     @Basic
     @Column(name = "starttime")
-    public Date getStarttime() {
+    public Timestamp getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Date starttime) {
+    public void setStarttime(Timestamp starttime) {
         this.starttime = starttime;
     }
 
     @Basic
     @Column(name = "nexttime")
-    public Date getNexttime() {
+    public Timestamp getNexttime() {
         return nexttime;
     }
 
-    public void setNexttime(Date nexttime) {
+    public void setNexttime(Timestamp nexttime) {
         this.nexttime = nexttime;
     }
 
     @Basic
     @Column(name = "begintime")
-    public Date getBegintime() {
+    public Timestamp getBegintime() {
         return begintime;
     }
 
-    public void setBegintime(Date begintime) {
+    public void setBegintime(Timestamp begintime) {
         this.begintime = begintime;
     }
 

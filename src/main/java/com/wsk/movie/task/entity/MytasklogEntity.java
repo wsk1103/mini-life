@@ -1,19 +1,22 @@
 package com.wsk.movie.task.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @DESCRIPTION :
  * @AUTHOR : WuShukai1103
- * @TIME : 2018/1/24  20:51
+ * @TIME : 2018/1/27  23:19
  */
 @Entity
+@Component
 @Table(name = "mytasklog", schema = "movie", catalog = "")
 public class MytasklogEntity {
     private int id;
     private String taskname;
-    private Date rtime;
+    private Timestamp rtime;
     private String classname;
 
     @Id
@@ -38,11 +41,11 @@ public class MytasklogEntity {
 
     @Basic
     @Column(name = "rtime")
-    public Date getRtime() {
+    public Timestamp getRtime() {
         return rtime;
     }
 
-    public void setRtime(Date rtime) {
+    public void setRtime(Timestamp rtime) {
         this.rtime = rtime;
     }
 
@@ -61,12 +64,12 @@ public class MytasklogEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MytasklogEntity that = (MytasklogEntity) o;
+        MytasklogEntity entity = (MytasklogEntity) o;
 
-        if (id != that.id) return false;
-        if (taskname != null ? !taskname.equals(that.taskname) : that.taskname != null) return false;
-        if (rtime != null ? !rtime.equals(that.rtime) : that.rtime != null) return false;
-        if (classname != null ? !classname.equals(that.classname) : that.classname != null) return false;
+        if (id != entity.id) return false;
+        if (taskname != null ? !taskname.equals(entity.taskname) : entity.taskname != null) return false;
+        if (rtime != null ? !rtime.equals(entity.rtime) : entity.rtime != null) return false;
+        if (classname != null ? !classname.equals(entity.classname) : entity.classname != null) return false;
 
         return true;
     }

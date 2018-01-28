@@ -266,7 +266,7 @@ public class WangYiServiceImpl implements WangYiService {
         WangYiResult result;
         try {
             result = HttpUnits.urlToBean(MUSIC_PIC + "id" + song_id + "&ids=%5B" + song_id + "%5D", WangYiResult.class);
-            if (Tool.getInstance().isNullOrEmpty(result)) {
+            if (Tool.getInstance().isNullOrEmpty(result) || Tool.getInstance().isNullOrEmpty(result.getSongs())) {
                 //默认图片
                 return "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg";
             }
@@ -375,44 +375,48 @@ public class WangYiServiceImpl implements WangYiService {
                 return responseEntity;
             }
             for (WangYiSong song : wangYiResult.getSongs()) {
-                WangYiEntity entity = new WangYiEntity();
-                entity.setId(song.getId());
-                entity.setSongid(song.getId());
-                entity.setSongname(song.getName());
-                WangYiArtists[] artists = song.getArtists();
-                StringBuilder singerIds = new StringBuilder();
-                StringBuilder singerNames = new StringBuilder();
-                for (int i = 0; i < artists.length; i ++) {
-                    singerIds.append(artists[i].getId());
-                    singerNames.append(artists[i].getName());
-                    if (i == artists.length - 1) {
-                        break;
+                try {
+                    WangYiEntity entity = new WangYiEntity();
+                    entity.setId(song.getId());
+                    entity.setSongid(song.getId());
+                    entity.setSongname(song.getName());
+                    WangYiArtists[] artists = song.getArtists();
+                    StringBuilder singerIds = new StringBuilder();
+                    StringBuilder singerNames = new StringBuilder();
+                    for (int i = 0; i < artists.length; i++) {
+                        singerIds.append(artists[i].getId());
+                        singerNames.append(artists[i].getName());
+                        if (i == artists.length - 1) {
+                            break;
+                        }
+                        singerIds.append(",");
+                        singerNames.append(",");
                     }
-                    singerIds.append(",");
-                    singerNames.append(",");
-                }
-                entity.setSingerid(singerIds.toString());
-                entity.setSingername(singerNames.toString());
-                entity.setAlbumid(song.getAlbum().getId());
-                entity.setAlbumname(song.getAlbum().getName());
-                entity.setPublishtime(fullDay.format(song.getPublishTime()));
-                String song_url = redisUtils.get("wangyi_music_url_" + entity.getSongid());
-                if (Tool.getInstance().isNullOrEmpty(song_url)) {
-                    song_url = musicService.getBySongid((int) entity.getSongid()).getUrl();
-                }
-                entity.setUrl(song_url);
-                String[] aliases = song.getAlias();
-                StringBuilder alia = new StringBuilder();
-                for (int i = 0; i < aliases.length; i ++) {
-                    alia.append(aliases[i]);
-                    if (i == artists.length - 1) {
-                        break;
+                    entity.setSingerid(singerIds.toString());
+                    entity.setSingername(singerNames.toString());
+                    entity.setAlbumid(song.getAlbum().getId());
+                    entity.setAlbumname(song.getAlbum().getName());
+                    entity.setPublishtime(fullDay.format(song.getPublishTime()));
+                    String song_url = redisUtils.get("wangyi_music_url_" + entity.getSongid());
+                    if (Tool.getInstance().isNullOrEmpty(song_url)) {
+                        song_url = musicService.getBySongid((int) entity.getSongid()).getUrl();
                     }
-                    alia.append(",");
+                    entity.setUrl(song_url);
+                    String[] aliases = song.getAlias();
+                    StringBuilder alia = new StringBuilder();
+                    for (int i = 0; i < aliases.length; i++) {
+                        alia.append(aliases[i]);
+                        if (i == artists.length - 1) {
+                            break;
+                        }
+                        alia.append(",");
+                    }
+                    entity.setAlias(alia.toString());
+                    entity.setPicurl(song.getAlbum().getPicUrl());
+                    result.add(entity);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                entity.setAlias(alia.toString());
-                entity.setPicurl(song.getAlbum().getPicUrl());
-                result.add(entity);
             }
             responseEntity.setData(result);
             responseEntity.setCode(200);
@@ -473,7 +477,12 @@ public class WangYiServiceImpl implements WangYiService {
                 }
                 WangYiEntity entity = new WangYiEntity();
                 if (null != songDetail) {
-                    entity.setUrl(songDetail.getData()[0].getUrl());
+                    try {
+                        entity.setUrl(songDetail.getData()[0].getUrl());
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
                 } else {
                     continue;
                 }

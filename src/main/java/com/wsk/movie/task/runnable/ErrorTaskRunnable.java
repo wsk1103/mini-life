@@ -1,9 +1,8 @@
 package com.wsk.movie.task.runnable;
 
 import com.wsk.movie.task.entity.MytaskerrorEntity;
-import com.wsk.movie.task.service.ErrorTaskRepository;
+import com.wsk.movie.task.service.MyErrorTaskRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,17 +12,19 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Data
-public class ErrorTaskRunnable extends MyRunnable {
+@Deprecated
+public class ErrorTaskRunnable<T> extends MyRunnable {
 
-    @Autowired
-    private ErrorTaskRepository repository;
+    private final MyErrorTaskRepository repository;
 
-    private MytaskerrorEntity entity;
+    private final MytaskerrorEntity entity;
 
-    public ErrorTaskRunnable(MytaskerrorEntity entity){
-        super(entity);
-        this.entity = entity;
-    }
+//    @Autowired
+//    public ErrorTaskRunnable(MyErrorTaskRepository repository, MytaskerrorEntity entity) {
+//        this.repository = repository;
+//        this.entity = entity;
+//    }
+
 
     @Override
     public void run() {

@@ -308,7 +308,7 @@ public class Tool {
     }
 
     public <T> T jsonToBean(String json, Class<T> clazz) throws Exception {
-        System.out.println(json);
+//        System.out.println(json);
         return com.alibaba.fastjson.JSONObject.parseObject(json, clazz);
 }
 

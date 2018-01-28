@@ -193,10 +193,8 @@ public class ForgetController {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(phone));
             message.setSubject("来自WSK的验证码");
             message.setContent(text, "text/html;charset=UTF-8");
-
             //这里先不发生信息，以后要开启的
-
-//            ts.sendMessage(message, message.getAllRecipients());
+            ts.sendMessage(message, message.getAllRecipients());
             ts.close();
             map.put("result", "1");
         } catch (MessagingException me) {

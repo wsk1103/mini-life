@@ -1,9 +1,18 @@
 package com.wsk.movie.task;
 
+import com.wsk.movie.task.entity.MytaskEntity;
+import com.wsk.movie.task.entity.MytaskerrorEntity;
+import com.wsk.movie.task.entity.MytasklogEntity;
+import com.wsk.movie.task.runnable.MyQueue;
+import com.wsk.movie.task.runnable.MyQueueBean;
 import com.wsk.movie.task.runnable.MyRunnable;
+import com.wsk.movie.task.service.MyErrorTaskRepository;
+import com.wsk.movie.task.service.MyTaskLogRepository;
+import com.wsk.movie.task.service.MyTaskRepository;
 import com.wsk.movie.task.tool.TimeTransform;
-import org.springframework.stereotype.Component;
+import com.wsk.movie.tool.SpringContextUtil;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -14,16 +23,22 @@ import java.util.concurrent.TimeUnit;
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/23  22:22
  */
-@Component
-public class MyTask {
-
+public class MyTask implements Runnable{
     /**
      * 使用定时线程池
      * 根据CPU进行任务调度
      */
     private static ScheduledExecutorService service = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
+    private static MyErrorTaskRepository errorTaskRepository = (MyErrorTaskRepository) SpringContextUtil.getBean(MyErrorTaskRepository.class);
+    private static MyTaskLogRepository logRepository = (MyTaskLogRepository) SpringContextUtil.getBean(MyTaskLogRepository.class);
+    private static MyTaskRepository repository = (MyTaskRepository) SpringContextUtil.getBean(MyTaskRepository.class);
 
     private MyTask() {
+    }
+
+    @Override
+    public void run() {
+        execute();
     }
 
     private static class NestClass {
@@ -57,18 +72,9 @@ public class MyTask {
         service.scheduleAtFixedRate(runnable, start, end, TimeUnit.SECONDS);
     }
 
-    public void execute(MyRunnable runnable) {
-//        Date start = runnable.getEntity().getStarttime();
-//        Date next = runnable.getEntity().getNexttime();
-//        Date now = new Date();
-//        try {
-//            repository.updateTime(runnable.getEntity().getTaskname(), now, fullDay.parse((now.getTime() + getTime(runnable.getEntity().getExpression())) + ""));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        service.scheduleAtFixedRate(runnable, getTime(start), getTime(next), TimeUnit.SECONDS);
-
-    }
+//    public void execute(MyRunnable runnable) {
+//        service.scheduleAtFixedRate(runnable, start, end, TimeUnit.SECONDS);
+//    }
 
     /**
      * 默认现在开始运行
@@ -79,6 +85,43 @@ public class MyTask {
     public void execute(Runnable runnable, String endTime) {
         long end = TimeTransform.getTime(endTime);
         service.scheduleAtFixedRate(runnable, 0, end, TimeUnit.SECONDS);
+    }
+
+    public void execute(MyQueue queue) {
+        MyQueueBean bean;
+        Date now = new Date();
+        try {
+            bean = queue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            MytaskerrorEntity entity = new MytaskerrorEntity();
+            entity.setTaskname("");
+            entity.setMsg("队列获取失败");
+            entity.setRtime(new Timestamp(now.getTime()));
+            entity.setClassname("");
+            errorTaskRepository.save(entity);
+            return;
+        }
+        MyRunnable runnable = bean.getRunnable();
+        MytaskEntity entity = bean.getEntity();
+        //更新数据库
+        long next = TimeTransform.getTime(entity.getExpression());
+        repository.updateTime(entity.getTaskname(), new Timestamp(now.getTime()), new Timestamp(now.getTime() + next * 1000));
+        service.scheduleAtFixedRate(runnable, TimeTransform.getTime(entity.getStarttime()), next, TimeUnit.SECONDS);
+        //日志
+        MytasklogEntity log = new MytasklogEntity();
+        log.setTaskname(entity.getTaskname());
+        log.setClassname(entity.getClassname());
+        log.setRtime(new Timestamp(now.getTime()));
+        logRepository.save(log);
+    }
+
+
+    public void execute() {
+        while (true) {
+            System.out.println("开始定时任务,size:" + MyQueue.getInstance().size());
+            execute(MyQueue.getInstance());
+        }
     }
 
 //    private void saveOrUpdate(MyRunnable runnable) {

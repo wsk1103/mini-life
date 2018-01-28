@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,12 @@ public interface MyTaskRepository extends JpaRepository<MytaskEntity, Integer> {
     @Modifying
     void updateTime(@Param("name") String name, @Param("start") Date start, @Param("next") Date next);
 
+    //更新
+    @Transactional
+    @Query(value = "update MytaskEntity m set m.starttime = :start,m.nexttime = :next where m.taskname = :name")
+    @Modifying
+    void updateTime(@Param("name") String name, @Param("start") Timestamp start, @Param("next") Timestamp next);
+
     //根据任务名关闭
     @Transactional
     @Query(value = "update MytaskEntity m set m.status = :status where m.taskname = :name")
@@ -36,7 +43,7 @@ public interface MyTaskRepository extends JpaRepository<MytaskEntity, Integer> {
     @Modifying
     void updateStatus(@Param("id") int id, @Param("status") int status);
 
-    @Query(value = "select m from MytaskEntity m where m.status = 1 and m.nexttime > :now")
-    List<MytaskEntity> starts(@Param("now") String now);
+    @Query(value = "select m from MytaskEntity m where m.status = 1")
+    List<MytaskEntity> starts();
 
 }

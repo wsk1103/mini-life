@@ -2,6 +2,7 @@ package com.wsk.movie.task.tool;
 
 import com.wsk.movie.tool.Tool;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,6 +64,20 @@ public class TimeTransform {
 
     public static long getTime(Date date) {
         //最后总时间
+        long start;
+        start = date.getTime() - new Date().getTime();
+        start = start > 0 ? start / 1000 : 0;
+        return start;
+    }
+
+    public static long getTime(long date){
+        long start;
+        start = date - new Date().getTime();
+        start = start > 0 ? start / 1000 : 0;
+        return start;
+    }
+
+    public static long getTime(Timestamp date) {
         long start;
         start = date.getTime() - new Date().getTime();
         start = start > 0 ? start / 1000 : 0;

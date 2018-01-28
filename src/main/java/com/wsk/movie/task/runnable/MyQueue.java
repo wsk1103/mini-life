@@ -1,5 +1,6 @@
 package com.wsk.movie.task.runnable;
 
+import java.util.HashSet;
 import java.util.concurrent.LinkedTransferQueue;
 
 /**
@@ -16,7 +17,9 @@ import java.util.concurrent.LinkedTransferQueue;
  */
 public class MyQueue {
     //使用无界限阻塞队列
-    private LinkedTransferQueue<MyRunnable> queue;
+    private LinkedTransferQueue<MyQueueBean> queue;
+    //存放id
+    private static final HashSet<Integer> SET = new HashSet<>();
 
     private MyQueue() {
         queue = new LinkedTransferQueue<>();
@@ -30,17 +33,32 @@ public class MyQueue {
         return NestClass.QUEUE;
     }
 
-    public void offer(MyRunnable runnable) {
-        queue.offer(runnable);
+    public void offer(MyQueueBean bean) {
+        if (SET.contains(bean.getEntity().getId())) {
+            System.out.println("重复" + bean.getRunnable().getClass().getName());
+            return;
+        }
+        SET.add(bean.getEntity().getId());
+        queue.offer(bean);
     }
 
-    public MyRunnable take() throws InterruptedException {
+    public MyQueueBean take() throws InterruptedException {
         //阻塞获取
         return queue.take();
     }
 
     public boolean hasNext() {
         return queue.iterator().hasNext();
+    }
+
+//    public void display(){
+//        while (hasNext()) {
+//            System.out.println(queue.iterator().next().getEntity().toString());
+//        }
+//    }
+
+    public int size(){
+        return queue.size();
     }
 
 }

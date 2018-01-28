@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/24  22:43
  */
-public interface ErrorTaskRepository extends JpaRepository<MytaskerrorEntity, Integer> {
+public interface MyErrorTaskRepository extends JpaRepository<MytaskerrorEntity, Integer> {
 }
