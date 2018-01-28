@@ -1,6 +1,7 @@
-package com.wsk.movie.task.runnable;
+package com.wsk.movie.task.queue;
 
 import com.wsk.movie.task.entity.MytaskEntity;
+import com.wsk.movie.task.runnable.MyRunnable;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

@@ -1,6 +1,6 @@
 //package com.wsk.movie.task;
 //
-//import com.wsk.movie.task.runnable.MyQueue;
+//import com.wsk.movie.task.queue.MyQueue;
 //import com.wsk.movie.task.runnable.MyRunnable;
 //
 //import java.util.concurrent.ExecutorService;

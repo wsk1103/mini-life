@@ -1,4 +1,4 @@
-package com.wsk.movie.task.runnable;
+package com.wsk.movie.task.queue;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedTransferQueue;
@@ -18,7 +18,7 @@ import java.util.concurrent.LinkedTransferQueue;
 public class MyQueue {
     //使用无界限阻塞队列
     private LinkedTransferQueue<MyQueueBean> queue;
-    //存放id
+    //存放数据库唯一id,根据id判断任务是否重复
     private static final HashSet<Integer> SET = new HashSet<>();
 
     private MyQueue() {

@@ -3,8 +3,8 @@ package com.wsk.movie.task;
 import com.wsk.movie.task.entity.MytaskEntity;
 import com.wsk.movie.task.entity.MytaskerrorEntity;
 import com.wsk.movie.task.entity.MytasklogEntity;
-import com.wsk.movie.task.runnable.MyQueue;
-import com.wsk.movie.task.runnable.MyQueueBean;
+import com.wsk.movie.task.queue.MyQueue;
+import com.wsk.movie.task.queue.MyQueueBean;
 import com.wsk.movie.task.runnable.MyRunnable;
 import com.wsk.movie.task.service.MyErrorTaskRepository;
 import com.wsk.movie.task.service.MyTaskLogRepository;
@@ -50,11 +50,6 @@ public class MyTask implements Runnable{
     }
 
     /**
-     * 时间表达式
-     * 1:00 00 00 00-中间以空格分开
-     * :秒 分 时 日
-     * 2:yyyy-MM-dd HH:mm:ss
-     * 3:yyyy-MM-dd
      *
      * @param runnable
      * @param startTime

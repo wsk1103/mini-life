@@ -9,6 +9,11 @@ import java.util.Date;
 
 /**
  * @DESCRIPTION :将时间表达式转化为秒
+ * 时间表达式
+ * 1:00 00 00 00-中间以空格分开
+ * :秒 分 时 日
+ * 2:yyyy-MM-dd HH:mm:ss
+ * 3:yyyy-MM-dd
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/24  23:21
  */
@@ -70,7 +75,7 @@ public class TimeTransform {
         return start;
     }
 
-    public static long getTime(long date){
+    public static long getTime(long date) {
         long start;
         start = date - new Date().getTime();
         start = start > 0 ? start / 1000 : 0;

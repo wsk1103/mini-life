@@ -2,8 +2,8 @@ package com.wsk.movie.task;
 
 import com.wsk.movie.task.entity.MytaskEntity;
 import com.wsk.movie.task.entity.MytaskerrorEntity;
-import com.wsk.movie.task.runnable.MyQueue;
-import com.wsk.movie.task.runnable.MyQueueBean;
+import com.wsk.movie.task.queue.MyQueue;
+import com.wsk.movie.task.queue.MyQueueBean;
 import com.wsk.movie.task.runnable.MyRunnable;
 import com.wsk.movie.task.service.MyErrorTaskRepository;
 import com.wsk.movie.task.service.MyTaskRepository;
