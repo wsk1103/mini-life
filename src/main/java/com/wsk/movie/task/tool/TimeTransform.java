@@ -8,12 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @DESCRIPTION :将时间表达式转化为秒
+ * @DESCRIPTION :将时间表达式转化为秒，自定义的定时任务中，都是以秒为单位运行的
  * 时间表达式
  * 1:00 00 00 00-中间以空格分开
  * :秒 分 时 日
  * 2:yyyy-MM-dd HH:mm:ss
  * 3:yyyy-MM-dd
+ * 4.时间戳Timestamp
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/24  23:21
  */

@@ -415,7 +415,7 @@ public class WangYiServiceImpl implements WangYiService {
                     entity.setPicurl(song.getAlbum().getPicUrl());
                     result.add(entity);
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             }
             responseEntity.setData(result);

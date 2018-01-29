@@ -7,6 +7,7 @@ import com.wsk.movie.task.queue.MyQueueBean;
 import com.wsk.movie.task.runnable.MyRunnable;
 import com.wsk.movie.task.service.MyErrorTaskRepository;
 import com.wsk.movie.task.service.MyTaskRepository;
+import com.wsk.movie.task.tool.TimeTransform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -37,49 +38,19 @@ public class MainTask implements CommandLineRunner {
         this.errorTaskRepository = errorTaskRepository;
     }
 
-//    @Override
-//    public void onApplicationEvent(ContextRefreshedEvent context) {
-//
-//    }
-
-    private void go() {
-
-    }
-
     @Override
     public void run(String... strings) throws Exception {
-//         = context.getApplicationContext().getBean(MyTaskRepository.class);
-//        MyErrorTaskRepository errorTaskRepository = context.getApplicationContext().getBean(MyErrorTaskRepository.class);
         SCHEDULED_EXECUTOR_SERVICE.scheduleAtFixedRate(() -> {
             List<MytaskEntity> entities = repository.starts();
-//            System.out.println("查询数据库:" + TimeTransform.fullDay.format(new Date()) + ",size:" + entities.size());
-//            List<MytaskEntity> entities = repository.starts(TimeTransform.fullDay.format(new Date()));
+            System.out.println("查询数据库:" + TimeTransform.fullDay.format(new Date()) + ",size:" + entities.size());
             for (MytaskEntity e : entities) {
                 Timestamp now = new Timestamp(new Date().getTime());
                 MyRunnable runnable;
                 try {
+                    //通过反射获取运行的类
                     runnable = (MyRunnable) Class.forName(e.getClassname()).newInstance();
-//                    runnable.setStart(e.getStarttime());
-//                    runnable.setNext(e.getNexttime());
-//                    Class c = Class.forName(e.getClassname());
-//                    Constructor<MyRunnable> constructor = c.getConstructor();
-//                    if (!(constructor.newInstance() instanceof MyRunnable)){
-//                        //如果不是runnable，关闭任务
-//                        repository.updateStatus(e.getId(), 0);
-//                        MytaskerrorEntity entity = new MytaskerrorEntity();
-//                        entity.setClassname(e.getClassname());
-//                        entity.setMsg("不是MyRunnable类型，无法运行!");
-//                        entity.setRtime(now);
-//                        entity.setTaskname(e.getTaskname());
-////                        errorTaskRepository.save(entity);
-//                        MyQueue.getInstance().offer(new ErrorTaskRunnable(entity).setStart(e.getStarttime()).setNext(e.getNexttime()));
-//                        continue;
-//                    }
-//                    runnable = (MyRunnable) constructor.newInstance().setStart(e.getStarttime()).setNext(e.getNexttime());
-//                    Date start = e.getStarttime();
-//                    Date next = e.getNexttime();
+                    //将runnable存储到队列中
                     MyQueue.getInstance().offer(new MyQueueBean().setEntity(e).setRunnable(runnable));
-//                    MyTask.getInstance().execute(runnable);
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     ex.printStackTrace();
                     MytaskerrorEntity entity = new MytaskerrorEntity();
@@ -88,13 +59,11 @@ public class MainTask implements CommandLineRunner {
                     entity.setRtime(now);
                     entity.setTaskname(e.getTaskname());
                     errorTaskRepository.save(entity);
-//                    MyQueue.getInstance().offer(new ErrorTaskRunnable(entity).setStart(e.getStarttime()).setNext(e.getNexttime()));
-//                    errorTaskRepository.save(entity);
-//                    MyTask.getInstance().execute(new ErrorTaskRunnable(bean));
                 }
             }
         }, 0, 5, TimeUnit.SECONDS);
         Thread.sleep(1);
+        //加载队列后，立即运行MyTask
         SCHEDULED_EXECUTOR_SERVICE.execute(MyTask.getInstance());
     }
 }

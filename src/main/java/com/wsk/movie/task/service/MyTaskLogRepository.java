@@ -4,7 +4,7 @@ import com.wsk.movie.task.entity.MytasklogEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @DESCRIPTION :
+ * @DESCRIPTION :平时日志记录
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/27  22:39
  */

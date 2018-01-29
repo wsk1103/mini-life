@@ -29,8 +29,9 @@ public class MusicHottingTaskRunnable extends MyRunnable{
     public void run() {
 //        Date now = new Date();
         try {
+            System.out.println("run hotting");
 //            repository.updateTime(entity.getTaskname(), now, TimeTransform.fullDay.parse((now.getTime() + TimeTransform.getTime(entity.getExpression())) + ""));
-            HttpUnits.urlToString("http://localhost:8080/search/music/hot/2");
+            System.out.println(HttpUnits.urlToString("http://localhost:8080/search/music/hot/2"));
 //            MytasklogEntity entity = new MytasklogEntity();
 //            entity.setClassname(this.entity.getClassname());
 //            entity.setRtime(new Timestamp(now.getTime()));

@@ -1,6 +1,9 @@
 package com.wsk.movie.task.queue;
 
-import java.util.HashSet;
+import lombok.EqualsAndHashCode;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.LinkedTransferQueue;
 
 /**
@@ -15,11 +18,12 @@ import java.util.concurrent.LinkedTransferQueue;
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/24  20:53
  */
+@EqualsAndHashCode
 public class MyQueue {
     //使用无界限阻塞队列
     private LinkedTransferQueue<MyQueueBean> queue;
     //存放数据库唯一id,根据id判断任务是否重复
-    private static final HashSet<Integer> SET = new HashSet<>();
+    private static final List<Integer> LIST = new ArrayList<>();
 
     private MyQueue() {
         queue = new LinkedTransferQueue<>();
@@ -34,17 +38,28 @@ public class MyQueue {
     }
 
     public void offer(MyQueueBean bean) {
-        if (SET.contains(bean.getEntity().getId())) {
-//            System.out.println("重复" + bean.getRunnable().getClass().getName());
-            return;
+        synchronized (LIST) {
+            if (LIST.contains(bean.getEntity().getId())) {
+                System.out.println("重复" + bean.getRunnable().getClass().getName());
+                return;
+            }
         }
-        SET.add(bean.getEntity().getId());
+        LIST.add(bean.getEntity().getId());
         queue.offer(bean);
+//        LIST.forEach(System.out::println);
     }
 
     public MyQueueBean take() throws InterruptedException {
         //阻塞获取
         return queue.take();
+    }
+
+    public void removeKey(MyQueueBean bean){
+        LIST.remove(bean.getEntity().getId());
+    }
+
+    public void removeKey(int id){
+        LIST.remove(id);
     }
 
     public boolean hasNext() {

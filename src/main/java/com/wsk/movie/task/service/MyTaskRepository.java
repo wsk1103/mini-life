@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @DESCRIPTION :
+ * @DESCRIPTION :任务表接口
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/23  23:02
  */
@@ -43,6 +43,7 @@ public interface MyTaskRepository extends JpaRepository<MytaskEntity, Integer> {
     @Modifying
     void updateStatus(@Param("id") int id, @Param("status") int status);
 
+    //待执行的任务
     @Query(value = "select m from MytaskEntity m where m.status = 1")
     List<MytaskEntity> starts();
 

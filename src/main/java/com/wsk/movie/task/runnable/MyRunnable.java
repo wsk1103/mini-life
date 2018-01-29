@@ -1,7 +1,6 @@
 package com.wsk.movie.task.runnable;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 /**
  * @DESCRIPTION :
@@ -9,8 +8,8 @@ import lombok.experimental.Accessors;
  * @TIME : 2018/1/23  23:05
  */
 @Data
-@Accessors(chain = true)
-public abstract class MyRunnable<T,K> implements Runnable {
+public abstract class MyRunnable implements Runnable {
+
 //    private T entity;
 //    private K start;
 //    private K next;

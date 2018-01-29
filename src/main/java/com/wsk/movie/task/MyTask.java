@@ -5,6 +5,7 @@ import com.wsk.movie.task.entity.MytaskerrorEntity;
 import com.wsk.movie.task.entity.MytasklogEntity;
 import com.wsk.movie.task.queue.MyQueue;
 import com.wsk.movie.task.queue.MyQueueBean;
+import com.wsk.movie.task.runnable.DelKeyRunnable;
 import com.wsk.movie.task.runnable.MyRunnable;
 import com.wsk.movie.task.service.MyErrorTaskRepository;
 import com.wsk.movie.task.service.MyTaskLogRepository;
@@ -87,6 +88,7 @@ public class MyTask implements Runnable{
         Date now = new Date();
         try {
             bean = queue.take();
+//            System.out.println("run:" + bean.getEntity().getTaskname());
         } catch (InterruptedException e) {
             e.printStackTrace();
             MytaskerrorEntity entity = new MytaskerrorEntity();
@@ -102,16 +104,23 @@ public class MyTask implements Runnable{
         //更新数据库
         long next = TimeTransform.getTime(entity.getExpression());
         repository.updateTime(entity.getTaskname(), new Timestamp(now.getTime()), new Timestamp(now.getTime() + next * 1000));
+        //开始定时任务
         service.scheduleAtFixedRate(runnable, TimeTransform.getTime(entity.getStarttime()), next, TimeUnit.SECONDS);
+        //删除队列中的key
+//        System.out.println(next + "s,下次运行");
+        service.schedule(new DelKeyRunnable(entity), next, TimeUnit.SECONDS);
         //日志
         MytasklogEntity log = new MytasklogEntity();
         log.setTaskname(entity.getTaskname());
         log.setClassname(entity.getClassname());
         log.setRtime(new Timestamp(now.getTime()));
         logRepository.save(log);
+        System.out.println("队列剩余：" + MyQueue.getInstance().size());
+//        //运行结束后移除set中的key
+//        MyQueue.getInstance().removeKey(bean);
     }
 
-
+    //开始运行定时任务
     public void execute() {
         while (true) {
             System.out.println("开始定时任务,size:" + MyQueue.getInstance().size());
@@ -119,16 +128,7 @@ public class MyTask implements Runnable{
         }
     }
 
-//    private void saveOrUpdate(MyRunnable runnable) {
-//        MytaskEntity bean = runnable.getEntity();
-//        bean = repository.findByTaskname(bean.getTaskname());
-//        if (Tool.getInstance().isNullOrEmpty(bean)) {
-//            repository.save(bean);
-//        } else {
-////            repository.updateTime(runnable.getEntity().getTaskname(), runnable.getEntity().getStarttime(),runnable.getEntity().getNexttime());
-//        }
-//    }
-
+    //关闭线程
     public void shutdown() {
         service.shutdown();
     }
