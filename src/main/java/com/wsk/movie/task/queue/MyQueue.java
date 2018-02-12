@@ -1,5 +1,6 @@
 package com.wsk.movie.task.queue;
 
+import com.wsk.movie.task.entity.MytaskEntity;
 import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class MyQueue {
     //使用无界限阻塞队列
     private LinkedTransferQueue<MyQueueBean> queue;
     //存放数据库唯一id,根据id判断任务是否重复
-    private static final List<Integer> LIST = new ArrayList<>();
+    private static final List<String> LIST = new ArrayList<>();
 
     private MyQueue() {
         queue = new LinkedTransferQueue<>();
@@ -38,13 +39,19 @@ public class MyQueue {
     }
 
     public void offer(MyQueueBean bean) {
+        //加锁，在多线程的情况下防止多加任务
         synchronized (LIST) {
-            if (LIST.contains(bean.getEntity().getId())) {
-//                System.out.println("重复" + bean.getRunnable().getClass().getName());
-                return;
+            for (String name : LIST) {
+                if (name.equals(bean.getEntity().getTaskname())) {
+                    return;
+                }
             }
+//            if (LIST.contains(bean.getEntity().getTaskname())) {
+//                System.out.println("重复" + bean.getRunnable().getClass().getName());
+//                return;
+//            }
         }
-        LIST.add(bean.getEntity().getId());
+        LIST.add(bean.getEntity().getTaskname());
         queue.offer(bean);
 //        LIST.forEach(System.out::println);
     }
@@ -55,7 +62,11 @@ public class MyQueue {
     }
 
     public void removeKey(MyQueueBean bean){
-        LIST.remove(bean.getEntity().getId());
+        LIST.remove(bean.getEntity().getTaskname());
+    }
+
+    public void removeKey(MytaskEntity entity) {
+        LIST.remove(entity.getTaskname());
     }
 
     public void removeKey(int id){

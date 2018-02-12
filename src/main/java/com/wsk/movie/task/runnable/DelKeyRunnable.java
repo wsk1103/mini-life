@@ -19,6 +19,6 @@ public class DelKeyRunnable extends MyRunnable {
     @Override
     public void run() {
         System.out.println("del:" + entity.getTaskname());
-        MyQueue.getInstance().removeKey(entity.getId());
+        MyQueue.getInstance().removeKey(entity);
     }
 }
