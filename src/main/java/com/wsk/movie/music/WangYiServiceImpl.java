@@ -17,7 +17,6 @@ import com.wsk.movie.tool.Time;
 import com.wsk.movie.tool.Tool;
 import lombok.Data;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -282,9 +281,15 @@ public class WangYiServiceImpl implements WangYiService {
         return redisUtils.del("wangyi_music_" + name);
     }
 
+    @Override
+    public boolean delRedisUrl(String url) {
+        return redisUtils.del(url);
+    }
+
     //云音乐飙升榜-2
     @Override
     public BaseEntity getHottingMusic() {
+        System.out.println("hotting=====");
         return getHot(HOTTING_MUSIC);
     }
 
@@ -293,6 +298,7 @@ public class WangYiServiceImpl implements WangYiService {
      * //云音乐热歌榜-1
      */
     public BaseEntity getHotMusic() {
+        System.out.println("hot======");
         return getHot(HOT_MUSIC);
     }
 
@@ -301,6 +307,7 @@ public class WangYiServiceImpl implements WangYiService {
      * //云音乐新歌榜-3
      */
     public BaseEntity getNewMusic() {
+        System.out.println("new=======");
         return getHot(NEW_MUSIC);
     }
 
@@ -420,7 +427,6 @@ public class WangYiServiceImpl implements WangYiService {
             }
             responseEntity.setData(result);
             responseEntity.setCode(200);
-            responseEntity.setMsg("success");
             return responseEntity;
         }
         Element element;
@@ -436,8 +442,12 @@ public class WangYiServiceImpl implements WangYiService {
         if (Tool.getInstance().isNullOrEmpty(element)) {
             return responseEntity;
         }
-        Elements response = element.getElementById("song-list-pre-cache").getElementsByTag("textarea");
-        json = response.text();
+        String response = element.getElementById("song-list-pre-cache").text();
+        if (response.contains("[{\"")){
+            json = response.substring(response.indexOf("[{\""), response.length());
+        } else {
+            return responseEntity;
+        }
         json = "{\"songs\":" + json + "}";
         try {
             WangYiResult result = Tool.getInstance().jsonToBean(json, WangYiResult.class);
@@ -446,6 +456,7 @@ public class WangYiServiceImpl implements WangYiService {
             return saveMusic(songs);
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(json);
             return responseEntity;
         }
     }
@@ -460,7 +471,7 @@ public class WangYiServiceImpl implements WangYiService {
         try {
             for (WangYiSong song : songs) {
                 long song_id = song.getId();
-                System.out.println((song_id));
+//                System.out.println((song_id));
                 String params = URLEncoder.encode(AES.getParams(String.valueOf(FIRST_PARAM_START) + song_id + FIRST_PARAM_END), "UTF-8");
                 String encSecKey = AES.getEncSecKey();
 //                System.out.println(params);
@@ -561,8 +572,11 @@ public class WangYiServiceImpl implements WangYiService {
                 if (Tool.getInstance().isNullOrEmpty(albumService.getByAlbumid(album.getAlbumid()))) {
                     albumService.saveAndFlush(album);
                 }
-                redisUtils.rpush("wangyi_music_" + song.getName(), Tool.getInstance().toJson(entity));
                 MusicRunnableBean musicRunnableBean = new MusicRunnableBean();
+                if (Tool.getInstance().isNullOrEmpty(entity.getUrl())) {
+                    continue;
+                }
+                redisUtils.rpush("wangyi_music_" + song.getName(), Tool.getInstance().toJson(entity));
                 String fileName = Down.randomName(entity.getUrl());
                 musicRunnableBean.setFileName(fileName);
                 musicRunnableBean.setEntity(entity);

@@ -16,8 +16,7 @@ public class MusicHotTaskRunnable extends MyRunnable {
     public void run() {
 //        Date now = new Date();
         try {
-            System.out.println("run hot");
-            System.out.println(HttpUnits.urlToString("http://localhost:8080/search/music/hot/1").toString());
+            System.out.println("run hot:" + HttpUnits.urlToString("http://localhost:8080/search/music/hot/1").text());
         } catch (IOException e) {
             e.printStackTrace();
         }

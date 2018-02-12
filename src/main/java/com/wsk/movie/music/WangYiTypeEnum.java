@@ -24,11 +24,11 @@ public class WangYiTypeEnum {
     //图片地址
     public static final String MUSIC_PIC = "http://music.163.com/api/song/detail/?";
 
-    public static final String HOTTING_MUSIC = "https://music.163.com/discover/toplist?id=19723756";//云音乐飙升榜
+    public static final String HOTTING_MUSIC = "https://music.163.com/discover/toplist?id=19723756";//云音乐飙升榜-2
 
-    public static final String NEW_MUSIC = "http://music.163.com/discover/toplist?id=3779629";//云音乐新歌榜
+    public static final String NEW_MUSIC = "http://music.163.com/discover/toplist?id=3779629";//云音乐新歌榜-3
 
-    public static final String HOT_MUSIC = "http://music.163.com/discover/toplist?id=3778678";//云音乐热歌榜
+    public static final String HOT_MUSIC = "http://music.163.com/discover/toplist?id=3778678";//云音乐热歌榜-1
 
     //缓存 音乐实体
     /**

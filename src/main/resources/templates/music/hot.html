@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>热门音乐</title>
+    <link rel="icon" href="/image/title.ico" type="image/x-icon"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+</head>
+<script src="/js/layer.js"></script>
+<script src="/js/home/home.js"></script>
+<script src="/js/all.js"></script>
+<style>
+    audio{
+        margin-top:100px;
+    }
+</style>
+<body>
+<!--导航栏-->
+<header th:include="header :: copy"></header>
+<div id="main">
+    <audio controls="controls" id="audio_play" hidden="hidden">
+        <source src="/music/kxfTLNo3G81518238857571.mp3" type="audio/mpeg" id="audio_source"/>
+    </audio>
+    <div th:each="o : ${entity}">
+        <div>
+            <span th:text="${o.songname}"></span>:&nbsp;
+            <span th:text="${o.url}" class="play" th:title="${o.url}"></span>
+        </div>
+    </div>
+    <!--侧边栏-->
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+
+</body>
+<script>
+    $(function () {
+        var $audio = $("#audio_play")[0];
+        $(".play").click(function () {
+            $audio.pause();
+            var url = $(this).attr("title");
+            $("#audio_source").attr("src", url);
+            $audio.load();
+            $audio.play();
+        });
+        $("#audio_play").bind('ended',function () {
+            alert("end");
+        });
+    })
+</script>
+</html>

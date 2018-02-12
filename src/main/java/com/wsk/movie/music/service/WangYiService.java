@@ -13,6 +13,8 @@ public interface WangYiService {
 
     boolean delRedis(String name);
 
+    boolean delRedisUrl(String url);
+
     BaseEntity getMusicComments(String name);
 
     BaseEntity getMusicComments(long song_id);

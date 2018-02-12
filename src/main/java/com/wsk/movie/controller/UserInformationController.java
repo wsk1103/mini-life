@@ -816,7 +816,7 @@ public class UserInformationController {
     }
 
     //获取好友列表
-    private List<MyFriendsBean> getMyFriends(int uid) {
+    public List<MyFriendsBean> getMyFriends(int uid) {
         List<MyFriends> list = myFriendsService.getFid(uid);
         List<MyFriendsBean> ids = new ArrayList<>();
         for (MyFriends myFriends : list) {

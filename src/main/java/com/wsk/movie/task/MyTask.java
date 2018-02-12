@@ -123,8 +123,17 @@ public class MyTask implements Runnable{
     //开始运行定时任务
     public void execute() {
         while (true) {
-            System.out.println("开始定时任务,size:" + MyQueue.getInstance().size());
-            execute(MyQueue.getInstance());
+            if (MyQueue.getInstance().size() > 0) {
+                System.out.println("开始定时任务,size:" + MyQueue.getInstance().size());
+                execute(MyQueue.getInstance());
+            } else {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
     }
 

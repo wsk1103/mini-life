@@ -40,7 +40,7 @@ public class MyQueue {
     public void offer(MyQueueBean bean) {
         synchronized (LIST) {
             if (LIST.contains(bean.getEntity().getId())) {
-                System.out.println("重复" + bean.getRunnable().getClass().getName());
+//                System.out.println("重复" + bean.getRunnable().getClass().getName());
                 return;
             }
         }
@@ -65,12 +65,6 @@ public class MyQueue {
     public boolean hasNext() {
         return queue.iterator().hasNext();
     }
-
-//    public void display(){
-//        while (hasNext()) {
-//            System.out.println(queue.iterator().next().getEntity().toString());
-//        }
-//    }
 
     public int size(){
         return queue.size();

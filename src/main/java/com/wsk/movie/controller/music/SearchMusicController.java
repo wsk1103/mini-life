@@ -1,4 +1,4 @@
-package com.wsk.movie.controller;
+package com.wsk.movie.controller.music;
 
 import com.wsk.movie.music.entity.BaseEntity;
 import com.wsk.movie.music.service.WangYiService;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author: wsk1103
  * @date: 18-1-14 下午10:00
- * @description: JAVA8
+ * @description: JAVA8 ，公开的api
  */
 @Controller
 @RequestMapping(value = "/search/music")
-public class MusicController {
+public class SearchMusicController {
 
     private final WangYiService service;
 
     @Autowired
-    public MusicController(WangYiService service) {
+    public SearchMusicController(WangYiService service) {
         this.service = service;
     }
 
@@ -35,6 +35,12 @@ public class MusicController {
     @ResponseBody
     public String delRedis(@Param("name") String name) {
         return service.delRedis(name) ? "true" : "false";
+    }
+
+    @RequestMapping(value = "/delRedisUrl")
+    @ResponseBody
+    public String delRedisUrl(@Param("url") String url) {
+        return service.delRedisUrl(url) ? "true" : "false";
     }
 
     //获取评论-根据名字
