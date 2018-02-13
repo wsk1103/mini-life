@@ -152,8 +152,10 @@
                     </thead>
                     <tbody th:with="i=0">
                     <tr th:each="o : ${entity}" class="even">
-                        <td class="music_img play" th:title="${o.url}"><img th:src="${o.picurl}" class="music_img"/></td>
-                        <td class="hd rank play" th:title="${o.url}">&nbsp;<span class="music_songname" th:text="${o.songname}">图片+音乐</span>
+                        <td class="music_img play" th:title="${o.url}"><img th:src="${o.picurl}" class="music_img"/>
+                        </td>
+                        <td class="hd rank play" th:title="${o.url}">&nbsp;<span class="music_songname"
+                                                                                 th:text="${o.songname}">图片+音乐</span>
                         </td>
                         <td class="hd music_singername play" th:title="${o.url}" th:text="${o.singername}">歌手</td>
                         <td class="hd music_albumname play" th:title="${o.url}" th:text="${o.albumname}">专辑</td>
@@ -164,44 +166,6 @@
             </div>
         </div>
     </div>
-
-    <!--<div th:each="o : ${entity}" class="music_main">-->
-    <!--<div>-->
-    <!--&lt;!&ndash;音乐图片&ndash;&gt;-->
-    <!--<div class="music_img_div"><img th:src="${o.picurl}" class="music_img"/></div>-->
-    <!--<div class="music_content">-->
-    <!--<div class="music_songname">-->
-    <!--&lt;!&ndash;音乐名&ndash;&gt;-->
-    <!--<span></span><span th:text="${o.songname}" class="music_songname"></span>-->
-    <!--</div>-->
-    <!--<div class="music_singername">-->
-    <!--&lt;!&ndash;歌手&ndash;&gt;-->
-    <!--<span th:text="${o.singername}" class="music_singername"></span>-->
-    <!--</div>-->
-    <!--<div class="music_albumname">-->
-    <!--&lt;!&ndash;专辑&ndash;&gt;-->
-    <!--<span th:text="${o.albumname}" class="music_albumname"></span>-->
-    <!--</div>-->
-    <!--<div class="music_publishtime">-->
-    <!--&lt;!&ndash;发布时间&ndash;&gt;-->
-    <!--<span th:text="${o.publishtime}" class="music_publishtime"></span>-->
-    <!--</div>-->
-    <!--<div class="music_alias">-->
-    <!--&lt;!&ndash;归类&ndash;&gt;-->
-    <!--<span th:text="${o.alias}" class="music_alias"></span>-->
-    <!--</div>-->
-    <!--<div class="music_option">-->
-    <!--<span th:value="${o.url}" class="play" th:title="${o.url}">播放</span>&nbsp;&nbsp;-->
-    <!--<span class="stop">暂停</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div style="clear:both;"></div>-->
-    <!--<span th:text="${o.songname}"></span>:&nbsp;-->
-    <!--<span th:text="${o.url}" class="play" th:title="${o.url}"></span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--侧边栏-->
-    <aside th:include="aside :: aside"></aside>
     <div style="clear: both"></div>
 </div>
 <footer>
@@ -221,8 +185,8 @@
             var url = $(this).attr("title");
             $("#audio_source").attr("src", url);
             $audio.load();
-            if (globUrl === url){
-                if (isPlay === true){
+            if (globUrl === url) {
+                if (isPlay === true) {
                     $audio.play();
                     isPlay = false;
                 } else {

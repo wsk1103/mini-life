@@ -45,4 +45,14 @@ public class MusicController {
         return "music/hot";
     }
 
+    @RequestMapping(value = "/free/hot")
+    public String hot(Model model) {
+        WangYiResponseEntity entity = (WangYiResponseEntity) service.getHotMusic();
+        model.addAttribute("entity", entity.getData());
+        model.addAttribute("action", 6);
+        model.addAttribute("userInformation", new UserInformation());
+        model.addAttribute("username", "");
+        model.addAttribute("autograph", "");
+        return "music/freeHot";
+    }
 }
