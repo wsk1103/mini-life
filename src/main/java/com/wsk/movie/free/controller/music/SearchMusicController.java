@@ -60,10 +60,10 @@ public class SearchMusicController {
         return service.getMusicComments(id);
     }
 
-    //获取评论-根据id
+    //获取音乐更加类型
     @RequestMapping(value = "/hot/{type}")
     @ResponseBody
-    public BaseEntity getHotMusic(@PathVariable("type") int type) {
+    public BaseEntity getHotMusic(@PathVariable("type") int type ) {
         switch (type) {
             case 1:
                 //云音乐热歌榜
@@ -95,17 +95,21 @@ public class SearchMusicController {
     @RequestMapping(value = "/free/hot/{type}")
     public String hot(@PathVariable("type") String type, Model model) {
         WangYiResponseEntity entity;
+        String title;
         switch (type) {
             case "2":
                 //云音乐飙升榜-2
                 entity = (WangYiResponseEntity) service.getHottingMusic();
+                title = "音乐飙升榜";
                 break;
             case "1" :
                 //云音乐热歌榜-1
                 entity = (WangYiResponseEntity) service.getHotMusic();
+                title = "音乐热歌榜";
                 break;
             default: // 云音乐新歌榜-3
                 entity = (WangYiResponseEntity) service.getNewMusic();
+                title = "音乐新歌榜";
                 break;
         }
         model.addAttribute("entity", entity.getData());
@@ -113,6 +117,7 @@ public class SearchMusicController {
         model.addAttribute("userInformation", new UserInformation());
         model.addAttribute("username", "");
         model.addAttribute("autograph", "");
+        model.addAttribute("title", title);
         return "music/freeHot";
     }
 }

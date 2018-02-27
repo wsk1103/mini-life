@@ -36,16 +36,20 @@ public class MusicController {
 //            return "redirect:/login";
 //        }
         WangYiResponseEntity entity = new WangYiResponseEntity();
+        String title;
         switch (type) {
             case "1":
                 //云音乐热歌榜-1
                 entity = (WangYiResponseEntity) service.getHotMusic();
+                title = "音乐热歌榜";
                 break;
             case "2" ://云音乐飙升榜-2
                 entity = (WangYiResponseEntity) service.getHottingMusic();
+                title = "音乐飙升榜";
                 break;
             default: //云音乐新歌榜-3
                 entity = (WangYiResponseEntity) service.getNewMusic();
+                title = "音乐新歌榜";
                 break;
         }
         model.addAttribute("entity", entity.getData());
@@ -54,6 +58,7 @@ public class MusicController {
         model.addAttribute("username", userInformation.getName());
         model.addAttribute("autograph", userInformation.getAutograph());
         model.addAttribute("action", 6);
+        model.addAttribute("title", title);
         userController.getUserCounts(model, userInformation.getId());
         return "music/hot";
     }
