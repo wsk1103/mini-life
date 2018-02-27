@@ -3,6 +3,7 @@ package com.wsk.movie.controller;
 import com.wsk.movie.bean.MyFriendsBean;
 import com.wsk.movie.bean.UserBean;
 import com.wsk.movie.bean.UserPublish;
+import com.wsk.movie.book.service.SearchBookService;
 import com.wsk.movie.pojo.MovieName;
 import com.wsk.movie.pojo.MyFriends;
 import com.wsk.movie.pojo.PublishCritic;
@@ -10,6 +11,7 @@ import com.wsk.movie.pojo.UserInformation;
 import com.wsk.movie.service.*;
 import com.wsk.movie.service.Impl.MovieNameServiceImpl;
 import com.wsk.movie.tool.Tool;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +52,11 @@ public class SearchController {
     @Resource
     private MovieNameServiceImpl movieNameService;
 
+    @Autowired
+    private SearchBookService searchBookService;
+//    @Autowired
+//    private
+
     //搜索电影详细信息
     @RequestMapping(value = "/searchMovie")
 //    @ResponseBody
@@ -64,40 +71,45 @@ public class SearchController {
 //                name = new String(name.getBytes("GBK"));
                 attributes.addFlashAttribute("name", name);
                 return "redirect:/searchMovieResult";
-//            try {
-//                UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
-//                if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-//                    userInformation = new UserInformation();
-//                    userInformation.setId(0);
-//                }
-//                int uid = userInformation.getId();
-//                MovieBean movieBean;
-//                Map<String, String> params = new HashMap<>();
-//                params.put("key", key);
-//                params.put("q", name);
-//                params.put("dtype", "json");
-////            params.put("start", "2");
-////            String sr = HttpUtils.submitPostData(url, params, "utf-8","GET");
-//                model.addAttribute("name", name);
-//                model.addAttribute("userInformation", userInformation);
-//                model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
-//                getUserCounts(model, uid);
-//                String sr = POSTtoJSON.getInstance().post(url, params,"POST");
-//                movieBean = JSON.parseObject(sr, MovieBean.class);
-//                model.addAttribute("movie", movieBean);
-//                return "information/movieInformation";
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                model.addAttribute("movie", new MovieBean());
-//                return "information/movieInformation";
-//            }
             case "critic":
                 return getCriticByTitle(name, request, model);
             case "user":
                 return getUserByName(name, request, model);
+            case "music":
+                return getMusicByName(name, request, model);
+            case "book":
+                return getBookByName(name, request, model);
             default:
                 return "redirect:/login";
         }
+    }
+
+    //查找书籍
+    private String getBookByName(String name, HttpServletRequest request, Model model) {
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+            return "redirect:/login";
+        }
+        model.addAttribute("action", 7);
+        model.addAttribute("userInformation", userInformation);
+        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
+        model.addAttribute("result", searchBookService.searchBookByName(name));
+        model.addAttribute("title", name);
+        return "/book/search/result";
+    }
+
+    //查找音乐
+    private String getMusicByName(String name, HttpServletRequest request, Model model) {
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+            return "redirect:/login";
+        }
+        model.addAttribute("action", 6);
+        model.addAttribute("userInformation", userInformation);
+        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
+//        model.addAttribute("result", );
+        model.addAttribute("title", name);
+        return "/music/search/result";
     }
 
     //获取电影名

@@ -20,6 +20,8 @@ public class WangYiTypeEnum {
     //评论地址
     public static final StringBuilder COMMENTS_URL_START = new StringBuilder("http://music.163.com/weapi/v1/resource/comments/R_SO_4_");
     public static final String COMMENTS_URL_END = "?csrf_token=";
+//    评论缓存
+    //wangyi_comments_ + id
 
     //图片地址
     public static final String MUSIC_PIC = "http://music.163.com/api/song/detail/?";

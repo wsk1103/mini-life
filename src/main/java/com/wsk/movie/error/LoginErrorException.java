@@ -3,12 +3,12 @@ package com.wsk.movie.error;
 import lombok.Data;
 
 /**
- * @DESCRIPTION :异常处理类
+ * @DESCRIPTION :异常处理类,账号未登录，不需要捕获
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/19  20:41
  */
 @Data
-public class LoginErrorException extends Exception {
+public class LoginErrorException extends RuntimeException {
     private String message;
 
     public LoginErrorException(String message) {

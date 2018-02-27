@@ -57,7 +57,7 @@ ul li.header_forum, ul li.header_home, ul li.header_hot, ul li.header_set, ul li
     padding: 0 10px;
 }
 
-.menu, .hot_menu, #movie_menu {
+.menu, .hot_menu, #movie_menu, #music_menu, #book_menu {
     top: 2.3em;
     padding: 0 20px;
     display: none;

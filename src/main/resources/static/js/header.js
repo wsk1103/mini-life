@@ -3,15 +3,17 @@
  */
 $(function () {
     wsk();
+
     function wsk() {
         var cc = setInterval(start, 5000);
+
         function start() {
             $.ajax({
                 url: '/getMessageOne',
                 type: 'post',
                 dataType: 'JSON',
-                success:function (data) {
-                    if (data.onread===0){
+                success: function (data) {
+                    if (data.onread === 0) {
                         $('.img_information').attr("src", "/image/new_information.png");
                         $(".header_information").attr("value", data.uid);
                     } else {
@@ -29,9 +31,13 @@ $(function () {
     var header_set = $('.header_set');
     var $header_movie = $('#header_movie');
     var $movie_menu = $('#movie_menu');
+    var $music_menu = $("#music_menu");
+    var header_music = $("#header_music");
+    var $book_menu = $("#book_menu");
     $($header_movie).bind({
-        mouseenter:function () {
-            $movie_menu.css({left:43.5+'%'});
+        mouseenter: function () {
+            var width = $(this).offset().left;
+            $movie_menu.css({left: width - 24 + 'px'});
             $movie_menu.show(100);
         }
     });
@@ -40,12 +46,23 @@ $(function () {
     });
     $(header_set).bind({
         mouseenter: function () {
-            menu.css({left: 49 + "%"});
+            var width = $(this).offset().left;
+            menu.css({left: width - 24 + "px"});
             menu.show(100);
         },
     });
     $(menu).mouseleave(function () {
         menu.hide(100);
+    });
+    $(header_music).bind({
+        mouseenter: function () {
+            var width = $(this).offset().left;
+            $music_menu.css({left: width - 24 + 'px'});
+            $music_menu.show(100);
+        }
+    });
+    $($music_menu).mouseleave(function () {
+        $music_menu.hide(100);
     });
     // $(header_hot).bind({
     //     mouseenter: function () {
@@ -76,10 +93,10 @@ $(function () {
     });
 });
 $(function () {
-   var $logout = $('.header_logout');
-   $($logout).click(function () {
-       window.location.href = 'logout';
-   });
+    var $logout = $('.header_logout');
+    $($logout).click(function () {
+        window.location.href = 'logout';
+    });
     var host = window.location.host;
     var me = new Date().getTime();
     var websocket = new WebSocket("ws://" + host + "/sockjs/webSocketIMServer");
@@ -87,13 +104,13 @@ $(function () {
     if (phone !== 'wsk') {
         websocket.onopen = function () {
             console.log("websocket连接上");
-            websocket.send(phone+","+me+",start");
+            websocket.send(phone + "," + me + ",start");
         };
         websocket.onmessage = function (evnt) {
             // console.log(evnt.data);
             var result = evnt.data;
-            if (result == "error"){
-                window.location.href='/logout';
+            if (result == "error") {
+                window.location.href = '/logout';
                 alert("该账号在其他地方登录了，请检查是否为本人操作，防止密码丢失！！！");
                 return;
             }
@@ -107,9 +124,10 @@ $(function () {
         websocket.onclose = function () {
             console.log("websocket关闭");
         };
+
         function messageHandle() {
             // alert(phone);
-            websocket.send(phone+","+me+",send");
+            websocket.send(phone + "," + me + ",send");
         };
     }
 });

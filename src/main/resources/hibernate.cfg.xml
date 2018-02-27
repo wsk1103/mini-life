@@ -12,6 +12,7 @@
       <mapping class="com.wsk.movie.task.entity.MytaskEntity"/>
       <mapping class="com.wsk.movie.task.entity.MytaskerrorEntity"/>
       <mapping class="com.wsk.movie.task.entity.MytasklogEntity"/>
+      <mapping class="com.wsk.movie.book.entity.BookEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

@@ -1,10 +1,13 @@
-package com.wsk.movie.controller.music;
+package com.wsk.movie.free.controller.music;
 
 import com.wsk.movie.music.entity.BaseEntity;
+import com.wsk.movie.music.entity.WangYiResponseEntity;
 import com.wsk.movie.music.service.WangYiService;
+import com.wsk.movie.pojo.UserInformation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -81,5 +84,35 @@ public class SearchMusicController {
     @ResponseBody
     public BaseEntity getMusicUrlById(@PathVariable("id") long id){
         return service.getMusicUrlById(id);
+    }
+
+    /**
+     * 免费音乐开发接口
+     * @param type 音乐类型
+     * @param model 传递给界面的模型，类似一个map
+     * @return 返回的页面的地址
+     */
+    @RequestMapping(value = "/free/hot/{type}")
+    public String hot(@PathVariable("type") String type, Model model) {
+        WangYiResponseEntity entity;
+        switch (type) {
+            case "2":
+                //云音乐飙升榜-2
+                entity = (WangYiResponseEntity) service.getHottingMusic();
+                break;
+            case "1" :
+                //云音乐热歌榜-1
+                entity = (WangYiResponseEntity) service.getHotMusic();
+                break;
+            default: // 云音乐新歌榜-3
+                entity = (WangYiResponseEntity) service.getNewMusic();
+                break;
+        }
+        model.addAttribute("entity", entity.getData());
+        model.addAttribute("action", 6);
+        model.addAttribute("userInformation", new UserInformation());
+        model.addAttribute("username", "");
+        model.addAttribute("autograph", "");
+        return "music/freeHot";
     }
 }

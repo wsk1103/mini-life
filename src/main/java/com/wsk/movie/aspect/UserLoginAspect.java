@@ -1,6 +1,8 @@
 package com.wsk.movie.aspect;
 
 import com.wsk.movie.error.LoginErrorException;
+import com.wsk.movie.pojo.UserInformation;
+import com.wsk.movie.tool.Tool;
 import com.wsk.movie.write.Write;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -12,7 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @DESCRIPTION :
+ * @DESCRIPTION :登录过滤
  * @AUTHOR : WuShukai1103
  * @TIME : 2017/12/17  13:52
  */
@@ -20,13 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 public class UserLoginAspect {
 
-    @Pointcut("execution(* com.wsk.movie.controller.UserInformationController.login(..))")
+   @Pointcut("execution(* com.wsk.movie.controller.UserInformationController.login(..))")
     public void login() {
-
     }
 
     public UserLoginAspect(){
-        System.out.println("=========start aspect=========");
     }
 
     @Before(value = "login()")
@@ -60,6 +60,32 @@ public class UserLoginAspect {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+
+    //需要登录的用户账号密码核对,controller包下的music所有类
+    @Pointcut("execution(* com.wsk.movie.controller.music.MusicController.*(..))")
+    public void checkM(){
+    }
+
+    @Pointcut("execution(* com.wsk.movie.controller.book.BookController.*(..))")
+    public void checkB(){}
+
+    @Before(value = "checkM()")
+    private void checkMusic(){
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+            throw new LoginErrorException("账号未登录！");
+        }
+    }
+
+    @Before(value = "checkB()")
+    private void checkBook(){
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+            throw new LoginErrorException("账号未登录！");
+        }
     }
 
 }

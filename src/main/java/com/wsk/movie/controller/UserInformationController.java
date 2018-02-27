@@ -833,7 +833,7 @@ public class UserInformationController {
     }
 
     //获得点赞数量，收藏数量，评论数量
-    private void getUserCounts(Model model, int uid) {
+    public void getUserCounts(Model model, int uid) {
         model.addAttribute("comments", commentCriticService.getUserCounts(uid));
         model.addAttribute("critics", publishCriticService.getUserCounts(uid));
         model.addAttribute("goods", goodCriticService.getUserCounts(uid));

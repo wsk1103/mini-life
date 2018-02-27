@@ -48,7 +48,7 @@
     }
 
     .play:hover {
-        color: #b4d66b;
+        color: #679801;
     }
 
     .stop {
@@ -74,7 +74,7 @@
 
     .m-table {
         width: 100%;
-        border: 1px solid #d9d9d9;
+        /*border: 1px solid #d9d9d9;*/
     }
 
     table {
@@ -113,7 +113,7 @@
     }
 
     .m-table .even td {
-        background-color: #f7f7f7;
+        background-color: #bdda81;
         text-align: center;
     }
 
@@ -127,24 +127,33 @@
         padding-top: 10px;
         padding-bottom: 10px;
     }
+
+    .all_content {
+        top: 2.3em;
+        width: 1000px;
+        margin: 0 auto;
+        background: #9fbe5d;
+        min-height: 900px;
+        padding-right: 3em;
+    }
 </style>
 <body>
 <!--导航栏-->
 <header th:include="header :: copy"></header>
-<div id="main">
+<div id="main" class="all_content">
     <audio controls="controls" id="audio_play" hidden="hidden">
         <source src="/music/kxfTLNo3G81518238857571.mp3" type="audio/mpeg" id="audio_source"/>
     </audio>
     <div style="padding-top: 3em;clear: both"></div>
 
-    <div class="g-wrap12" style="width: 800px">
+    <div class="g-wrap12" style="width: 650px; display: inline-block;margin-top: 0; font-size: 15px">
         <div class="u-title u-title-1 f-cb">
             <div id="song-list-pre-cache">
-                <table class="m-table m-table-rank">
+                <table class="m-table m-table-rank" id="music_table">
                     <thead>
                     <tr>
                         <th style="width: 50px;"></th>
-                        <th class="wp">标题</th>
+                        <th class="wp">歌名</th>
                         <th class="wp">歌手</th>
                         <th class="wp">专辑</th>
                         <th class="wp">发布时间</th>
@@ -152,8 +161,10 @@
                     </thead>
                     <tbody th:with="i=0">
                     <tr th:each="o : ${entity}" class="even">
-                        <td class="music_img play" th:title="${o.url}"><img th:src="${o.picurl}" class="music_img"/></td>
-                        <td class="hd rank play" th:title="${o.url}">&nbsp;<span class="music_songname" th:text="${o.songname}">图片+音乐</span>
+                        <td class="music_img play" th:title="${o.url}"><img th:src="${o.picurl}" class="music_img"/>
+                        </td>
+                        <td class="hd rank play" th:title="${o.url}">&nbsp;<span class="music_songname"
+                                                                                 th:text="${o.songname}">图片+音乐</span>
                         </td>
                         <td class="hd music_singername play" th:title="${o.url}" th:text="${o.singername}">歌手</td>
                         <td class="hd music_albumname play" th:title="${o.url}" th:text="${o.albumname}">专辑</td>
@@ -201,7 +212,7 @@
     <!--</div>-->
     <!--</div>-->
     <!--侧边栏-->
-    <aside th:include="aside :: aside"></aside>
+    <aside th:include="aside :: aside" style="margin-top: 0px"></aside>
     <div style="clear: both"></div>
 </div>
 <footer>
@@ -221,8 +232,8 @@
             var url = $(this).attr("title");
             $("#audio_source").attr("src", url);
             $audio.load();
-            if (globUrl === url){
-                if (isPlay === true){
+            if (globUrl === url) {
+                if (isPlay === true) {
                     $audio.play();
                     isPlay = false;
                 } else {
@@ -240,6 +251,7 @@
         $(".stop").click(function () {
             $audio.pause();
         });
+        $(".all_content").height($("#music_table").height() + 3 * 16);
     })
 </script>
 </html>

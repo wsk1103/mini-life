@@ -17,8 +17,13 @@ public class LoginErrorResolver implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("msg","How old are you?");
-        modelAndView.setViewName("error");
+        if (e instanceof LoginErrorException) {
+            modelAndView.addObject("msg", e.getMessage());
+            modelAndView.setViewName("redirect:/login");
+        } else {
+            modelAndView.addObject("msg", "How old are you?");
+            modelAndView.setViewName("error");
+        }
         return modelAndView;
     }
 }

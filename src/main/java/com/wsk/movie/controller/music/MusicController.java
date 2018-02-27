@@ -4,7 +4,6 @@ import com.wsk.movie.controller.UserInformationController;
 import com.wsk.movie.music.entity.WangYiResponseEntity;
 import com.wsk.movie.music.service.WangYiService;
 import com.wsk.movie.pojo.UserInformation;
-import com.wsk.movie.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,10 +32,10 @@ public class MusicController {
     @RequestMapping(value = "/hot/{type}")
     public String hot(@PathVariable("type") String type, HttpServletRequest request, Model model){
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
-        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            return "redirect:/login";
-        }
-        WangYiResponseEntity entity;
+//        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+//            return "redirect:/login";
+//        }
+        WangYiResponseEntity entity = new WangYiResponseEntity();
         switch (type) {
             case "1":
                 //云音乐热歌榜-1
@@ -49,36 +48,16 @@ public class MusicController {
                 entity = (WangYiResponseEntity) service.getNewMusic();
                 break;
         }
-//        WangYiResponseEntity entity = (WangYiResponseEntity) service.getHotMusic();
         model.addAttribute("entity", entity.getData());
         model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
         model.addAttribute("userInformation", userInformation);
         model.addAttribute("username", userInformation.getName());
         model.addAttribute("autograph", userInformation.getAutograph());
         model.addAttribute("action", 6);
+        userController.getUserCounts(model, userInformation.getId());
         return "music/hot";
     }
 
-    @RequestMapping(value = "/free/hot/{type}")
-    public String hot(@PathVariable("type") String type, Model model) {
-        WangYiResponseEntity entity;
-        switch (type) {
-            case "1":
-                //云音乐热歌榜-1
-                entity = (WangYiResponseEntity) service.getHotMusic();
-                break;
-            case "2" ://云音乐飙升榜-2
-                entity = (WangYiResponseEntity) service.getHottingMusic();
-                break;
-            default: // 云音乐新歌榜-3
-                entity = (WangYiResponseEntity) service.getNewMusic();
-                break;
-        }
-        model.addAttribute("entity", entity.getData());
-        model.addAttribute("action", 6);
-        model.addAttribute("userInformation", new UserInformation());
-        model.addAttribute("username", "");
-        model.addAttribute("autograph", "");
-        return "music/freeHot";
-    }
+//    @RequestMapping
+
 }
