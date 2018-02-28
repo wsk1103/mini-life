@@ -1,9 +1,12 @@
 package com.wsk.movie.controller;
 
-import com.wsk.movie.bean.MyFriendsBean;
 import com.wsk.movie.bean.UserBean;
 import com.wsk.movie.bean.UserPublish;
+import com.wsk.movie.book.entity.BookEntity;
 import com.wsk.movie.book.service.SearchBookService;
+import com.wsk.movie.music.WangYiTypeEnum;
+import com.wsk.movie.music.entity.WangYiResponseEntity;
+import com.wsk.movie.music.service.WangYiService;
 import com.wsk.movie.pojo.MovieName;
 import com.wsk.movie.pojo.MyFriends;
 import com.wsk.movie.pojo.PublishCritic;
@@ -52,8 +55,18 @@ public class SearchController {
     @Resource
     private MovieNameServiceImpl movieNameService;
 
+    private final SearchBookService searchBookService;
+
+    private final UserInformationController userController;
+
+    private final WangYiService wangYiService;
+
     @Autowired
-    private SearchBookService searchBookService;
+    public SearchController(SearchBookService searchBookService, UserInformationController userController, WangYiService wangYiService) {
+        this.searchBookService = searchBookService;
+        this.userController = userController;
+        this.wangYiService = wangYiService;
+    }
 //    @Autowired
 //    private
 
@@ -90,10 +103,18 @@ public class SearchController {
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
             return "redirect:/login";
         }
-        model.addAttribute("action", 7);
+        List<BookEntity> entities = searchBookService.searchBookByName(name);
+        model.addAttribute("entity", entities);
+        model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
         model.addAttribute("userInformation", userInformation);
-        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
-        model.addAttribute("result", searchBookService.searchBookByName(name));
+        model.addAttribute("username", userInformation.getName());
+        model.addAttribute("autograph", userInformation.getAutograph());
+        model.addAttribute("action", 7);
+        userController.getUserCounts(model, userInformation.getId());
+//        model.addAttribute("action", 7);
+//        model.addAttribute("userInformation", userInformation);
+//        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
+//        model.addAttribute("result", searchBookService.searchBookByName(name));
         model.addAttribute("title", name);
         return "/book/search/result";
     }
@@ -104,10 +125,19 @@ public class SearchController {
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
             return "redirect:/login";
         }
-        model.addAttribute("action", 6);
+//        List<BookEntity> entities = searchBookService.searchBookByName(name);
+        WangYiResponseEntity entities = (WangYiResponseEntity) wangYiService.getMusic(name, WangYiTypeEnum.SINGLE );
+        model.addAttribute("entity", entities.getData());
+        model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
         model.addAttribute("userInformation", userInformation);
-        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
-//        model.addAttribute("result", );
+        model.addAttribute("username", userInformation.getName());
+        model.addAttribute("autograph", userInformation.getAutograph());
+        model.addAttribute("action", 6);
+        userController.getUserCounts(model, userInformation.getId());
+//        model.addAttribute("action", 6);
+//        model.addAttribute("userInformation", userInformation);
+//        model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
+////        model.addAttribute("result", );
         model.addAttribute("title", name);
         return "/music/search/result";
     }
@@ -151,7 +181,7 @@ public class SearchController {
         }
         int uid = userInformation.getId();
         model.addAttribute("userInformation", userInformation);
-        model.addAttribute("myFriends", getMyFriends(uid));
+        model.addAttribute("myFriends", userController.getMyFriends(uid));
         getUserCounts(model, uid);
         Map map = new HashMap();
         map.put("start", 0);
@@ -196,7 +226,7 @@ public class SearchController {
         }
         int uid = userInformation.getId();
         model.addAttribute("userInformation", userInformation);
-        model.addAttribute("myFriends", getMyFriends(uid));
+        model.addAttribute("myFriends", userController.getMyFriends(uid));
         getUserCounts(model, uid);
         Map map = new HashMap();
         map.put("name", name);
@@ -277,7 +307,7 @@ public class SearchController {
         }
         int uid = userInformation.getId();
         model.addAttribute("userInformation", userInformation);
-        model.addAttribute("myFriends", getMyFriends(uid));
+        model.addAttribute("myFriends", userController.getMyFriends(uid));
         getUserCounts(model, uid);
         Map map = new HashMap();
         map.put("name", name);
@@ -303,29 +333,29 @@ public class SearchController {
         return result;
     }
 
-    //获取好友列表
-    private List<MyFriendsBean> getMyFriends(int uid) {
-        List<MyFriends> list = myFriendsService.getFid(uid);
-        List<MyFriendsBean> ids = new ArrayList<>();
+//    //获取好友列表
+//    private List<MyFriendsBean> getMyFriends(int uid) {
+//        List<MyFriends> list = myFriendsService.getFid(uid);
+//        List<MyFriendsBean> ids = new ArrayList<>();
+////        for (MyFriends myFriends : list) {
+////            ids.add(myFriends.getUid());
+////        }
+////        if (ids.size() == 0) {
+////            ids.add(0);
+////        }
+////        List<UserInformation> userInformations = userInformationService.getAllForeach(ids);
 //        for (MyFriends myFriends : list) {
-//            ids.add(myFriends.getUid());
+//            UserInformation userInformation = userInformationService.selectByPrimaryKey(myFriends.getFid());
+//            MyFriendsBean myFriendsBean = new MyFriendsBean();
+//            myFriendsBean.setAvatar(userInformation.getAvatar());
+//            myFriendsBean.setFid(myFriends.getFid());
+//            myFriendsBean.setId(myFriends.getId());
+//            myFriendsBean.setName(userInformation.getName());
+//            myFriendsBean.setUid(myFriends.getUid());
+//            ids.add(myFriendsBean);
 //        }
-//        if (ids.size() == 0) {
-//            ids.add(0);
-//        }
-//        List<UserInformation> userInformations = userInformationService.getAllForeach(ids);
-        for (MyFriends myFriends : list) {
-            UserInformation userInformation = userInformationService.selectByPrimaryKey(myFriends.getFid());
-            MyFriendsBean myFriendsBean = new MyFriendsBean();
-            myFriendsBean.setAvatar(userInformation.getAvatar());
-            myFriendsBean.setFid(myFriends.getFid());
-            myFriendsBean.setId(myFriends.getId());
-            myFriendsBean.setName(userInformation.getName());
-            myFriendsBean.setUid(myFriends.getUid());
-            ids.add(myFriendsBean);
-        }
-        return ids;
-    }
+//        return ids;
+//    }
 
     //获得点赞数量，收藏数量，评论数量
     private void getUserCounts(Model model, int uid) {

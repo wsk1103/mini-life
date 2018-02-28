@@ -60,4 +60,24 @@ $(function () {
         $("#movie_action").attr("value", "user");
         $searchMovie.submit();
     });
+    $('img.search_book').click(function () {
+        var text = $search.val();
+        if (text == "" || text == null) {
+            alert("请输入搜索的内容！！");
+            return;
+        }
+        var $searchMovie = $("#searchMovie");
+        $("#movie_action").attr("value", "book");
+        $searchMovie.submit();
+    });
+    $('img.search_music').click(function () {
+        var text = $search.val();
+        if (text == "" || text == null) {
+            alert("请输入搜索的内容！！");
+            return;
+        }
+        var $searchMovie = $("#searchMovie");
+        $("#movie_action").attr("value", "music");
+        $searchMovie.submit();
+    });
 });

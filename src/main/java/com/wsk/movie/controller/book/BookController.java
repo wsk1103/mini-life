@@ -7,6 +7,7 @@ import com.wsk.movie.pojo.UserInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +42,24 @@ public class BookController {
        model.addAttribute("userInformation", userInformation);
        model.addAttribute("username", userInformation.getName());
        model.addAttribute("autograph", userInformation.getAutograph());
-       model.addAttribute("action", 6);
+       model.addAttribute("action", 7);
        userController.getUserCounts(model, userInformation.getId());
         return "book/init";
     }
+
+    //图书详情
+    @RequestMapping(value = "/book_information/{bookId}")
+    public String bookInformation(@PathVariable("bookId") long bookId, HttpServletRequest request, Model model) {
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        BookEntity entity = searchBookService.findById(bookId);
+        model.addAttribute("entity", entity);
+        model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
+        model.addAttribute("userInformation", userInformation);
+        model.addAttribute("username", userInformation.getName());
+        model.addAttribute("autograph", userInformation.getAutograph());
+        model.addAttribute("action", 7);
+        userController.getUserCounts(model, userInformation.getId());
+        return "book/book_information";
+    }
+
 }

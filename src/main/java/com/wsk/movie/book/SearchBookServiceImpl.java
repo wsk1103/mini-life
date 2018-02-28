@@ -173,6 +173,11 @@ public class SearchBookServiceImpl implements SearchBookService {
         return bookRepository.randBook();
     }
 
+    @Override
+    public BookEntity findById(long id) {
+        return bookRepository.findOne(id + "");
+    }
+
     public static void main(String[] args) {
 //        SearchBookService service = new SearchBookServiceImpl();
 //        service.searchBookByName("小王子");

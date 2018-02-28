@@ -13,4 +13,6 @@ public interface SearchBookService {
     List<BookEntity> searchBookByName(String name);
 
     List<BookEntity> randBook();
+
+    BookEntity findById(long id);
 }

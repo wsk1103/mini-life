@@ -166,7 +166,7 @@ public class WangYiServiceImpl implements WangYiService {
         }
         ;
         WangYiSong[] songs = bean.getResult().getSongs();
-        responseEntity = saveMusic(songs);
+        responseEntity = saveMusic(songs, name);
         return responseEntity;
     }
 
@@ -456,7 +456,7 @@ public class WangYiServiceImpl implements WangYiService {
             WangYiResult result = Tool.getInstance().jsonToBean(json, WangYiResult.class);
             WangYiSong[] songs = result.getSongs();
             redisUtils.set(url, json, Time.ONE_DAY);
-            return saveMusic(songs);
+            return saveMusic(songs, null);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(json);
@@ -470,7 +470,7 @@ public class WangYiServiceImpl implements WangYiService {
      * @param songs
      * @return
      */
-    private WangYiResponseEntity saveMusic(WangYiSong[] songs) {
+    private WangYiResponseEntity saveMusic(WangYiSong[] songs, String searchName) {
         result.clear();
         try {
             for (WangYiSong song : songs) {
@@ -592,7 +592,11 @@ public class WangYiServiceImpl implements WangYiService {
                 if (Tool.getInstance().isNullOrEmpty(entity.getUrl())) {
                     continue;
                 }
-                redisUtils.rpush("wangyi_music_" + song.getName(), Tool.getInstance().toJson(entity));
+                if (Tool.getInstance().isNullOrEmpty(searchName)) {
+                    redisUtils.rpush("wangyi_music_" + song.getName(), Tool.getInstance().toJson(entity));
+                } else {
+                    redisUtils.rpush("wangyi_music_" + searchName, Tool.getInstance().toJson(entity));
+                }
                 String fileName = Down.randomName(entity.getUrl());
                 musicRunnableBean.setFileName(fileName);
                 musicRunnableBean.setEntity(entity);
