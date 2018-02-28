@@ -209,6 +209,7 @@ div.close_img_tip:hover {
 }
 .movie_show{
     color: #666666;
+    font-weight: 500;
 }
 .movie_video_rec_name_1,.movie_atc_s_name_1{
     font-size: 13px;

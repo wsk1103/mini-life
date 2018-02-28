@@ -37,6 +37,10 @@ public class BookController {
     public String bookInit(HttpServletRequest request, Model model){
        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
        List<BookEntity> entities = searchBookService.randBook();
+       for (BookEntity entity : entities) {
+           entity.setTranslator(entity.getTranslator().replace("[\"", "").replace("\"]", "").replace("\"", ""));
+           entity.setAuthor(entity.getAuthor().replace("[\"", "").replace("\"]", "").replace("\"", ""));
+       }
        model.addAttribute("entity", entities);
        model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
        model.addAttribute("userInformation", userInformation);
@@ -52,6 +56,17 @@ public class BookController {
     public String bookInformation(@PathVariable("bookId") long bookId, HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         BookEntity entity = searchBookService.findById(bookId);
+        if (null == entity) {
+            model.addAttribute("result", "fail");
+            entity = new BookEntity();
+        } else {
+            model.addAttribute("result", "success");
+            entity.setTranslator(entity.getTranslator().replace("[\"", "").replace("\"]", "").replace("\"", ""));
+            entity.setAuthor(entity.getAuthor().replace("[\"", "").replace("\"]", "").replace("\"", ""));
+            entity.setSummary(entity.getSummary().replace("\n","<br/>"));
+            entity.setCatalog(entity.getCatalog().replace("\n", "<br/>"));
+            entity.setAuthorIntro(entity.getAuthorIntro().replace("\n","<br/>"));
+        }
         model.addAttribute("entity", entity);
         model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
         model.addAttribute("userInformation", userInformation);
@@ -59,6 +74,7 @@ public class BookController {
         model.addAttribute("autograph", userInformation.getAutograph());
         model.addAttribute("action", 7);
         userController.getUserCounts(model, userInformation.getId());
+
         return "book/book_information";
     }
 
