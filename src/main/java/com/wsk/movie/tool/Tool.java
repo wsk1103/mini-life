@@ -13,8 +13,6 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by wsk1103 on 2017/5/29.
@@ -22,7 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Tool {
 
 
-    private Lock lock = new ReentrantLock();
+//    private Lock lock = new ReentrantLock();
 
     private Tool() {
     }
@@ -128,7 +126,7 @@ public class Tool {
     /**
      * 获得协议
      *
-     * @return
+     * @return 协议
      */
     public String getProtocolTxt() {
         return txt;
@@ -137,8 +135,8 @@ public class Tool {
     /**
      * 生成MD5
      *
-     * @param str
-     * @return
+     * @param str 需要转化的字符串
+     * @return MD5
      */
     public String getMD5(String str) {
         String result = "";
@@ -152,13 +150,14 @@ public class Tool {
         return result;
     }
 
+    //随机字符串
+    private final static String WSK = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+
     /**
      * 获得随机生成的字符串
      *
-     * @return
+     * @return 获得随机生成的字符串
      */
-    private final static String WSK = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
-
     public String getRandom() {
         Random random = new Random();
         StringBuilder stringBuffer = new StringBuilder();
@@ -172,7 +171,7 @@ public class Tool {
     /**
      * 是否为空
      *
-     * @param obj
+     * @param obj 对象
      * @return 空-true
      */
     public boolean isNullOrEmpty(Object obj) {
@@ -204,7 +203,7 @@ public class Tool {
     /**
      * 是否为空
      *
-     * @param obj
+     * @param obj 对象
      * @return 空-false
      */
     public boolean isNotNull(Object obj) {
@@ -231,8 +230,8 @@ public class Tool {
     /**
      * 读取本地需要过滤的文字
      *
-     * @return
-     * @throws IOException
+     * @return 敏感词库
+     * @throws IOException 文件读取失败
      */
     private ArrayList<String> readTxt() throws IOException {
         ArrayList<String> list = new ArrayList<>();
@@ -254,11 +253,12 @@ public class Tool {
     }
 
     /**
-     * 文字过滤
+     * 文字过滤,已经废弃
      *
-     * @param test
+     * @param test 需要替换的内容
      * @return 替换后的结果
      */
+    @Deprecated
     public String txtReplace(String test) {
         try {
             ArrayList<String> list = readTxt();
@@ -282,7 +282,7 @@ public class Tool {
     /**
      * 色情图片识别
      *
-     * @param path
+     * @param path 图片路径
      * @return 正常-true
      */
     public boolean checkPornograp(String path) {
@@ -296,7 +296,7 @@ public class Tool {
         client.setSocketTimeoutInMillis(60000);
         // 调用接口
 //        String path = "D:\\image\\CG63dcCaGZhCkWpqEhFF2017-01-17.jpg";
-        Baidu baidu = null;
+        Baidu baidu;
         try {
             JSONObject res = client.antiPorn(path);
             baidu = com.alibaba.fastjson.JSONObject.parseObject(res.toString(2), Baidu.class);
@@ -315,4 +315,5 @@ public class Tool {
     public <T> String toJson(T t) {
         return JSON.toJSONString(t);
     }
+
 }

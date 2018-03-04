@@ -6,6 +6,7 @@ import com.wsk.movie.bean.MyCommentBean;
 import com.wsk.movie.bean.UserPublish;
 import com.wsk.movie.pojo.*;
 import com.wsk.movie.service.*;
+import com.wsk.movie.tool.SensitivewordFilter;
 import com.wsk.movie.tool.Tool;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,8 +54,9 @@ public class CriticController {
             return map;
         }
         String path = "", save = "";
-        movie_content = Tool.getInstance().txtReplace(movie_content);
-        movie_name = Tool.getInstance().txtReplace(movie_name);
+//        movie_content = Tool.getInstance().txtReplace(movie_content);
+        movie_content = SensitivewordFilter.replaceSensitiveWord(movie_content);
+        movie_name = SensitivewordFilter.replaceSensitiveWord(movie_name);
 
         if (movie_content.length() < 1 || movie_name.length() < 1) {
             map.put("result", "0");
@@ -629,7 +631,8 @@ public class CriticController {
             map.put("result", 0);
             return map;
         }
-        comment = Tool.getInstance().txtReplace(comment);
+//        comment = Tool.getInstance().txtReplace(comment);
+        comment = SensitivewordFilter.replaceSensitiveWord(comment);
         CommentCritic commentCritic = new CommentCritic();
         commentCritic.setModified(new Date());
         commentCritic.setCritic(comment);

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="/css/all.css" rel="stylesheet"/>
+    <title>管理员首页</title>
+    <link />
+</head>
+<style>
+    .clear_all{
+        clear: both;
+    }
+    header{
+        /*border: 1px solid;*/
+        /*height: 1.5em;*/
+    }
+    .menu_aside{
+        float: left;
+        border: 1px solid;
+        width: 200px;
+        text-align: center;
+    }
+    .menu_li{
+        margin: .5em 0;
+        border: 1px solid;
+    }
+    #main{
+        position: absolute;
+        border: 1px solid;
+        margin-left: 200px;
+        width: 1680px;
+        min-height:800px;
+    }
+    .header_title{
+        margin-left: 8em;
+    }
+</style>
+<body>
+<header>
+    <div class="header_title">
+        <h3>
+            微生活管理后台
+        </h3>
+    </div>
+    <div style="float:right;">
+        <span class="user_name">WSK</span><span class="header_welcome">，欢迎您！</span>
+    </div>
+</header>
+<div class="clear_all"></div>
+<div class="menu_aside">
+    <!--这是侧边导航栏--->
+    <div class="menu_li">
+        账户管理
+    </div>
+    <div class="menu_li">
+        举报处理
+    </div>
+    <div class="menu_li">
+        发布审核
+    </div>
+    <!--<div>-->
+        <!--管理员信息-->
+    <!--</div>-->
+</div>
+<main id="main" style="">
+    这是主体内容
+</main>
+</body>
+</html>

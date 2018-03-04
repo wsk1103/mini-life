@@ -4,6 +4,7 @@ import com.wsk.movie.bean.*;
 import com.wsk.movie.pojo.*;
 import com.wsk.movie.service.*;
 import com.wsk.movie.token.TokenProccessor;
+import com.wsk.movie.tool.SensitivewordFilter;
 import com.wsk.movie.tool.Tool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -575,7 +576,8 @@ public class UserInformationController {
             return "redirect:/login";
         }
         if (!Tool.getInstance().isNullOrEmpty(name)) {
-            name = Tool.getInstance().txtReplace(name);
+//            name = Tool.getInstance().txtReplace(name);
+            name = SensitivewordFilter.replaceSensitiveWord(name);
             userInformation.setName(name);
         } else if (!Tool.getInstance().isNullOrEmpty(tel)) {
             userInformation.setPhone(tel);

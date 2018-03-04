@@ -7,6 +7,7 @@ import com.wsk.movie.pojo.Message;
 import com.wsk.movie.pojo.UserInformation;
 import com.wsk.movie.service.MessageService;
 import com.wsk.movie.service.UserInformationService;
+import com.wsk.movie.tool.SensitivewordFilter;
 import com.wsk.movie.tool.Tool;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,7 +107,8 @@ public class MessageController {
         if (Tool.getInstance().isNullOrEmpty(userInformation) || Tool.getInstance().isNullOrEmpty(id) || Tool.getInstance().isNullOrEmpty(content)) {
             return 0;
         }
-        content = Tool.getInstance().txtReplace(content);
+//        content = Tool.getInstance().txtReplace(content);
+        content = SensitivewordFilter.replaceSensitiveWord(content);
         Message message = new Message();
         message.setFid(id);
         message.setMessage(content);
