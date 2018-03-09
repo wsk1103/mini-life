@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>举报</title>
+</head>
+<script src="/js/jquery-3.0.0.js"></script>
+<style>
+    table{
+        border: 1px solid;
+    }
+    tr{
+        border: 1px solid;
+    }
+    td{
+        border: 1px solid;
+        padding: 10px;
+    }
+</style>
+<body>
+<div><h3>举报处理</h3></div>
+<div style="border-bottom: 1px solid"></div>
+<div>
+    <form action="/admin/findUser" style="margin: 20px">
+        <div style="display: inline-block;"><span>用户ID：</span><span><input type="text" name="id"/></span></div>
+        <div style="display: inline-block;"><span>用户名：</span><span><input type="text" name="username"/></span></div>
+        <div style="display: inline-block;"><span>手机号码：</span><span><input type="text" name="phone"/></span></div>
+        <div style="display: inline-block;"><input type="submit" value="查询"/></div>
+    </form>
+    <div>
+        <table>
+            <tr>
+                <td>举报用户id</td>
+                <td>举报用户名</td>
+                <td>用户手机</td>
+                <td>信息id</td>
+                <td>信息内容</td>
+                <td>信息附图</td>
+                <td>发布时间</td>
+                <td>举报时间</td>
+                <td>操作</td>
+            </tr>
+            <tr th:each="o:${entity}">
+                <td th:text="${o.getUid()}"></td>
+                <td th:text="${o.getUsername()}"></td>
+                <td th:text="${o.getPhone()}"></td>
+                <td th:text="${o.getPid()}"></td>
+                <td th:text="${o.getCritic()}"></td>
+                <td><img th:if="${o.getImage()} != null" th:src="${o.getImage()}" style="  width: 50px;    height: 50px;"/></td>
+                <td th:text="${o.getPtime()}"></td>
+                <td th:text="${o.getCtime()}"></td>
+                <td><button class="not">禁用</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $(".not").click(function () {
+            alert("禁用成功！")
+        });
+    });
+</script>
+</html>

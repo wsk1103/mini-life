@@ -1,0 +1,157 @@
+package com.wsk.movie.controller.admin;
+
+import com.wsk.movie.jdbc.BaseDao;
+import com.wsk.movie.springdata.admin.AdminRepository;
+import com.wsk.movie.springdata.admin.ReportRepository;
+import com.wsk.movie.springdata.admin.UserInformationRepository;
+import com.wsk.movie.springdata.admin.entity.AdmininformationEntity;
+import com.wsk.movie.springdata.admin.entity.UserinformationEntity;
+import com.wsk.movie.springdata.admin.more.CriticEntity;
+import com.wsk.movie.springdata.admin.more.ReportEntity;
+import com.wsk.movie.tool.Tool;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * @DESCRIPTION : 用户查询
+ * @AUTHOR : WuShukai1103
+ * @TIME : 2018/3/8  14:16
+ */
+@Controller
+@RequestMapping("/admin")
+public class FindUserController {
+    @Autowired
+    private UserInformationRepository userInformationRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
+
+    @Autowired
+    private ReportRepository reportRepository;
+
+    @RequestMapping("/login")
+    public String login(Model model, HttpServletRequest request) {
+
+        return "admin/login";
+    }
+
+    @RequestMapping(value = "/index")
+    public String login(@RequestParam String username, @RequestParam String password,
+                        Model model, HttpServletRequest request) {
+//        ModelAndView modelAndView = new ModelAndView();
+        if (Tool.getInstance().isNullOrEmpty(username) || Tool.getInstance().isNullOrEmpty(password)) {
+            model.addAttribute("error", "账号或者密码不能为空");
+            return "admin/login";
+        }
+        AdmininformationEntity entity = adminRepository.findAdmininformationEntityByPhone(username);
+        if (Tool.getInstance().isNullOrEmpty(entity) || !password.equals(entity.getPassword())) {
+            model.addAttribute("error", "账号或者密码错误");
+            return "admin/login";
+        }
+        request.getSession().setAttribute("adminInformation", entity);
+        model.addAttribute("name", entity.getName());
+        return "admin/index";
+    }
+
+    @RequestMapping(value = "/findAllUser")
+    public String findAll(@RequestParam(required = false) String start, @RequestParam(required = false) String end,
+                          Model model, HttpServletRequest request) {
+        int s, e;
+        if (Tool.getInstance().isNullOrEmpty(start)) {
+            s = 0;
+        } else {
+            s = Integer.parseInt(start);
+        }
+        if (Tool.getInstance().isNullOrEmpty(end)) {
+            e = 0;
+        } else {
+            e = Integer.parseInt(end);
+        }
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            return "admin/login";
+        }
+        List<UserinformationEntity> entities = userInformationRepository.getAll(s, e);
+        model.addAttribute("entity", entities);
+//        model.addAttribute("name", entity.getName());
+        return "admin/all_user";
+    }
+
+    @RequestMapping(value = "/findUser")
+    public String findUser(@RequestParam String id, @RequestParam String username, @RequestParam String phone,
+                           Model model, HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            return "admin/login";
+        }
+        List<UserinformationEntity> entities;
+        if (Tool.getInstance().isNotNull(id)) {
+            entities = userInformationRepository.findById(Integer.parseInt(id));
+        } else if (Tool.getInstance().isNotNull(username)) {
+            entities = userInformationRepository.findByNameStartsWith(username);
+        } else if (Tool.getInstance().isNotNull(phone)) {
+            entities = userInformationRepository.findByPhone(phone);
+        } else {
+            entities = userInformationRepository.getAll(0, 50);
+        }
+        model.addAttribute("entity", entities);
+        return "admin/all_user";
+    }
+
+    @RequestMapping(value = "/findAllReport")
+    public String findReport(Model model, HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            return "admin/login";
+        }
+//        List<ReportEntity> entities = reportRepository.find();
+        BaseDao dao = new BaseDao();
+        String sql = "SELECT cr.uid,cr.pid,cr.ctime,pc.time AS ptime,pc.critic,pc.picture AS image,ui.`name` AS username, ui.phone FROM `critic_report` cr LEFT JOIN publishcritic pc ON cr.pid = pc.id LEFT JOIN userinformation ui ON ui.id = cr.uid ";
+        List<ReportEntity> entities = null;
+        try {
+            entities = dao.list(sql, ReportEntity.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (ReportEntity re : entities) {
+            if (Tool.getInstance().isNotNull(re.getImage())&& !re.getImage().startsWith("/")) {
+                re.setImage("/" + re.getImage());
+            }
+        }
+        model.addAttribute("entity", entities);
+//        return "admin/report";
+        return "admin/all_report";
+    }
+
+    @RequestMapping(value = "/findAllCritic")
+    public String findCritic(Model model, HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            return "admin/login";
+        }
+        BaseDao dao = new BaseDao();
+        String sql = "SELECT pc.id,pc.critic,pc.picture,pc.time as ptime,pc.title,ui.id as uid, ui.`name` as username,ui.phone FROM `publishcritic` pc LEFT JOIN userinformation ui ON pc.uid = ui.id ORDER BY pc.time desc limit 50 ;";
+        List<CriticEntity> entities = null;
+        try {
+            entities = dao.list(sql, CriticEntity.class);
+            for (CriticEntity re : entities) {
+                if ( Tool.getInstance().isNotNull(re.getPicture()) && !re.getPicture().startsWith("/")) {
+                    re.setPicture("/" + re.getPicture());
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("entity", entities);
+//        return "admin/report";
+        return "admin/all_critic";
+    }
+}

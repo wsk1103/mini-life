@@ -13,6 +13,9 @@
       <mapping class="com.wsk.movie.task.entity.MytaskerrorEntity"/>
       <mapping class="com.wsk.movie.task.entity.MytasklogEntity"/>
       <mapping class="com.wsk.movie.book.entity.BookEntity"/>
+      <mapping class="com.wsk.movie.springdata.admin.entity.UserinformationEntity"/>
+      <mapping class="com.wsk.movie.springdata.admin.entity.AdmininformationEntity"/>
+      <mapping class="com.wsk.movie.springdata.admin.entity.CriticReportEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
