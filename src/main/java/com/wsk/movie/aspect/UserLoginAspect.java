@@ -108,6 +108,31 @@ public class UserLoginAspect {
 //            String url = a.attr("href");
 //            Jsoup.connect(url).timeout(30000).get();
 //        }
+//        String s1 = new String();
+//        String s2 = new String("String 2");
+//        char[] as = {'a',' ','s','t','r','i','n','g'};
+//        String s3 = new String(as);
+//        String s4 = new String(as, 2, 6);
+//        byte[] b = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+//        StringBuilder sb = new StringBuilder(s3);
+//        String s5 = new String(sb);
+//        System.out.println(s1);
+//        System.out.println(s2);
+//        System.out.println(s3);
+//        System.out.println(s4);
+//        System.out.println(s5);
+        int aa = 55;
+        switch (aa){
+            default:
+                System.out.println(aa);
+            case 4:
+                System.out.println(5);
+                break;
+            case 2:
+                System.out.println(2);
+                break;
+        }
+        char aaa = '中';
         executors.scheduleAtFixedRate(() -> {
             try {
                 Document document = Jsoup.connect("http://blog.csdn.net/wsk1103").timeout(30000).get();
@@ -136,7 +161,7 @@ public class UserLoginAspect {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }, 30, 90, TimeUnit.SECONDS);
+        }, 0, 60, TimeUnit.SECONDS);
 
     }
 
