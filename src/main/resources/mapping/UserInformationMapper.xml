@@ -13,9 +13,10 @@
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="modified" property="modified" jdbcType="TIMESTAMP" />
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="allowed" property="allowed" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, address, autograph, birthday, buildtime, label, name, phone, sex, modified, avatar
+    id, address, autograph, birthday, buildtime, label, name, phone, sex, modified, avatar,allowed
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
@@ -164,6 +165,9 @@
       <if test="avatar != null" >
         avatar = #{avatar,jdbcType=VARCHAR},
       </if>
+      <if test="allowed != null" >
+        allowed = #{allowed,jdbcType=TINYINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -178,7 +182,8 @@
       phone = #{phone,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       modified = #{modified,jdbcType=TIMESTAMP},
-      avatar = #{avatar,jdbcType=VARCHAR}
+      avatar = #{avatar,jdbcType=VARCHAR},
+      allowed = #{allowed,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

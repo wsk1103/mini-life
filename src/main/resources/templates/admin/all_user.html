@@ -44,7 +44,7 @@
                 <td>操作</td>
             </tr>
             <tr th:each="o:${entity}">
-                <td th:text="${o.getId()}"></td>
+                <td th:text="${o.getId()}" class="uid" th:value="${o.getId()}"></td>
                 <td th:text="${o.getName()}"></td>
                 <td th:text="${o.getPhone()}"></td>
                 <td th:text="${o.getSex()}"></td>
@@ -55,7 +55,7 @@
                 <td th:text="${o.getLabel()}"></td>
                 <td th:text="${o.getBuildtime()}"></td>
                 <td th:text="${o.getModified()}"></td>
-                <td><button class="not">禁用</button></td>
+                <td><button class="not" th:value="${o.getId()}">禁用</button></td>
             </tr>
         </table>
     </div>
@@ -64,7 +64,10 @@
 <script>
     $(function () {
         $(".not").click(function () {
-            alert("禁用成功！")
+            var uid = $(this).attr("value");
+            var url = "/admin/changeAllowed";
+            $.get(url,{uid:uid,allowed:"0"});
+            alert(uid + " - 禁用成功！")
         });
     });
 </script>

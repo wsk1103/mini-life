@@ -6,8 +6,11 @@ import com.wsk.movie.bean.MyCommentBean;
 import com.wsk.movie.bean.UserPublish;
 import com.wsk.movie.pojo.*;
 import com.wsk.movie.service.*;
+import com.wsk.movie.springdata.admin.ReportRepository;
+import com.wsk.movie.springdata.admin.entity.CriticReportEntity;
 import com.wsk.movie.tool.SensitivewordFilter;
 import com.wsk.movie.tool.Tool;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -41,6 +45,8 @@ public class CriticController {
     @Resource
     private MyFriendsService myFriendsService;
 
+    @Autowired
+    private ReportRepository reportRepository;
     //发表影评
     @RequestMapping(value = "publishCritic", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
@@ -408,6 +414,11 @@ public class CriticController {
                     }
                 case "report":
                     map.put("result", 3);
+                    CriticReportEntity criticReportEntity = new CriticReportEntity();
+                    criticReportEntity.setCtime(new Timestamp(new Date().getTime()));
+                    criticReportEntity.setPid(id);
+                    criticReportEntity.setUid(uid);
+                    reportRepository.save(criticReportEntity);
                     return map;
                 case "delcritic":
                     if (Tool.getInstance().isNullOrEmpty(id)) {

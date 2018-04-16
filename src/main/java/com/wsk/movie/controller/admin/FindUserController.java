@@ -1,6 +1,10 @@
 package com.wsk.movie.controller.admin;
 
+import com.wsk.movie.dao.AdminActionMapper;
+import com.wsk.movie.dao.PublishCriticMapper;
 import com.wsk.movie.jdbc.BaseDao;
+import com.wsk.movie.pojo.AdminAction;
+import com.wsk.movie.pojo.PublishCritic;
 import com.wsk.movie.springdata.admin.AdminRepository;
 import com.wsk.movie.springdata.admin.ReportRepository;
 import com.wsk.movie.springdata.admin.UserInformationRepository;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +40,13 @@ public class FindUserController {
 
     @Autowired
     private ReportRepository reportRepository;
+
+    @Autowired
+    private AdminActionMapper adminActionMapper;
+
+    @Autowired
+    private PublishCriticMapper publishCriticMapper;
+
 
     @RequestMapping("/login")
     public String login(Model model, HttpServletRequest request) {
@@ -121,7 +133,7 @@ public class FindUserController {
             e.printStackTrace();
         }
         for (ReportEntity re : entities) {
-            if (Tool.getInstance().isNotNull(re.getImage())&& !re.getImage().startsWith("/")) {
+            if (Tool.getInstance().isNotNull(re.getImage()) && !re.getImage().startsWith("/")) {
                 re.setImage("/" + re.getImage());
             }
         }
@@ -142,7 +154,7 @@ public class FindUserController {
         try {
             entities = dao.list(sql, CriticEntity.class);
             for (CriticEntity re : entities) {
-                if ( Tool.getInstance().isNotNull(re.getPicture()) && !re.getPicture().startsWith("/")) {
+                if (Tool.getInstance().isNotNull(re.getPicture()) && !re.getPicture().startsWith("/")) {
                     re.setPicture("/" + re.getPicture());
                 }
             }
@@ -154,4 +166,56 @@ public class FindUserController {
 //        return "admin/report";
         return "admin/all_critic";
     }
+
+    //禁用用户
+    @RequestMapping(value = "/changeAllowed")
+    public void changeAllowed(@RequestParam(value = "allowed") int allowed, @RequestParam("uid") int uid, HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            System.out.println("管理员未登录!");
+            return;
+        }
+        try {
+            int result = userInformationRepository.update(uid, allowed);
+            AdminAction adminAction = new AdminAction();
+            adminAction.setAction("管理员" + entity.getName() + ":禁用用户:" + uid + ",成功");
+            adminAction.setAid(entity.getId());
+            adminAction.setModified(new Date());
+            if (result < 1) {
+                System.out.println("更新失败!");
+                adminAction.setAction("管理员" + entity.getName() + ":禁用用户:" + uid + ",失败");
+            }
+            adminActionMapper.insert(adminAction);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //信息审核和举报审核
+    @RequestMapping(value = "/change")
+    public void change(@RequestParam(value = "allowed") int allowed, @RequestParam("uid") int uid, HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            System.out.println("管理员未登录!");
+            return;
+        }
+        try {
+            PublishCritic publishCritic = new PublishCritic();
+            publishCritic.setId(uid);
+            publishCritic.setModified(new Date());
+            publishCritic.setAllow((short) 0);
+            int result = publishCriticMapper.updateByPrimaryKeySelective(publishCritic);
+            AdminAction adminAction = new AdminAction();
+            adminAction.setAction("管理员" + entity.getName() + ":禁用用户:" + uid + ",成功");
+            adminAction.setAid(entity.getId());
+            adminAction.setModified(new Date());
+            if (result < 1) {
+                System.out.println("更新失败!");
+                adminAction.setAction("管理员" + entity.getName() + ":禁用用户:" + uid + ",失败");
+            }
+            adminActionMapper.insert(adminAction);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

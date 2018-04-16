@@ -16,6 +16,7 @@
       <mapping class="com.wsk.movie.springdata.admin.entity.UserinformationEntity"/>
       <mapping class="com.wsk.movie.springdata.admin.entity.AdmininformationEntity"/>
       <mapping class="com.wsk.movie.springdata.admin.entity.CriticReportEntity"/>
+      <mapping class="com.wsk.movie.springdata.admin.entity.AdminactionEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

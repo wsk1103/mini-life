@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class UserInformation  implements Serializable {
+
+    private static final long serialVersionUID = 55426316542955265L;
+
     private Integer id;
 
     private String address;
@@ -25,6 +28,8 @@ public class UserInformation  implements Serializable {
     private Date modified;
 
     private String avatar;
+
+    private Integer allowed;
 
     public Integer getId() {
         return id;
@@ -112,5 +117,13 @@ public class UserInformation  implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar == null ? null : avatar.trim();
+    }
+
+    public Integer getAllowed() {
+        return allowed;
+    }
+
+    public void setAllowed(Integer allowed) {
+        this.allowed = allowed;
     }
 }

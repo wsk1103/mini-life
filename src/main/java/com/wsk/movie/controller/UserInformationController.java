@@ -114,8 +114,8 @@ public class UserInformationController {
         }
     }
 
-    @RequestMapping(value ="/main")
-    public String myself(Model model, HttpServletRequest request){
+    @RequestMapping(value = "/main")
+    public String myself(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
             return "redirect:/login";
@@ -593,7 +593,7 @@ public class UserInformationController {
             return "redirect:/login";
         }
         int result = userInformationService.updateByPrimaryKeySelective(userInformation);
-        if (result!=1){
+        if (result != 1) {
             return "redirect:/login";
         }
         return "redirect:/accountSettings";
@@ -613,7 +613,7 @@ public class UserInformationController {
             new_password = Tool.getInstance().getMD5(new_password);
             userPassword.setPassword(new_password);
             int result = userPasswordService.updatePassword(userPassword);
-            if (result == 1){
+            if (result == 1) {
                 return "redirect:/login";
             }
         }
@@ -662,7 +662,13 @@ public class UserInformationController {
         int id = 0;
         try {
             UserInformation userInformation = this.userInformationService.selectIdByPhone(phone);
-            id = userInformation.getId();
+            Integer allowed = userInformation.getAllowed();
+            if (allowed == 1) {
+                id = userInformation.getId();
+            } else {
+                id = -1;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -673,6 +679,7 @@ public class UserInformationController {
         boolean result = false;
         try {
             int id = getUserInformationId(phone);
+            if (id == -1) return false;
             String psw = userPasswordService.getPassword(id).getPassword();
             password = Tool.getInstance().getMD5(password);
             if (password.equals(psw)) {
