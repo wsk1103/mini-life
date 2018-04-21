@@ -1,6 +1,6 @@
-# 这是一个集电影，音乐和书籍于一体的Java web应用（还在完善中）
+# 这是一个集电影，音乐和书籍于一体的Java web系统平台
 
-### 框架：Spring,Spring MVC,MyBatis,Spring Data,Shiro,Dubbo
+### 框架：Spring Boot,Spring,Spring MVC,MyBatis（前期）,Spring Data（后期）
 ### 数据库:MySQL
 ### 缓存:Redis
 ### 页面解析框架:Thymeleaf

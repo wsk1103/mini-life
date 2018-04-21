@@ -23,7 +23,7 @@ import java.util.concurrent.LinkedTransferQueue;
 public class MyQueue {
     //使用无界限阻塞队列
     private LinkedTransferQueue<MyQueueBean> queue;
-    //存放数据库唯一id,根据id判断任务是否重复
+    //存放数据库唯一任务名,根据任务名判断任务是否重复
     private static final List<String> LIST = new ArrayList<>();
 
     private MyQueue() {

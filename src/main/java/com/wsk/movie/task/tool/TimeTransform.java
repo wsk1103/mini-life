@@ -5,6 +5,7 @@ import com.wsk.movie.tool.Tool;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -20,8 +21,8 @@ import java.util.Date;
  */
 public class TimeTransform {
 
-    public static SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
-    public static SimpleDateFormat fullDay = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat DAY = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat FULL_DAY = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static long getTime(String expression) {
         if (Tool.getInstance().isNullOrEmpty(expression)) {
@@ -54,11 +55,11 @@ public class TimeTransform {
             }
         } catch (Exception e) {
             try {
-                start = fullDay.parse(expression).getTime() - new Date().getTime();
+                start = FULL_DAY.parse(expression).getTime() - System.currentTimeMillis();
                 start = start > 0 ? start / 1000 : 0;
             } catch (ParseException e1) {
                 try {
-                    start = day.parse(expression).getTime() - new Date().getTime();
+                    start = DAY.parse(expression).getTime() - System.currentTimeMillis();
                     start = start > 0 ? start / 1000 : 0;
                 } catch (ParseException e2) {
                     throw new RuntimeException("不是正确的时间表达式");
@@ -71,22 +72,37 @@ public class TimeTransform {
     public static long getTime(Date date) {
         //最后总时间
         long start;
-        start = date.getTime() - new Date().getTime();
+        start = date.getTime() - System.currentTimeMillis();
         start = start > 0 ? start / 1000 : 0;
         return start;
     }
 
     public static long getTime(long date) {
         long start;
-        start = date - new Date().getTime();
+        start = date - System.currentTimeMillis();
         start = start > 0 ? start / 1000 : 0;
         return start;
     }
 
     public static long getTime(Timestamp date) {
         long start;
-        start = date.getTime() - new Date().getTime();
+        start = date.getTime() - System.currentTimeMillis();
         start = start > 0 ? start / 1000 : 0;
         return start;
+    }
+
+    public static void main(String[] args) {
+//        System.out.println(Instant.now());
+//        System.out.println(LocalDateTime.now());
+//        System.out.println(LocalDate.now());
+//        System.out.println(LocalTime.now());
+        //获取秒数
+        Long second = LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
+        //获取毫秒数
+        Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        System.out.println(second);
+        System.out.println(milliSecond);
+        System.out.println(new Date().getTime());
+        System.out.println(getTime("2018-04-19 15:00:00"));
     }
 }

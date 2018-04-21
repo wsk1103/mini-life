@@ -15,4 +15,6 @@ public class Time {
     public static final long ONE_DAY = 60 * 60 * 24;
     public static final long HALF_OF_MONTH = 60 * 60 * 24 * 15;
     public static final long ONE_MONTH = 60 * 60 * 24 * 30;
+    //很长时间
+    public static final long LONG = Long.MAX_VALUE;
 }

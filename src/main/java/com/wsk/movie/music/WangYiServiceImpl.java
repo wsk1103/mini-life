@@ -455,7 +455,7 @@ public class WangYiServiceImpl implements WangYiService {
         try {
             WangYiResult result = Tool.getInstance().jsonToBean(json, WangYiResult.class);
             WangYiSong[] songs = result.getSongs();
-            redisUtils.set(url, json, Time.ONE_DAY);
+            redisUtils.set(url, json, Time.LONG);
             return saveMusic(songs, null);
         } catch (Exception e) {
             e.printStackTrace();
