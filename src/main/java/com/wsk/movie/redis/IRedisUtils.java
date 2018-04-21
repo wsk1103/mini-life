@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @DESCRIPTION :
+ * @DESCRIPTION :Redis工具类接口
  * @AUTHOR : WuShukai1103
  * @TIME : 2017/12/31  18:30
  */
@@ -15,10 +15,10 @@ public interface IRedisUtils {
     /**
      * string
      *
-     * @param key
-     * @param value
-     * @param time
-     * @return
+     * @param key   存储的key
+     * @param value 存储的值
+     * @param time  存储是时长
+     * @return 结果
      */
     boolean set(String key, String value, long time);
 
@@ -45,15 +45,15 @@ public interface IRedisUtils {
     /**
      * hash
      *
-     * @param key
-     * @param field
-     * @param value
-     * @param time
-     * @return
+     * @param key   存储的key
+     * @param field 存储的field
+     * @param value 存储的值
+     * @param time  存储的时长
+     * @return 返回结果
      */
     boolean hset(String key, String field, String value, long time);
 
-    boolean hset(String key, Map<String,String> map, long time);
+    boolean hset(String key, Map<String, String> map, long time);
 
     boolean hset(String key, String field, String value);
 
@@ -71,12 +71,11 @@ public interface IRedisUtils {
 
     Map<Object, Object> hgetall(String key);
 
-
     /**
      * list
      *
-     * @param key
-     * @return
+     * @param key 存储的key
+     * @return 返回结果
      */
     Long lpush(String key, long time, String... values);
 
@@ -107,10 +106,10 @@ public interface IRedisUtils {
     /**
      * 集合
      *
-     * @param key
-     * @param time
-     * @param values
-     * @return
+     * @param key    存储的key
+     * @param time   存储的时长
+     * @param values 存储的值，1至多个
+     * @return 结果
      */
     Long sadd(String key, long time, String... values);
 
@@ -126,7 +125,7 @@ public interface IRedisUtils {
 
     Set<String> sdiff(String k, List<String> key);
 
-    Set<String> sinter(String k1,String k2);
+    Set<String> sinter(String k1, String k2);
 
     Set<String> sinter(String k, List<String> key);
 
@@ -134,12 +133,9 @@ public interface IRedisUtils {
 
     Set<String> sunion(String key, List<String> keys);
 
-
     boolean sdiffstore(String destination, long time, List<String> keys);
 
-
     boolean sinterstore(String destination, long time, List<String> keys);
-
 
     boolean sunionstore(String destination, long time, List<String> keys);
 
@@ -203,6 +199,7 @@ public interface IRedisUtils {
 
     Long zrevrank(String key, String member);
 
+    //通用
     boolean del(String key);
 
     boolean del(String... keys);

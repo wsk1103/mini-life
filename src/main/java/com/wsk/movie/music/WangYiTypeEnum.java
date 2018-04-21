@@ -1,7 +1,7 @@
 package com.wsk.movie.music;
 
 /**
- * @DESCRIPTION :
+ * @DESCRIPTION :网易云音乐配置文件
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/18  21:53
  */

@@ -53,7 +53,7 @@ public class WangYiServiceImpl implements WangYiService {
     private final WangYiSingerRepository singerService;
     private final WangYiAlbumRepository albumService;
 
-    private SimpleDateFormat fullDay = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     public WangYiServiceImpl(IRedisUtils redisUtils, WangYiMusicRepository musicService, WangYiSingerRepository singerService, WangYiAlbumRepository albumService) {
@@ -126,7 +126,7 @@ public class WangYiServiceImpl implements WangYiService {
                 entity.setSingername(singernames.toString());
                 entity.setAlbumid(album.getAlbumid());
                 entity.setAlbumname(album.getAlbumname());
-                entity.setPublishtime(fullDay.format(null == album.getPublishtime() ? new Date() : album.getPublishtime()));
+                entity.setPublishtime(day.format(null == album.getPublishtime() ? new Date() : album.getPublishtime()));
                 entity.setUrl(music.getUrl());
                 entity.setAlias(music.getAlias());
                 entity.setPicurl(music.getPicurl());
@@ -406,7 +406,7 @@ public class WangYiServiceImpl implements WangYiService {
                     entity.setSingername(singerNames.toString());
                     entity.setAlbumid(song.getAlbum().getId());
                     entity.setAlbumname(song.getAlbum().getName());
-                    entity.setPublishtime(fullDay.format(song.getPublishTime()));
+                    entity.setPublishtime(day.format(song.getPublishTime()));
                     String song_url = redisUtils.get("wangyi_music_url_" + entity.getSongid());
                     if (Tool.getInstance().isNullOrEmpty(song_url)) {
                         song_url = musicService.getBySongid((int) entity.getSongid()).getUrl();
@@ -517,7 +517,7 @@ public class WangYiServiceImpl implements WangYiService {
                 entity.setSongname(song.getName());
                 entity.setAlbumid(song.getAlbum().getId());
                 entity.setAlbumname(song.getAlbum().getName());
-                entity.setPublishtime(fullDay.format(song.getAlbum().getPublishTime()));
+                entity.setPublishtime(day.format(song.getAlbum().getPublishTime()));
 
                 WangYiArtists[] artists = song.getArtists();
                 StringBuilder singerIds = new StringBuilder();
