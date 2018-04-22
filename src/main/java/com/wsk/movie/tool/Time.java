@@ -25,5 +25,5 @@ public class Time {
     //一个月,30天
     public static final long ONE_MONTH = 60 * 60 * 24 * 30;
     //很长时间
-    public static final long LONG = Long.MAX_VALUE;
+    public static final int LONG = Integer.MAX_VALUE;
 }
