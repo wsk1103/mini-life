@@ -1,5 +1,7 @@
 package com.wsk.movie.tool;
 
+import java.text.SimpleDateFormat;
+
 /**
  * @DESCRIPTION :这是一个时间日期工具
  * @AUTHOR : WuShukai1103
@@ -25,5 +27,10 @@ public class Time {
     //一个月,30天
     public static final long ONE_MONTH = 60 * 60 * 24 * 30;
     //很长时间
-    public static final long LONG = Long.MAX_VALUE;
+    public static final int LONG = Integer.MAX_VALUE;
+
+    //时间转化器
+    public static final SimpleDateFormat DAY = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat FULL_DAY = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static final SimpleDateFormat FULL_DAY_2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

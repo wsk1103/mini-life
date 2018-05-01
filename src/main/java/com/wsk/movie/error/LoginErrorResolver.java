@@ -24,6 +24,7 @@ public class LoginErrorResolver implements HandlerExceptionResolver {
             modelAndView.addObject("msg", "How old are you?");
             modelAndView.setViewName("error");
         }
+        System.out.println(e);
         return modelAndView;
     }
 }

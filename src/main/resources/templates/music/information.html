@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${entity.getSongName()}+'(瓢虫微生活-音乐)'">详情</title>
+    <link rel="stylesheet" href="/css/movieInformation.css"/>
+    <link rel="stylesheet" href="/css/all.css"/>
+    <link href="/image/title.ico" rel="icon"/>
+    <script src="/js/jquery-3.0.0.js"></script>
+    <script src="/js/layer.js"></script>
+    <link rel="stylesheet" href="/css/APlayer.min.css"/>
+    <script src="/js/APlayer.min.js"></script>
+</head>
+<script src="/js/all.js"></script>
+<!--<script src="/js/information/movieInformation.js"></script>-->
+<body>
+<header th:include="header :: copy"></header>
+<div class="all_content" style="">
+    <main>
+        <div>
+            <div class="all_movie" th:with="m=${entity}">
+                <h1 th:text="${m.getSongName()}" id="songName" th:value="${m.getSongName()}">WSK</h1>
+                <div class="movie_cover">
+                    <img th:src="${m.getPic()}" class="movie_img" id="songPic"
+                         th:title="${m.getSongName()}" alt="加载中......"/>
+                </div>
+                <div style="padding: 1em 1em 0 1em;">
+                    <!--<div><span class="movie_show">电影名</span>：-->
+                    <!--<div th:text="${subject.getTitle()}" class="movie_font"></div>-->
+                    <!--</div>-->
+                    <div><span class="movie_show">歌 &nbsp;手</span>：
+                        <div th:text="${m.getSinger()}" class="movie_font" id="singer">
+                        </div>
+                    </div>
+                    <div><span class="movie_show">专 &nbsp;辑</span>：
+                        <span th:text="${m.getAlbum()}" class="movie_font"
+                              style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap; ">
+                        </span>
+                    </div>
+                    <!--<div><span class="movie_show">时 &nbsp;间</span>：-->
+                        <!--<div th:text="${m.getPublishTime()}" class="movie_font">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div id="url" th:text="${m.getUrl()}" style="display: none;"></div>
+                    <!--播放器-->
+                    <!--<div id="player1" class="aplayer"></div>-->
+                    <div id="player1" class="aplayer">
+                    </div>
+                    <div class="movie_desc" style="padding: .5em 1em">
+                        <div style="display: inline-block" class="movie_show">歌 &nbsp;词</div>
+                        ：<br/>
+                        <div th:utext="${m.getLyric()}"
+                             style="display: inline;font-weight: 500; font-size: .8em;"></div>
+                    </div>
+                </div>
+
+                <!--热门短评-->
+                <div class="movie_video_rec">
+                    <div style="clear: both;padding-top: 1em;" class="movie_show">热门评论：</div>
+                    <div th:each="c:${entity.getComments()}" class="hot_comment">
+                        <div class="hot_comment_1">
+                            <span style="color:#666666;">用户：</span>
+                            <span th:text="${c.getUser().getNickname()}" class="hot_comment_1_name">WSK</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span th:text="${c.getTime()}" class="hot_comment_1_time"></span>
+                        </div>
+                        <div class="hot_comment_2">
+                            <span th:text="${c.getContent()}" class="hot_comment_2_comment">评论</span>
+                        </div>
+                        <div class="movie_comment_border" style="border: 1px solid #a1c15e"></div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </main>
+    <aside th:include="aside :: aside"></aside>
+    <div style="clear: both"></div>
+</div>
+<footer>
+    <div>
+        <button class="go_to_top" value=""></button>
+    </div>
+</footer>
+</body>
+<script>
+    var songName = $("#songName").text();
+    var songPic = $("#songPic").attr("src");
+    var singer = $("#singer").text();
+    var url = $("#url").text();
+    console.log(songName + songPic + singer);
+    var ap = new APlayer({
+        element: document.getElementById('player1'),
+        narrow: false,
+        autoplay: true,
+        showlrc: false,
+        music: {
+            title: songName,
+            author:singer,
+            url: url,
+            pic: songPic
+        }
+    });
+    ap.init();
+
+</script>
+</html>

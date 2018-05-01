@@ -3,9 +3,9 @@ package com.wsk.movie.book.entity;
 import javax.persistence.*;
 
 /**
- * @DESCRIPTION : 书籍数据库对应模型
+ * @DESCRIPTION :
  * @AUTHOR : WuShukai1103
- * @TIME : 2018/2/15  15:45
+ * @TIME : 2018/5/1  17:44
  */
 @Entity
 @Table(name = "book", schema = "movie")
@@ -27,6 +27,7 @@ public class BookEntity {
     private String authorIntro;
     private String summary;
     private String price;
+    private Integer status;
 
     @Id
     @Column(name = "id")
@@ -198,30 +199,41 @@ public class BookEntity {
         this.price = price;
     }
 
+    @Basic
+    @Column(name = "status")
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookEntity that = (BookEntity) o;
+        BookEntity entity = (BookEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (average != null ? !average.equals(that.average) : that.average != null) return false;
-        if (author != null ? !author.equals(that.author) : that.author != null) return false;
-        if (pubdate != null ? !pubdate.equals(that.pubdate) : that.pubdate != null) return false;
-        if (originTitle != null ? !originTitle.equals(that.originTitle) : that.originTitle != null) return false;
-        if (image != null ? !image.equals(that.image) : that.image != null) return false;
-        if (binding != null ? !binding.equals(that.binding) : that.binding != null) return false;
-        if (translator != null ? !translator.equals(that.translator) : that.translator != null) return false;
-        if (catalog != null ? !catalog.equals(that.catalog) : that.catalog != null) return false;
-        if (pages != null ? !pages.equals(that.pages) : that.pages != null) return false;
-        if (publisher != null ? !publisher.equals(that.publisher) : that.publisher != null) return false;
-        if (isbn10 != null ? !isbn10.equals(that.isbn10) : that.isbn10 != null) return false;
-        if (isbn13 != null ? !isbn13.equals(that.isbn13) : that.isbn13 != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (authorIntro != null ? !authorIntro.equals(that.authorIntro) : that.authorIntro != null) return false;
-        if (summary != null ? !summary.equals(that.summary) : that.summary != null) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        if (id != null ? !id.equals(entity.id) : entity.id != null) return false;
+        if (average != null ? !average.equals(entity.average) : entity.average != null) return false;
+        if (author != null ? !author.equals(entity.author) : entity.author != null) return false;
+        if (pubdate != null ? !pubdate.equals(entity.pubdate) : entity.pubdate != null) return false;
+        if (originTitle != null ? !originTitle.equals(entity.originTitle) : entity.originTitle != null) return false;
+        if (image != null ? !image.equals(entity.image) : entity.image != null) return false;
+        if (binding != null ? !binding.equals(entity.binding) : entity.binding != null) return false;
+        if (translator != null ? !translator.equals(entity.translator) : entity.translator != null) return false;
+        if (catalog != null ? !catalog.equals(entity.catalog) : entity.catalog != null) return false;
+        if (pages != null ? !pages.equals(entity.pages) : entity.pages != null) return false;
+        if (publisher != null ? !publisher.equals(entity.publisher) : entity.publisher != null) return false;
+        if (isbn10 != null ? !isbn10.equals(entity.isbn10) : entity.isbn10 != null) return false;
+        if (isbn13 != null ? !isbn13.equals(entity.isbn13) : entity.isbn13 != null) return false;
+        if (title != null ? !title.equals(entity.title) : entity.title != null) return false;
+        if (authorIntro != null ? !authorIntro.equals(entity.authorIntro) : entity.authorIntro != null) return false;
+        if (summary != null ? !summary.equals(entity.summary) : entity.summary != null) return false;
+        if (price != null ? !price.equals(entity.price) : entity.price != null) return false;
+        if (status != null ? !status.equals(entity.status) : entity.status != null) return false;
 
         return true;
     }
@@ -245,6 +257,7 @@ public class BookEntity {
         result = 31 * result + (authorIntro != null ? authorIntro.hashCode() : 0);
         result = 31 * result + (summary != null ? summary.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 }

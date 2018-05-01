@@ -87,7 +87,7 @@ public class AES {
          */
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.print("请输入要解析的音乐ID：");
-        String first_param = "{\"ids\":\"[169185]\",\"br\":128000,\"csrf_token\":\"\"}";
+        String first_param = "{\"ids\":\"[33206214]\",\"br\":128000,\"csrf_token\":\"\"}";
         System.out.println("params=" + URLEncoder.encode(AES.getParams(first_param), "UTF-8") + "&encSecKey=" + AES.getEncSecKey());
     }
 }

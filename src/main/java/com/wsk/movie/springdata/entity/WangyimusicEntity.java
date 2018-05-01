@@ -8,7 +8,7 @@ import javax.persistence.*;
  * @TIME : 2018/1/21  18:59
  */
 @Entity
-@Table(name = "wangyimusic", schema = "movie")
+@Table(name = "wangyimusic", schema = "movie", catalog = "")
 public class WangyimusicEntity {
     private int id;
     private int songid;
@@ -18,6 +18,7 @@ public class WangyimusicEntity {
     private String alias;
     private String url;
     private String picurl;
+    private Integer status;
 
     @Id
     @Column(name = "id")
@@ -129,5 +130,15 @@ public class WangyimusicEntity {
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (picurl != null ? picurl.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "status")
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

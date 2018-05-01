@@ -56,6 +56,13 @@ public class HttpUnits {
         return document.getElementsByTag("body").first();
     }
 
+    public static String urlToStringPost(String url) throws IOException {
+        Document document;
+        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(15000);
+        document = connection.post();
+        return document.getElementsByTag("body").first().text();
+    }
+
     public static void main(String[] args) throws IOException {
         System.out.println(urlToString(""));
     }

@@ -18,10 +18,16 @@ public class WangYiTypeEnum {
     public static final String MUSIC_URL = "/music/";//本地音乐文件地址
 
     //评论地址
-    public static final StringBuilder COMMENTS_URL_START = new StringBuilder("http://music.163.com/weapi/v1/resource/comments/R_SO_4_");
+    public static final String COMMENTS_URL_START = "http://music.163.com/weapi/v1/resource/comments/R_SO_4_";
     public static final String COMMENTS_URL_END = "?csrf_token=";
-//    评论缓存
+
+    //歌词地址
+    public static final String LYRIC = "https://music.163.com/api/song/lyric?id=33206214&lv=1&kv=1&tv=-1";
+    //歌词缓存前缀,hash,    格式 ：LYRIC_CACHE + id + lyric；
+    public static final String LYRIC_CACHE = "LYRIC_CACHE";
+    //    评论缓存
     //wangyi_comments_ + id
+    public static final String COMMENT_CACHE = "WANGYI_COMMENT_CACHE";
 
     //图片地址
     public static final String MUSIC_PIC = "http://music.163.com/api/song/detail/?";

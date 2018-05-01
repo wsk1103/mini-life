@@ -30,4 +30,7 @@ public interface WangYiService {
 
     //根据歌曲id获得url
     BaseEntity getMusicUrlById(long song_id);
+
+    //获取评论
+    String getMusicLyric(long song_id);
 }

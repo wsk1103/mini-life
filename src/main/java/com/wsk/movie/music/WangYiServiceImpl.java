@@ -1,5 +1,6 @@
 package com.wsk.movie.music;
 
+import com.alibaba.fastjson.JSONObject;
 import com.wsk.movie.music.bean.*;
 import com.wsk.movie.music.entity.*;
 import com.wsk.movie.music.service.WangYiService;
@@ -7,9 +8,11 @@ import com.wsk.movie.music.thread.MusicRunnable;
 import com.wsk.movie.music.thread.MusicThread;
 import com.wsk.movie.redis.IRedisUtils;
 import com.wsk.movie.springdata.WangYiAlbumRepository;
+import com.wsk.movie.springdata.WangYiLrcRepository;
 import com.wsk.movie.springdata.WangYiMusicRepository;
 import com.wsk.movie.springdata.WangYiSingerRepository;
 import com.wsk.movie.springdata.entity.WangyialbumEntity;
+import com.wsk.movie.springdata.entity.WangyilrcEntity;
 import com.wsk.movie.springdata.entity.WangyimusicEntity;
 import com.wsk.movie.springdata.entity.WangyisingerEntity;
 import com.wsk.movie.tool.Down;
@@ -22,7 +25,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.wsk.movie.music.WangYiTypeEnum.*;
@@ -52,15 +54,15 @@ public class WangYiServiceImpl implements WangYiService {
     private final WangYiMusicRepository musicService;
     private final WangYiSingerRepository singerService;
     private final WangYiAlbumRepository albumService;
-
-    private SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
+    private final WangYiLrcRepository lrcRepository;
 
     @Autowired
-    public WangYiServiceImpl(IRedisUtils redisUtils, WangYiMusicRepository musicService, WangYiSingerRepository singerService, WangYiAlbumRepository albumService) {
+    public WangYiServiceImpl(IRedisUtils redisUtils, WangYiMusicRepository musicService, WangYiSingerRepository singerService, WangYiAlbumRepository albumService, WangYiLrcRepository lrcRepository) {
         this.redisUtils = redisUtils;
         this.musicService = musicService;
         this.singerService = singerService;
         this.albumService = albumService;
+        this.lrcRepository = lrcRepository;
     }
 
     private void init(String name) {
@@ -126,7 +128,7 @@ public class WangYiServiceImpl implements WangYiService {
                 entity.setSingername(singernames.toString());
                 entity.setAlbumid(album.getAlbumid());
                 entity.setAlbumname(album.getAlbumname());
-                entity.setPublishtime(day.format(null == album.getPublishtime() ? new Date() : album.getPublishtime()));
+                entity.setPublishtime(Time.DAY.format(null == album.getPublishtime() ? new Date() : album.getPublishtime()));
                 entity.setUrl(music.getUrl());
                 entity.setAlias(music.getAlias());
                 entity.setPicurl(music.getPicurl());
@@ -219,7 +221,7 @@ public class WangYiServiceImpl implements WangYiService {
         entity.setCode(500);
         entity.setMsg("fail");
 
-        String result = redisUtils.get("wangyi_comments_" + song_id);
+        String result = redisUtils.hget(COMMENT_CACHE , String.valueOf(song_id));
         WangYiAllCommentBean commentBean;
         if (null != result) {
             try {
@@ -242,18 +244,22 @@ public class WangYiServiceImpl implements WangYiService {
             return entity;
         }
         String encSecKey = AES.getEncSecKey();
-        String url = COMMENTS_URL_START.append(song_id).append(COMMENTS_URL_END).append("&params=").append(params).append("&encSecKey=").append(encSecKey).toString();
-
+        String url = COMMENTS_URL_START + song_id + COMMENTS_URL_END + "&params=" + params + "&encSecKey=" + encSecKey;
         try {
             commentBean = HttpUnits.urlToBean(url, WangYiAllCommentBean.class, DATA, HEADERS, null, HttpMethodType.POST);
         } catch (Exception e) {
             return entity;
         }
+        if (Tool.getInstance().isNotNull(commentBean)) {
+            for (WangYiCommentsBean bean : commentBean.getHotComments()) {
+                bean.setTime(Time.FULL_DAY.format(Long.valueOf(bean.getTime())));
+            }
+        }
         //成功返回
         entity.setData(commentBean);
         entity.setCode(200);
         entity.setMsg("success");
-        redisUtils.set("wangyi_comments_" + song_id, Tool.getInstance().toJson(commentBean));
+        System.out.println(redisUtils.hset(COMMENT_CACHE , String.valueOf(song_id), Tool.getInstance().toJson(commentBean), Time.LONG));
         return entity;
     }
 
@@ -406,7 +412,7 @@ public class WangYiServiceImpl implements WangYiService {
                     entity.setSingername(singerNames.toString());
                     entity.setAlbumid(song.getAlbum().getId());
                     entity.setAlbumname(song.getAlbum().getName());
-                    entity.setPublishtime(day.format(song.getPublishTime()));
+                    entity.setPublishtime(Time.DAY.format(song.getPublishTime()));
                     String song_url = redisUtils.get("wangyi_music_url_" + entity.getSongid());
                     if (Tool.getInstance().isNullOrEmpty(song_url)) {
                         song_url = musicService.getBySongid((int) entity.getSongid()).getUrl();
@@ -517,7 +523,7 @@ public class WangYiServiceImpl implements WangYiService {
                 entity.setSongname(song.getName());
                 entity.setAlbumid(song.getAlbum().getId());
                 entity.setAlbumname(song.getAlbum().getName());
-                entity.setPublishtime(day.format(song.getAlbum().getPublishTime()));
+                entity.setPublishtime(Time.DAY.format(song.getAlbum().getPublishTime()));
 
                 WangYiArtists[] artists = song.getArtists();
                 StringBuilder singerIds = new StringBuilder();
@@ -637,8 +643,49 @@ public class WangYiServiceImpl implements WangYiService {
         }
     }
 
+    //获取歌词,https://music.163.com/api/song/lyric?id=33206214&lv=1&kv=1&tv=-1
+    public String getMusicLyric(long song_id) {
+        String lyric;
+        //从缓存中取
+        lyric = redisUtils.hget(LYRIC_CACHE, String.valueOf(song_id));
+        if (Tool.getInstance().isNotNull(lyric)) {
+            return lyric;
+        }
+        //先从数据库获取
+        WangyilrcEntity lrcEntity = lrcRepository.getById(song_id);
+        if (Tool.getInstance().isNotNull(lrcEntity)) {
+            return lrcEntity.getLrc();
+        }
+        String url = "https://music.163.com/api/song/lyric?id=" + song_id + "&lv=1&kv=1&tv=-1";
+        try {
+            String result = HttpUnits.urlToStringPost(url);
+//            System.out.println(result);
+            if (Tool.getInstance().isNullOrEmpty(result)) {
+                return null;
+            }
+            JSONObject object = JSONObject.parseObject(result);
+            if (object.containsKey("lrc")){
+                JSONObject lrc = JSONObject.parseObject(object.getString("lrc"));
+                if (lrc.containsKey("lyric")) {
+                    lyric = lrc.getString("lyric");
+                    WangyilrcEntity entity = new WangyilrcEntity();
+                    entity.setId((int) song_id);
+                    entity.setLrc(lyric);
+                    lrcRepository.save(entity);
+                    //保存缓存
+                    redisUtils.hset(LYRIC_CACHE, String.valueOf(song_id), lyric, Time.ONE_DAY);
+                    return lyric;
+                }
+            }
+            return null;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
         try {
+//            System.out.println(getMusicLyric(33206214));
 //            WangYiBean bean = HttpUnits.urlToBean(GET_URL, WangYiBean.class, DATA, HEADERS, null, HttpMethodType.POST);
 //            long song_id = bean.getResult().getSongs()[0].getId();
 //            long song_id = 33223036;
