@@ -44,7 +44,7 @@
     </div>
     <div class="my_action">
         <div class="my_action_home"><a href="home" th:href="'/information?id='+${userInformation.id}"
-                                       >我的影评：<span th:text="${critics}" id="num_critics"></span></a></div>
+                                       >我的说说：<span th:text="${critics}" id="num_critics"></span></a></div>
         <div class="my_action_home"><a href="/myComment">我的评论：<span th:text="${comments}" id="num_comments"></span></a></div>
         <div class="my_action_favorite"><a href="/myCollection"> 我的收藏：<span th:text="${collections}" id="num_collections"></span></a></div>
         <div class="my_action_good"><a href="/myGood"> 我的点赞：<span th:text="${goods}" id="num_goods"></span></a></div>
