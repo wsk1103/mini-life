@@ -104,11 +104,11 @@
                 <!--发表内容-->
                 <form action="publishCritic" method="post" enctype="multipart/form-data" class="release_form">
                     <div class="release_div">
-                        <textarea class="release_message" name="movie_content" placeholder="发表影评"></textarea>
+                        <textarea class="release_message" name="movie_content" placeholder="发表评论"></textarea>
                     </div>
                     <div class="release_div_2">
                         <span class="size_tip">还可以输入122个字</span>
-                        <span class="movie_name">电影名：</span>
+                        <span class="movie_name">书名：</span>
                         <input type="text" class="movie_name_text" name="movie_name" th:value="${entity.getTitle()}"/>
                         <a class="movie_image_upload"><input type="file" value="图片" class="" id="file_upload"
                                                              name="file_upload"/>图片</a>

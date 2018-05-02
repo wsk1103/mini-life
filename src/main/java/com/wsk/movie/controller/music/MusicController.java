@@ -107,6 +107,7 @@ public class MusicController {
             String lyric = service.getMusicLyric(songId);
             if (Tool.getInstance().isNotNull(lyric)) {
                 lyric = lyric.replaceAll("\n", "<br/>");
+                lyric = lyric.replaceAll("\\[[0-9]+:[0-9]+\\.[0-9]+\\]","");
             }
             informationEntity.setLyric(lyric);
             informationEntity.setPic(wangyimusicEntity.getPicurl());

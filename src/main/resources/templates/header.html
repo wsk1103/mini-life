@@ -129,13 +129,13 @@
                             账号安全
                         </a>
                     </li>
-                    <li class="menu_li header_feedback">
+                    <li class="menu_li header_feedback" id="idea">
                         <a href="#">
                             意见反馈
                         </a>
                     </li>
-                    <li class="menu_li header_help">
-                        <a href="#">
+                    <li class="menu_li header_help" id="help">
+                        <a href="#" >
                             帮助中心
                         </a>
                     </li>
@@ -150,6 +150,16 @@
     </div>
     <input type="hidden" id="uid" th:value="${userInformation.id}" value="0"/>
     <script src="/js/header.js">
+    </script>
+    <script>
+        $(function () {
+            $("#help").click(function () {
+                alert("无门槛免费使用。");
+            });
+            $("#idea").click(function () {
+                alert("请将问题通过邮箱发送至1261709167@gmail.com");
+            });
+        });
     </script>
 </header>
 </html>

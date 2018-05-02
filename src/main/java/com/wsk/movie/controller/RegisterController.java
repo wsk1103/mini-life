@@ -36,6 +36,8 @@ public class RegisterController {
         model.addAttribute("token", token);
         String result = Tool.getInstance().getProtocolTxt();
         model.addAttribute("txt", result);
+        request.getSession().setAttribute("rand","7834");
+        model.addAttribute("random", "7834");
         return "registered/register";
     }
 

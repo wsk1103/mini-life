@@ -79,69 +79,6 @@ public class SearchBookServiceImpl implements SearchBookService {
             if (Tool.getInstance().isNullOrEmpty(id)) {
                 continue;
             }
-//            if (object.containsKey("id")){
-//                id = object.getString("id");
-//                model.setId(id);
-//            } else {
-//                continue;
-//            }
-//            if (object.containsKey("author")) {
-//                JSONArray authors = JSONArray.parseArray(object.getString("author"));
-//                StringBuilder author = new StringBuilder();
-//                for (int i = 0; i < authors.size(); i++) {
-//                    Object o_author = authors.get(i);
-//                    author.append(o_author.toString());
-//                    if (i >= authors.size() - 1) {
-//                        break;
-//                    }
-//                    author.append(",");
-//                }
-//                model.setAuthor(author.toString());
-//            }
-//            if (object.containsKey("pubdate"))
-//            model.setPubdate(object.getString("pubdate"));
-//            if (object.containsKey("origin_title"))
-//            model.setOriginTitle(object.getString("origin_title"));
-//            if (object.containsKey("image"))
-//            model.setImage(object.getString("image"));
-//            if (object.containsKey("binding"))
-//            model.setBinding(object.getString("binding"));
-//            if (object.containsKey("translator")) {
-//                JSONArray translators = JSONArray.parseArray(object.getString("translator"));
-//                StringBuilder translator = new StringBuilder();
-//                for (int i = 0; i < translators.size(); i++) {
-//                    Object otranslator = translators.get(i);
-//                    translator.append(otranslator.toString());
-//                    if (i >= translators.size() - 1) {
-//                        break;
-//                    }
-//                    translator.append(",");
-//                }
-//                model.setTranslator(translator.toString());
-//            }
-//            if (object.containsKey("catalog"))
-//            model.setCatalog(object.getString("catalog"));
-//            if (object.containsKey("pages"))
-//            model.setPages(object.getString("pages"));
-//            if (object.containsKey("publisher"))
-//            model.setPublisher(object.getString("publisher"));
-//            if (object.containsKey("isbn10"))
-//            model.setIsbn10(object.getString("isbn10"));
-//            if (object.containsKey("isbn13"))
-//            model.setIsbn13(object.getString("isbn13"));
-//            String title;
-//            if (object.containsKey("title")) {
-//                title = object.getString("title");
-//                model.setTitle(title);
-//            } else {
-//                continue;
-//            }
-//            if (object.containsKey("author_intro"))
-//            model.setAuthorIntro(object.getString("author_intro"));
-//            if (object.containsKey("summary"))
-//            model.setSummary(object.getString("summary"));
-//            if (object.containsKey("price"))
-//            model.setPrice(object.getString("price"));
             //获取评分，
             if (object.containsKey("rating")) {
                 object = object.getJSONObject("rating");

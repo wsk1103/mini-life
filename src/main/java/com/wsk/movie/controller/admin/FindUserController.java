@@ -1,16 +1,19 @@
 package com.wsk.movie.controller.admin;
 
+import com.wsk.movie.book.service.BookRepository;
 import com.wsk.movie.dao.AdminActionMapper;
 import com.wsk.movie.dao.PublishCriticMapper;
 import com.wsk.movie.jdbc.BaseDao;
 import com.wsk.movie.pojo.AdminAction;
 import com.wsk.movie.pojo.PublishCritic;
+import com.wsk.movie.springdata.WangYiMusicRepository;
 import com.wsk.movie.springdata.admin.AdminRepository;
 import com.wsk.movie.springdata.admin.ReportRepository;
 import com.wsk.movie.springdata.admin.UserInformationRepository;
 import com.wsk.movie.springdata.admin.entity.AdmininformationEntity;
 import com.wsk.movie.springdata.admin.entity.UserinformationEntity;
 import com.wsk.movie.springdata.admin.more.CriticEntity;
+import com.wsk.movie.springdata.admin.more.LogEntity;
 import com.wsk.movie.springdata.admin.more.ReportEntity;
 import com.wsk.movie.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +49,12 @@ public class FindUserController {
 
     @Autowired
     private PublishCriticMapper publishCriticMapper;
+
+    @Autowired
+    private WangYiMusicRepository musicRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
 
     @RequestMapping("/login")
@@ -190,6 +199,7 @@ public class FindUserController {
             e.printStackTrace();
         }
     }
+
     //信息审核和举报审核
     @RequestMapping(value = "/change")
     public void change(@RequestParam(value = "allowed") int allowed, @RequestParam("uid") int uid, HttpServletRequest request) {
@@ -217,5 +227,75 @@ public class FindUserController {
             e.printStackTrace();
         }
     }
+    //查看操作记录
+    @RequestMapping(value = "/findAction")
+    public String findAction(Model model, HttpServletRequest request){
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            return "admin/login";
+        }
+        String sql = "select a1.id, a2.`name` as adminname, a2.phone, a1.modified as time, a1.action from adminaction a1 LEFT JOIN admininformation a2 ON a1.aid = a2.id ";
+        BaseDao dao = new BaseDao();
+        List<LogEntity> entities = null;
+        try {
+            entities = dao.list(sql, LogEntity.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("entity", entities);
+        return "admin/all_log";
+    }
 
+    //改变音乐的禁用状态
+    @RequestMapping(value = "/changeMusicStatus")
+    public void changeMusicStatus(@RequestParam(value = "songId") long songid,
+                                  @RequestParam(value = "status") int status,
+                                  HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            System.out.println("管理员未登录!");
+            return;
+        }
+        try {
+            int result = musicRepository.changeMusicStatus(songid, status);
+            AdminAction adminAction = new AdminAction();
+            adminAction.setAction("管理员" + entity.getName() + ":禁用音乐:" + songid + ",成功");
+            adminAction.setAid(entity.getId());
+            adminAction.setModified(new Date());
+            if (result < 1) {
+                System.out.println("更新失败!");
+                adminAction.setAction("管理员" + entity.getName() + ":禁用音乐:" + songid + ",失败");
+            }
+            adminActionMapper.insert(adminAction);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //改变图书的禁用状态
+    @RequestMapping(value = "/changeBookStatus")
+    public void changeBookStatus(@RequestParam(value = "bookId") int bookid,
+                                 @RequestParam(value = "status") int status,
+                                 HttpServletRequest request) {
+        AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
+        if (Tool.getInstance().isNullOrEmpty(entity)) {
+            System.out.println("管理员未登录!");
+            return;
+        }
+        try {
+            int result = bookRepository.changeBookStatus(bookid + "", status);
+//            int result = 1;
+            AdminAction adminAction = new AdminAction();
+            adminAction.setAction("管理员" + entity.getName() + ":禁用书籍:" + bookid + ",成功");
+            adminAction.setAid(entity.getId());
+            adminAction.setModified(new Date());
+            if (result < 1) {
+                System.out.println("更新失败!");
+                adminAction.setAction("管理员" + entity.getName() + ":禁用书籍:" + bookid + ",失败");
+            }
+            adminActionMapper.insert(adminAction);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
