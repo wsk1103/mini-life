@@ -2,11 +2,13 @@ package com.wsk.movie.controller;
 
 import com.wsk.movie.bean.*;
 import com.wsk.movie.pojo.*;
+import com.wsk.movie.redis.IRedisUtils;
 import com.wsk.movie.service.*;
 import com.wsk.movie.token.TokenProccessor;
 import com.wsk.movie.tool.SensitivewordFilter;
 import com.wsk.movie.tool.Tool;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,9 @@ public class UserInformationController {
     private CollectionCriticService collectionCriticService;
     @Resource
     private GoodCriticService goodCriticService;
+
+    @Autowired
+    private IRedisUtils redisUtils;
 
 
     //This is a test which show all user`s information.
@@ -104,6 +109,7 @@ public class UserInformationController {
                 cookie.setMaxAge(60 * 60 * 24 * 7);
                 response.addCookie(cookie);
                 hasCookie = true;
+                redisUtils.set(request.getRequestedSessionId(), "1");
             }
             return "redirect:/my";
         } else {

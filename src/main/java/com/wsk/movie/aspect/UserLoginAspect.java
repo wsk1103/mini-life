@@ -2,17 +2,18 @@ package com.wsk.movie.aspect;
 
 import com.wsk.movie.error.LoginErrorException;
 import com.wsk.movie.pojo.UserInformation;
+import com.wsk.movie.redis.IRedisUtils;
 import com.wsk.movie.tool.Tool;
 import com.wsk.movie.write.Write;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 /**
  * @DESCRIPTION :登录过滤
@@ -22,6 +23,9 @@ import java.io.IOException;
 @Component
 @Aspect
 public class UserLoginAspect {
+
+    @Autowired
+    private IRedisUtils redis;
 
     @Pointcut("execution(* com.wsk.movie.controller.UserInformationController.login(..))")
     public void login() {
@@ -78,7 +82,8 @@ public class UserLoginAspect {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            throw new LoginErrorException("账号未登录！");
+            if (!isLogin())
+                throw new LoginErrorException("账号未登录！");
         }
     }
 
@@ -87,12 +92,16 @@ public class UserLoginAspect {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            throw new LoginErrorException("账号未登录！");
+            if (!isLogin())
+                throw new LoginErrorException("账号未登录！");
         }
     }
 
-    public static void main(String[] args) throws IOException {
-
+    private boolean isLogin() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String is = redis.get(request.getRequestedSessionId());
+        return Tool.getInstance().isNullOrEmpty(is);
     }
+
 
 }
