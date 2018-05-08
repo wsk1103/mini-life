@@ -289,7 +289,8 @@ $(document).on("click", ".chang_btn", function () {
                 //send code by email;
                 var result = data.result;
                 if (result == '1') {
-                    // alert("上传成功");
+                    alert("发布成功");
+                    $movie_content.attr("value", "");
                     // window.location = '';
                 }
                 else {
@@ -385,7 +386,8 @@ $(document).on("click", ".chang_btn", function () {
             data: formData,//一同上传的数据
             success: function (msg) {
                 if (1 == msg.result) {
-                    // alert("上传成功");
+                    alert("发布成功");
+                    $movie_content.attr("value", "");
                     // window.location = '';
                 } else if (2 == msg.result) {
                     alert("不能上传非法图片");

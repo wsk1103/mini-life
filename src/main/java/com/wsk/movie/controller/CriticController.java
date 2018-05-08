@@ -48,7 +48,7 @@ public class CriticController {
     @Autowired
     private ReportRepository reportRepository;
     //发表影评
-    @RequestMapping(value = "publishCritic", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/publishCritic", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Map publishCritic(HttpServletRequest request,
                              @RequestParam(value = "file_upload", required = false) MultipartFile file_upload,
