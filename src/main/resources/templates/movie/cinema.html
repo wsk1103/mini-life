@@ -25,7 +25,7 @@
                 <div style="padding: 1em 1em 0 1em;">
                     <div><span class="movie_show">正在上映</span>：
                         <div class="movie_font">
-                            <a th:href="'/hot_movie_information/'+${movie.getData().getCurrentMovie().getId()}" th:text="${movie.getData().getCurrentMovie().getNm()}"></a>
+                            <a th:href="'/hot/movie/information/'+${movie.getData().getCurrentMovie().getId()}" th:text="${movie.getData().getCurrentMovie().getNm()}"></a>
                         </div>
                     </div>
                     <div><span class="movie_show">评 &nbsp;分</span>：
@@ -89,7 +89,7 @@
                     <div style="padding: 1em 1em 0 1em;">
                         <div><span class="movie_show">电影名</span>：
                             <div class="movie_font">
-                                <a th:href="'/hot_movie_information/'+${m.getId()}" th:text="${m.getNm()}"></a>
+                                <a th:href="'/hot/movie/information/'+${m.getId()}" th:text="${m.getNm()}"></a>
                             </div>
                         </div>
                         <div><span class="movie_show">评 &nbsp;分</span>：

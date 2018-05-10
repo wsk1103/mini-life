@@ -71,7 +71,7 @@ public class SearchController {
 //    private
 
     //搜索电影详细信息
-    @RequestMapping(value = "/searchMovie")
+    @RequestMapping(value = "/search/result")
 //    @ResponseBody
     public String searchMovie(@RequestParam String name, @RequestParam String action,
                               Model model, HttpServletRequest request, RedirectAttributes attributes) throws UnsupportedEncodingException {
@@ -83,7 +83,7 @@ public class SearchController {
             case "movie":
 //                name = new String(name.getBytes("GBK"));
                 attributes.addFlashAttribute("name", name);
-                return "redirect:/searchMovieResult";
+                return "redirect:/search/movie/result";
             case "critic":
                 return getCriticByTitle(name, request, model);
             case "user":
@@ -169,7 +169,7 @@ public class SearchController {
     }
 
     //搜索影评通过title
-    @RequestMapping(value = "/getCriticByTitle")
+    @RequestMapping(value = "/get/critic/title")
     public String getCriticByTitle(@RequestParam String title, HttpServletRequest request, Model model) {
         if (Tool.getInstance().isNullOrEmpty(title)) {
             return "redirect:/login";

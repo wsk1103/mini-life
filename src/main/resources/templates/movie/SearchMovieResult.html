@@ -15,7 +15,7 @@
         <div th:with="movie=${movie}">
             <div class="search_movie_result" th:each="o:${movie.getSubjects()}">
                 <div class="search_movie_result_img">
-                    <a th:href="'/searchMovieOnly?id='+${o.getId()}">
+                    <a th:href="'/search/movie/information?id='+${o.getId()}">
                         <img src="/image/1.jpg" th:src="${o.getImages().get('medium').replaceFirst('http:','').replaceFirst('https:','')}" th:alt="${o.getTitle()}"/>
                     </a>
                 </div>
@@ -23,13 +23,13 @@
                     <div class="search_movie_result_information_1">
                         <span class="search_movie_result_information_name_1">电影名</span>:
                         <span class="search_movie_result_information_name_2">
-                            <a th:href="'/searchMovieOnly?id='+${o.getId()}" th:text="${o.getTitle()}">来自WSK的爱</a>
+                            <a th:href="'/search/movie/information?id='+${o.getId()}" th:text="${o.getTitle()}">来自WSK的爱</a>
                         </span>
                     </div>
                     <div class="search_movie_result_information_1">
                         <span class="search_movie_result_information_name_1">外语名</span>:
                         <span class="search_movie_result_information_name_2">
-                            <a th:href="'/searchMovieOnly?id='+${o.getId()}" th:text="${o.getOriginal_title()}">来自WSK的爱</a>
+                            <a th:href="'/search/movie/information?id='+${o.getId()}" th:text="${o.getOriginal_title()}">来自WSK的爱</a>
                         </span>
                     </div>
                     <div class="search_movie_result_information_1">

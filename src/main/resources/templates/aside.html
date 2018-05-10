@@ -45,9 +45,9 @@
     <div class="my_action">
         <div class="my_action_home"><a href="home" th:href="'/information?id='+${userInformation.id}"
                                        >我的说说：<span th:text="${critics}" id="num_critics"></span></a></div>
-        <div class="my_action_home"><a href="/myComment">我的评论：<span th:text="${comments}" id="num_comments"></span></a></div>
-        <div class="my_action_favorite"><a href="/myCollection"> 我的收藏：<span th:text="${collections}" id="num_collections"></span></a></div>
-        <div class="my_action_good"><a href="/myGood"> 我的点赞：<span th:text="${goods}" id="num_goods"></span></a></div>
+        <div class="my_action_home"><a href="/my/comment">我的评论：<span th:text="${comments}" id="num_comments"></span></a></div>
+        <div class="my_action_favorite"><a href="/my/collection"> 我的收藏：<span th:text="${collections}" id="num_collections"></span></a></div>
+        <div class="my_action_good"><a href="/my/good"> 我的点赞：<span th:text="${goods}" id="num_goods"></span></a></div>
     </div>
     <div class="my_friends">
         <!--好友列表-->
@@ -69,7 +69,7 @@
     <div class="all_search">
         <div class="my_friends_list">搜◎索</div>
         <div>
-            <form action="/searchMovie" method="post" id="searchMovie">
+            <form action="/search/movie" method="post" id="searchMovie">
                 <input type="text" name="name" class="search" placeholder="搜索" id="search"/>
                 <input type="hidden" name="action" id="movie_action" value="movie"/>
             </form>

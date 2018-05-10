@@ -16,7 +16,7 @@
             <div class="search_movie_result" th:each="o:${movie.getSubjects()}">
                 <div th:with="result = ${o.getSubject()}">
                     <div class="search_movie_result_img">
-                        <a th:href="'/searchMovieOnly?id='+${result.getId()}">
+                        <a th:href="'/search/movie/information?id='+${result.getId()}">
                             <img src="/image/1.jpg" th:with="s=${result.getImages().get('medium')}" th:src="${s.replaceFirst('http:','').replaceFirst('https:','')}"
                                  th:alt="${result.getTitle()}"/>
                         </a>
@@ -25,14 +25,14 @@
                         <div class="search_movie_result_information_1">
                             <span class="search_movie_result_information_name_1">电影名</span>:
                             <span class="search_movie_result_information_name_2">
-                            <a th:href="'/searchMovieOnly?id='+${result.getId()}"
+                            <a th:href="'/search/movie/information?id='+${result.getId()}"
                                th:text="${result.getTitle()}">来自WSK的爱</a>
                         </span>
                         </div>
                         <div class="search_movie_result_information_1">
                             <span class="search_movie_result_information_name_1">外语名</span>:
                             <span class="search_movie_result_information_name_2">
-                            <a th:href="'/searchMovieOnly?id='+${result.getId()}"
+                            <a th:href="'/search/movie/information?id='+${result.getId()}"
                                th:text="${result.getOriginal_title()}">来自WSK的爱</a>
                         </span>
                         </div>

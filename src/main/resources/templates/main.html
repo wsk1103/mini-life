@@ -20,7 +20,7 @@
     });
 </script>
 <body>
-<!--头文件-->
+<!--头文件                       已废弃    -->
 <header class="">
     <link rel="stylesheet" href="/css/header.css"/>
     <div>
@@ -47,11 +47,11 @@
             </li>
             <li class="header_hot">
                 <span class="header_hot_current header_current" th:if="${action}==2">
-                    <a href="/hotCritic" class="header_current"><img src="/image/hot_current.png"
+                    <a href="/hot/critic" class="header_current"><img src="/image/hot_current.png"
                                                                      class="img_hot"/>热门</a>
                 </span>
                 <span class="header_hot_current" th:if="${action}!=2">
-                    <a href="/hotCritic"><img src="/image/hot.png" class="img_hot"/>热门</a>
+                    <a href="/hot/critic"><img src="/image/hot.png" class="img_hot"/>热门</a>
                 </span>
             </li>
             <li class="header_hot" id="header_movie">
@@ -64,7 +64,7 @@
                 </span>
                 <ul id="movie_menu" style="z-index: 9999">
                     <li class="menu_li">
-                        <a href="/coming_soon">
+                        <a href="/coming/soon">
                             即将上映
                         </a>
                     </li>
@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li class="menu_li">
-                        <a href="/us_box">
+                        <a href="/us/box">
                             北美票房
                         </a>
                     </li>
@@ -206,7 +206,7 @@
     <div class="all_search">
         <div class="my_friends_list">搜◎索</div>
         <div>
-            <form action="/searchMovie" method="post" id="searchMovie">
+            <form action="/search/movie" method="post" id="searchMovie">
                 <input type="text" name="name" class="search" placeholder="搜索" id="search"/>
                 <input type="hidden" name="action" id="movie_action" value="movie"/>
             </form>

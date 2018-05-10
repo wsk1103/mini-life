@@ -58,7 +58,7 @@ public class MovieController {
     private GoodCriticService goodCriticService;
 
     //模糊查询电影信息
-    @RequestMapping(value = "/searchMovieResult")
+    @RequestMapping(value = "/search/movie/result")
     public String searchMovieResult(Model model, HttpServletRequest request, @ModelAttribute("name") String q) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -81,7 +81,7 @@ public class MovieController {
     }
 
     //查看电影信息
-    @RequestMapping(value = "searchMovieOnly")
+    @RequestMapping(value = "/search/movie/information")
     public String searchMovie(Model model, HttpServletRequest request, @RequestParam String id) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -165,7 +165,7 @@ public class MovieController {
     }
 
     //即将上映的电影
-    @RequestMapping(value = "/coming_soon")
+    @RequestMapping(value = "/coming/soon")
     public String comingSoon(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -222,7 +222,7 @@ public class MovieController {
     }
 
     //热映电影的详情，
-    @RequestMapping(value = "/hot_movie_information/{id}")
+    @RequestMapping(value = "/hot/movie/information/{id}")
     public String hotMovieInformation(@PathVariable String id, Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -240,7 +240,7 @@ public class MovieController {
     }
 
     //北美票房榜
-    @RequestMapping(value = "/us_box")
+    @RequestMapping(value = "/us/box")
     public String us_box(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {

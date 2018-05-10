@@ -196,7 +196,7 @@ public class UserInformationController {
     }
 
     //进入论坛
-    @RequestMapping(value = "/forum")
+    @RequestMapping(value = "/forum/forum")
     public String forum(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -205,11 +205,11 @@ public class UserInformationController {
             model.addAttribute("userInformation", userInformation);
         }
         model.addAttribute("action", 3);
-        return "forum";
+        return "/forum/forum";
     }
 
     //进入热门论坛
-    @RequestMapping(value = "/hotForum")
+    @RequestMapping(value = "/hot/forum")
     public String hotForum(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -218,11 +218,11 @@ public class UserInformationController {
             model.addAttribute("userInformation", userInformation);
         }
         model.addAttribute("action", 2);
-        return "hot";
+        return "/forum/hot";
     }
 
     //进入热门影评
-    @RequestMapping(value = "/hotCritic")
+    @RequestMapping(value = "/hot/critic")
     public String hotCritic(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -275,7 +275,7 @@ public class UserInformationController {
         List<MyFriendsBean> myFriends = getMyFriends(uid);
         model.addAttribute("myFriends", myFriends);
         getUserCounts(model, uid);
-        return "/hot/hot_critic";
+        return "/hot/critic";
     }
 //    @RequestMapping("getAllUsers")
 //    public String getAllUsers(Model model) {
@@ -290,11 +290,11 @@ public class UserInformationController {
         request.getSession().setAttribute("userId", id);
         UserInformation user = getUserInformationById(id);
         request.getSession().setAttribute("user", user);
-        return "redirect:/userInformation";
+        return "redirect:/user/information";
     }
 
     //重定向到个人主页，为了安全
-    @RequestMapping(value = "/userInformation")
+    @RequestMapping(value = "/user/information")
     public String information(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -352,11 +352,11 @@ public class UserInformationController {
             return "redirect:/home";
         }
         request.getSession().setAttribute("user", user);
-        return "redirect:/criticInformationS";
+        return "redirect:/critic/information";
     }
 
     //查看具体影评，重定向，为了安全
-    @RequestMapping(value = "/criticInformationS")
+    @RequestMapping(value = "/critic/information")
     public String criticInformation(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -435,7 +435,7 @@ public class UserInformationController {
     }
 
     //进入查看我的评论
-    @RequestMapping(value = "/myComment")
+    @RequestMapping(value = "/my/comment")
     public String myComment(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -480,7 +480,7 @@ public class UserInformationController {
     }
 
     //进入我的收藏
-    @RequestMapping(value = "/myCollection")
+    @RequestMapping(value = "/my/collection")
     public String myCollection(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -526,7 +526,7 @@ public class UserInformationController {
     }
 
     //进入我的点赞
-    @RequestMapping(value = "/myGood")
+    @RequestMapping(value = "/my/good")
     public String myGood(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
