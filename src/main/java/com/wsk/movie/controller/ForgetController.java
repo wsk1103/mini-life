@@ -1,5 +1,6 @@
 package com.wsk.movie.controller;
 
+import com.wsk.movie.email.Send;
 import com.wsk.movie.pojo.UserInformation;
 import com.wsk.movie.pojo.UserPassword;
 import com.wsk.movie.service.UserInformationService;
@@ -14,15 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by wsk1103 on 2017/4/29.
@@ -37,7 +36,7 @@ public class ForgetController {
     private UserPasswordService userPasswordService;
 
     //the first step for forget password
-    @RequestMapping(value = "forget1",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "forget1", method = {RequestMethod.POST, RequestMethod.GET})
     public String forget(Model model, HttpServletRequest request) {
         String token = TokenProccessor.getInstance().makeToken();
         request.getSession().setAttribute("forget1_token", token);
@@ -46,7 +45,7 @@ public class ForgetController {
     }
 
     //the second step for the forget password
-    @RequestMapping(value = "forget2",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "forget2", method = {RequestMethod.POST, RequestMethod.GET})
     public String forget(@RequestParam String photo, @RequestParam String code_phone, @RequestParam String token,
                          HttpServletRequest request, Model model) {
         boolean isRepeatSubmit = RepeatSubmit.isRepeatSubmit(token, (String) request.getSession().getAttribute("forget1_token"));
@@ -66,7 +65,7 @@ public class ForgetController {
     }
 
     //the end step for forget password
-    @RequestMapping(value = "forget3",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "forget3", method = {RequestMethod.POST, RequestMethod.GET})
     public String forget(@RequestParam String password,
                          HttpServletRequest request, Model model) {
 //        boolean isRepeatSubmit = RepeatSubmit.isRepeatSubmit(token, (String) request.getSession().getAttribute("forget2_token"));
@@ -81,7 +80,7 @@ public class ForgetController {
     }
 
     //modify the password
-    @RequestMapping(value = "modify",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "modify", method = {RequestMethod.POST, RequestMethod.GET})
     public String modifyPassword(@RequestParam String password, @RequestParam String token,
                                  HttpServletRequest request, Model model) {
         boolean isRepeatSubmit = RepeatSubmit.isRepeatSubmit(token, (String) request.getSession().getAttribute("forget2_token"));
@@ -106,22 +105,22 @@ public class ForgetController {
         try {
             int id = userPasswordService.updatePassword(userPassword);
             if (id == 0) {
-                return forget( "", "", token, request, model);
+                return forget("", "", token, request, model);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return forget( "", "", token, request, model);
+            return forget("", "", token, request, model);
         }
 
 
-        return forget( password, request, model);
+        return forget(password, request, model);
     }
 
     //when the user click next button,check the information
-    @RequestMapping(value = "checkPhone",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "checkPhone", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Map checkPhone(HttpServletRequest request, @RequestParam String photo, @RequestParam String code_phone) {
-                Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("result", "1");//true result;
         if (!checkPhoto(photo, request)) {
             map.put("result", "2");//图片验证码错误
@@ -150,7 +149,7 @@ public class ForgetController {
     }
 
     //send the Email to the phone
-    @RequestMapping(value = "sendEmail",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "sendEmail", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Map sendEmail(HttpServletRequest req, HttpServletResponse res, String phone, String photo, String action) {
         Map<String, String> map = new HashMap<>();
@@ -173,29 +172,8 @@ public class ForgetController {
 
         //get the random num to phone which should check the phone to judge the phone is belong user
         getRandomForCodePhone(req);
-        String ra = (String) req.getSession().getAttribute("codePhone");
-        String text1 = "【WSK的验证码】您的验证码是：";
-        String text2 = "，请保护好自己的验证码。";
-        String text = text1 + ra + text2;
-        Properties prop = new Properties();
-        prop.setProperty("mail.host", "smtp.139.com");//ʹ�����������smtp����
-        prop.setProperty("mail.transport.protocol", "smtp");//����ѡ��Э��
-        prop.setProperty("mail.smtp.auth", "true");//ʹ����ͨ�Ŀͻ���
-        prop.setProperty("mail.smtp.port", "25");//�˿ں�Ϊ25����ʵĬ�ϵľ���25�����Ҳ���Բ���
-        Session session = Session.getInstance(prop);//��ȡ�Ự
         try {
-            Transport ts = session.getTransport();//��������
-            ts.connect("smtp.139.com", "18814095631@139.com", "yushi1103");
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("18814095631@139.com"));
-            req.getSession().setAttribute("phone",phone);
-            phone += "@139.com";
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(phone));
-            message.setSubject("来自WSK的验证码");
-            message.setContent(text, "text/html;charset=UTF-8");
-            //这里先不发生信息，以后要开启的
-            ts.sendMessage(message, message.getAllRecipients());
-            ts.close();
+            Send.sendEmail(phone, req, res);
             map.put("result", "1");
         } catch (MessagingException me) {
             me.printStackTrace();

@@ -1,6 +1,7 @@
 package com.wsk.movie.controller.music;
 
 import com.wsk.movie.controller.UserInformationController;
+import com.wsk.movie.error.LoginErrorException;
 import com.wsk.movie.music.entity.WangYiCommentResponseEntity;
 import com.wsk.movie.music.entity.WangYiInformationEntity;
 import com.wsk.movie.music.entity.WangYiResponseEntity;
@@ -129,6 +130,16 @@ public class MusicController {
         return "music/information";
     }
 
-//    @RequestMapping
+    //只有登录的用户才能使用音乐播放功能，防止音乐被盗用
+    @RequestMapping(value = "/{id}")
+    public String checkIdentity(@PathVariable("id") String id, HttpServletRequest request) {
+        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+            throw new LoginErrorException("用户未登录!");
+        }
+        System.out.println(userInformation.getPhone());
+        System.out.println(id);
+        return "redirect:/musics/" + id + ".mp3";
+    }
 
 }

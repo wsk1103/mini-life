@@ -14,6 +14,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @DESCRIPTION :登录过滤
@@ -103,5 +104,7 @@ public class UserLoginAspect {
         return Tool.getInstance().isNullOrEmpty(is);
     }
 
+    public static void main(String[] args) throws IOException, InterruptedException {
+    }
 
 }

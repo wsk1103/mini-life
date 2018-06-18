@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * @DESCRIPTION :
+ * @DESCRIPTION :静态资源访问路径
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/1/1  13:28
  */
@@ -23,7 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/js/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/js/");
         registry.addResourceHandler("/css/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/css/");
         registry.addResourceHandler("/images/**").addResourceLocations("file:/D:/image/");
-        registry.addResourceHandler("/music/**").addResourceLocations("file:/G:/down/");
+        registry.addResourceHandler("/musics/**").addResourceLocations("file:/D:/down/");
         //服务器
 //        registry.addResourceHandler("/images/**").addResourceLocations("file:/C:/myproject/image/");
         // registry.addResourceHandler("/music/**").addResourceLocations("file:/C:/down/");
