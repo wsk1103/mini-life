@@ -15,7 +15,7 @@
         <div th:with="m=${movie.getData()}">
             <div class="search_movie_result" th:each="o:${m.getMovies()}">
                 <div class="search_movie_result_img">
-                    <a th:href="'/hot_movie_information/'+${o.getId()}">
+                    <a th:href="'/hot/movie/information/'+${o.getId()}">
                         <img src="/image/1.jpg" th:src="${o.getImg()}" th:alt="${o.getNm()}"/>
                     </a>
                 </div>
@@ -23,7 +23,7 @@
                     <div class="search_movie_result_information_1">
                         <span class="search_movie_result_information_name_1">电影名</span>:
                         <span class="search_movie_result_information_name_2">
-                            <a th:href="'/hot_movie_information/'+${o.getId()}" th:text="${o.getNm()}">来自WSK的爱</a>
+                            <a th:href="'/hot/movie/information/'+${o.getId()}" th:text="${o.getNm()}">来自WSK的爱</a>
                         </span>
                     </div>
                     <div class="search_movie_result_information_1">
