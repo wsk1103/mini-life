@@ -28,7 +28,7 @@ public class UserLoginAspect {
     @Autowired
     private IRedisUtils redis;
 
-    @Pointcut("execution(* com.wsk.movie.controller.UserInformationController.login(..))")
+    @Pointcut("execution(* com.wsk.movie.controllerNo.LoginController.login(..))")
     public void login() {
     }
 
@@ -70,35 +70,45 @@ public class UserLoginAspect {
     }
 
     //需要登录的用户账号密码核对,controller包下的music所有类
-    @Pointcut("execution(* com.wsk.movie.controller.music.MusicController.*(..))")
+    @Pointcut("execution(* com.wsk.movie.controller.*.*(..)) " +
+            "&& !execution(* com.wsk.movie.controller.BaseController.*(..))" +
+            "&& !execution(* com.wsk.movie.controller.*.is*(..)) " +
+            "&& !execution(* com.wsk.movie.controller.*.get*(..)) " +
+            "&& !execution(* com.wsk.movie.controller.*.set*(..)) " +
+            "&& !execution(* com.wsk.movie.controller.UserInformationController.home(..)) ")
     public void checkM() {
     }
 
-    @Pointcut("execution(* com.wsk.movie.controller.book.BookController.*(..))")
-    public void checkB() {
-    }
+//    @Pointcut("execution(* com.wsk.movie.controller.book.BookController.*(..))")
+//    public void checkB() {
+//    }
 
     @Before(value = "checkM()")
     private void checkMusic() {
+        System.out.println("wsk =====>start aspect!");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            if (!isLogin())
+            if (!isLoginFromRedis())
                 throw new LoginErrorException("账号未登录！");
         }
     }
 
-    @Before(value = "checkB()")
+//    @Before(value = "checkB()")
     private void checkBook() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            if (!isLogin())
+            if (!isLoginFromRedis())
                 throw new LoginErrorException("账号未登录！");
         }
     }
 
-    private boolean isLogin() {
+    /**
+     * 从缓存获取对象
+     * @return 是否存在
+     */
+    private boolean isLoginFromRedis() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String is = redis.get(request.getRequestedSessionId());
         return Tool.getInstance().isNullOrEmpty(is);

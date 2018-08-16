@@ -4,6 +4,7 @@ import com.wsk.movie.redis.IRedisUtils;
 import com.wsk.movie.tool.Time;
 import com.wsk.movie.redis.RedisType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtilsImpl implements IRedisUtils {
 
     @Autowired
-    private StringRedisTemplate template;
+    private RedisTemplate<String, String> template;
     private Jedis jedis = new Jedis();
     private Pipeline pipeline = jedis.pipelined();
 

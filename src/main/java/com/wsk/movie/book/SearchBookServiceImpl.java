@@ -7,6 +7,7 @@ import com.wsk.movie.book.service.BookRepository;
 import com.wsk.movie.book.service.SearchBookService;
 import com.wsk.movie.music.HttpUnits;
 import com.wsk.movie.redis.IRedisUtils;
+import com.wsk.movie.tool.JSONUtil;
 import com.wsk.movie.tool.Time;
 import com.wsk.movie.tool.Tool;
 import org.hibernate.exception.DataException;
@@ -47,7 +48,7 @@ public class SearchBookServiceImpl implements SearchBookService {
             JSONArray array = JSONArray.parseArray(books);
             for (Object o : array) {
                 try {
-                    result.add(Tool.getInstance().jsonToBean(o.toString(), BookEntity.class));
+                    result.add(JSONUtil.toBean(o.toString(), BookEntity.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -70,7 +71,7 @@ public class SearchBookServiceImpl implements SearchBookService {
             object = (JSONObject) o;
             BookEntity model;
             try {
-                model = Tool.getInstance().jsonToBean(o.toString(), BookEntity.class);
+                model =JSONUtil.toBean(o.toString(), BookEntity.class);
             } catch (Exception e) {
                 e.printStackTrace();
                 continue;
@@ -101,7 +102,7 @@ public class SearchBookServiceImpl implements SearchBookService {
           类型为 hash,存储格式为 book   -    name    -    与之相关的书籍
           保存一天
          */
-        redisUtils.hset("book", name, Tool.getInstance().toJson(result), Time.ONE_DAY);
+        redisUtils.hset("book", name, JSONUtil.toJson(result), Time.ONE_DAY);
         return result;
     }
 

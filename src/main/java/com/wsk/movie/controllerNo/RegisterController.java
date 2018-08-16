@@ -1,5 +1,6 @@
-package com.wsk.movie.controller;
+package com.wsk.movie.controllerNo;
 
+import com.wsk.movie.controller.RepeatSubmit;
 import com.wsk.movie.pojo.UserInformation;
 import com.wsk.movie.pojo.UserPassword;
 import com.wsk.movie.service.UserInformationService;

@@ -307,11 +307,13 @@ public class Tool {
         return "正常".equals(baidu.getConclusion());
     }
 
-    public <T> T jsonToBean(String json, Class<T> clazz) throws Exception {
+    @Deprecated
+    public <T> T jsonToBean(String json, Class<T> clazz) {
 //        System.out.println(json);
         return com.alibaba.fastjson.JSONObject.parseObject(json, clazz);
-}
+    }
 
+    @Deprecated
     public <T> String toJson(T t) {
         return JSON.toJSONString(t);
     }
