@@ -202,3 +202,6 @@
 8. 将image.rar文件解压到D:/image，这个文件是存放图片和敏感词的重要文件。
 5. 运行com.wsk.movie.MovieApplication的main方法。
 6. 访问localhost
+
+
+PS:该项目可以直接当毕业设计使用，需要的可以+QQ：1261709167
