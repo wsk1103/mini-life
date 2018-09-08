@@ -9,29 +9,34 @@
     <result column="modified" property="modified" jdbcType="TIMESTAMP" />
     <result column="allow" property="allow" jdbcType="SMALLINT" />
   </resultMap>
+
+  <sql id="table">
+    goodcritic
+  </sql>
+
   <sql id="Base_Column_List" >
     id, pid, time, uid, modified, allow
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from goodcritic
+    from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectByUid" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from goodCritic
+    from <include refid="table" />
     where uid =#{uid} and allow=1
     order by modified DESC
     limit #{start},10
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from goodcritic
+    delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wsk.movie.pojo.GoodCritic" >
-    insert into goodcritic (id, pid, time, 
+    insert into <include refid="table" /> (id, pid, time,
       uid, modified, allow
       )
     values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
@@ -39,7 +44,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wsk.movie.pojo.GoodCritic" >
-    insert into goodcritic
+    insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -82,7 +87,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.GoodCritic" >
-    update goodcritic
+    update <include refid="table" />
     <set >
       <if test="pid != null" >
         pid = #{pid,jdbcType=INTEGER},
@@ -103,7 +108,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.GoodCritic" >
-    update goodcritic
+    update <include refid="table" />
     set pid = #{pid,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
       uid = #{uid,jdbcType=INTEGER},

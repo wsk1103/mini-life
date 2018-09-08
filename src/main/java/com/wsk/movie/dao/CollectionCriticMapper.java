@@ -30,9 +30,9 @@ public interface CollectionCriticMapper {
 
     List<CollectionCritic> selectByUid(Map<String, Integer> map);
 
-    @Select("select * from CollectionCritic where uid=#{uid} and pid=#{pid} and allow=1 limit 1")
+    @Select("select * from collectioncritic where uid=#{uid} and pid=#{pid} and allow=1 limit 1")
     CollectionCritic selectCollection(Map<String, Integer> map);
 
-    @Select("select * from CollectionCritic where uid=#{uid} and pid=#{pid} limit 1")
+    @Select("select * from collectioncritic where uid=#{uid} and pid=#{pid} limit 1")
     CollectionCritic selectCollectionAndAllow(Map<String, Integer> map);
 }

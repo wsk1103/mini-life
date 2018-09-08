@@ -34,9 +34,9 @@ public interface CommentCriticMapper {
 
     List<CommentCritic> selectByUid(Map<String, Integer> map);
 
-    @Select("select * from commentCritic where uid=#{uid} and id=#{id} and allow=1 limit 1")
+    @Select("select * from commentcritic where uid=#{uid} and id=#{id} and allow=1 limit 1")
     CommentCritic selectByIdAndUid(Map<String, Integer> map);
 
-    @Select("select * from commentCritic where uid=#{uid} and id=#{id} limit 1")
+    @Select("select * from commentcritic where uid=#{uid} and id=#{id} limit 1")
     CommentCritic selectByIdAndAllow(Map<String, Integer> map);
 }

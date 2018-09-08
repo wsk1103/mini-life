@@ -14,7 +14,7 @@ import java.net.URL;
 public class Down {
 
     //默认地址
-    private static final String PATH = "D:/down/";
+    private static final String PATH = "/down/";
 
     /**
      * 下载，默认文件名为路径的文件名。

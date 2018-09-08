@@ -7,27 +7,32 @@
     <result column="modified" property="modified" jdbcType="TIMESTAMP" />
     <result column="allow" property="allow" jdbcType="SMALLINT" />
   </resultMap>
+
+  <sql id="table">
+    userheadpicture
+  </sql>
+
   <sql id="Base_Column_List" >
     id, headpicture, modified, allow
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from userheadpicture
+    from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from userheadpicture
+    delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wsk.movie.pojo.UserHeadPicture" >
-    insert into userheadpicture (id, headpicture, modified, 
+    insert into <include refid="table" /> (id, headpicture, modified,
       allow)
     values (#{id,jdbcType=INTEGER}, #{headpicture,jdbcType=VARCHAR}, #{modified,jdbcType=TIMESTAMP}, 
       #{allow,jdbcType=SMALLINT})
   </insert>
   <insert id="insertSelective" parameterType="com.wsk.movie.pojo.UserHeadPicture" >
-    insert into userheadpicture
+    insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -58,7 +63,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.UserHeadPicture" >
-    update userheadpicture
+    update <include refid="table" />
     <set >
       <if test="headpicture != null" >
         headpicture = #{headpicture,jdbcType=VARCHAR},
@@ -73,7 +78,8 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.UserHeadPicture" >
-    update userheadpicture
+    update
+    <include refid="table"/>
     set headpicture = #{headpicture,jdbcType=VARCHAR},
       modified = #{modified,jdbcType=TIMESTAMP},
       allow = #{allow,jdbcType=SMALLINT}

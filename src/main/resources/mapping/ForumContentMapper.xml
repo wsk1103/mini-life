@@ -11,6 +11,11 @@
     <result column="mid" property="mid" jdbcType="INTEGER" />
     <result column="content" property="critic" jdbcType="VARCHAR" />
   </resultMap>
+
+  <sql id="table">
+    forumcontent
+  </sql>
+
   <!--<resultMap id="ResultMapWithBLOBs" type="com.wsk.movie.pojo.ForumContent" extends="BaseResultMap" >-->
     <!--<result column="content" property="content" jdbcType="LONGVARCHAR" />-->
   <!--</resultMap>-->
@@ -25,15 +30,15 @@
     <include refid="Base_Column_List" />
     <!--,-->
     <!--<include refid="Blob_Column_List" />-->
-    from forumcontent
+    from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from forumcontent
+    delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wsk.movie.pojo.ForumContent" >
-    insert into forumcontent (id, fid, time, 
+    insert into <include refid="table" /> (id, fid, time,
       uid, modified, allow, 
       mid, content)
     values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
@@ -41,7 +46,7 @@
       #{mid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wsk.movie.pojo.ForumContent" >
-    insert into forumcontent
+    insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -96,7 +101,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.ForumContent" >
-    update forumcontent
+    update <include refid="table" />
     <set >
       <if test="fid != null" >
         fid = #{fid,jdbcType=INTEGER},
@@ -123,7 +128,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.movie.pojo.ForumContent" >
-    update forumcontent
+    update <include refid="table" />
     set fid = #{fid,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
       uid = #{uid,jdbcType=INTEGER},
@@ -134,7 +139,8 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.ForumContent" >
-    update forumcontent
+    update
+    <include refid="table"/>
     set fid = #{fid,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
       uid = #{uid,jdbcType=INTEGER},

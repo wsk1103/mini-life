@@ -14,13 +14,18 @@
         <result column="critic" property="critic" jdbcType="VARCHAR"/>
         <result column="thumbnails" property="thumbnails" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <sql id="table">
+        publishcritic
+    </sql>
+
     <sql id="all">
     id, good, isPrivate, picture, time, title, uid, modified, allow,critic,thumbnails
   </sql>
     <select id="getAllForeach" resultMap="wsk">
         select
         <include refid="all"/>
-        from publishcritic
+        from <include refid="table" />
         where uid IN
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
             #{item}
@@ -31,13 +36,13 @@
     <select id="selectByPrimaryKey" resultMap="wsk" parameterType="java.lang.Integer">
         select
         <include refid="all"/>
-        from publishcritic
+        from <include refid="table" />
         where id = #{id,jdbcType=INTEGER} and allow=1
     </select>
     <select id="getPublishCriticByUid" resultMap="wsk">
         select
         <include refid="all"/>
-        from publishcritic
+        from <include refid="table" />
         where uid = #{uid}
         <if test="isPrivate == 0">
             and isPrivate =0
@@ -49,7 +54,7 @@
     <select id="getHotCritic" resultMap="wsk">
         select
         <include refid="all"/>
-        from publishCritic
+        from <include refid="table" />
         where isPrivate = 0
         and allow=1
         order by id desc
@@ -58,18 +63,18 @@
     <select id="selectByTitle" resultMap="wsk">
         select
         <include refid="all"/>
-        from publishCritic
+        from <include refid="table" />
         where isPrivate = 0 and allow =1
         and title LIKE CONCAT('%',#{title},'%')
         ORDER BY id desc
         limit #{start},10
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from publishcritic
+    delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.wsk.movie.pojo.PublishCritic">
-    insert into publishcritic (id, good, isPrivate, 
+    insert into <include refid="table" /> (id, good, isPrivate,
       picture, time, title,
       uid, modified, allow, 
       critic,thumbnails)
@@ -79,7 +84,7 @@
       #{critic,jdbcType=VARCHAR}),#{thumbnails,jdbcType=VARCHAR}
   </insert>
     <insert id="insertSelective" parameterType="com.wsk.movie.pojo.PublishCritic">
-        insert into publishcritic
+        insert into <include refid="table" />
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -152,7 +157,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.PublishCritic">
-        update publishcritic
+        update <include refid="table" />
         <set>
             <if test="good != null">
                 good = #{good,jdbcType=INTEGER},
@@ -188,7 +193,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <!--<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.movie.pojo.PublishCritic">-->
-    <!--update publishcritic-->
+    <!--update <include refid="table" />-->
     <!--set good = #{good,jdbcType=INTEGER},-->
     <!--isPrivate = #{isprivate,jdbcType=INTEGER},-->
     <!--imageture imageture,jdbcType=VARCHAR},-->
@@ -202,7 +207,8 @@
     <!--where id = #{id,jdbcType=INTEGER}-->
     <!--</update>-->
     <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.PublishCritic">
-    update publishcritic
+    update
+        <include refid="table"/>
     set good = #{good,jdbcType=INTEGER},
       isPrivate = #{isprivate,jdbcType=INTEGER},
       picture = #{picture,jdbcType=VARCHAR},

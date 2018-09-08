@@ -188,9 +188,11 @@
 </body>
 <script>
     $(function () {
+        var time = 0;
         var isPlay = true;
         var globUrl = "";
         var $audio = $("#audio_play")[0];
+        var $nextUrl;
         $(".play").click(function () {
             $audio.pause();
             var url = $(this).attr("title");
@@ -209,7 +211,24 @@
                 $audio.play();
                 isPlay = false;
             }
+            $nextUrl = $(this).parent().next().children(".music_publishtime");
+            globUrl = $nextUrl.attr("title");
+            console.log(globUrl);
+            $audio.addEventListener('ended', function () {
+                nextMusic(globUrl);
+            }, false);
+            // setInterval(function(){
+            //     nextMusic(this, url);
+            // }, 1000);
         });
+
+        function nextMusic(globUrl) {
+            //播放完毕
+            $("#audio_source").attr("src", globUrl);
+            $audio.load();
+            $audio.play();
+        }
+
         $("#audio_play").bind('ended', function () {
         });
         $(".stop").click(function () {

@@ -22,17 +22,17 @@ public interface GoodCriticMapper {
 
     int updateByPrimaryKey(GoodCritic record);
 
-    @Select("select count(id) from goodCritic where pid=#{pid}  and allow=1")
+    @Select("select count(id) from goodcritic where pid=#{pid}  and allow=1")
     int getCounts(int pid);
 
-    @Select("select count(id) from goodCritic where uid=#{uid}  and allow=1")
+    @Select("select count(id) from goodcritic where uid=#{uid}  and allow=1")
     int getUserCounts(int uid);
 
     List<GoodCritic> selectByUid(Map<String, Integer> map);
 
-    @Select("select * from goodCritic where uid=#{uid} and pid=#{pid} and allow=1 limit 1")
+    @Select("select * from goodcritic where uid=#{uid} and pid=#{pid} and allow=1 limit 1")
     GoodCritic selectGood(Map<String, Integer> map);
 
-    @Select("select * from goodCritic where uid=#{uid} and pid=#{pid} limit 1")
+    @Select("select * from goodcritic where uid=#{uid} and pid=#{pid} limit 1")
     GoodCritic selectGoodAndAllow(Map<String, Integer> map);
 }

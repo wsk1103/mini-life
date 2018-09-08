@@ -15,23 +15,28 @@
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
     <result column="allowed" property="allowed" jdbcType="TINYINT" />
   </resultMap>
+
+  <sql id="table">
+    userinformation
+  </sql>
+
   <sql id="Base_Column_List" >
     id, address, autograph, birthday, buildtime, label, name, phone, sex, modified, avatar,allowed
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from userinformation
+    from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectIdByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
     select <include refid="Base_Column_List" />
-    FROM userinformation
+    FROM <include refid="table" />
     where phone = #{phone,jdbcType=VARCHAR}
   </select>
   <select id="getAllForeach" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
-    FROM userinformation
+    FROM <include refid="table" />
     where id in
     <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
       #{item}
@@ -40,17 +45,17 @@
   <select id="selectByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from userInformation
+    from <include refid="table" />
     where name like CONCAT('%',#{name},'%')
     order by name
     limit #{start},10
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from userinformation
+    delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wsk.movie.pojo.UserInformation" >
-    insert into userinformation (id, address, autograph,
+    insert into <include refid="table" /> (id, address, autograph,
     birthday, buildtime, label,
     name, phone, sex, modified,
     avatar)
@@ -60,7 +65,7 @@
     #{avatar,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wsk.movie.pojo.UserInformation" >
-    insert into userinformation
+    insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -133,7 +138,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.UserInformation" >
-    update userinformation
+    update <include refid="table" />
     <set >
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
@@ -172,7 +177,8 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.UserInformation" >
-    update userinformation
+    update
+    <include refid="table"/>
     set address = #{address,jdbcType=VARCHAR},
       autograph = #{autograph,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=DATE},

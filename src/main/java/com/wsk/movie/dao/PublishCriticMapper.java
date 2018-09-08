@@ -33,10 +33,10 @@ public interface PublishCriticMapper {
     @Select("select count(id) from publishcritic where uid=#{uid} and allow=1")
     int getUserCounts(int uid);
 
-    @Select("select * from PublishCritic where uid=#{uid} and id=#{id} and allow=1 limit 1")
+    @Select("select * from publishcritic where uid=#{uid} and id=#{id} and allow=1 limit 1")
     PublishCritic selectByIdAndUid(Map<String, Integer> map);
 
-    @Select("select * from PublishCritic where uid=#{uid} and id=#{id} limit 1")
+    @Select("select * from publishcritic where uid=#{uid} and id=#{id} limit 1")
     PublishCritic selectByIdAndAllow(Map<String, Integer> map);
 
 
