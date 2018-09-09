@@ -1,4 +1,7 @@
 # 这是一个集电影，音乐和书籍于一体的Java web应用
+
+http://106.12.105.253  
+
 ### 喜欢就点一下Star，谢谢亲的支持
 ### Java 1.8
 ### 框架：使用Spring Boot 集成Spring,Spring MVC,MyBatis(前期),Spring Data(后期)
