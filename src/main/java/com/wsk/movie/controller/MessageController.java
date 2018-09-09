@@ -29,7 +29,7 @@ public class MessageController {
     private UserInformationService userInformationService;
 
     //获得信息
-    @RequestMapping(value = "/getMessage")
+    @RequestMapping(value = "getMessage")
     @ResponseBody
     public MessageBean getMessage(HttpServletRequest request, @RequestParam int id){
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
@@ -47,11 +47,11 @@ public class MessageController {
             Content content = new Content();
             content.setName(user.getName());
             content.setContent(m.getMessage());
-            content.setTime(Tool.getInstance().DateToStringWithHours(m.getModified()));
+            content.setTime(Tool.getInstance().dateToStringWithHours(m.getModified()));
             content.setUid(user.getId());
             contents.add(content);
 //            messages.add(m.getMessage());
-//            modifieds.add(Tool.getInstance().DateToStringWithHours(m.getModified()));
+//            modifieds.add(Tool.getInstance().dateToStringWithHours(m.getModified()));
             m.setModified(new Date());
             m.setOnread(1);
             messageService.updateByPrimaryKeySelective(m);
@@ -69,7 +69,7 @@ public class MessageController {
     }
 
     //获得单条信息
-    @RequestMapping(value = "/getMessageAndOnread")
+    @RequestMapping(value = "getMessageAndOnread")
     @ResponseBody
     public MessageOne getMessageAndOnread(HttpServletRequest request, @RequestParam int id) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
@@ -87,7 +87,7 @@ public class MessageController {
         MessageOne messageOne = new MessageOne();
         messageOne.setFid(id);
         messageOne.setMessage(message.getMessage());
-        messageOne.setModified(Tool.getInstance().DateToStringWithHours(message.getModified()));
+        messageOne.setModified(Tool.getInstance().dateToStringWithHours(message.getModified()));
         messageOne.setUid(userInformation.getId());
         messageOne.setName(user.getName());
         messageOne.setOnread(0);
@@ -100,7 +100,7 @@ public class MessageController {
     }
 
     //发送信息
-    @RequestMapping(value = "/sendMessage")
+    @RequestMapping(value = "sendMessage")
     @ResponseBody
     public int sendMessage(HttpServletRequest request, @RequestParam int id, @RequestParam String content){
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
@@ -129,7 +129,7 @@ public class MessageController {
     }
 
     //是否有新信息
-    @RequestMapping(value = "/getMessageOne")
+    @RequestMapping(value = "getMessageOne")
     @ResponseBody
     public Message getMessageOne(HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");

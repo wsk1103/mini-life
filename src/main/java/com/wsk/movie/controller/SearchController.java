@@ -71,8 +71,7 @@ public class SearchController {
 //    private
 
     //搜索电影详细信息
-    @RequestMapping(value = "/search/result")
-//    @ResponseBody
+    @RequestMapping(value = "search/result")
     public String searchMovie(@RequestParam String name, @RequestParam String action,
                               Model model, HttpServletRequest request, RedirectAttributes attributes) throws UnsupportedEncodingException {
         if (Tool.getInstance().isNullOrEmpty(action) || Tool.getInstance().isNullOrEmpty(name)) {
@@ -116,7 +115,7 @@ public class SearchController {
 //        model.addAttribute("myFriends", getMyFriends(userInformation.getId()));
 //        model.addAttribute("result", searchBookService.searchBookByName(name));
         model.addAttribute("title", name);
-        return "/book/search/result";
+        return "book/search/result";
     }
 
     //查找音乐
@@ -139,11 +138,11 @@ public class SearchController {
 //        model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
 ////        model.addAttribute("result", );
         model.addAttribute("title", name);
-        return "/music/search/result";
+        return "music/search/result";
     }
 
     //获取电影名
-    @RequestMapping(value = "/getMovieName")
+    @RequestMapping(value = "getMovieName")
     @ResponseBody
     public List<MovieName> getMovieName(@RequestParam String name, @RequestParam int start) {
         Map map = new HashMap();
@@ -163,13 +162,13 @@ public class SearchController {
     }
 
     //进入电影的详情
-    @RequestMapping(value = "/movieInformation")
+    @RequestMapping(value = "movieInformation")
     public String movieInformation(@RequestParam String name) {
         return "information/movieInformation";
     }
 
     //搜索影评通过title
-    @RequestMapping(value = "/get/critic/title")
+    @RequestMapping(value = "get/critic/title")
     public String getCriticByTitle(@RequestParam String title, HttpServletRequest request, Model model) {
         if (Tool.getInstance().isNullOrEmpty(title)) {
             return "redirect:/login";
@@ -194,7 +193,7 @@ public class SearchController {
             userPublish = new UserPublish();
             user = userInformationService.selectByPrimaryKey(p.getUid());
             userPublish.setFriend(isFriends(uid, p.getUid()) ? 1 : 0);
-            userPublish.setTime(Tool.getInstance().DateToStringWithHours(p.getTime()));
+            userPublish.setTime(Tool.getInstance().dateToStringWithHours(p.getTime()));
             userPublish.setGood(isGood(uid, p.getUid()) ? 1 : 0);
             userPublish.setCollection(isCollection(uid, p.getUid()) ? 1 : 0);
             userPublish.setPid(p.getId());
@@ -217,7 +216,7 @@ public class SearchController {
     }
 
     //搜索用户通过user
-    @RequestMapping(value = "/getUserByName")
+    @RequestMapping(value = "getUserByName")
     public String getUserByName(@RequestParam String name, HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -239,8 +238,8 @@ public class SearchController {
             userBean.setAddress(u.getAddress());
             userBean.setAutograph(u.getAutograph());
             userBean.setAvatar(u.getAvatar());
-            userBean.setBirthday(Tool.getInstance().DateToString(u.getBirthday()));
-            userBean.setBuildtime(Tool.getInstance().DateToStringWithHours(u.getBuildtime()));
+            userBean.setBirthday(Tool.getInstance().dateToString(u.getBirthday()));
+            userBean.setBuildtime(Tool.getInstance().dateToStringWithHours(u.getBuildtime()));
             userBean.setFriend(isFriends(uid, u.getId()) ? 1 : 0);
             userBean.setId(u.getId());
             userBean.setLabel(u.getLabel());
@@ -253,7 +252,7 @@ public class SearchController {
         return "information/searchUserByName";
     }
 
-    @RequestMapping(value = "/getCriticByTitleAndStart", method = RequestMethod.POST)
+    @RequestMapping(value = "getCriticByTitleAndStart", method = RequestMethod.POST)
     @ResponseBody
     public List getCriticByTitle(@RequestParam String title, @RequestParam int start, HttpServletRequest request) {
         List<UserPublish> list = new ArrayList<>();
@@ -275,7 +274,7 @@ public class SearchController {
         for (PublishCritic p : publishCritics) {
             userPublish = new UserPublish();
             user = userInformationService.selectByPrimaryKey(p.getUid());
-            userPublish.setTime(Tool.getInstance().DateToStringWithHours(p.getTime()));
+            userPublish.setTime(Tool.getInstance().dateToStringWithHours(p.getTime()));
             userPublish.setFriend(isFriends(uid, p.getUid()) ? 1 : 0);
             userPublish.setGood(isGood(uid, p.getUid()) ? 1 : 0);
             userPublish.setCollection(isCollection(uid, p.getUid()) ? 1 : 0);
@@ -297,7 +296,7 @@ public class SearchController {
     }
 
     //搜索用户通过user
-    @RequestMapping(value = "/getUserByNameAndStart")
+    @RequestMapping(value = "getUserByNameAndStart")
     @ResponseBody
     public List getUserByNameAndStart(@RequestParam String name, @RequestParam int start, HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
@@ -320,8 +319,8 @@ public class SearchController {
             userPublish.setAddress(u.getAddress());
             userPublish.setAutograph(u.getAutograph());
             userPublish.setAvatar(u.getAvatar());
-            userPublish.setBuildtime(Tool.getInstance().DateToString(u.getBuildtime()));
-            userPublish.setBirthday(Tool.getInstance().DateToStringWithHours(u.getBirthday()));
+            userPublish.setBuildtime(Tool.getInstance().dateToString(u.getBuildtime()));
+            userPublish.setBirthday(Tool.getInstance().dateToStringWithHours(u.getBirthday()));
             userPublish.setFriend(isFriends(uid, u.getId()) ? 1 : 0);
             userPublish.setId(u.getId());
             userPublish.setLabel(u.getLabel());

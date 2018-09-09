@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * @TIME : 2018/2/10  17:30
  */
 @Controller
-@RequestMapping(value = "/music")
+@RequestMapping(value = "music")
 public class MusicController {
     private final WangYiService service;
     private final UserInformationController userController;
@@ -45,7 +45,7 @@ public class MusicController {
         this.userController = controller;
     }
 
-    @RequestMapping(value = "/hot/{type}")
+    @RequestMapping(value = "hot/{type}")
     public String hot(@PathVariable("type") String type, HttpServletRequest request, Model model){
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -79,7 +79,7 @@ public class MusicController {
         return "music/hot";
     }
     //音乐详情
-    @RequestMapping(value = "/information/{id}")
+    @RequestMapping(value = "information/{id}")
     public String information(@PathVariable("id")String id ,HttpServletRequest request, Model model){
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -131,7 +131,7 @@ public class MusicController {
     }
 
     //只有登录的用户才能使用音乐播放功能，防止音乐被盗用
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "{id}")
     public String checkIdentity(@PathVariable("id") String id, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {

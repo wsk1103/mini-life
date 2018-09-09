@@ -1,0 +1,31 @@
+package com.wsk.movie.redis.aop;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+
+/**
+ * @DESCRIPTION :
+ * @AUTHOR : WuShukai
+ * @TIME : 2018/9/9  13:06
+ */
+@Component
+@Aspect
+public class RedisAop {
+
+    @Pointcut("execution(* com.wsk.movie.redis.impl..*(..))")
+    public void check() {
+    }
+
+    @Before(value = "check()")
+    public void checkNull(JoinPoint joinPoint){
+        //开始拦截redis的参数是否为空，为空则返回
+        System.out.println("=====开始进入redis=====");
+        for (int i = 0; i < joinPoint.getArgs().length; i++) {
+            System.out.println(joinPoint.getArgs()[i]);
+        }
+    }
+
+}

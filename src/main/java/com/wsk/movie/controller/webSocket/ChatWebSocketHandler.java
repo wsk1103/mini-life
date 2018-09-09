@@ -1,13 +1,11 @@
 package com.wsk.movie.controller.webSocket;
 
-import com.wsk.movie.service.UserInformationService;
 import com.wsk.movie.tool.SaveSession;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,10 +16,7 @@ import java.util.List;
  */
 public class ChatWebSocketHandler extends TextWebSocketHandler {
 
-    @Resource
-//    private
-    UserInformationService userInformationService;
-    private final static List<WebSocketSession> sessions = Collections.synchronizedList(new ArrayList<WebSocketSession>());
+    private final static List<WebSocketSession> SESSIONS = Collections.synchronizedList(new ArrayList<>());
 
     //接收文本消息，并发送出去
     @Override
@@ -68,7 +63,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
 //        System.out.println(session.getId() + ":start.....");
-        sessions.add(session);
+        SESSIONS.add(session);
         //处理离线消息
     }
 
@@ -79,14 +74,14 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         if (session.isOpen()) {
             session.close();
         }
-        sessions.remove(session);
+        SESSIONS.remove(session);
     }
 
     //连接关闭后处理
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
 //        System.out.println(session.getId() + ":close......");
-        sessions.remove(session);
+        SESSIONS.remove(session);
     }
 
 }

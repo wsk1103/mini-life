@@ -15,7 +15,7 @@ import java.util.List;
  * @TIME : 2018/2/15  16:03
  */
 @RestController
-@RequestMapping(value = "/book/search")
+@RequestMapping(value = "book/search")
 public class SearchBookController {
     private final SearchBookService searchBookService;
 
@@ -24,12 +24,12 @@ public class SearchBookController {
         this.searchBookService = searchBookService;
     }
 
-    @RequestMapping(value = "/name/{name}")
+    @RequestMapping(value = "name/{name}")
     public List<BookEntity> searchByName(@PathVariable(value = "name") String name) {
         return searchBookService.searchBookByName(name);
     }
 
-    @RequestMapping(value = "/init")
+    @RequestMapping(value = "init")
     public List<BookEntity> bookRand(){
         return searchBookService.randBook();
     }

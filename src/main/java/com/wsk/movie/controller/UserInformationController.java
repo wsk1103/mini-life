@@ -4,11 +4,9 @@ import com.wsk.movie.bean.*;
 import com.wsk.movie.pojo.*;
 import com.wsk.movie.redis.IRedisUtils;
 import com.wsk.movie.service.*;
-import com.wsk.movie.token.TokenProccessor;
 import com.wsk.movie.tool.SensitivewordFilter;
 import com.wsk.movie.tool.Tool;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,7 +102,7 @@ public class UserInformationController extends AsideController {
         }
     }
 
-    @RequestMapping(value = "/main")
+    @RequestMapping(value = "main")
     public String myself(Model model) {
 //        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
 //        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -115,7 +113,7 @@ public class UserInformationController extends AsideController {
         return "main";
     }
 
-    @RequestMapping(value = "/my")
+    @RequestMapping(value = "my")
     public String my(Model model) {
 //        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
 //        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -177,7 +175,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入论坛
-    @RequestMapping(value = "/forum/forum")
+    @RequestMapping(value = "forum/forum")
     public String forum(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -186,11 +184,11 @@ public class UserInformationController extends AsideController {
             model.addAttribute("userInformation", userInformation);
         }
         model.addAttribute("action", 3);
-        return "/forum/forum";
+        return "forum/forum";
     }
 
     //进入热门论坛
-    @RequestMapping(value = "/hot/forum")
+    @RequestMapping(value = "hot/forum")
     public String hotForum(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -199,11 +197,11 @@ public class UserInformationController extends AsideController {
             model.addAttribute("userInformation", userInformation);
         }
         model.addAttribute("action", 2);
-        return "/forum/hot";
+        return "forum/hot";
     }
 
     //进入热门影评
-    @RequestMapping(value = "/hot/critic")
+    @RequestMapping(value = "hot/critic")
     public String hotCritic(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -227,12 +225,14 @@ public class UserInformationController extends AsideController {
         for (PublishCritic p : publishCritics) {
             UserPublish userPublish = new UserPublish();
             a:
-            for (UserInformation u : userInformations) {
-                if (u.getId().equals(p.getUid())) {
-                    userPublish.setName(u.getName());
-                    userPublish.setAvatar(u.getAvatar());
-                    userPublish.setUid(u.getId());
-                    break a;
+            {
+                for (UserInformation u : userInformations) {
+                    if (u.getId().equals(p.getUid())) {
+                        userPublish.setName(u.getName());
+                        userPublish.setAvatar(u.getAvatar());
+                        userPublish.setUid(u.getId());
+                        break a;
+                    }
                 }
             }
             userPublish.setFriend(isFriends(uid, p.getUid()) ? 1 : 0);
@@ -245,7 +245,7 @@ public class UserInformationController extends AsideController {
             userPublish.setCritic(p.getCritic());
             userPublish.setTitle(p.getTitle());
             userPublish.setPid(p.getId());
-            userPublish.setTime(Tool.getInstance().DateToStringWithHours(p.getTime()));
+            userPublish.setTime(Tool.getInstance().dateToStringWithHours(p.getTime()));
             userPublish.setGood(isGood(uid, p.getId()) ? 1 : 0);
             userPublish.setCollection(isCollection(uid, p.getId()) ? 1 : 0);
             userPublishes.add(userPublish);
@@ -256,7 +256,7 @@ public class UserInformationController extends AsideController {
         List<MyFriendsBean> myFriends = getMyFriends(uid);
         model.addAttribute("myFriends", myFriends);
         getUserCounts(model, uid);
-        return "/hot/critic";
+        return "hot/critic";
     }
 //    @RequestMapping("getAllUsers")
 //    public String getAllUsers(Model model) {
@@ -266,7 +266,7 @@ public class UserInformationController extends AsideController {
 //    }
 
     //查看用户个人主页
-    @RequestMapping(value = "/information")
+    @RequestMapping(value = "information")
     public String information(HttpServletRequest request, @RequestParam(value = "id") int id) {
         request.getSession().setAttribute("userId", id);
         UserInformation user = getUserInformationById(id);
@@ -275,7 +275,7 @@ public class UserInformationController extends AsideController {
     }
 
     //重定向到个人主页，为了安全
-    @RequestMapping(value = "/user/information")
+    @RequestMapping(value = "user/information")
     public String information(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -319,7 +319,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入影评的详细内容
-    @RequestMapping(value = "/criticInformation")
+    @RequestMapping(value = "criticInformation")
     public String criticInformation(HttpServletRequest request, @RequestParam int pid) {
         request.getSession().setAttribute("pid", pid);
         int uid;
@@ -337,7 +337,7 @@ public class UserInformationController extends AsideController {
     }
 
     //查看具体影评，重定向，为了安全
-    @RequestMapping(value = "/critic/information")
+    @RequestMapping(value = "critic/information")
     public String criticInformation(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -388,7 +388,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入账号设置
-    @RequestMapping(value = "/accountSettings")
+    @RequestMapping(value = "accountSettings")
     public String accountSettings(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -402,7 +402,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入安全设置
-    @RequestMapping(value = "/security")
+    @RequestMapping(value = "security")
     public String security(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -416,7 +416,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入查看我的评论
-    @RequestMapping(value = "/my/comment")
+    @RequestMapping(value = "my/comment")
     public String myComment(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -442,10 +442,10 @@ public class UserInformationController extends AsideController {
 //            myCommentBean.setCollection(collectionCriticService.getCounts(c.getPid()));
             myCommentBean.setCritic(publishCritic.getCritic());
             myCommentBean.setComment(c.getCritic());
-            myCommentBean.setPublishTime(Tool.getInstance().DateToStringWithHours(publishCritic.getTime()));
+            myCommentBean.setPublishTime(Tool.getInstance().dateToStringWithHours(publishCritic.getTime()));
             myCommentBean.setFid(user.getId());
             myCommentBean.setPid(publishCritic.getId());
-            myCommentBean.setCommentTime(Tool.getInstance().DateToStringWithHours(c.getTime()));
+            myCommentBean.setCommentTime(Tool.getInstance().dateToStringWithHours(c.getTime()));
 //            myCommentBean.setGood(goodCriticService.getCounts(c.getPid()));
             myCommentBean.setPicture(publishCritic.getPicture());
             myCommentBean.setIsprivate(publishCritic.getIsprivate());
@@ -461,7 +461,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入我的收藏
-    @RequestMapping(value = "/my/collection")
+    @RequestMapping(value = "my/collection")
     public String myCollection(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -486,8 +486,8 @@ public class UserInformationController extends AsideController {
             userPublish.setCollection(1);
             userPublish.setGood(isGood(uid, user.getId()) ? 1 : 0);
             userPublish.setFriend(isFriends(uid, user.getId()) ? 1 : 0);
-            userPublish.setTime(Tool.getInstance().DateToStringWithHours(publishCritic.getTime()));
-            userPublish.setCollectionTime(Tool.getInstance().DateToStringWithHours(c.getTime()));
+            userPublish.setTime(Tool.getInstance().dateToStringWithHours(publishCritic.getTime()));
+            userPublish.setCollectionTime(Tool.getInstance().dateToStringWithHours(c.getTime()));
             userPublish.setAvatar(user.getAvatar());
             userPublish.setCollectionCounts(collectionCriticService.getCounts(c.getPid()));
             userPublish.setCommentCounts(commentCriticService.getCounts(c.getPid()));
@@ -507,7 +507,7 @@ public class UserInformationController extends AsideController {
     }
 
     //进入我的点赞
-    @RequestMapping(value = "/my/good")
+    @RequestMapping(value = "my/good")
     public String myGood(HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -532,8 +532,8 @@ public class UserInformationController extends AsideController {
             userPublish.setCollection(isCollection(uid, publishCritic.getId()) ? 1 : 0);
             userPublish.setGood(1);
             userPublish.setFriend(isFriends(uid, user.getId()) ? 1 : 0);
-            userPublish.setTime(Tool.getInstance().DateToStringWithHours(publishCritic.getTime()));
-            userPublish.setCollectionTime(Tool.getInstance().DateToStringWithHours(c.getTime()));
+            userPublish.setTime(Tool.getInstance().dateToStringWithHours(publishCritic.getTime()));
+            userPublish.setCollectionTime(Tool.getInstance().dateToStringWithHours(c.getTime()));
             userPublish.setAvatar(user.getAvatar());
             userPublish.setCollectionCounts(collectionCriticService.getCounts(c.getPid()));
             userPublish.setCommentCounts(commentCriticService.getCounts(c.getPid()));
@@ -553,7 +553,7 @@ public class UserInformationController extends AsideController {
     }
 
     //修改个人信息
-    @RequestMapping(value = "/modified")
+    @RequestMapping(value = "modified")
     public String modified(@RequestParam(required = false) String name, @RequestParam(required = false) String tel,
                            @RequestParam(required = false) String sex, @RequestParam(required = false) String birth,
                            @RequestParam(required = false) String introduction, @RequestParam(required = false) String city,
@@ -571,7 +571,7 @@ public class UserInformationController extends AsideController {
         } else if (!Tool.getInstance().isNullOrEmpty(sex)) {
             userInformation.setSex(sex);
         } else if (!Tool.getInstance().isNullOrEmpty(birth)) {
-            userInformation.setBirthday(Tool.getInstance().StringToDate(birth));
+            userInformation.setBirthday(Tool.getInstance().stringToDate(birth));
         } else if (!Tool.getInstance().isNullOrEmpty(introduction)) {
             userInformation.setAutograph(introduction);
         } else if (!Tool.getInstance().isNullOrEmpty(city)) {
@@ -587,7 +587,7 @@ public class UserInformationController extends AsideController {
     }
 
     //修改密码
-    @RequestMapping(value = "/password")
+    @RequestMapping(value = "password")
     public String password(@RequestParam String old_password, @RequestParam String new_password, HttpServletRequest request) {
 
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
@@ -639,7 +639,7 @@ public class UserInformationController extends AsideController {
             criticCommentBean.setId(c.getId());
             criticCommentBean.setCritic(c.getCritic());
             criticCommentBean.setPid(c.getPid());
-            criticCommentBean.setTime(Tool.getInstance().DateToStringWithHours(c.getTime()));
+            criticCommentBean.setTime(Tool.getInstance().dateToStringWithHours(c.getTime()));
             criticCommentBeans.add(criticCommentBean);
         }
         return criticCommentBeans;
@@ -674,6 +674,7 @@ public class UserInformationController extends AsideController {
                 request.getSession().setAttribute("uid", id);
                 UserInformation userInformation = userInformationService.selectByPrimaryKey(id);
                 setUserInfoToRedis(userInformation);
+                setUserInforToSession(userInformation);
 //                request.getSession().setAttribute("userInformation", userInformation);
             }
         } catch (Exception e) {
@@ -703,7 +704,7 @@ public class UserInformationController extends AsideController {
                     userPublish.setAvatar(userInformation.getAvatar());
                     userPublish.setIsPrivate(p.getIsprivate());
                     userPublish.setPid(p.getId());
-                    userPublish.setTime(Tool.getInstance().DateToStringWithHours(p.getTime()));
+                    userPublish.setTime(Tool.getInstance().dateToStringWithHours(p.getTime()));
                     userPublish.setTitle(p.getTitle());
                     userPublish.setCritic(p.getCritic());
                     userPublish.setPicture(p.getPicture());

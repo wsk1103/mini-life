@@ -19,7 +19,7 @@ import java.util.List;
  * @TIME : 2018/2/26  23:02
  */
 @Controller
-@RequestMapping(value = "/book")
+@RequestMapping(value = "book")
 public class BookController {
 
     private final UserInformationController userController;
@@ -33,7 +33,7 @@ public class BookController {
     }
 
     // 初始化图书信息
-   @RequestMapping(value = "/init")
+   @RequestMapping(value = "init")
     public String bookInit(HttpServletRequest request, Model model){
        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
        List<BookEntity> entities = searchBookService.randBook();
@@ -52,7 +52,7 @@ public class BookController {
     }
 
     //图书详情
-    @RequestMapping(value = "/book_information/{bookId}")
+    @RequestMapping(value = "book_information/{bookId}")
     public String bookInformation(@PathVariable("bookId") long bookId, HttpServletRequest request, Model model) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         BookEntity entity = searchBookService.findById(bookId);

@@ -1,5 +1,6 @@
 package com.wsk.movie.music;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wsk.movie.music.bean.*;
 import com.wsk.movie.music.entity.*;
@@ -260,7 +261,7 @@ public class WangYiServiceImpl implements WangYiService {
         entity.setData(commentBean);
         entity.setCode(200);
         entity.setMsg("success");
-        System.out.println(redisUtils.hset(COMMENT_CACHE , String.valueOf(song_id), JSONUtil.toJson(commentBean), Time.LONG));
+        System.out.println(redisUtils.hset(COMMENT_CACHE , String.valueOf(song_id), JSONUtil.toJson(commentBean), Time.FIVE_MINUTE));
         return entity;
     }
 
@@ -459,10 +460,11 @@ public class WangYiServiceImpl implements WangYiService {
             return responseEntity;
         }
         json = "{\"songs\":" + json + "}";
+        System.out.println(json);
         try {
             WangYiResult result = JSONUtil.toBean(json, WangYiResult.class);
             WangYiSong[] songs = result.getSongs();
-            redisUtils.set(url, json, Time.LONG);
+            redisUtils.set(url, json, Time.FIVE_MINUTE);
             return saveMusic(songs, null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -479,6 +481,7 @@ public class WangYiServiceImpl implements WangYiService {
      */
     private WangYiResponseEntity saveMusic(WangYiSong[] songs, String searchName) {
         result.clear();
+        System.out.println("the wangyi result is \n" + JSON.toJSONString(songs,true));
         try {
             for (WangYiSong song : songs) {
                 long song_id = song.getId();

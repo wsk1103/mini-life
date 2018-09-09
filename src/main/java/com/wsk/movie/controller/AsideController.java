@@ -71,7 +71,7 @@ public class AsideController extends BaseController {
                     }
                     userPublish.setIsPrivate(p.getIsprivate());
                     userPublish.setPid(p.getId());
-                    userPublish.setTime(Tool.getInstance().DateToStringWithHours(p.getTime()));
+                    userPublish.setTime(Tool.getInstance().dateToStringWithHours(p.getTime()));
                     userPublish.setTitle(p.getTitle());
                     userPublish.setCritic(p.getCritic());
                     userPublish.setPicture(p.getPicture());
@@ -159,11 +159,11 @@ public class AsideController extends BaseController {
     }
 
     public void setAsideModel(Model model) {
-        model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        model.addAttribute("userInformation", currentUserInfo());
-        model.addAttribute("username", currentUserInfo().getName());
-        model.addAttribute("autograph", currentUserInfo().getAutograph());
-        int uid = currentUserInfo().getId();
+        model.addAttribute("myFriends", getMyFriends(currentUserInfoFromRedis().getId()));
+        model.addAttribute("userInformation", currentUserInfoFromRedis());
+        model.addAttribute("username", currentUserInfoFromRedis().getName());
+        model.addAttribute("autograph", currentUserInfoFromRedis().getAutograph());
+        int uid = currentUserInfoFromRedis().getId();
         getAllPublishCritic(model, uid);
         getUserCounts(model, uid);
     }

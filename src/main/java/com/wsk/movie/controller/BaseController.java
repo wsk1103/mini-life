@@ -4,15 +4,16 @@ import com.wsk.movie.error.LoginErrorException;
 import com.wsk.movie.pojo.UserInformation;
 import com.wsk.movie.redis.IRedisUtils;
 import com.wsk.movie.tool.JSONUtil;
-import com.wsk.movie.tool.ProtoBufUtil;
 import com.wsk.movie.tool.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * 基础控制类
@@ -43,6 +44,10 @@ public class BaseController {
             throw new LoginErrorException("登录过期，请重新登录！");
         }
         nowSessionId = request.getRequestedSessionId();
+        System.out.println(String.format("THE nowSessionId is %s, %s", new Date(), nowSessionId));
+        if (StringUtils.isEmpty(nowSessionId)) {
+            throw new LoginErrorException("登录过期，请重新登录！");
+        }
     }
 
     /**
@@ -50,7 +55,7 @@ public class BaseController {
      *
      * @return 当前用户
      */
-    UserInformation currentUserInfo() {
+    protected UserInformation currentUserInfo() {
         init();
         return (UserInformation) request.getSession().getAttribute("userInformation");
     }
@@ -62,7 +67,7 @@ public class BaseController {
      * @param t    对象
      * @param <T>  泛型
      */
-    <T> void setToSession(String name, T t) {
+    protected <T> void setToSession(String name, T t) {
         init();
         request.getSession().setAttribute(name, t);
     }
@@ -72,7 +77,7 @@ public class BaseController {
      *
      * @return
      */
-    UserInformation currentUserInfoFromRedis() {
+    protected UserInformation currentUserInfoFromRedis() {
         init();
         String userInfo = redisUtils.get(nowSessionId);
         System.out.println(userInfo);
@@ -80,7 +85,12 @@ public class BaseController {
         return JSONUtil.toBean(userInfo, UserInformation.class);
     }
 
-    void setUserInfoToRedis(UserInformation userInformation) {
+    protected void setUserInforToSession(UserInformation userInformation) {
+        init();
+        request.getSession().setAttribute("userInformation", userInformation);
+    }
+
+    protected void setUserInfoToRedis(UserInformation userInformation) {
         init();
         String result = JSONUtil.toJson(userInformation);
 //        String result = ProtoBufUtil.serializerToString(userInformation);
@@ -88,18 +98,18 @@ public class BaseController {
         redisUtils.set(nowSessionId, result);
     }
 
-    void cleanSessionAndRedis() {
+    protected void cleanSessionAndRedis() {
         init();
         redisUtils.del(nowSessionId);
         request.getSession().removeAttribute("userInformation");
     }
 
-    String getNowSessionId() {
+    protected String getNowSessionId() {
         init();
         return nowSessionId;
     }
 
-    HttpServletRequest getRequest() {
+    protected HttpServletRequest getRequest() {
         init();
         return request;
     }

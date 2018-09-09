@@ -33,7 +33,7 @@ public class Tool {
         return Lazy.TOOL;
     }
 
-    public String DateToStringWithHours(Date date) {
+    public String dateToStringWithHours(Date date) {
         if (isNullOrEmpty(date)) {
             return "";
         }
@@ -41,7 +41,7 @@ public class Tool {
         return simpleDateFormat.format(date);
     }
 
-    public String DateToString(Date date) {
+    public String dateToString(Date date) {
         if (isNullOrEmpty(date)) {
             return "";
         }
@@ -49,7 +49,7 @@ public class Tool {
         return simpleDateFormat.format(date);
     }
 
-    public Date StringToDate(String time) {
+    public Date stringToDate(String time) {
         if (isNullOrEmpty(time)) {
             return new Date();
         }

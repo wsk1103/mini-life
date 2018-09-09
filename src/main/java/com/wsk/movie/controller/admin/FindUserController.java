@@ -33,7 +33,7 @@ import java.util.List;
  * @TIME : 2018/3/8  14:16
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class FindUserController {
     @Autowired
     private UserInformationRepository userInformationRepository;
@@ -57,13 +57,13 @@ public class FindUserController {
     private BookRepository bookRepository;
 
 
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public String login(Model model, HttpServletRequest request) {
 
         return "admin/login";
     }
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "index")
     public String login(@RequestParam String username, @RequestParam String password,
                         Model model, HttpServletRequest request) {
 //        ModelAndView modelAndView = new ModelAndView();
@@ -81,7 +81,7 @@ public class FindUserController {
         return "admin/index";
     }
 
-    @RequestMapping(value = "/findAllUser")
+    @RequestMapping(value = "findAllUser")
     public String findAll(@RequestParam(required = false) String start, @RequestParam(required = false) String end,
                           Model model, HttpServletRequest request) {
         int s, e;
@@ -105,7 +105,7 @@ public class FindUserController {
         return "admin/all_user";
     }
 
-    @RequestMapping(value = "/findUser")
+    @RequestMapping(value = "findUser")
     public String findUser(@RequestParam String id, @RequestParam String username, @RequestParam String phone,
                            Model model, HttpServletRequest request) {
         AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
@@ -126,7 +126,7 @@ public class FindUserController {
         return "admin/all_user";
     }
 
-    @RequestMapping(value = "/findAllReport")
+    @RequestMapping(value = "findAllReport")
     public String findReport(Model model, HttpServletRequest request) {
         AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
         if (Tool.getInstance().isNullOrEmpty(entity)) {
@@ -151,7 +151,7 @@ public class FindUserController {
         return "admin/all_report";
     }
 
-    @RequestMapping(value = "/findAllCritic")
+    @RequestMapping(value = "findAllCritic")
     public String findCritic(Model model, HttpServletRequest request) {
         AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
         if (Tool.getInstance().isNullOrEmpty(entity)) {
@@ -177,7 +177,7 @@ public class FindUserController {
     }
 
     //禁用用户
-    @RequestMapping(value = "/changeAllowed")
+    @RequestMapping(value = "changeAllowed")
     public void changeAllowed(@RequestParam(value = "allowed") int allowed, @RequestParam("uid") int uid, HttpServletRequest request) {
         AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
         if (Tool.getInstance().isNullOrEmpty(entity)) {
@@ -201,7 +201,7 @@ public class FindUserController {
     }
 
     //信息审核和举报审核
-    @RequestMapping(value = "/change")
+    @RequestMapping(value = "change")
     public void change(@RequestParam(value = "allowed") int allowed, @RequestParam("uid") int uid, HttpServletRequest request) {
         AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
         if (Tool.getInstance().isNullOrEmpty(entity)) {
@@ -228,7 +228,7 @@ public class FindUserController {
         }
     }
     //查看操作记录
-    @RequestMapping(value = "/findAction")
+    @RequestMapping(value = "findAction")
     public String findAction(Model model, HttpServletRequest request){
         AdmininformationEntity entity = (AdmininformationEntity) request.getSession().getAttribute("adminInformation");
         if (Tool.getInstance().isNullOrEmpty(entity)) {
@@ -247,7 +247,7 @@ public class FindUserController {
     }
 
     //改变音乐的禁用状态
-    @RequestMapping(value = "/changeMusicStatus")
+    @RequestMapping(value = "changeMusicStatus")
     public void changeMusicStatus(@RequestParam(value = "songId") long songid,
                                   @RequestParam(value = "status") int status,
                                   HttpServletRequest request) {
@@ -273,7 +273,7 @@ public class FindUserController {
     }
 
     //改变图书的禁用状态
-    @RequestMapping(value = "/changeBookStatus")
+    @RequestMapping(value = "changeBookStatus")
     public void changeBookStatus(@RequestParam(value = "bookId") int bookid,
                                  @RequestParam(value = "status") int status,
                                  HttpServletRequest request) {

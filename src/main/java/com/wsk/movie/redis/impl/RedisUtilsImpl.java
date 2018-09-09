@@ -1,13 +1,13 @@
 package com.wsk.movie.redis.impl;
 
 import com.wsk.movie.redis.IRedisUtils;
-import com.wsk.movie.tool.Time;
 import com.wsk.movie.redis.RedisType;
+import com.wsk.movie.tool.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import redis.clients.jedis.BinaryClient;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;
@@ -31,6 +31,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean set(String key, String value, long time) {
+        if (isEmpty(key) || isEmpty(value) || isEmpty(time)) {
+            return false;
+        }
         try {
             template.opsForValue().set(key, value, time, TimeUnit.SECONDS);
             return true;
@@ -42,6 +45,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean set(Map<String, String> map, long time) {
+        if (isEmpty(map) || isEmpty(time)) {
+            return false;
+        }
         try {
             template.opsForValue().multiSet(map);
             for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -56,6 +62,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean set(String key, String value) {
+        if (isEmpty(key) || isEmpty(value)) {
+            return false;
+        }
         try {
             template.opsForValue().set(key, value, Time.TEN_MINUTE);
             return true;
@@ -67,6 +76,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean set(Map<String, String> map) {
+        if (isEmpty(map)) {
+            return false;
+        }
         try {
             template.opsForValue().multiSet(map);
             for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -81,6 +93,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public String get(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForValue().get(key);
         } catch (Exception e) {
@@ -91,8 +106,11 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public List<String> get(String... keys) {
+        if (isEmpty(keys)) {
+            return null;
+        }
         try {
-            List list = new ArrayList();
+            List<String> list = new ArrayList<>();
             Collections.addAll(list, keys);
             return template.opsForValue().multiGet(list);
         } catch (Exception e) {
@@ -103,6 +121,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public List<String> get(List<String> keys) {
+        if (isEmpty(keys)) {
+            return null;
+        }
         try {
             return template.opsForValue().multiGet(keys);
         } catch (Exception e) {
@@ -113,6 +134,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long decr(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForValue().increment(key, -1);
         } catch (Exception e) {
@@ -123,6 +147,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long decr(String key, long i) {
+        if (isEmpty(key) || isEmpty(i)) {
+            return null;
+        }
         try {
             return template.opsForValue().increment(key, -i);
         } catch (Exception e) {
@@ -133,6 +160,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long incr(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForValue().increment(key, 1);
         } catch (Exception e) {
@@ -143,6 +173,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long incr(String key, long i) {
+        if (isEmpty(key) || isEmpty(i)) {
+            return null;
+        }
         try {
             return template.opsForValue().increment(key, i);
         } catch (Exception e) {
@@ -153,6 +186,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean hset(String key, String field, String value, long time) {
+        if (isEmpty(key) || isEmpty(value) || isEmpty(time)) {
+            return false;
+        }
         try {
             template.opsForHash().put(key, field, value);
             expire(key, time);
@@ -165,6 +201,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean hset(String key, Map<String, String> map, long time) {
+        if (isEmpty(key) || isEmpty(map) || isEmpty(time)) {
+            return false;
+        }
         try {
             template.opsForHash().putAll(key, map);
             expire(key, time);
@@ -177,6 +216,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean hset(String key, String field, String value) {
+        if (isEmpty(key) || isEmpty(value) || isEmpty(field)) {
+            return false;
+        }
         try {
             template.opsForHash().put(key, field, value);
             expire(key, Time.TEN_MINUTE);
@@ -189,6 +231,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean hset(String key, Map<String, String> map) {
+        if (isEmpty(key) || isEmpty(map)) {
+            return false;
+        }
         try {
             template.opsForHash().putAll(key, map);
             expire(key, Time.TEN_MINUTE);
@@ -201,6 +246,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public String hget(String key, String field) {
+        if (isEmpty(key) || isEmpty(field)) {
+            return null;
+        }
         try {
             return (String) template.opsForHash().get(key, field);
         } catch (Exception e) {
@@ -211,6 +259,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public List<Object> hget(String key, String... fields) {
+        if (isEmpty(key) || isEmpty(fields)) {
+            return null;
+        }
         try {
             List<Object> list = new ArrayList<>();
             Collections.addAll(list, fields);
@@ -223,6 +274,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Set<Object> hkeys(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForHash().keys(key);
         } catch (Exception e) {
@@ -233,6 +287,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public List<Object> hvalues(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForHash().values(key);
         } catch (Exception e) {
@@ -243,6 +300,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean hexists(String key, String fiels) {
+        if (isEmpty(key) || isEmpty(fiels)) {
+            return false;
+        }
         try {
             return template.opsForHash().hasKey(key, fiels);
         } catch (Exception e) {
@@ -253,6 +313,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Map<Object, Object> hgetall(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForHash().entries(key);
         } catch (Exception e) {
@@ -263,6 +326,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long lpush(String key, long time, String... values) {
+        if (isEmpty(key) || isEmpty(time) || isEmpty(values)) {
+            return null;
+        }
         try {
             long result = template.opsForList().leftPushAll(key, values);
             return expire(key, time) ? result : 0L;
@@ -274,6 +340,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long lpush(String key, String... values) {
+        if (isEmpty(key) || isEmpty(values)) {
+            return null;
+        }
         try {
             long result = template.opsForList().leftPushAll(key, values);
             return expire(key, Time.TEN_MINUTE) ? result : 0L;
@@ -285,6 +354,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long rpush(String key, long time, String... values) {
+        if (isEmpty(key) || isEmpty(values) || isEmpty(time)) {
+            return null;
+        }
         try {
             long result = template.opsForList().rightPushAll(key, values);
             return expire(key, time) ? result : 0L;
@@ -296,6 +368,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long rpush(String key, String... values) {
+        if (isEmpty(key) || isEmpty(values)) {
+            return null;
+        }
         try {
             long result = template.opsForList().rightPushAll(key, values);
             return expire(key, Time.TEN_MINUTE) ? result : 0;
@@ -307,6 +382,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public String lpop(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForList().leftPop(key);
         } catch (Exception e) {
@@ -317,6 +395,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public String rpop(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForList().rightPop(key);
         } catch (Exception e) {
@@ -327,6 +408,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long llen(String key) {
+        if (isEmpty(key)) {
+            return null;
+        }
         try {
             return template.opsForList().size(key);
         } catch (Exception e) {
@@ -337,6 +421,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public List<String> lrange(String key, int start, int stop) {
+        if (isEmpty(key) || isEmpty(start) || isEmpty(stop)) {
+            return null;
+        }
         try {
             return template.opsForList().range(key, start, stop);
         } catch (Exception e) {
@@ -347,6 +434,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean ltrim(String key, int start, int end) {
+        if (isEmpty(key) || isEmpty(start) || isEmpty(end)) {
+            return false;
+        }
         try {
             template.opsForList().trim(key, start, end);
             return true;
@@ -358,6 +448,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long lrem(String key, int count, String value) {
+        if (isEmpty(key) || isEmpty(value) || isEmpty(count)) {
+            return null;
+        }
         try {
             return template.opsForList().remove(key, count, value);
         } catch (Exception e) {
@@ -368,6 +461,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public String lindex(String key, int index) {
+        if (isEmpty(key) || isEmpty(index)) {
+            return null;
+        }
         try {
             return template.opsForList().index(key, index);
         } catch (Exception e) {
@@ -378,6 +474,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean lset(String key, int index, String value) {
+        if (isEmpty(key) || isEmpty(value) || isEmpty(index)) {
+            return false;
+        }
         try {
             template.opsForList().set(key, index, value);
             return true;
@@ -389,6 +488,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long linsert(String key, RedisType type, String piovt, String value) {
+        if (isEmpty(key) || isEmpty(value) || isEmpty(piovt) || isEmpty(type)) {
+            return null;
+        }
         Response<Long> i = null;
         switch (type) {
             case AFTER:
@@ -396,12 +498,18 @@ public class RedisUtilsImpl implements IRedisUtils {
                 break;
             case BEFORE:
                 i = pipeline.linsert(key, BinaryClient.LIST_POSITION.BEFORE, piovt, value);
+                break;
+            default:
+                break;
         }
         return null != i ? i.get() : null;
     }
 
     @Override
     public Long sadd(String key, long time, String... values) {
+        if (isEmpty(key) || isEmpty(values) || isEmpty(time)) {
+            return null;
+        }
         try {
             long result = template.opsForSet().add(key, values);
             return expire(key, time) ? result : null;
@@ -413,6 +521,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long sadd(String key, String... values) {
+        if (isEmpty(key) || isEmpty(values)  ) {
+            return null;
+        }
         try {
             long result = template.opsForSet().add(key, values);
             return expire(key, Time.TEN_MINUTE) ? result : null;
@@ -424,6 +535,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Long srem(String key, String... value) {
+        if (isEmpty(key) || isEmpty(value)  ) {
+            return null;
+        }
         try {
             return template.opsForSet().remove(key, value);
         } catch (Exception e) {
@@ -434,6 +548,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Set<String> smembers(String key) {
+        if (isEmpty(key)  ) {
+            return null;
+        }
         try {
             return template.opsForSet().members(key);
         } catch (Exception e) {
@@ -444,6 +561,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean sismember(String key, String member) {
+        if (isEmpty(key) || isEmpty(member) ) {
+            return false;
+        }
         try {
             return template.opsForSet().isMember(key, member);
         } catch (Exception e) {
@@ -454,6 +574,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Set<String> sdiff(String key1, String key2) {
+        if (isEmpty(key1) || isEmpty(key2)  ) {
+            return null;
+        }
         try {
             return template.opsForSet().difference(key1, key2);
         } catch (Exception e) {
@@ -464,7 +587,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Set<String> sdiff(String k, List<String> keys) {
-
+        if (isEmpty(k) || isEmpty(keys)  ) {
+            return null;
+        }
         try {
             return template.opsForSet().difference(k, keys);
         } catch (Exception e) {
@@ -475,6 +600,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Set<String> sinter(String k1, String k2) {
+        if (isEmpty(k1) || isEmpty(k2)  ) {
+            return null;
+        }
         try {
             return template.opsForSet().intersect(k1, k2);
         } catch (Exception e) {
@@ -485,6 +613,7 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public Set<String> sinter(String k, List<String> key) {
+
         try {
             return template.opsForSet().intersect(k, key);
         } catch (Exception e) {
@@ -738,6 +867,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean del(String key) {
+        if (isEmpty(key)  ) {
+            return false;
+        }
         try {
             template.delete(key);
             return true;
@@ -749,6 +881,9 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean del(String... keys) {
+        if (isEmpty(keys) ) {
+            return false;
+        }
         try {
             List<String> list = new ArrayList<>();
             Collections.addAll(list, keys);
@@ -762,11 +897,22 @@ public class RedisUtilsImpl implements IRedisUtils {
 
     @Override
     public boolean exists(String key) {
+        if (isEmpty(key)  ) {
+            return false;
+        }
         return template.hasKey(key);
     }
 
     @Override
     public boolean expire(String key, long seconds) {
+        if (isEmpty(key) || isEmpty(seconds)  ) {
+            return false;
+        }
         return template.expire(key, seconds, TimeUnit.SECONDS);
     }
+
+    private <T> boolean isEmpty(T key) {
+        return StringUtils.isEmpty(key);
+    }
+
 }

@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @Data
-@RequestMapping(value = "/fee")
+@RequestMapping(value = "fee")
 public class FeeMusicController {
 
     @Autowired
     private WangYiService service;
 
-    @RequestMapping(value = "/search/music/{id}")
+    @RequestMapping(value = "search/music/{id}")
     @ResponseBody
     public BaseEntity searchByName(@Param("name") String name, @PathVariable String id) {
 //        switch (id) {
@@ -33,7 +33,7 @@ public class FeeMusicController {
         return service.getMusic(name, id);
     }
 
-    @RequestMapping(value = "/delRedis")
+    @RequestMapping(value = "delRedis")
     @ResponseBody
     public String delRedis(@Param("name") String name){
         return service.delRedis(name) ? "true" : "false";
