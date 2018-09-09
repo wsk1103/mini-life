@@ -24,15 +24,15 @@ public class LoginErrorResolver extends BaseController implements HandlerExcepti
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         ModelAndView modelAndView = new ModelAndView();
-/*        if (e instanceof LoginErrorException) {
+        if (e instanceof LoginErrorException) {
             modelAndView.addObject("msg", e.getMessage());
             modelAndView.setViewName("redirect:/login");
         } else {
             modelAndView.addObject("msg", "服务器内部异常");
-            modelAndView.setViewName("error");
-        }*/
-        modelAndView.addObject("msg", e.getMessage());
-        modelAndView.setViewName("redirect:/login");
+            modelAndView.setViewName("500");
+        }
+/*        modelAndView.addObject("msg", e.getMessage());
+        modelAndView.setViewName("redirect:/login");*/
         e.printStackTrace();
         cleanSessionAndRedis();
         return modelAndView;

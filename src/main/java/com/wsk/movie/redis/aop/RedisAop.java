@@ -1,5 +1,6 @@
 package com.wsk.movie.redis.aop;
 
+import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -20,12 +21,13 @@ public class RedisAop {
     }
 
     @Before(value = "check()")
-    public void checkNull(JoinPoint joinPoint){
+    public void checkNull(JoinPoint joinPoint) {
         //开始拦截redis的参数是否为空，为空则返回
         System.out.println("=====开始进入redis=====");
-        for (int i = 0; i < joinPoint.getArgs().length; i++) {
-            System.out.println(joinPoint.getArgs()[i]);
-        }
+        System.out.println("the params is " + JSON.toJSONString(joinPoint.getArgs(), true));
+/*        for (int i = 0; i < joinPoint.getArgs().length; i++) {
+            System.out.println("the params is " + joinPoint.getArgs()[i]);
+        }*/
     }
 
 }

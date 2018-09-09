@@ -44,7 +44,7 @@ public class MovieController extends AsideController {
     }
 
     //模糊查询电影信息
-    @RequestMapping(value = "/search/movie/result")
+    @RequestMapping(value = "search/movie/result")
     public String searchMovieResult(Model model, HttpServletRequest request, @ModelAttribute("name") String q) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -63,11 +63,11 @@ public class MovieController extends AsideController {
         model.addAttribute("movie_name", q + "搜索结果");
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/SearchMovieResult";
+        return "movie/SearchMovieResult";
     }
 
     //查看电影信息
-    @RequestMapping(value = "/search/movie/information")
+    @RequestMapping(value = "search/movie/information")
     public String searchMovie(Model model, HttpServletRequest request, @RequestParam String id) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -112,7 +112,7 @@ public class MovieController extends AsideController {
     }
 
     //查看影人条目信息
-    @RequestMapping(value = "/celebrity/{id}")
+    @RequestMapping(value = "celebrity/{id}")
     public String celebrity(@PathVariable String id, Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -137,11 +137,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/celebrity";
+        return "movie/celebrity";
     }
 
     //即将上映的电影
-    @RequestMapping(value = "/coming/soon")
+    @RequestMapping(value = "coming/soon")
     public String comingSoon(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -156,11 +156,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/SearchMovieResult";
+        return "movie/SearchMovieResult";
     }
 
     //top250
-    @RequestMapping(value = "/top")
+    @RequestMapping(value = "top")
     public String top(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -175,11 +175,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/SearchMovieResult";
+        return "movie/SearchMovieResult";
     }
 
     //正在上映
-    @RequestMapping(value = "/coming")
+    @RequestMapping(value = "coming")
     public String coming(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -194,11 +194,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/hot_movie";
+        return "movie/hot_movie";
     }
 
     //热映电影的详情，
-    @RequestMapping(value = "/hot/movie/information/{id}")
+    @RequestMapping(value = "hot/movie/information/{id}")
     public String hotMovieInformation(@PathVariable String id, Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -212,11 +212,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/hot_movie_information";
+        return "movie/hot_movie_information";
     }
 
     //北美票房榜
-    @RequestMapping(value = "/us/box")
+    @RequestMapping(value = "us/box")
     public String usBox(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -231,11 +231,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/us_box";
+        return "movie/us_box";
     }
 
     //附件电影院
-    @RequestMapping(value = "/cinemas/{id}")
+    @RequestMapping(value = "cinemas/{id}")
     public String cinemas(Model model, HttpServletRequest request, @PathVariable String id) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -255,11 +255,11 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/cinemas";
+        return "movie/cinemas";
     }
 
     //单个影院
-    @RequestMapping(value = "/cinema/{id}")
+    @RequestMapping(value = "cinema/{id}")
     public String cinema(@PathVariable String id, Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -279,7 +279,7 @@ public class MovieController extends AsideController {
         model.addAttribute("action", 3);
         getUserCounts(model, userInformation.getId());
         model.addAttribute("myFriends", getMyFriends(currentUserInfo().getId()));
-        return "/movie/cinema";
+        return "movie/cinema";
     }
 
 /*    //获得点赞数量，收藏数量，评论数量

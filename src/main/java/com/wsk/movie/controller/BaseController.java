@@ -13,7 +13,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 /**
  * 基础控制类
@@ -21,33 +20,34 @@ import java.util.Date;
 @Controller
 public class BaseController {
 
-    private HttpServletRequest request;
-
     final IRedisUtils redisUtils;
-
-    private String nowSessionId;
 
     @Autowired
     public BaseController(IRedisUtils redisUtils) {
         this.redisUtils = redisUtils;
     }
 
-    public void init() {
+    public HttpServletRequest init() {
+        HttpServletRequest request;
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         if (null == requestAttributes) {
             throw new LoginErrorException("登录过期，请重新登录！");
         }
-        if (Tool.getInstance().isNullOrEmpty(request)) {
-            request = ((ServletRequestAttributes) requestAttributes).getRequest();
-        }
+//        if (Tool.getInstance().isNullOrEmpty(request)) {
+        request = ((ServletRequestAttributes) requestAttributes).getRequest();
+//        }
         if (Tool.getInstance().isNullOrEmpty(request)) {
             throw new LoginErrorException("登录过期，请重新登录！");
         }
-        nowSessionId = request.getRequestedSessionId();
-        System.out.println(String.format("THE nowSessionId is %s, %s", new Date(), nowSessionId));
+        if (Tool.getInstance().isNullOrEmpty(request.getSession())) {
+            throw new LoginErrorException("登录过期，请重新登录！");
+        }
+        String nowSessionId = request.getSession().getId();
+//        System.out.println(String.format("THE nowSessionId is %s, %s", new Date(), nowSessionId));
         if (StringUtils.isEmpty(nowSessionId)) {
             throw new LoginErrorException("登录过期，请重新登录！");
         }
+        return request;
     }
 
     /**
@@ -56,7 +56,7 @@ public class BaseController {
      * @return 当前用户
      */
     protected UserInformation currentUserInfo() {
-        init();
+        HttpServletRequest request = init();
         return (UserInformation) request.getSession().getAttribute("userInformation");
     }
 
@@ -68,7 +68,7 @@ public class BaseController {
      * @param <T>  泛型
      */
     protected <T> void setToSession(String name, T t) {
-        init();
+        HttpServletRequest request = init();
         request.getSession().setAttribute(name, t);
     }
 
@@ -78,40 +78,39 @@ public class BaseController {
      * @return
      */
     protected UserInformation currentUserInfoFromRedis() {
-        init();
-        String userInfo = redisUtils.get(nowSessionId);
+        HttpServletRequest request = init();
+        String userInfo = redisUtils.get(request.getSession().getId());
         System.out.println(userInfo);
         //        UserInformation userInformation = ProtoBufUtil.deserializerFromString(userInfo, UserInformation.class);
         return JSONUtil.toBean(userInfo, UserInformation.class);
     }
 
     protected void setUserInforToSession(UserInformation userInformation) {
-        init();
+        HttpServletRequest request = init();
         request.getSession().setAttribute("userInformation", userInformation);
     }
 
     protected void setUserInfoToRedis(UserInformation userInformation) {
-        init();
+        HttpServletRequest request = init();
         String result = JSONUtil.toJson(userInformation);
 //        String result = ProtoBufUtil.serializerToString(userInformation);
         System.out.println(result);
-        redisUtils.set(nowSessionId, result);
+        redisUtils.set(request.getSession().getId(), result);
     }
 
     protected void cleanSessionAndRedis() {
-        init();
-        redisUtils.del(nowSessionId);
+        HttpServletRequest request = init();
+        redisUtils.del(request.getSession().getId());
         request.getSession().removeAttribute("userInformation");
     }
 
     protected String getNowSessionId() {
-        init();
-        return nowSessionId;
+        HttpServletRequest request = init();
+        return request.getSession().getId();
     }
 
     protected HttpServletRequest getRequest() {
-        init();
-        return request;
+        return init();
     }
 
 

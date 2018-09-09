@@ -1,6 +1,5 @@
 package com.wsk.movie.music;
 
-import com.alibaba.fastjson.JSON;
 import com.wsk.movie.MovieApplication;
 import com.wsk.movie.music.service.WangYiService;
 import org.junit.Test;
@@ -24,6 +23,6 @@ public class WangYiServiceImplTest {
 
     @Test
     public void getHottingMusic() {
-        System.out.println(JSON.toJSONString(wangYiService.getHotMusic(), true));
+//        System.out.println(JSON.toJSONString(wangYiService.getHotMusic(), true));
     }
 }

@@ -23,17 +23,17 @@ import java.util.*;
 public class AsideController extends BaseController {
 
     @Resource(name = "userInformationService")
-    UserInformationService userInformationService;
+    public UserInformationService userInformationService;
     @Resource
-    PublishCriticService publishCriticService;
+    public PublishCriticService publishCriticService;
     @Resource
-    private MyFriendsService myFriendsService;
+    public MyFriendsService myFriendsService;
     @Resource
-    CommentCriticService commentCriticService;
+    public CommentCriticService commentCriticService;
     @Resource
-    CollectionCriticService collectionCriticService;
+    public CollectionCriticService collectionCriticService;
     @Resource
-    GoodCriticService goodCriticService;
+    public GoodCriticService goodCriticService;
 
     public AsideController(IRedisUtils redisUtils) {
         super(redisUtils);
