@@ -206,5 +206,3 @@ http://106.12.105.253
 5. 运行com.wsk.movie.MovieApplication的main方法。
 6. 访问localhost
 
-
-PS:该项目可以直接当毕业设计使用，需要的可以有咨询QQ：1261709167
