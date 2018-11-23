@@ -26,7 +26,7 @@ public class HttpUnits {
             throw new Exception("URL is null");
         }
         Document document;
-        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(15000);
+        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(5000);
         if (Tool.getInstance().isNotNull(datas)) {
             connection.data(datas);
         }
@@ -51,14 +51,14 @@ public class HttpUnits {
 
     public static Element urlToString(String url) throws IOException {
         Document document;
-        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(15000);
+        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(5000);
         document = connection.get();
         return document.getElementsByTag("body").first();
     }
 
     public static String urlToStringPost(String url) throws IOException {
         Document document;
-        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(15000);
+        Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(5000);
         document = connection.post();
         return document.getElementsByTag("body").first().text();
     }
