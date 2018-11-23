@@ -1,4 +1,7 @@
 # 这是一个集电影，音乐和书籍于一体的Java web应用
+
+http://106.12.105.253  
+
 ### 喜欢就点一下Star，谢谢亲的支持
 ### Java 1.8
 ### 框架：使用Spring Boot 集成Spring,Spring MVC,MyBatis(前期),Spring Data(后期)
@@ -203,5 +206,3 @@
 5. 运行com.wsk.movie.MovieApplication的main方法。
 6. 访问localhost
 
-
-PS:该项目可以直接当毕业设计使用，需要的可以有咨询QQ：1261709167
