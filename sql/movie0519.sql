@@ -12,6 +12,9 @@ File Encoding         : 65001
 
 Date: 2018-10-17 09:42:26
 */
+CREATE database `movie` DEFAULT CHARACTER SET utf8mb4;
+
+use `movie`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
