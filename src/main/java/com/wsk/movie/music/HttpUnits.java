@@ -21,14 +21,14 @@ public class HttpUnits {
         return urlToBean(url, clazz, null, null, null, HttpMethodType.GET);
     }
 
-    public static <T> T urlToBean(String url, Class<T> clazz, Map<String, String> datas, Map<String, String> header, Map<String, String> cookies, HttpMethodType type) throws Exception {
+    public static <T> T urlToBean(String url, Class<T> clazz, Map<String, String> data, Map<String, String> header, Map<String, String> cookies, HttpMethodType type) throws Exception {
         if (Tool.getInstance().isNullOrEmpty(url)) {
             throw new Exception("URL is null");
         }
         Document document;
         Connection connection = Jsoup.connect(url).ignoreContentType(true).timeout(5000);
-        if (Tool.getInstance().isNotNull(datas)) {
-            connection.data(datas);
+        if (Tool.getInstance().isNotNull(data)) {
+            connection.data(data);
         }
         if (Tool.getInstance().isNotNull(header)) {
             connection.headers(header);
