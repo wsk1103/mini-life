@@ -42,11 +42,6 @@ public class UserLoginAspect {
         String ip = getIpAddress(request);
         System.out.println("IP地址为：" + ip);
         Write.writeToFile(ip);
-//        if (null == ip || !"127.0.0.1".equals(ip)) {
-//            throw new LoginErrorException("How old are you?");
-//        }
-//        System.out.println(request.getSession().getId());
-//        System.out.println("aspect login");
         return "redirect:/show";
     }
 
@@ -93,15 +88,11 @@ public class UserLoginAspect {
     public void checkM() {
     }
 
-//    @Pointcut("execution(* com.wsk.movie.controller.book.BookController.*(..))")
-//    public void checkB() {
-//    }
 
     @Before(value = "checkM()")
     private void checkMusic() {
         System.out.println("wsk =====>start aspect!");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//        String userInformation = redis.get(request.getRequestedSessionId());
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
             if (isLoginFromRedis()) {
