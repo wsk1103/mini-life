@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @DESCRIPTION : 使用sql语句查询
+ * @DESCRIPTION : 原生，使用sql语句查询
  * @AUTHOR : WuShukai1103
  * @TIME : 2018/3/9  13:40
  */
@@ -19,9 +19,9 @@ public class BaseDao {
 
     private static Connection CONNECTION = null;
 
-    public BaseDao(){
-        if (null == CONNECTION){
-            synchronized (this){
+    public BaseDao() {
+        if (null == CONNECTION) {
+            synchronized (this) {
                 if (null == CONNECTION) {
                     CONNECTION = getConnection();
                 }
@@ -30,13 +30,13 @@ public class BaseDao {
     }
 
     /**
-     *  生产一个connection
-     * @return  connection
+     * 生产一个connection
+     *
+     * @return connection
      */
     private static Connection getConnection() {
         Properties properties = getPro();
         try {
-//            Class.forName("com.mysql.jdbc.Driver");
             Class.forName(properties.getProperty("spring.datasource.driver-class-name"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class BaseDao {
 
         String password = properties.getProperty("spring.datasource.password");
 
-//用url创建连接
+        //用url创建连接
         Connection con;
         try {
             con = DriverManager.getConnection(url, username, password);
@@ -64,7 +64,8 @@ public class BaseDao {
     }
 
     /**
-     *  读取配置文件
+     * 读取配置文件
+     *
      * @return 配置文件
      */
     private static Properties getPro() {
@@ -79,9 +80,10 @@ public class BaseDao {
     }
 
     /**
-     *  获取单个查询对象
+     * 获取单个查询对象
+     *
      * @param sql 查询语句
-     * @param c 结果类
+     * @param c   结果类
      * @param <T> 泛型
      * @return 查询结果
      * @throws SQLException sql异常
@@ -92,7 +94,8 @@ public class BaseDao {
         }
         try (PreparedStatement ps = CONNECTION.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
             T obj = c.newInstance();
-            Field[] fields = c.getDeclaredFields();// 获取所有的属性
+            // 获取所有的属性
+            Field[] fields = c.getDeclaredFields();
             if (rs.next()) {
                 for (int k = 0; k < fields.length; k++) {
                     fields[k].setAccessible(true);
@@ -107,11 +110,12 @@ public class BaseDao {
     }
 
     /**
-     *  根据条件查询
-     * @param sql 查询语句
-     * @param c 查询对象
+     * 根据条件查询
+     *
+     * @param sql    查询语句
+     * @param c      查询对象
      * @param params 参数
-     * @param <T> 泛型
+     * @param <T>    泛型
      * @return 查询结果
      * @throws SQLException 查询失败
      */
@@ -126,7 +130,8 @@ public class BaseDao {
         ResultSet rs = ps.executeQuery();
         try {
             if (rs.next()) {
-                Field[] fields = c.getDeclaredFields();// 获取所有的属性
+                // 获取所有的属性
+                Field[] fields = c.getDeclaredFields();
                 T obj;
                 obj = c.newInstance();
                 for (int k = 0; k < fields.length; k++) {
@@ -147,9 +152,10 @@ public class BaseDao {
     }
 
     /**
-     *  获取多个查询对象
+     * 获取多个查询对象
+     *
      * @param sql 查询语句
-     * @param c 结果类
+     * @param c   结果类
      * @param <T> 泛型
      * @return 查询结果
      * @throws SQLException sql异常
@@ -160,7 +166,8 @@ public class BaseDao {
         }
         List<T> result = new ArrayList<>();
         try (PreparedStatement ps = CONNECTION.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
-            Field[] fields = c.getDeclaredFields();// 获取所有的属性
+            // 获取所有的属性
+            Field[] fields = c.getDeclaredFields();
             while (rs.next()) {
                 T obj = c.newInstance();
                 for (int k = 0; k < fields.length; k++) {
@@ -176,11 +183,12 @@ public class BaseDao {
     }
 
     /**
-     *  根据条件查询
-     * @param sql 查询语句
-     * @param c 查询对象
+     * 根据条件查询
+     *
+     * @param sql    查询语句
+     * @param c      查询对象
      * @param params 参数
-     * @param <T> 泛型
+     * @param <T>    泛型
      * @return 查询结果
      * @throws SQLException 查询失败
      */
@@ -195,7 +203,8 @@ public class BaseDao {
         }
         ResultSet rs = ps.executeQuery();
         try {
-            Field[] fields = c.getDeclaredFields();// 获取所有的属性
+            // 获取所有的属性
+            Field[] fields = c.getDeclaredFields();
             while (rs.next()) {
                 T obj;
                 obj = c.newInstance();
