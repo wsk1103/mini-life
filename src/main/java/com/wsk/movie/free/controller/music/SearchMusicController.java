@@ -46,7 +46,12 @@ public class SearchMusicController {
         return service.delRedisUrl(url) ? "true" : "false";
     }
 
-    //获取评论-根据名字
+    /**
+     * 获取评论-根据名字
+     *
+     * @param name
+     * @return
+     */
     @RequestMapping(value = "/comments")
     @ResponseBody
     public BaseEntity getMusicComments(@Param("name") String name) {
@@ -63,7 +68,7 @@ public class SearchMusicController {
     //获取音乐更加类型
     @RequestMapping(value = "/hot/{type}")
     @ResponseBody
-    public BaseEntity getHotMusic(@PathVariable("type") int type ) {
+    public BaseEntity getHotMusic(@PathVariable("type") int type) {
         switch (type) {
             case 1:
                 //云音乐热歌榜
@@ -82,13 +87,14 @@ public class SearchMusicController {
     //根据歌曲id获得url
     @RequestMapping(value = "/url/{id}")
     @ResponseBody
-    public BaseEntity getMusicUrlById(@PathVariable("id") long id){
+    public BaseEntity getMusicUrlById(@PathVariable("id") long id) {
         return service.getMusicUrlById(id);
     }
 
     /**
      * 免费音乐开发接口
-     * @param type 音乐类型
+     *
+     * @param type  音乐类型
      * @param model 传递给界面的模型，类似一个map
      * @return 返回的页面的地址
      */
@@ -102,7 +108,7 @@ public class SearchMusicController {
                 entity = (WangYiResponseEntity) service.getHottingMusic();
                 title = "音乐飙升榜";
                 break;
-            case "1" :
+            case "1":
                 //云音乐热歌榜-1
                 entity = (WangYiResponseEntity) service.getHotMusic();
                 title = "音乐热歌榜";
