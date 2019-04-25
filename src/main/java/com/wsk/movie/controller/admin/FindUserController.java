@@ -42,9 +42,6 @@ public class FindUserController {
     private AdminRepository adminRepository;
 
     @Autowired
-    private ReportRepository reportRepository;
-
-    @Autowired
     private AdminActionMapper adminActionMapper;
 
     @Autowired
