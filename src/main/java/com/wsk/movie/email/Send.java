@@ -9,14 +9,20 @@ import java.util.Properties;
 
 /**
  * @DESCRIPTION : 只针对移动号码的用户，发送短信验证码，使用的移动的发送短信，
- *                  因为移动发送短信到139邮箱后，移动会以短信的形式发送到用户手机上。
+ * 因为移动发送短信到139邮箱后，移动会以短信的形式发送到用户手机上。
  * @AUTHOR : WuShukai
  * @TIME : 2018/6/18  15:47
  */
 public class Send {
 
-    private static final String PHONE = "";//用户的手机
-    private static final String PASSWORD = "";//用户密码
+    /**
+     * 用户的手机
+     */
+    private static final String PHONE = "";
+    /**
+     * 用户密码
+     */
+    private static final String PASSWORD = "";
 
     public static void sendEmail(String phone, HttpServletRequest req, HttpServletResponse res) throws MessagingException {
         String ra = (String) req.getSession().getAttribute("codePhone");
@@ -24,12 +30,12 @@ public class Send {
         String text2 = "，请保护好自己的验证码。";
         String text = text1 + ra + text2;
         Properties prop = new Properties();
-        prop.setProperty("mail.host", "smtp.139.com");//ʹ�����������smtp����
-        prop.setProperty("mail.transport.protocol", "smtp");//����ѡ��Э��
-        prop.setProperty("mail.smtp.auth", "true");//ʹ����ͨ�Ŀͻ���
-        prop.setProperty("mail.smtp.port", "25");//�˿ں�Ϊ25����ʵĬ�ϵľ���25�����Ҳ���Բ���
-        Session session = Session.getInstance(prop);//��ȡ�Ự
-        Transport ts = session.getTransport();//��������
+        prop.setProperty("mail.host", "smtp.139.com");
+        prop.setProperty("mail.transport.protocol", "smtp");
+        prop.setProperty("mail.smtp.auth", "true");
+        prop.setProperty("mail.smtp.port", "25");
+        Session session = Session.getInstance(prop);
+        Transport ts = session.getTransport();
         ts.connect("smtp.139.com", PHONE + "@139.com", PASSWORD);
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(PHONE + "@139.com"));
