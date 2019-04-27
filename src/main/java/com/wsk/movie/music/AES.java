@@ -69,11 +69,11 @@ public class AES {
     }
 
     static String getParams(String text) throws Exception {
-        String first_key = "0CoJUm6Qyw8W8jud";
-        String second_key = "FFFFFFFFFFFFFFFF";
-        String h_encText = AES.encrypt(text, first_key);
-        h_encText = AES.encrypt(h_encText, second_key);
-        return h_encText;
+        String firstKey = "0CoJUm6Qyw8W8jud";
+        String secondKey = "FFFFFFFFFFFFFFFF";
+        String hEnctext = AES.encrypt(text, firstKey);
+        hEnctext = AES.encrypt(hEnctext, secondKey);
+        return hEnctext;
     }
 
     static String getEncSecKey() {
