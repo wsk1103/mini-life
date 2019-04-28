@@ -65,7 +65,11 @@ public class SearchMusicController {
         return service.getMusicComments(id);
     }
 
-    //获取音乐更加类型
+    /**
+     * 获取音乐更加类型
+     * @param type 热门类型
+     * @return 所有相应歌曲
+     */
     @RequestMapping(value = "/hot/{type}")
     @ResponseBody
     public BaseEntity getHotMusic(@PathVariable("type") int type) {
