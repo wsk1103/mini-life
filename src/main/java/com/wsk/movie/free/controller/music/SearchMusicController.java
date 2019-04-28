@@ -58,7 +58,11 @@ public class SearchMusicController {
         return service.getMusicComments(name);
     }
 
-    //获取评论-根据id
+    /**
+     * 获取评论-根据id
+     * @param id 歌曲ID
+     * @return 相应的歌曲
+     */
     @RequestMapping(value = "/comments/id")
     @ResponseBody
     public BaseEntity getMusicComments(@Param("id") long id) {
