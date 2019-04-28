@@ -84,7 +84,11 @@ public class SearchMusicController {
         }
     }
 
-    //根据歌曲id获得url
+    /**
+     * 根据歌曲id获得url
+     * @param id 歌曲id
+     * @return 所有相应歌曲
+     */
     @RequestMapping(value = "/url/{id}")
     @ResponseBody
     public BaseEntity getMusicUrlById(@PathVariable("id") long id) {
