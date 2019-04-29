@@ -17,6 +17,7 @@ target/
 .mvn
 .META-INF
 META-INF
+.out
 
 ### NetBeans ###
 nbproject/private/
