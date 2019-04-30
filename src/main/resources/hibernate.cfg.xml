@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/movie</property>
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping class="com.wsk.movie.springdata.entity.WangyialbumEntity"/>
-    <mapping class="com.wsk.movie.springdata.entity.WangyimusicEntity"/>
-    <mapping class="com.wsk.movie.springdata.entity.WangyisingerEntity"/>
-      <mapping class="com.wsk.movie.task.entity.MytaskEntity"/>
-      <mapping class="com.wsk.movie.task.entity.MytaskerrorEntity"/>
-      <mapping class="com.wsk.movie.task.entity.MytasklogEntity"/>
-      <mapping class="com.wsk.movie.book.entity.BookEntity"/>
-      <mapping class="com.wsk.movie.springdata.admin.entity.UserinformationEntity"/>
-      <mapping class="com.wsk.movie.springdata.admin.entity.AdmininformationEntity"/>
-      <mapping class="com.wsk.movie.springdata.admin.entity.CriticReportEntity"/>
-      <mapping class="com.wsk.movie.springdata.admin.entity.AdminactionEntity"/>
-      <mapping class="com.wsk.movie.springdata.entity.WangyilrcEntity"/>
-      <mapping class="com.wsk.movie.springdata.entity.WangyicontentEntity"/>
-      <!-- <property name="connection.username"/> -->
-    <!-- <property name="connection.password"/> -->
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/movie</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <mapping class="com.wsk.movie.springdata.entity.WangyialbumEntity"/>
+        <mapping class="com.wsk.movie.springdata.entity.WangyimusicEntity"/>
+        <mapping class="com.wsk.movie.springdata.entity.WangyisingerEntity"/>
+        <mapping class="com.wsk.movie.task.entity.MytaskEntity"/>
+        <mapping class="com.wsk.movie.task.entity.MytaskerrorEntity"/>
+        <mapping class="com.wsk.movie.task.entity.MytasklogEntity"/>
+        <mapping class="com.wsk.movie.book.entity.BookEntity"/>
+        <mapping class="com.wsk.movie.springdata.admin.entity.UserinformationEntity"/>
+        <mapping class="com.wsk.movie.springdata.admin.entity.AdmininformationEntity"/>
+        <mapping class="com.wsk.movie.springdata.admin.entity.CriticReportEntity"/>
+        <mapping class="com.wsk.movie.springdata.admin.entity.AdminactionEntity"/>
+        <mapping class="com.wsk.movie.springdata.entity.WangyilrcEntity"/>
+        <mapping class="com.wsk.movie.springdata.entity.WangyicontentEntity"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
 
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
-  </session-factory>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
 </hibernate-configuration>
