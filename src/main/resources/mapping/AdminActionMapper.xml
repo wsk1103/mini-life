@@ -12,7 +12,10 @@
         adminaction
     </sql>
     <sql id="Base_Column_List">
-        id, aid, modified, action
+        id,
+        aid,
+        modified,
+        action
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
