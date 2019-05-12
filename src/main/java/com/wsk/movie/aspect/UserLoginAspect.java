@@ -78,7 +78,9 @@ public class UserLoginAspect {
         return ipAddress;
     }
 
-    //需要登录的用户账号密码核对,controller包下的music所有类
+    /**
+     * 需要登录的用户账号密码核对,controller包下的music所有类
+     */
     @Pointcut("execution(* com.wsk.movie.controller.*.*(..)) " +
             "&& !execution(* com.wsk.movie.controller.BaseController.*(..))" +
             "&& !execution(* com.wsk.movie.controller.*.is*(..)) " +
