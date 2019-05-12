@@ -103,13 +103,13 @@ public class UserLoginAspect {
         }
     }
 
-    //    @Before(value = "checkB()")
     private void checkBook() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            if (!isLoginFromRedis())
+            if (!isLoginFromRedis()) {
                 throw new LoginErrorException("账号未登录！");
+            }
         }
     }
 
