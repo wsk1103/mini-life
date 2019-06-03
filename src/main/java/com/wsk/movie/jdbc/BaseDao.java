@@ -225,19 +225,4 @@ public class BaseDao {
         return result;
     }
 
-    public static void main(String[] args) throws SQLException {
-        String sql = "SELECT cr.uid,cr.pid,cr.ctime,pc.time AS ptime,pc.critic,pc.thumbnails AS image,ui.`name` AS username, ui.phone FROM `critic_report` cr LEFT JOIN publishcritic pc ON cr.pid = pc.id LEFT JOIN userinformation ui ON ui.id = cr.uid ";
-        BaseDao dao = new BaseDao();
-        List<ReportEntity> list = dao.list(sql, ReportEntity.class);
-        for (ReportEntity entity : list) {
-            System.out.println(entity.toString());
-        }
-//        PreparedStatement ps = CONNECTION.prepareStatement(sql);
-//        ResultSet rs = ps.executeQuery();
-//        while (rs.next()) {
-//            System.out.println(rs.getObject("uid"));
-//        }
-    }
-
-
 }
