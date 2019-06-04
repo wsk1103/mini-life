@@ -12,7 +12,8 @@
         adminaction
     </sql>
     <sql id="Base_Column_List">
-        id,
+        id
+        ,
         aid,
         modified,
         action
