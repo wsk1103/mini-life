@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.CommentCriticMapper">
-    <resultMap id="BaseResultMap" type="com.wsk.movie.pojo.CommentCritic">
+<mapper namespace="com.wsk.life.dao.CommentCriticMapper">
+    <resultMap id="BaseResultMap" type="com.wsk.life.pojo.CommentCritic">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="good" property="good" jdbcType="INTEGER"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
@@ -16,7 +16,7 @@
         commentcritic
     </sql>
 
-    <!--<resultMap id="ResultMapWithBLOBs" type="com.wsk.movie.pojo.CommentCritic" extends="BaseResultMap" >-->
+    <!--<resultMap id="ResultMapWithBLOBs" type="com.wsk.life.pojo.CommentCritic" extends="BaseResultMap" >-->
     <!--<result column="critic" property="critic" jdbcType="LONGVARCHAR" />-->
     <!--</resultMap>-->
     <sql id="all">
@@ -55,7 +55,7 @@
         <include refid="table"/>
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.wsk.movie.pojo.CommentCritic">
+    <insert id="insert" parameterType="com.wsk.life.pojo.CommentCritic">
         insert into
         <include refid="table"/>
         (id, good, pid,
@@ -65,7 +65,7 @@
         #{time,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{modified,jdbcType=TIMESTAMP},
         #{allow,jdbcType=SMALLINT}, #{critic,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.wsk.movie.pojo.CommentCritic">
+    <insert id="insertSelective" parameterType="com.wsk.life.pojo.CommentCritic">
         insert into
         <include refid="table"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -121,7 +121,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.CommentCritic">
+    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.CommentCritic">
         update
         <include refid="table"/>
         <set>
@@ -149,7 +149,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.movie.pojo.CommentCritic">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.life.pojo.CommentCritic">
         update
         <include refid="table"/>
         set good = #{good,jdbcType=INTEGER},
@@ -161,7 +161,7 @@
         critic = #{critic,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.CommentCritic">
+    <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.CommentCritic">
         update
         <include refid="table"/>
         set good = #{good,jdbcType=INTEGER},

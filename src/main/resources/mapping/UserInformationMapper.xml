@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.UserInformationMapper" >
-  <resultMap id="BaseResultMap" type="com.wsk.movie.pojo.UserInformation" >
+<mapper namespace="com.wsk.life.dao.UserInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.wsk.life.pojo.UserInformation" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="autograph" property="autograph" jdbcType="VARCHAR" />
@@ -54,7 +54,7 @@
     delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wsk.movie.pojo.UserInformation" >
+  <insert id="insert" parameterType="com.wsk.life.pojo.UserInformation" >
     insert into <include refid="table" /> (id, address, autograph,
     birthday, buildtime, label,
     name, phone, sex, modified,
@@ -64,7 +64,7 @@
     #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{modified,jdbcType=TIMESTAMP},
     #{avatar,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wsk.movie.pojo.UserInformation" >
+  <insert id="insertSelective" parameterType="com.wsk.life.pojo.UserInformation" >
     insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -137,7 +137,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.UserInformation" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.UserInformation" >
     update <include refid="table" />
     <set >
       <if test="address != null" >
@@ -176,7 +176,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.UserInformation" >
+  <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.UserInformation" >
     update
     <include refid="table"/>
     set address = #{address,jdbcType=VARCHAR},

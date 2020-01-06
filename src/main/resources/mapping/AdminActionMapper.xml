@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.AdminActionMapper">
-    <resultMap id="BaseResultMap" type="com.wsk.movie.pojo.AdminAction">
+<mapper namespace="com.wsk.life.dao.AdminActionMapper">
+    <resultMap id="BaseResultMap" type="com.wsk.life.pojo.AdminAction">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="aid" property="aid" jdbcType="INTEGER"/>
         <result column="modified" property="modified" jdbcType="TIMESTAMP"/>
@@ -30,7 +30,7 @@
         <include refid="table"/>
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.wsk.movie.pojo.AdminAction">
+    <insert id="insert" parameterType="com.wsk.life.pojo.AdminAction">
         insert into
         <include refid="table"/>
         (id, aid, modified,
@@ -38,7 +38,7 @@
         values (#{id,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{modified,jdbcType=TIMESTAMP},
         #{action,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.wsk.movie.pojo.AdminAction">
+    <insert id="insertSelective" parameterType="com.wsk.life.pojo.AdminAction">
         insert into
         <include refid="table"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -70,7 +70,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.AdminAction">
+    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.AdminAction">
         update
         <include refid="table"/>
         <set>
@@ -86,7 +86,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.AdminAction">
+    <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.AdminAction">
         update
         <include refid="table"/>
         set aid = #{aid,jdbcType=INTEGER},

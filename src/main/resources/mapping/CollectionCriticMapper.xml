@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.CollectionCriticMapper">
-    <resultMap id="BaseResultMap" type="com.wsk.movie.pojo.CollectionCritic">
+<mapper namespace="com.wsk.life.dao.CollectionCriticMapper">
+    <resultMap id="BaseResultMap" type="com.wsk.life.pojo.CollectionCritic">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
         <result column="time" property="time" jdbcType="TIMESTAMP"/>
@@ -38,7 +38,7 @@
         <include refid="table"/>
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.wsk.movie.pojo.CollectionCritic">
+    <insert id="insert" parameterType="com.wsk.life.pojo.CollectionCritic">
         insert into
         <include refid="table"/>
         (id, pid, time,
@@ -48,7 +48,7 @@
         #{uid,jdbcType=INTEGER}, #{modified,jdbcType=TIMESTAMP}, #{allow,jdbcType=SMALLINT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.wsk.movie.pojo.CollectionCritic">
+    <insert id="insertSelective" parameterType="com.wsk.life.pojo.CollectionCritic">
         insert into
         <include refid="table"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -92,7 +92,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.CollectionCritic">
+    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.CollectionCritic">
         update
         <include refid="table"/>
         <set>
@@ -114,7 +114,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.CollectionCritic">
+    <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.CollectionCritic">
         update
         <include refid="table"/>
         set pid = #{pid,jdbcType=INTEGER},

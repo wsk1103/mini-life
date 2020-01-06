@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.MyFriendsMapper" >
-  <resultMap id="BaseResultMap" type="com.wsk.movie.pojo.MyFriends" >
+<mapper namespace="com.wsk.life.dao.MyFriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.wsk.life.pojo.MyFriends" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
     <result column="fid" property="fid" jdbcType="INTEGER" />
@@ -45,7 +45,7 @@
     delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wsk.movie.pojo.MyFriends" >
+  <insert id="insert" parameterType="com.wsk.life.pojo.MyFriends" >
     insert into <include refid="table" /> (id, addTime, fid,
       uid, modified, allow
       )
@@ -53,7 +53,7 @@
       #{uid,jdbcType=INTEGER}, #{modified,jdbcType=TIMESTAMP}, #{allow,jdbcType=SMALLINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.wsk.movie.pojo.MyFriends" >
+  <insert id="insertSelective" parameterType="com.wsk.life.pojo.MyFriends" >
     insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -96,7 +96,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.MyFriends" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.MyFriends" >
     update <include refid="table" />
     <set >
       <if test="addtime != null" >
@@ -117,7 +117,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.MyFriends" >
+  <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.MyFriends" >
     update
     <include refid="table"/>
     set addTime = #{addtime,jdbcType=TIMESTAMP},

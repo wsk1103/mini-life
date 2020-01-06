@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.ForumContentMapper" >
-  <resultMap id="BaseResultMap" type="com.wsk.movie.pojo.ForumContent" >
+<mapper namespace="com.wsk.life.dao.ForumContentMapper" >
+  <resultMap id="BaseResultMap" type="com.wsk.life.pojo.ForumContent" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="fid" property="fid" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
@@ -16,7 +16,7 @@
     forumcontent
   </sql>
 
-  <!--<resultMap id="ResultMapWithBLOBs" type="com.wsk.movie.pojo.ForumContent" extends="BaseResultMap" >-->
+  <!--<resultMap id="ResultMapWithBLOBs" type="com.wsk.life.pojo.ForumContent" extends="BaseResultMap" >-->
     <!--<result column="content" property="content" jdbcType="LONGVARCHAR" />-->
   <!--</resultMap>-->
   <sql id="Base_Column_List" >
@@ -37,7 +37,7 @@
     delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wsk.movie.pojo.ForumContent" >
+  <insert id="insert" parameterType="com.wsk.life.pojo.ForumContent" >
     insert into <include refid="table" /> (id, fid, time,
       uid, modified, allow, 
       mid, content)
@@ -45,7 +45,7 @@
       #{uid,jdbcType=INTEGER}, #{modified,jdbcType=TIMESTAMP}, #{allow,jdbcType=SMALLINT}, 
       #{mid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wsk.movie.pojo.ForumContent" >
+  <insert id="insertSelective" parameterType="com.wsk.life.pojo.ForumContent" >
     insert into <include refid="table" />
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -100,7 +100,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.ForumContent" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.ForumContent" >
     update <include refid="table" />
     <set >
       <if test="fid != null" >
@@ -127,7 +127,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.movie.pojo.ForumContent" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.life.pojo.ForumContent" >
     update <include refid="table" />
     set fid = #{fid,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
@@ -138,7 +138,7 @@
       content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.ForumContent" >
+  <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.ForumContent" >
     update
     <include refid="table"/>
     set fid = #{fid,jdbcType=INTEGER},

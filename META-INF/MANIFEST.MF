@@ -39,5 +39,5 @@ Class-Path: jackson-databind-2.8.10.jar hibernate-jpa-2.1-api-1.0.0.Fi
  .jar jackson-annotations-2.8.0.jar tomcat-juli-8.5.23.jar spring-boot
  -starter-thymeleaf-1.5.9.RELEASE.jar dom4j-1.6.1.jar logback-classic-
  1.1.11.jar httpclient-4.5.2.jar
-Main-Class: com.wsk.movie.MovieApplication
+Main-Class: com.wsk.life.MovieApplication
 

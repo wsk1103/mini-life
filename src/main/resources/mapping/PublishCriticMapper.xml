@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wsk.movie.dao.PublishCriticMapper">
-    <resultMap id="wsk" type="com.wsk.movie.pojo.PublishCritic">
+<mapper namespace="com.wsk.life.dao.PublishCriticMapper">
+    <resultMap id="wsk" type="com.wsk.life.pojo.PublishCritic">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="good" property="good" jdbcType="INTEGER"/>
         <result column="isPrivate" property="isprivate" jdbcType="INTEGER"/>
@@ -73,7 +73,7 @@
     delete from <include refid="table" />
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.wsk.movie.pojo.PublishCritic">
+    <insert id="insert" parameterType="com.wsk.life.pojo.PublishCritic">
     insert into <include refid="table" /> (id, good, isPrivate,
       picture, time, title,
       uid, modified, allow, 
@@ -83,7 +83,7 @@
       #{uid,jdbcType=INTEGER}, #{modified,jdbcType=TIMESTAMP}, #{allow,jdbcType=SMALLINT}, 
       #{critic,jdbcType=VARCHAR}),#{thumbnails,jdbcType=VARCHAR}
   </insert>
-    <insert id="insertSelective" parameterType="com.wsk.movie.pojo.PublishCritic">
+    <insert id="insertSelective" parameterType="com.wsk.life.pojo.PublishCritic">
         insert into <include refid="table" />
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -156,7 +156,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.movie.pojo.PublishCritic">
+    <update id="updateByPrimaryKeySelective" parameterType="com.wsk.life.pojo.PublishCritic">
         update <include refid="table" />
         <set>
             <if test="good != null">
@@ -192,7 +192,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <!--<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.movie.pojo.PublishCritic">-->
+    <!--<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wsk.life.pojo.PublishCritic">-->
     <!--update <include refid="table" />-->
     <!--set good = #{good,jdbcType=INTEGER},-->
     <!--isPrivate = #{isprivate,jdbcType=INTEGER},-->
@@ -206,7 +206,7 @@
     <!--thumbnails = #{thumbnails,jdbcType=VARCHER}-->
     <!--where id = #{id,jdbcType=INTEGER}-->
     <!--</update>-->
-    <update id="updateByPrimaryKey" parameterType="com.wsk.movie.pojo.PublishCritic">
+    <update id="updateByPrimaryKey" parameterType="com.wsk.life.pojo.PublishCritic">
     update
         <include refid="table"/>
     set good = #{good,jdbcType=INTEGER},

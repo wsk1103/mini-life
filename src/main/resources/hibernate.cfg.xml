@@ -6,19 +6,19 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/movie</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping class="com.wsk.movie.springdata.entity.WangyialbumEntity"/>
-        <mapping class="com.wsk.movie.springdata.entity.WangyimusicEntity"/>
-        <mapping class="com.wsk.movie.springdata.entity.WangyisingerEntity"/>
-        <mapping class="com.wsk.movie.task.entity.MytaskEntity"/>
-        <mapping class="com.wsk.movie.task.entity.MytaskerrorEntity"/>
-        <mapping class="com.wsk.movie.task.entity.MytasklogEntity"/>
-        <mapping class="com.wsk.movie.book.entity.BookEntity"/>
-        <mapping class="com.wsk.movie.springdata.admin.entity.UserinformationEntity"/>
-        <mapping class="com.wsk.movie.springdata.admin.entity.AdmininformationEntity"/>
-        <mapping class="com.wsk.movie.springdata.admin.entity.CriticReportEntity"/>
-        <mapping class="com.wsk.movie.springdata.admin.entity.AdminactionEntity"/>
-        <mapping class="com.wsk.movie.springdata.entity.WangyilrcEntity"/>
-        <mapping class="com.wsk.movie.springdata.entity.WangyicontentEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyialbumEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyimusicEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyisingerEntity"/>
+        <mapping class="com.wsk.life.task.entity.MytaskEntity"/>
+        <mapping class="com.wsk.life.task.entity.MytaskerrorEntity"/>
+        <mapping class="com.wsk.life.task.entity.MytasklogEntity"/>
+        <mapping class="com.wsk.life.book.entity.BookEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.UserinformationEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.AdmininformationEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.CriticReportEntity"/>
+        <mapping class="com.wsk.life.springdata.admin.entity.AdminactionEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyilrcEntity"/>
+        <mapping class="com.wsk.life.springdata.entity.WangyicontentEntity"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 
