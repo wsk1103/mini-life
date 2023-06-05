@@ -2,7 +2,7 @@ package com.wsk.life.tool;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/20  16:24
  */
 public class OnlyOneId {

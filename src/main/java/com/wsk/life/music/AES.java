@@ -59,11 +59,11 @@ public class AES {
                 byte[] original = cipher.doFinal(encrypted1);
                 return new String(original);
             } catch (Exception e) {
-                System.out.println(e.toString());
+//                System.out.println(e.toString());
                 return null;
             }
         } catch (Exception ex) {
-            System.out.println(ex.toString());
+//            System.out.println(ex.toString());
             return null;
         }
     }

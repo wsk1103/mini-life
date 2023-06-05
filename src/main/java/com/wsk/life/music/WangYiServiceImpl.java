@@ -227,7 +227,7 @@ public class WangYiServiceImpl implements WangYiService {
         WangYiAllCommentBean commentBean;
         if (null != result) {
             try {
-                System.out.println(result);
+//                System.out.println(result);
                 commentBean = JSONUtil.toBean(result, WangYiAllCommentBean.class);
                 entity.setData(commentBean);
                 entity.setCode(200);
@@ -261,7 +261,7 @@ public class WangYiServiceImpl implements WangYiService {
         entity.setData(commentBean);
         entity.setCode(200);
         entity.setMsg("success");
-        System.out.println(redisUtils.hset(COMMENT_CACHE , String.valueOf(song_id), JSONUtil.toJson(commentBean), Time.FIVE_MINUTE));
+//        System.out.println(redisUtils.hset(COMMENT_CACHE , String.valueOf(song_id), JSONUtil.toJson(commentBean), Time.FIVE_MINUTE));
         return entity;
     }
 
@@ -299,7 +299,7 @@ public class WangYiServiceImpl implements WangYiService {
     //云音乐飙升榜-2
     @Override
     public BaseEntity getHottingMusic() {
-        System.out.println("hotting=====");
+//        System.out.println("hotting=====");
         return getHot(HOTTING_MUSIC);
     }
 
@@ -308,7 +308,7 @@ public class WangYiServiceImpl implements WangYiService {
      * //云音乐热歌榜-1
      */
     public BaseEntity getHotMusic() {
-        System.out.println("hot======");
+//        System.out.println("hot======");
         return getHot(HOT_MUSIC);
     }
 
@@ -317,7 +317,7 @@ public class WangYiServiceImpl implements WangYiService {
      * //云音乐新歌榜-3
      */
     public BaseEntity getNewMusic() {
-        System.out.println("new=======");
+//        System.out.println("new=======");
         return getHot(NEW_MUSIC);
     }
 
@@ -328,7 +328,7 @@ public class WangYiServiceImpl implements WangYiService {
         wangYiUrlEntity.setCode(200);
         wangYiUrlEntity.setMsg("success");
         wangYiUrlEntity.setSong_id(song_id);
-        System.out.println((song_id));
+//        System.out.println((song_id));
         String url = redisUtils.get("wangyi_music_url_" + song_id);
         if (Tool.getInstance().isNotNull(url)) {
             wangYiUrlEntity.setUrl(url);
@@ -460,7 +460,7 @@ public class WangYiServiceImpl implements WangYiService {
             return responseEntity;
         }
         json = "{\"songs\":" + json + "}";
-        System.out.println(json);
+//        System.out.println(json);
         try {
             WangYiResult result = JSONUtil.toBean(json, WangYiResult.class);
             WangYiSong[] songs = result.getSongs();
@@ -468,7 +468,7 @@ public class WangYiServiceImpl implements WangYiService {
             return saveMusic(songs, null);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(json);
+//            System.out.println(json);
             return responseEntity;
         }
     }
@@ -481,7 +481,7 @@ public class WangYiServiceImpl implements WangYiService {
      */
     private WangYiResponseEntity saveMusic(WangYiSong[] songs, String searchName) {
         result.clear();
-        System.out.println("the wangyi result is \n" + JSON.toJSONString(songs,true));
+//        System.out.println("the wangyi result is \n" + JSON.toJSONString(songs,true));
         try {
             for (WangYiSong song : songs) {
                 long song_id = song.getId();
@@ -581,7 +581,7 @@ public class WangYiServiceImpl implements WangYiService {
                 music.setPicurl(picurl);
 //                json = Tool.getInstance().toJson(music);
 //                redisUtils.rpush("wangyi_music_" + name, json);
-                System.out.println(music.getName());
+//                System.out.println(music.getName());
                 if (Tool.getInstance().isNullOrEmpty(musicService.getBySongid((int) song_id))) {
                     musicService.saveAndFlush(music);
                 }

@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @DESCRIPTION :存储任务和任务的属性
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/27  23:57
  */
 @Accessors(chain = true)

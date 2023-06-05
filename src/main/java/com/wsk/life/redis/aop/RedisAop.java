@@ -20,7 +20,7 @@ public class RedisAop {
     public void check() {
     }
 
-    @Before(value = "check()")
+//    @Before(value = "check()")
     public void checkNull(JoinPoint joinPoint) {
         //开始拦截redis的参数是否为空，为空则返回
         System.out.println("=====开始进入redis=====");

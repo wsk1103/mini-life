@@ -5,7 +5,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2017/12/30  20:25
  */
 @Configuration

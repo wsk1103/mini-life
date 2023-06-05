@@ -1,5 +1,8 @@
 package com.wsk.life.tool;
 
+import com.wsk.life.music.HttpUnits;
+import com.wsk.life.music.bean.HttpMethodType;
+import com.wsk.life.music.bean.WangYiBean;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -11,6 +14,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.wsk.life.music.WangYiTypeEnum.GET_URL;
+import static com.wsk.life.music.WangYiTypeEnum.SINGLE;
 
 /**
  * 图像文字识别
@@ -68,13 +76,13 @@ public class Check {
         StringEntity entity = new StringEntity(param);
         post.setEntity(entity);
         HttpResponse response = httpClient.execute(post);
-        System.out.println(response.toString());
+//        System.out.println(response.toString());
         if (response.getStatusLine().getStatusCode() == 200) {
             String str;
             try {
                 /*读取服务器返回过来的json字符串数据*/
                 str = EntityUtils.toString(response.getEntity());
-                System.out.println(str);
+//                System.out.println(str);
                 return str;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -84,15 +92,37 @@ public class Check {
         return null;
     }
 
+//    public static void main(String[] args) {
+//        String path = "E:\\2.jpg";
+//        try {
+//            long now = System.currentTimeMillis();
+//            checkFile(path);
+////            checkUrl("https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=08c05c0e8444ebf8797c6c6db890bc4f/fc1f4134970a304e46bfc5f7d2c8a786c9175c19.jpg");
+//            System.out.println("耗时：" + (System.currentTimeMillis() - now) / 1000 + "s");
+//        } catch (URISyntaxException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    //链接的数据
+    private static final Map<String, String> DATA = new HashMap<>();
+    private static final Map<String, String> HEADERS = new HashMap<>();
     public static void main(String[] args) {
-        String path = "E:\\2.jpg";
+        DATA.put("s", "我爱的人");
+        DATA.put("limit", "10");
+        DATA.put("offset", "0");
+        DATA.put("type", SINGLE);
+
+        HEADERS.put("Content-Type", "application/x-www-form-urlencoded");
+        HEADERS.put("Cookie", "appver=1.5.0.75771");
+        HEADERS.put("Referer", "http://music.163.com");
+        WangYiBean bean;
         try {
-            long now = System.currentTimeMillis();
-            checkFile(path);
-//            checkUrl("https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=08c05c0e8444ebf8797c6c6db890bc4f/fc1f4134970a304e46bfc5f7d2c8a786c9175c19.jpg");
-            System.out.println("耗时：" + (System.currentTimeMillis() - now) / 1000 + "s");
-        } catch (URISyntaxException | IOException e) {
+            bean = HttpUnits.urlToBean(GET_URL, WangYiBean.class, DATA, HEADERS, null, HttpMethodType.POST);
+            System.err.println(bean.toString());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+

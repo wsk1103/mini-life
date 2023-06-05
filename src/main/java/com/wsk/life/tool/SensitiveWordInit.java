@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * @DESCRIPTION : 初始化敏感词库，将敏感词加入到HashMap中，构建DFA算法模型
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/3/4  16:56
  */
 public class SensitiveWordInit {
@@ -91,26 +91,31 @@ public class SensitiveWordInit {
      * @throws IOException 异常
      */
     private Set<String> readSensitiveWordFile() throws IOException{
-        Set<String> set;
-        String path = "D:\\image\\txt\\all.txt";
-        File file = new File(path);
-        if (!file.exists()) {
-            path = "C:\\myproject\\image\\txt\\all.txt";
-            file = new File(path);
-        }
-//        File file = new File("D:\\SensitiveWord.txt");    //读取文件
-        try (InputStreamReader read = new InputStreamReader(new FileInputStream(file), ENCODING)) {
-            if (file.isFile() && file.exists()) {      //文件流是否存在
-                set = new HashSet<>();
-                BufferedReader bufferedReader = new BufferedReader(read);
-                String txt;
-                while ((txt = bufferedReader.readLine()) != null) {    //读取文件，将文件内容放入到set中
-                    set.add(txt);
-                }
-            } else {         //不存在抛出异常信息
-                throw new IOException("敏感词库文件不存在");
-            }
-        }
+        Set<String> set = new HashSet<>();
+        set.add("敏感词");
+        set.add("敏敏");
+        set.add("感感");
+        set.add("词词");
+
+//        String path = "D:\\image\\txt\\all.txt";
+//        File file = new File(path);
+//        if (!file.exists()) {
+//            path = "C:\\myproject\\image\\txt\\all.txt";
+//            file = new File(path);
+//        }
+////        File file = new File("D:\\SensitiveWord.txt");    //读取文件
+//        try (InputStreamReader read = new InputStreamReader(new FileInputStream(file), ENCODING)) {
+//            if (file.isFile() && file.exists()) {      //文件流是否存在
+//                set = new HashSet<>();
+//                BufferedReader bufferedReader = new BufferedReader(read);
+//                String txt;
+//                while ((txt = bufferedReader.readLine()) != null) {    //读取文件，将文件内容放入到set中
+//                    set.add(txt);
+//                }
+//            } else {         //不存在抛出异常信息
+//                throw new IOException("敏感词库文件不存在");
+//            }
+//        }
         return set;
     }
 }

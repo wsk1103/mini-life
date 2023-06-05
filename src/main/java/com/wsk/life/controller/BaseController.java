@@ -80,7 +80,7 @@ public class BaseController {
     protected UserInformation currentUserInfoFromRedis() {
         HttpServletRequest request = init();
         String userInfo = redisUtils.get(request.getSession().getId());
-        System.out.println(userInfo);
+//        System.out.println(userInfo);
         //        UserInformation userInformation = ProtoBufUtil.deserializerFromString(userInfo, UserInformation.class);
         return JSONUtil.toBean(userInfo, UserInformation.class);
     }
@@ -94,7 +94,7 @@ public class BaseController {
         HttpServletRequest request = init();
         String result = JSONUtil.toJson(userInformation);
 //        String result = ProtoBufUtil.serializerToString(userInformation);
-        System.out.println(result);
+//        System.out.println(result);
         redisUtils.set(request.getSession().getId(), result);
     }
 

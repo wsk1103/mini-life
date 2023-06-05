@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @DESCRIPTION :任务表接口
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/23  23:02
  */
 public interface MyTaskRepository extends JpaRepository<MytaskEntity, Integer> {

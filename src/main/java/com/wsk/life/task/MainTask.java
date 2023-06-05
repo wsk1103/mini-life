@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @DESCRIPTION :随着程序的启动而启动运行,运行定时任务，每5秒查询一次数据库
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/24  22:11
  */
 @Component

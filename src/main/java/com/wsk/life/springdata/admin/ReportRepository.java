@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/3/8  18:51
  */
 public interface ReportRepository extends JpaRepository<CriticReportEntity, Integer>{

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/5/1  18:13
  */
 public interface WangYiContentRepository extends JpaRepository<WangyicontentEntity, Integer> {

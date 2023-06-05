@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @DESCRIPTION : 全局异常处理
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/19  20:46
  */
 @Controller

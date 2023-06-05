@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 /**
  * @DESCRIPTION :单例-下载音乐文件
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/20  17:11
  */
 public class MusicThread {

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/5/1  17:49
  */
 public interface WangYiLrcRepository extends JpaRepository<WangyilrcEntity, Integer> {

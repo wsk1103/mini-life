@@ -16,7 +16,7 @@ import java.util.Date;
  * 2:yyyy-MM-dd HH:mm:ss
  * 3:yyyy-MM-dd
  * 4.时间戳Timestamp
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/24  23:21
  */
 public class TimeTransform {

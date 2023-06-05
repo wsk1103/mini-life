@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/2/15  15:49
  */
 public interface BookRepository extends JpaRepository<BookEntity, String>{

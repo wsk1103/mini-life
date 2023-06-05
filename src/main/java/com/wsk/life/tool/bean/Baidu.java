@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @DESCRIPTION :百度色情图像识别pojo
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2017/12/31  14:00
  */
 @Data

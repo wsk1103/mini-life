@@ -19,7 +19,7 @@ import java.net.UnknownHostException;
 
 /**
  * @DESCRIPTION :登录过滤
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2017/12/17  13:52
  */
 @Component
@@ -93,7 +93,7 @@ public class UserLoginAspect {
 
     @Before(value = "checkM()")
     private void checkMusic() {
-        System.out.println("wsk =====>start aspect!");
+//        System.out.println("wsk =====>start aspect!");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {

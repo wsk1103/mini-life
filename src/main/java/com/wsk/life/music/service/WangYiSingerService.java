@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @DESCRIPTION : 自定义语句查询歌手,多个
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/5/1  19:24
  */
 public class WangYiSingerService {

@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/27  23:19
  */
 @Entity

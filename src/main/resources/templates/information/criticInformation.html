@@ -73,7 +73,7 @@
                                 <span class="friends_time" th:with="publishTime = ${publishCritic.time}"
                                       th:text="${#dates.format(publishTime,'yyyy-MM-dd HH:mm:ss')}">时间</span>
                                 <br/>
-                                <span class="friends_time isPrivate" th:text="${publishCritic.isprivate}==1?'朋友圈':'公共圈'"
+                                <span class="friends_time isPrivate" th:text="${publishCritic.isprivate}==1?'朋友圈':'所有人'"
                                       th:value="${publishCritic.isprivate}">朋友圈</span>
                             </div>
                             <div class="wsk" style="">

@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 /**
  * @DESCRIPTION :文件读写
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/23  21:54
  */
 public class Write {

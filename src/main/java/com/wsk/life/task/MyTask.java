@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @DESCRIPTION :自定义定时器-单例
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/23  22:22
  */
 public class MyTask implements Runnable{

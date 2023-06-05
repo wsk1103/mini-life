@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * @DESCRIPTION : 多表查询结果
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/3/8  18:31
  */
 @Data

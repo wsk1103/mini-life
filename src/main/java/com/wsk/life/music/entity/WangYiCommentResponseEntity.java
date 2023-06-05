@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/21  14:21
  */
 @EqualsAndHashCode(callSuper = true)

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 /**
  * @DESCRIPTION :音乐控制中心
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/2/10  17:30
  */
 @Controller
@@ -137,8 +137,8 @@ public class MusicController {
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
             throw new LoginErrorException("用户未登录!");
         }
-        System.out.println(userInformation.getPhone());
-        System.out.println(id);
+//        System.out.println(userInformation.getPhone());
+//        System.out.println(id);
         return "redirect:/musics/" + id + ".mp3";
     }
 

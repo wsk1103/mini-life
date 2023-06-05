@@ -75,12 +75,12 @@ public class MovieController extends AsideController {
         }
         model.addAttribute("userInformation", userInformation);
         String url = DOUBAN_URL + "/v2/movie/subject/" + id;
-        System.out.println(url);
+//        System.out.println(url);
         Map map = new HashMap();
         String name = "";
         try {
             String result = HttpUtils.submitPostData(url, map, ENCODE, GET);
-            System.out.println(result);
+//            System.out.println(result);
             OneSubject subject = JSON.parseObject(result, OneSubject.class);
             String down = "ftp://www.wsk1103.cc:8088/down/" + id + "/" + subject.getTitle() + ".mkv";
             model.addAttribute("down", down);
@@ -120,10 +120,10 @@ public class MovieController extends AsideController {
         }
         model.addAttribute("userInformation", userInformation);
         String url = DOUBAN_URL + "/v2/movie/celebrity/" + id;
-        System.out.println(url);
+//        System.out.println(url);
         Map<String, String> params = new HashMap<>();
         String result = HttpUtils.submitPostData(url, params, ENCODE, GET);
-        System.out.println(result);
+//        System.out.println(result);
         model.addAttribute("result", "success");
         CelebrityBean celebrityBean;
         try {
@@ -293,7 +293,9 @@ public class MovieController extends AsideController {
     private AllInformation getMovieInformation(String url, Map params, String encode, String action) {
         AllInformation information;
         try {
-            information = JSON.parseObject(HttpUtils.submitPostData(url, params, encode, action), AllInformation.class);
+            String re = HttpUtils.submitPostData(url, params, encode, action);
+            System.err.println("豆瓣电影：" + re);
+            information = JSON.parseObject(re, AllInformation.class);
         } catch (Exception e) {
             e.printStackTrace();
             information = new AllInformation();

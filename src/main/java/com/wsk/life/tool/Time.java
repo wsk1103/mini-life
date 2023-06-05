@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * @DESCRIPTION :这是一个时间日期工具
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2017/12/31  19:36
  */
 public class Time {

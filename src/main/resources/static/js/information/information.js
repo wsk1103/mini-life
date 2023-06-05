@@ -50,7 +50,7 @@ $(function () {
                     if (result[i].isPrivate == 1) {
                         isPrivate = "<span class='friends_time isPrivate'>朋友圈</span>";
                     } else {
-                        isPrivate = "<span class='friends_time isPrivate'>公共圈</span>";
+                        isPrivate = "<span class='friends_time isPrivate'>所有人</span>";
                     }
                     if (uid == result[i].uid) {
                         if (result[i].isPrivate == 0) {

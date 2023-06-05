@@ -5,7 +5,7 @@ import com.wsk.life.task.queue.MyQueue;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/29  21:16
  */
 public class DelKeyRunnable extends MyRunnable {

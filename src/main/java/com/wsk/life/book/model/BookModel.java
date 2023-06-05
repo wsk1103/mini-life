@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @DESCRIPTION : 图书解析model
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/2/15  15:01
  */
 @Data

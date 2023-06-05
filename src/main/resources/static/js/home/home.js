@@ -96,7 +96,7 @@ $(function () {
                     if (result[i].isPrivate == 1) {
                         isPrivate = "<span class='friends_time isPrivate'>朋友圈</span>";
                     } else {
-                        isPrivate = "<span class='friends_time isPrivate'>公共圈</span>";
+                        isPrivate = "<span class='friends_time isPrivate'>所有人</span>";
                     }
                     if (uid == result[i].uid) {
                         if (result[i].isPrivate == 0) {
@@ -229,7 +229,7 @@ $(document).on("click", ".chang_btn", function () {
                 "value='1'>朋友圈</span>";
         } else {
             isPri = "<span class='friends_time isPrivate' " +
-                "value='2'>公共圈</span>";
+                "value='2'>所有人</span>";
         }
         var show = "<div class='friends_stats my_stats' style='display: none'>" +
             "                    <div>" +
@@ -289,7 +289,7 @@ $(document).on("click", ".chang_btn", function () {
                 //send code by email;
                 var result = data.result;
                 if (result == '1') {
-                    alert("发布成功");
+                    // alert("发布成功");
                     $movie_content.attr("value", "");
                     // window.location = '';
                 }
@@ -322,7 +322,7 @@ $(document).on("click", ".chang_btn", function () {
                 "value='1'>朋友圈</span>";
         } else {
             isPri = "<span class='friends_time isPrivate' " +
-                "value='2'>公共圈</span>";
+                "value='2'>所有人</span>";
         }
         var show = "<div class='friends_stats my_stats' style='display: none'>" +
             "                    <div>" +
@@ -386,7 +386,7 @@ $(document).on("click", ".chang_btn", function () {
             data: formData,//一同上传的数据
             success: function (msg) {
                 if (1 == msg.result) {
-                    alert("发布成功");
+                    // alert("发布成功");
                     $movie_content.attr("value", "");
                     // window.location = '';
                 } else if (2 == msg.result) {

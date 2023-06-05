@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * @DESCRIPTION :Redis工具类接口
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2017/12/31  18:30
  */
 public interface IRedisUtils {

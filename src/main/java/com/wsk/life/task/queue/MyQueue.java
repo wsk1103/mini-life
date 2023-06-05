@@ -16,7 +16,7 @@ import java.util.concurrent.LinkedTransferQueue;
  * SynchronousQueue：一个不存储元素的阻塞队列。
  * LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。
  * LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/24  20:53
  */
 @EqualsAndHashCode

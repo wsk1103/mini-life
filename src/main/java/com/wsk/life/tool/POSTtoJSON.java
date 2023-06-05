@@ -61,7 +61,7 @@ public class POSTtoJSON {
 //            stringEntity.setContentEncoding("UTF-8");
 
 //            httpPost.setEntity(stringEntity);
-                System.out.println("Executing request " + http.getRequestLine());
+//                System.out.println("Executing request " + http.getRequestLine());
                 // Create a custom response handler
                 ResponseHandler<String> responseHandler = response -> {
                     int status = response.getStatusLine().getStatusCode();
@@ -76,8 +76,8 @@ public class POSTtoJSON {
                     }
                 };
                 responseBody = httpclient.execute(http, responseHandler);
-                System.out.println("----------------------------------------");
-                System.out.println(responseBody);
+//                System.out.println("----------------------------------------");
+//                System.out.println(responseBody);
             } else {
                 HttpPost http = new HttpPost(url);
                 http.addHeader("Content-Type", "application/json;charset=UTF-8");
@@ -86,7 +86,7 @@ public class POSTtoJSON {
 //            stringEntity.setContentEncoding("UTF-8");
 
 //            httpPost.setEntity(stringEntity);
-                System.out.println("Executing request " + http.getRequestLine());
+//                System.out.println("Executing request " + http.getRequestLine());
                 // Create a custom response handler
                 ResponseHandler<String> responseHandler = response -> {
                     int status = response.getStatusLine().getStatusCode();
@@ -101,11 +101,11 @@ public class POSTtoJSON {
                     }
                 };
                 responseBody = httpclient.execute(http, responseHandler);
-                System.out.println("----------------------------------------");
-                System.out.println(responseBody);
+//                System.out.println("----------------------------------------");
+//                System.out.println(responseBody);
             }
         } catch (Exception e) {
-            System.out.println(e);
+//            System.out.println(e);
             responseBody = "";
         }
         return responseBody;

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface AdminActionMapper {
+public interface    AdminActionMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(AdminAction record);

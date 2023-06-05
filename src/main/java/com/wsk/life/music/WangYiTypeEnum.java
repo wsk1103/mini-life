@@ -2,7 +2,7 @@ package com.wsk.life.music;
 
 /**
  * @DESCRIPTION :网易云音乐配置文件
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/18  21:53
  */
 public class WangYiTypeEnum {

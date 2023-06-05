@@ -4,6 +4,7 @@ import com.wsk.life.bean.CriticCommentBean;
 import com.wsk.life.bean.MyCollectionBean;
 import com.wsk.life.bean.MyCommentBean;
 import com.wsk.life.bean.UserPublish;
+import com.wsk.life.config.FileConfig;
 import com.wsk.life.controller.AsideController;
 import com.wsk.life.pojo.*;
 import com.wsk.life.redis.IRedisUtils;
@@ -47,6 +48,8 @@ public class CriticController extends AsideController {
 */
     @Autowired
     private ReportRepository reportRepository;
+    @Autowired
+    private FileConfig fileConfig;
 
     public CriticController(IRedisUtils redisUtils) {
         super(redisUtils);
@@ -81,13 +84,13 @@ public class CriticController extends AsideController {
         if (Tool.getInstance().isNullOrEmpty(file_upload)) {
             map.put("result", "0");
         } else {
-            path = "D:/image/";
+            path = fileConfig.getSaveImages();
 //            path += "/image/userPicture/";
             String fileName = Tool.getInstance().getRandom() + System.currentTimeMillis() + ".jpg";
             File image = new File(path + fileName);
             File isTest = new File(path);
             if (!isTest.exists()) {
-                path = "/data/images/";
+//                path = "/data/images/";
                 image = new File(path + fileName);
                 boolean result = false;
                 try {
@@ -113,23 +116,25 @@ public class CriticController extends AsideController {
                 e.printStackTrace();
                 return map;
             }
-            StringBuilder thumbnails = new StringBuilder();
-            thumbnails.append(path);
-            thumbnails.append("thumbnails/");
-            thumbnails.append(fileName);
-            path = path + fileName;
+//            StringBuilder thumbnails = new StringBuilder();
+//            thumbnails.append(path);
+//            thumbnails.append("thumbnails/");
+//            thumbnails.append(fileName);
+//            path = path + fileName;
             //色情图片识别
-            if (!Tool.getInstance().checkPornograp(path)){
-                map.put("result", "2");
-                return map;
-            }
-            if (Tool.getInstance().thumbnails(path, thumbnails.toString())) {
-                save = "/images/thumbnails/" + fileName;
+//            if (!Tool.getInstance().checkPornograp(path)){
+//                map.put("result", "2");
+//                return map;
+//            }
+            if (Tool.getInstance().thumbnails(path + fileName, fileConfig.getSaveThum() + fileName)) {
+                save = fileConfig.getSaveThumbnails() + fileName;
             } else {
                 map.put("result", "0");
                 return map;
             }
-            path = "/images/" + fileName;
+//            path = "/images/" + fileName;
+            path = fileConfig.getSaveImage() + fileName;
+//            save = fileConfig.getSaveThumbnails() + fileName;
         }
         PublishCritic publishCritic = new PublishCritic();
         publishCritic.setCritic(movie_content);
@@ -171,7 +176,7 @@ public class CriticController extends AsideController {
             map.put("start", 1);
             publishCritics = publishCriticService.getAllForeach(map);
             for (PublishCritic publishCritic : publishCritics) {
-                System.out.println(publishCritic.getCritic());
+//                System.out.println(publishCritic.getCritic());
             }
             model.addAttribute("users", publishCritics);
         } catch (Exception e) {
@@ -190,7 +195,7 @@ public class CriticController extends AsideController {
     @RequestMapping(value = "/getUP", method = RequestMethod.POST)
     @ResponseBody
     public List getUserPublish(HttpServletRequest request, @RequestParam int start) {
-        System.out.println("run getUP   " + new Date() + "     " + start);
+//        System.out.println("run getUP   " + new Date() + "     " + start);
         List<UserPublish> list = new ArrayList<>();
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {

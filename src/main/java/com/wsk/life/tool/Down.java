@@ -8,7 +8,7 @@ import java.net.URL;
 
 /**
  * @DESCRIPTION :根据url下载，MP3下载为MP3，MP4下载为MP4，图片则为对应格式的图片
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/20  15:49
  */
 public class Down {
@@ -58,7 +58,7 @@ public class Down {
             }
             throw  new IOException("下载失败，url为：" + url);
         }
-        System.out.println("down success:" + file.getAbsolutePath());
+//        System.out.println("down success:" + file.getAbsolutePath());
         return file.getAbsolutePath();
     }
 

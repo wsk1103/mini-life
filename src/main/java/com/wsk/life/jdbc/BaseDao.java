@@ -10,7 +10,7 @@ import java.util.Properties;
 
 /**
  * @DESCRIPTION : 原生，使用sql语句查询
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/3/9  13:40
  */
 public class BaseDao {

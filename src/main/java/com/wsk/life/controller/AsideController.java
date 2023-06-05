@@ -43,7 +43,7 @@ public class AsideController extends BaseController {
     public void getAllPublishCritic(Model model, int uid) {
         try {
             try {
-                System.out.println("run getUP  " + new Date());
+//                System.out.println("run getUP  " + new Date());
                 List<UserPublish> list = new ArrayList<>();
                 List<MyFriends> myFriends;
                 List<PublishCritic> publishCritics;

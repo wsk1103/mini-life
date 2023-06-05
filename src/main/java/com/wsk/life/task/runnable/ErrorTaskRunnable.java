@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @DESCRIPTION :错误处理
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/1/24  22:41
  */
 @Component

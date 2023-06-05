@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 /**
  * @DESCRIPTION :
- * @AUTHOR : WuShukai1103
+ * @AUTHOR : sk
  * @TIME : 2018/5/1  17:44
  */
 @Entity
