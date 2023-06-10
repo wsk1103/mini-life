@@ -2,6 +2,7 @@
 
 ## 微生活
 视频教程：https://www.bilibili.com/video/BV1VN411k7Ab/
+
 个人主页： https://wsk1103.github.io/
 
 详细的设计报告在文章后半部分
