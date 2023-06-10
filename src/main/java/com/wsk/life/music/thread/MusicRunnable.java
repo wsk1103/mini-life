@@ -41,17 +41,17 @@ public class MusicRunnable implements Runnable {
             String fileName = bean.getFileName();
             WangyimusicEntity entity2 = musicService.getBySongid(bean.getMusicEntity().getSongid());
             if (Tool.getInstance().isNullOrEmpty(entity2)) {
-                Down.down(bean.getEntity().getUrl(), fileName);
+//                Down.down(bean.getEntity().getUrl(), fileName);
                 bean.getEntity().setUrl(WangYiTypeEnum.MUSIC_URL + fileName);
                 musicService.save(bean.getMusicEntity());
                 redisUtils.set("wangyi_music_url_" + bean.getMusicEntity().getId(), WangYiTypeEnum.MUSIC_URL + fileName);
             } else if (entity2.getUrl().contains("m10.music.126.net")) {
-                Down.down(bean.getEntity().getUrl(), fileName);
+//                Down.down(bean.getEntity().getUrl(), fileName);
                 bean.getEntity().setUrl(WangYiTypeEnum.MUSIC_URL + fileName);
                 musicService.update(bean.getMusicEntity().getSongid(),  WangYiTypeEnum.MUSIC_URL + fileName);
                 redisUtils.set("wangyi_music_url_" + bean.getMusicEntity().getId(), WangYiTypeEnum.MUSIC_URL + fileName, Time.ONE_DAY);
             }
-        } catch (IOException e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

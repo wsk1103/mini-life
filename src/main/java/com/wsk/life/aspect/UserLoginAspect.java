@@ -81,27 +81,27 @@ public class UserLoginAspect {
     /**
      * 需要登录的用户账号密码核对,controller包下的music所有类
      */
-    @Pointcut("execution(* com.wsk.life.controller.*.*(..)) " +
-            "&& !execution(* com.wsk.life.controller.BaseController.*(..))" +
-            "&& !execution(* com.wsk.life.controller.*.is*(..)) " +
-            "&& !execution(* com.wsk.life.controller.*.get*(..)) " +
-            "&& !execution(* com.wsk.life.controller.*.set*(..)) " +
-            "&& !execution(* com.wsk.life.controller.UserInformationController.home(..)) ")
-    public void checkM() {
-    }
-
-
-    @Before(value = "checkM()")
-    private void checkMusic() {
-//        System.out.println("wsk =====>start aspect!");
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
-        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
-            if (isLoginFromRedis()) {
-                throw new LoginErrorException("账号未登录！");
-            }
-        }
-    }
+//    @Pointcut("execution(* com.wsk.life.controller.*.*(..)) " +
+//            "&& !execution(* com.wsk.life.controller.BaseController.*(..))" +
+//            "&& !execution(* com.wsk.life.controller.*.is*(..)) " +
+//            "&& !execution(* com.wsk.life.controller.*.get*(..)) " +
+//            "&& !execution(* com.wsk.life.controller.*.set*(..)) " +
+//            "&& !execution(* com.wsk.life.controller.UserInformationController.home(..)) ")
+//    public void checkM() {
+//    }
+//
+//
+//    @Before(value = "checkM()")
+//    private void checkMusic() {
+////        System.out.println("wsk =====>start aspect!");
+//        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//        UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+//        if (Tool.getInstance().isNullOrEmpty(userInformation)) {
+//            if (isLoginFromRedis()) {
+//                throw new LoginErrorException("账号未登录！");
+//            }
+//        }
+//    }
 
     private void checkBook() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();

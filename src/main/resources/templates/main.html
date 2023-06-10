@@ -159,7 +159,7 @@
                 <a th:if="${userInformation.name}==null" href="/login" class="myName clearfix" title="">
                     请先登录
                 </a>
-                <a th:text="${userInformation.name}" th:href="'/information?id='+${userInformation.id}"
+                <a th:text="${userInformation.name}" th:href="'/find/information?id='+${userInformation.id}"
                    class="myName clearfix" th:if="${userInformation.name}!=null" th:title="${userInformation.name}">
                     请先登录
                 </a>
@@ -170,7 +170,7 @@
                     我的个性签名
                 </a>
                 <a th:if="${userInformation.name}!=null" th:text="${userInformation.autograph}"
-                   th:href="'/information?id='+${userInformation.id}" th:title="${userInformation.autograph}"
+                   th:href="'/find/information?id='+${userInformation.id}" th:title="${userInformation.autograph}"
                    class="clearfix myAutograph">
                     我的个性签名
                 </a>
@@ -178,7 +178,7 @@
         </div>
     </div>
     <div class="my_action">
-        <div class="my_action_home"><a href="home" th:href="'/information?id='+${userInformation.id}"
+        <div class="my_action_home"><a href="home" th:href="'/find/information?id='+${userInformation.id}"
         >我的影评：<span th:text="${critics}" id="num_critics"></span></a></div>
         <div class="my_action_home"><a href="/myComment">我的评论：<span th:text="${comments}" id="num_comments"></span></a>
         </div>

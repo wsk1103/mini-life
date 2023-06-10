@@ -266,7 +266,7 @@ public class UserInformationController extends AsideController {
 //    }
 
     //查看用户个人主页
-    @RequestMapping(value = "information")
+    @RequestMapping(value = "/find/information")
     public String information(HttpServletRequest request, @RequestParam(value = "id") int id) {
         request.getSession().setAttribute("userId", id);
         UserInformation user = getUserInformationById(id);
@@ -275,7 +275,7 @@ public class UserInformationController extends AsideController {
     }
 
     //重定向到个人主页，为了安全
-    @RequestMapping(value = "user/information")
+    @RequestMapping(value = "/user/information")
     public String information(Model model, HttpServletRequest request) {
         UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
         if (Tool.getInstance().isNullOrEmpty(userInformation)) {
@@ -436,6 +436,9 @@ public class UserInformationController extends AsideController {
         for (CommentCritic c : commentCritics) {
             user = userInformationService.selectByPrimaryKey(c.getUid());
             publishCritic = publishCriticService.getObjectById(c.getPid());
+            if (user == null || publishCritic == null) {
+                continue;
+            }
             myCommentBean = new MyCommentBean();
 //            myCommentBean.setList(commentCritics);
             myCommentBean.setAvatar(user.getAvatar());
@@ -482,7 +485,13 @@ public class UserInformationController extends AsideController {
         for (CollectionCritic c : collectionCritics) {
             userPublish = new MyCollectionBean();
             publishCritic = publishCriticService.getObjectById(c.getPid());
+            if (publishCritic == null) {
+                continue;
+            }
             user = userInformationService.selectByPrimaryKey(publishCritic.getUid());
+            if (user == null) {
+                continue;
+            }
             userPublish.setCollection(1);
             userPublish.setGood(isGood(uid, user.getId()) ? 1 : 0);
             userPublish.setFriend(isFriends(uid, user.getId()) ? 1 : 0);
@@ -528,7 +537,13 @@ public class UserInformationController extends AsideController {
         for (GoodCritic c : collectionCritics) {
             userPublish = new MyCollectionBean();
             publishCritic = publishCriticService.getObjectById(c.getPid());
+            if (publishCritic == null) {
+                continue;
+            }
             user = userInformationService.selectByPrimaryKey(publishCritic.getUid());
+            if (user == null) {
+                continue;
+            }
             userPublish.setCollection(isCollection(uid, publishCritic.getId()) ? 1 : 0);
             userPublish.setGood(1);
             userPublish.setFriend(isFriends(uid, user.getId()) ? 1 : 0);

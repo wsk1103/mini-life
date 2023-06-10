@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : lo
 Source Server Version : 50738
 Source Host           : localhost:3306
-Source Database       : movie
+Source Database       : life
 
 Target Server Type    : MYSQL
 Target Server Version : 50738
 File Encoding         : 65001
 
-Date: 2023-06-05 22:34:18
+Date: 2023-06-10 23:44:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -319,7 +319,6 @@ INSERT INTO `collectioncritic` VALUES ('15', '156', '2017-06-09 16:25:39', '12',
 INSERT INTO `collectioncritic` VALUES ('16', '107', '2017-06-09 16:25:39', '12', '2017-06-09 16:25:45', '1');
 INSERT INTO `collectioncritic` VALUES ('17', '191', '2017-06-10 18:39:21', '12', '2017-06-10 18:39:29', '0');
 INSERT INTO `collectioncritic` VALUES ('18', '168', '2017-06-10 18:43:28', '12', '2017-06-10 18:43:28', '1');
-INSERT INTO `collectioncritic` VALUES ('19', '203', '2023-06-05 22:25:43', '3', '2023-06-05 22:25:43', '1');
 
 -- ----------------------------
 -- Table structure for commentcritic
@@ -357,7 +356,6 @@ INSERT INTO `commentcritic` VALUES ('14', '这只是一个有趣的测试12', '0
 INSERT INTO `commentcritic` VALUES ('15', '这只是一个有趣的测试13', '0', '190', '2017-06-05 22:49:48', '12', '2017-06-05 22:49:38', '1');
 INSERT INTO `commentcritic` VALUES ('16', '相思风雨中', '0', '184', '2017-06-10 18:40:54', '12', '2017-06-10 18:40:51', '1');
 INSERT INTO `commentcritic` VALUES ('17', '曾经的爱', '0', '191', '2017-06-10 21:42:02', '12', '2017-06-10 21:42:02', '1');
-INSERT INTO `commentcritic` VALUES ('18', 'g', '0', '203', '2023-06-05 22:25:48', '3', '2023-06-05 22:25:48', '1');
 
 -- ----------------------------
 -- Table structure for critic_report
@@ -437,7 +435,6 @@ INSERT INTO `goodcritic` VALUES ('19', '191', '2017-06-10 18:39:01', '12', '2017
 INSERT INTO `goodcritic` VALUES ('20', '191', '2017-06-10 18:39:14', '12', '2017-06-10 18:39:18', '0');
 INSERT INTO `goodcritic` VALUES ('21', '191', '2017-06-10 21:40:28', '12', '2017-06-10 21:40:28', '1');
 INSERT INTO `goodcritic` VALUES ('22', '195', '2018-01-20 15:10:03', '12', '2018-01-20 15:28:42', '0');
-INSERT INTO `goodcritic` VALUES ('23', '203', '2023-06-05 22:25:50', '3', '2023-06-05 22:25:50', '1');
 
 -- ----------------------------
 -- Table structure for integralsource
@@ -495,7 +492,7 @@ CREATE TABLE `message` (
   `message` varchar(255) DEFAULT NULL,
   `onread` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -506,6 +503,7 @@ INSERT INTO `message` VALUES ('5', '3', '12', '2018-09-09 13:35:39', '122', '1')
 INSERT INTO `message` VALUES ('6', '12', '3', '2018-09-09 13:35:39', '天气', '1');
 INSERT INTO `message` VALUES ('7', '12', '3', '2018-09-09 13:35:39', '一起玩耍啊', '1');
 INSERT INTO `message` VALUES ('8', '12', '5', '2017-10-22 23:08:27', 'xixi', '0');
+INSERT INTO `message` VALUES ('9', '3', '1', '2023-06-10 22:40:18', 'test', '0');
 
 -- ----------------------------
 -- Table structure for movieforum
@@ -8187,7 +8185,7 @@ CREATE TABLE `publishcritic` (
   `allow` smallint(6) DEFAULT '1',
   `thumbnails` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`,`time`)
-) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8
 /*!50100 PARTITION BY RANGE (to_days(time))
 (PARTITION p201801 VALUES LESS THAN (737091) ENGINE = InnoDB,
  PARTITION p201802 VALUES LESS THAN (737119) ENGINE = InnoDB,
@@ -8569,17 +8567,27 @@ INSERT INTO `wangyialbum` VALUES ('16953', '16953', '自定义', '0', null, '167
 INSERT INTO `wangyialbum` VALUES ('18905', '18905', '叶惠美', '0', null, '186016');
 INSERT INTO `wangyialbum` VALUES ('18937', '18937', 'I Am What I Am', '0', null, '186436');
 INSERT INTO `wangyialbum` VALUES ('19247', '19247', '雨一直下', '0', null, '190499');
+INSERT INTO `wangyialbum` VALUES ('19298', '19298', '这，就是爱', '0', null, '191081');
+INSERT INTO `wangyialbum` VALUES ('19318', '19318', '明天过后', '0', null, '191248');
 INSERT INTO `wangyialbum` VALUES ('20339', '20339', '赵小雷', '0', null, '202373');
 INSERT INTO `wangyialbum` VALUES ('21250', '21250', '说到爱', '0', null, '208891');
 INSERT INTO `wangyialbum` VALUES ('21252', '21252', '若你碰到他', '0', null, '208902');
+INSERT INTO `wangyialbum` VALUES ('21257', '21257', 'Goodbye & Hello', '0', null, '208933');
+INSERT INTO `wangyialbum` VALUES ('21302', '21302', 'Groupies吉他手', '0', null, '209397');
 INSERT INTO `wangyialbum` VALUES ('22634', '22634', '怎样', '0', null, '224000');
+INSERT INTO `wangyialbum` VALUES ('24808', '24808', '空气', '0', null, '247644');
+INSERT INTO `wangyialbum` VALUES ('24826', '24826', '独立日', '0', null, '247821');
 INSERT INTO `wangyialbum` VALUES ('24837', '24837', '恋习', '0', null, '247936');
 INSERT INTO `wangyialbum` VALUES ('25436', '25436', '年华', '0', null, '254548');
 INSERT INTO `wangyialbum` VALUES ('25437', '25437', '我等你', '0', null, '254574');
 INSERT INTO `wangyialbum` VALUES ('25525', '25525', '幸福遇见', '0', null, '255574');
 INSERT INTO `wangyialbum` VALUES ('28519', '28519', '经典全纪录(主打精华版)', '0', null, '287035');
+INSERT INTO `wangyialbum` VALUES ('28520', '28520', '逆光', '0', null, '287063');
+INSERT INTO `wangyialbum` VALUES ('28562', '28562', '孙燕姿 同名专辑', '0', null, '287749');
+INSERT INTO `wangyialbum` VALUES ('30471', '30471', 'Read Me', '0', null, '306855');
 INSERT INTO `wangyialbum` VALUES ('30614', '30614', '3/8', '0', null, '308353');
 INSERT INTO `wangyialbum` VALUES ('32459', '32459', '破天荒', '1241712000000', null, '328076');
+INSERT INTO `wangyialbum` VALUES ('32548', '32548', '雪花飘', '0', null, '329336');
 INSERT INTO `wangyialbum` VALUES ('35139', '35139', '追梦痴子心', '0', null, '355992');
 INSERT INTO `wangyialbum` VALUES ('36826', '36826', '我们爱音乐(首唱会赠送版)', '0', null, '371362');
 INSERT INTO `wangyialbum` VALUES ('37158', '37158', '小宇宙', '0', null, '375328');
@@ -8596,8 +8604,10 @@ INSERT INTO `wangyialbum` VALUES ('512384', '512384', 'Listen To HIM', '0', null
 INSERT INTO `wangyialbum` VALUES ('1637473', '1637473', 'Whistle', '0', null, '17793698');
 INSERT INTO `wangyialbum` VALUES ('1674111', '1674111', 'Superficial', '0', null, '18228464');
 INSERT INTO `wangyialbum` VALUES ('1721643', '1721643', 'Who You Are (Platinum Edition)', '0', null, '18794219');
+INSERT INTO `wangyialbum` VALUES ('1770438', '1770438', 'Fearless', '0', null, '19292984');
 INSERT INTO `wangyialbum` VALUES ('2101006', '2101006', 'Kimberley首张同名专辑 ', '0', null, '22852057');
 INSERT INTO `wangyialbum` VALUES ('2263157', '2263157', '改变自己', '0', null, '25642952');
+INSERT INTO `wangyialbum` VALUES ('2270070', '2270070', '幸福了 然后呢', '0', null, '25657348');
 INSERT INTO `wangyialbum` VALUES ('2285010', '2285010', '世界', '0', null, '25706282');
 INSERT INTO `wangyialbum` VALUES ('2292012', '2292012', 'Can’t Be Half', '0', null, '25718007');
 INSERT INTO `wangyialbum` VALUES ('2302008', '2302008', 'Native (Deluxe Version)', '0', null, '26060065');
@@ -8607,9 +8617,11 @@ INSERT INTO `wangyialbum` VALUES ('2386097', '2386097', 'WONDER Tourism', '0', n
 INSERT INTO `wangyialbum` VALUES ('2400479', '2400479', '18 Plus', '0', null, '234014');
 INSERT INTO `wangyialbum` VALUES ('2426056', '2426056', '祝天下所有的情侣都是失散多年的兄妹', '0', null, '26217408');
 INSERT INTO `wangyialbum` VALUES ('2453010', '2453010', '花吃泡面男', '0', null, '26387325');
+INSERT INTO `wangyialbum` VALUES ('2495077', '2495077', 'The 1st Album XOXO (KISS&HUG)', '0', null, '26428032');
 INSERT INTO `wangyialbum` VALUES ('2499063', '2499063', 'We Can\'t Stop - Single', '0', null, '26429346');
 INSERT INTO `wangyialbum` VALUES ('2505008', '2505008', 'It\'s A Beautiful Day', '0', null, '26470630');
 INSERT INTO `wangyialbum` VALUES ('2518001', '2518001', '这个世界会好吗', '1150300800000', null, '26523120');
+INSERT INTO `wangyialbum` VALUES ('2617007', '2617007', '《兰陵王》电视剧原声带', '0', null, '27591236');
 INSERT INTO `wangyialbum` VALUES ('2641180', '2641180', 'Here With You', '0', null, '27583305');
 INSERT INTO `wangyialbum` VALUES ('2643040', '2643040', 'True', '0', null, '27713920');
 INSERT INTO `wangyialbum` VALUES ('2643348', '2643348', '爱，不解释', '0', null, '28059417');
@@ -8814,6 +8826,7 @@ INSERT INTO `wangyialbum` VALUES ('35689266', '35689266', '桅桅一笑很倾城
 INSERT INTO `wangyialbum` VALUES ('35689357', '35689357', '上古情歌 电视剧原声带', '0', null, '480579393');
 INSERT INTO `wangyialbum` VALUES ('35695884', '35695884', '非酋', '0', null, '489506275');
 INSERT INTO `wangyialbum` VALUES ('35696322', '35696322', '九张机', '0', null, '488256319');
+INSERT INTO `wangyialbum` VALUES ('35702116', '35702116', '哪里都是你', '0', null, '488249475');
 INSERT INTO `wangyialbum` VALUES ('35714571', '35714571', 'Welcome to New York', '0', null, '488876810');
 INSERT INTO `wangyialbum` VALUES ('35722411', '35722411', 'Rainbow', '0', null, '490381071');
 INSERT INTO `wangyialbum` VALUES ('35722418', '35722418', 'Rich Love', '0', null, '490381113');
@@ -9248,7 +9261,10 @@ INSERT INTO `wangyialbum` VALUES ('74715426', '74715426', '起风了', '0', null
 INSERT INTO `wangyialbum` VALUES ('74793881', '74793881', '像鱼', '0', null, '1331819951');
 INSERT INTO `wangyialbum` VALUES ('74878945', '74878945', 'Spider-Man: Into the Spider-Verse (Soundtrack From & Inspired by the Motion Picture)', '0', null, '1318733599');
 INSERT INTO `wangyialbum` VALUES ('74992183', '74992183', '梦想的声音第三季 第11期', '0', null, '1336789771');
+INSERT INTO `wangyialbum` VALUES ('75199404', '75199404', 'Superficial', '0', null, '1340006512');
 INSERT INTO `wangyialbum` VALUES ('75666656', '75666656', 'FATHER OF 4', '0', null, '1347702308');
+INSERT INTO `wangyialbum` VALUES ('75698876', '75698876', '董', '0', null, '1348367103');
+INSERT INTO `wangyialbum` VALUES ('75765638', '75765638', 'Running Up That Hill', '0', null, '1349964388');
 INSERT INTO `wangyialbum` VALUES ('78232124', '78232124', '初遇', '0', null, '1336856864');
 INSERT INTO `wangyialbum` VALUES ('78333509', '78333509', 'Slow Down', '0', null, '1356658022');
 INSERT INTO `wangyialbum` VALUES ('78570420', '78570420', '晚安', '0', null, '1359356908');
@@ -9275,9 +9291,12 @@ INSERT INTO `wangyialbum` VALUES ('84029595', '84029595', '想去海边', '0', n
 INSERT INTO `wangyialbum` VALUES ('84219287', '84219287', '带我去找夜生活', '0', null, '1410647903');
 INSERT INTO `wangyialbum` VALUES ('84622631', '84622631', '大眠 (完整版)', '0', null, '1413142894');
 INSERT INTO `wangyialbum` VALUES ('84664836', '84664836', '与我无关', '0', null, '1413585838');
+INSERT INTO `wangyialbum` VALUES ('84946377', '84946377', '胡（Banker）', '0', null, '1416353252');
 INSERT INTO `wangyialbum` VALUES ('85998494', '85998494', '下雨天', '0', null, '1426112587');
 INSERT INTO `wangyialbum` VALUES ('86439889', '86439889', '《比赛开始》影视原声', '0', null, '1430303185');
 INSERT INTO `wangyialbum` VALUES ('86447217', '86447217', '海底', '0', null, '1430583016');
+INSERT INTO `wangyialbum` VALUES ('86475703', '86475703', '说唱入门教学', '0', null, '1430657585');
+INSERT INTO `wangyialbum` VALUES ('86861985', '86861985', '处处吻 (合唱版)', '0', null, '1434244328');
 INSERT INTO `wangyialbum` VALUES ('87080555', '87080555', 'Covers, Vol. 1', '0', null, '1435661824');
 INSERT INTO `wangyialbum` VALUES ('87122489', '87122489', 'Empty Love (feat. Kid Princess)', '0', null, '1435828582');
 INSERT INTO `wangyialbum` VALUES ('87339204', '87339204', '夏天的风', '0', null, '1436709403');
@@ -9294,14 +9313,19 @@ INSERT INTO `wangyialbum` VALUES ('98659782', '98659782', 'for ya', '0', null, '
 INSERT INTO `wangyialbum` VALUES ('120954841', '120954841', '运气来得若有似无', '0', null, '1807799505');
 INSERT INTO `wangyialbum` VALUES ('121012393', '121012393', '天外来物', '0', null, '1463165983');
 INSERT INTO `wangyialbum` VALUES ('121076375', '121076375', '错位时空', '0', null, '1808492017');
+INSERT INTO `wangyialbum` VALUES ('121630728', '121630728', '星辰大海', '0', null, '1811921555');
 INSERT INTO `wangyialbum` VALUES ('122257911', '122257911', 'Dehors', '0', null, '1815725297');
 INSERT INTO `wangyialbum` VALUES ('123723319', '123723319', '再见莫妮卡', '0', null, '1824045033');
 INSERT INTO `wangyialbum` VALUES ('124139046', '124139046', 'MYSTERY TOY BOX', '0', null, '1826189041');
 INSERT INTO `wangyialbum` VALUES ('124213075', '124213075', 'Unpolished', '0', null, '1826613971');
 INSERT INTO `wangyialbum` VALUES ('124309279', '124309279', '还是会想你', '0', null, '1827600686');
+INSERT INTO `wangyialbum` VALUES ('125309153', '125309153', '人体解冻', '0', null, '1833391733');
+INSERT INTO `wangyialbum` VALUES ('126639532', '126639532', '咤七', '0', null, '1840750472');
 INSERT INTO `wangyialbum` VALUES ('126985670', '126985670', '如果呢', '0', null, '1842728629');
 INSERT INTO `wangyialbum` VALUES ('127487355', '127487355', '电视剧 巴啦啦小魔仙 原声带', '0', null, '1845426540');
+INSERT INTO `wangyialbum` VALUES ('128083704', '128083704', 'Mashup', '0', null, '1848550739');
 INSERT INTO `wangyialbum` VALUES ('128666473', '128666473', '忘不掉的你', '0', null, '1851652156');
+INSERT INTO `wangyialbum` VALUES ('129961468', '129961468', 'Balenciaga', '0', null, '1858897067');
 INSERT INTO `wangyialbum` VALUES ('130016223', '130016223', 'STAY', '0', null, '1859245776');
 INSERT INTO `wangyialbum` VALUES ('130148423', '130148423', '纵横四海', '0', null, '1997438791');
 INSERT INTO `wangyialbum` VALUES ('130342502', '130342502', '沉沦与遐想', '0', null, '1492584510');
@@ -9319,11 +9343,13 @@ INSERT INTO `wangyialbum` VALUES ('135524120', '135524120', '指纹', '0', null,
 INSERT INTO `wangyialbum` VALUES ('135992033', '135992033', '漠河舞厅·2022', '0', null, '1894094482');
 INSERT INTO `wangyialbum` VALUES ('136184367', '136184367', '予你', '0', null, '1895330088');
 INSERT INTO `wangyialbum` VALUES ('136310641', '136310641', '簇拥烈日的花', '0', null, '1896178370');
+INSERT INTO `wangyialbum` VALUES ('137137613', '137137613', '小霞 2.0', '0', null, '1901319325');
 INSERT INTO `wangyialbum` VALUES ('137142551', '137142551', '孤勇者', '0', null, '1901371647');
 INSERT INTO `wangyialbum` VALUES ('137950781', '137950781', '丧失年轻，勿失年华', '0', null, '1951069525');
 INSERT INTO `wangyialbum` VALUES ('138162094', '138162094', '时空伴侣2000', '0', null, '1907765990');
 INSERT INTO `wangyialbum` VALUES ('138162415', '138162415', '11', '0', null, '1907766514');
 INSERT INTO `wangyialbum` VALUES ('138203677', '138203677', '算了吧', '0', null, '1908049566');
+INSERT INTO `wangyialbum` VALUES ('138591858', '138591858', '粤语情歌', '0', null, '1910515224');
 INSERT INTO `wangyialbum` VALUES ('139766108', '139766108', '平行线', '0', null, '1916909342');
 INSERT INTO `wangyialbum` VALUES ('140087138', '140087138', 'When the world is came，take it！', '0', null, '1918576268');
 INSERT INTO `wangyialbum` VALUES ('140916292', '140916292', 'Letting Go', '0', null, '1923184888');
@@ -9331,26 +9357,33 @@ INSERT INTO `wangyialbum` VALUES ('141106630', '141106630', '骗子', '0', null,
 INSERT INTO `wangyialbum` VALUES ('141510248', '141510248', '小胡同', '0', null, '1926623288');
 INSERT INTO `wangyialbum` VALUES ('141683700', '141683700', 'Bones', '0', null, '1927389937');
 INSERT INTO `wangyialbum` VALUES ('142044506', '142044506', '晚风心里吹', '0', null, '1929370102');
+INSERT INTO `wangyialbum` VALUES ('142155911', '142155911', '最后一页', '0', null, '445154140');
 INSERT INTO `wangyialbum` VALUES ('142482916', '142482916', '天若有情', '0', null, '1931994283');
 INSERT INTO `wangyialbum` VALUES ('142605685', '142605685', 'BABYDOLL (Speed)', '0', null, '1932769322');
 INSERT INTO `wangyialbum` VALUES ('142885776', '142885776', '小城夏天', '0', null, '1934251776');
 INSERT INTO `wangyialbum` VALUES ('143573677', '143573677', '热门BGM', '0', null, '1958232600');
 INSERT INTO `wangyialbum` VALUES ('143578679', '143578679', 'Bet On Me (feat. D Smoke) (Organic Version)', '0', null, '1938756186');
 INSERT INTO `wangyialbum` VALUES ('143763608', '143763608', 'I Wish My Mind Would Shut Up', '0', null, '1940074698');
+INSERT INTO `wangyialbum` VALUES ('143769648', '143769648', 'Here\'s to Starting Over', '0', null, '1940115041');
 INSERT INTO `wangyialbum` VALUES ('144086940', '144086940', '命运', '0', null, '1942041775');
 INSERT INTO `wangyialbum` VALUES ('144179714', '144179714', 'One More Last Time', '0', null, '1942576027');
+INSERT INTO `wangyialbum` VALUES ('144252333', '144252333', '篇章', '0', null, '1943043408');
+INSERT INTO `wangyialbum` VALUES ('144679616', '144679616', '天赐的声音第三季 第3期', '0', null, '1945875426');
 INSERT INTO `wangyialbum` VALUES ('145054600', '145054600', '三国恋', '0', null, '1947948874');
 INSERT INTO `wangyialbum` VALUES ('145187611', '145187611', '五百二十赫兹', '0', null, '1948572170');
 INSERT INTO `wangyialbum` VALUES ('145469501', '145469501', '可能', '0', null, '1950343972');
 INSERT INTO `wangyialbum` VALUES ('146613268', '146613268', 'After Hours', '0', null, '1956440993');
+INSERT INTO `wangyialbum` VALUES ('146870611', '146870611', 'Running Up That Hill (a deal with god)', '0', null, '1957926942');
 INSERT INTO `wangyialbum` VALUES ('146902486', '146902486', '或许', '0', null, '1958031074');
 INSERT INTO `wangyialbum` VALUES ('146917329', '146917329', '故事商铺·上', '0', null, '1927693793');
 INSERT INTO `wangyialbum` VALUES ('146975454', '146975454', '输出.368', '0', null, '1958404869');
 INSERT INTO `wangyialbum` VALUES ('146982086', '146982086', '东升西落', '0', null, '1958442675');
 INSERT INTO `wangyialbum` VALUES ('147166235', '147166235', '紫荆花盛开', '0', null, '1959528822');
+INSERT INTO `wangyialbum` VALUES ('147841903', '147841903', '爱要怎么说出口', '0', null, '1436081452');
 INSERT INTO `wangyialbum` VALUES ('148191532', '148191532', '中国说唱巅峰对决 第四期', '0', null, '1964443044');
 INSERT INTO `wangyialbum` VALUES ('148352363', '148352363', 'Doja', '0', null, '1965392316');
 INSERT INTO `wangyialbum` VALUES ('148523000', '148523000', '是你', '0', null, '1966162185');
+INSERT INTO `wangyialbum` VALUES ('148638597', '148638597', 'Every Time We Touch', '0', null, '1966889776');
 INSERT INTO `wangyialbum` VALUES ('149013204', '149013204', '一直很安静', '0', null, '1968781675');
 INSERT INTO `wangyialbum` VALUES ('149014920', '149014920', 'Shadow Of The Sun', '0', null, '1968791360');
 INSERT INTO `wangyialbum` VALUES ('149026734', '149026734', 'As It Was', '0', null, '1968869187');
@@ -9358,6 +9391,7 @@ INSERT INTO `wangyialbum` VALUES ('149126911', '149126911', '东北的冬', '0',
 INSERT INTO `wangyialbum` VALUES ('149130767', '149130767', '三拜红尘凉', '0', null, '1969320038');
 INSERT INTO `wangyialbum` VALUES ('149257265', '149257265', '退潮', '0', null, '1965928052');
 INSERT INTO `wangyialbum` VALUES ('149341557', '149341557', 'MOVE IN SILENCE', '0', null, '1970396862');
+INSERT INTO `wangyialbum` VALUES ('149874091', '149874091', '热恋情节', '0', null, '1973046704');
 INSERT INTO `wangyialbum` VALUES ('150086089', '150086089', 'As It Was', '0', null, '1974125151');
 INSERT INTO `wangyialbum` VALUES ('150127127', '150127127', '署前街少年', '0', null, '1974443814');
 INSERT INTO `wangyialbum` VALUES ('150377096', '150377096', '爱似水仙', '0', null, '1975589384');
@@ -9369,6 +9403,7 @@ INSERT INTO `wangyialbum` VALUES ('151156371', '151156371', '我的美丽feat.�
 INSERT INTO `wangyialbum` VALUES ('151635853', '151635853', '孤雏', '0', null, '1981557398');
 INSERT INTO `wangyialbum` VALUES ('151645020', '151645020', 'BLOOM', '0', null, '1981613252');
 INSERT INTO `wangyialbum` VALUES ('151778320', '151778320', '风驶过的声音是', '0', null, '1982285682');
+INSERT INTO `wangyialbum` VALUES ('151895418', '151895418', '第几个秋天', '0', null, '1982939899');
 INSERT INTO `wangyialbum` VALUES ('152222837', '152222837', '联名', '0', null, '1984475097');
 INSERT INTO `wangyialbum` VALUES ('152231212', '152231212', 'this is what ____ feels like (Vol. 1-4)', '0', null, '1958557540');
 INSERT INTO `wangyialbum` VALUES ('153017852', '153017852', '我曾遇到一束光', '0', null, '1988532821');
@@ -9380,6 +9415,9 @@ INSERT INTO `wangyialbum` VALUES ('154636636', '154636636', '你（正式版）'
 INSERT INTO `wangyialbum` VALUES ('155896400', '155896400', 'TALENT', '0', null, '2003582433');
 INSERT INTO `wangyialbum` VALUES ('156500627', '156500627', '失语者', '0', null, '2006448864');
 INSERT INTO `wangyialbum` VALUES ('156908599', '156908599', '無 止 镜', '0', null, '2008268313');
+INSERT INTO `wangyialbum` VALUES ('158137922', '158137922', '飞天茅台', '0', null, '2014046738');
+INSERT INTO `wangyialbum` VALUES ('158472921', '158472921', '2023年中央广播电视总台春节联欢晚会', '0', null, '2016388265');
+INSERT INTO `wangyialbum` VALUES ('158733346', '158733346', '是妈妈是女儿', '0', null, '2016688503');
 INSERT INTO `wangyialbum` VALUES ('159124745', '159124745', '循迹', '0', null, '2018432856');
 INSERT INTO `wangyialbum` VALUES ('159400773', '159400773', 'JJ的咖啡调调, Vol. 2', '0', null, '2019573476');
 INSERT INTO `wangyialbum` VALUES ('159406880', '159406880', '山茶花读不懂白玫瑰', '0', null, '2019620319');
@@ -9388,6 +9426,7 @@ INSERT INTO `wangyialbum` VALUES ('159827648', '159827648', 'If We Ever Broke Up
 INSERT INTO `wangyialbum` VALUES ('159832858', '159832858', '如果爱忘了', '0', null, '2021373243');
 INSERT INTO `wangyialbum` VALUES ('159834139', '159834139', '乐园', '0', null, '2021379728');
 INSERT INTO `wangyialbum` VALUES ('159842657', '159842657', '落泪', '0', null, '2021434589');
+INSERT INTO `wangyialbum` VALUES ('159843058', '159843058', 'My Stupid Heart (Kids Version)', '0', null, '2021437775');
 INSERT INTO `wangyialbum` VALUES ('159991634', '159991634', '姑娘在远方', '0', null, '2022196813');
 INSERT INTO `wangyialbum` VALUES ('160410750', '160410750', '就让这大雨全都落下', '0', null, '2024035483');
 INSERT INTO `wangyialbum` VALUES ('160463838', '160463838', '谁家', '0', null, '2024225492');
@@ -9398,10 +9437,13 @@ INSERT INTO `wangyialbum` VALUES ('160760191', '160760191', '我们的歌', '0',
 INSERT INTO `wangyialbum` VALUES ('160890405', '160890405', 'Uniconfication', '0', null, '2026224214');
 INSERT INTO `wangyialbum` VALUES ('161031103', '161031103', '谁', '0', null, '2026812798');
 INSERT INTO `wangyialbum` VALUES ('161466884', '161466884', 'Die For You', '0', null, '2028588765');
+INSERT INTO `wangyialbum` VALUES ('161569602', '161569602', '失温', '0', null, '2029256151');
+INSERT INTO `wangyialbum` VALUES ('161652400', '161652400', '小镇音乐家', '0', null, '2029479894');
 INSERT INTO `wangyialbum` VALUES ('161660990', '161660990', '褪', '0', null, '2029470264');
 INSERT INTO `wangyialbum` VALUES ('161857823', '161857823', 'hey', '0', null, '2030491060');
 INSERT INTO `wangyialbum` VALUES ('161996623', '161996623', '声音', '0', null, '2031085185');
 INSERT INTO `wangyialbum` VALUES ('162130122', '162130122', '雨过天不晴', '0', null, '2031912194');
+INSERT INTO `wangyialbum` VALUES ('162273355', '162273355', '南诏之子', '0', null, '2032480036');
 INSERT INTO `wangyialbum` VALUES ('162604001', '162604001', '过隙', '0', null, '2021132832');
 INSERT INTO `wangyialbum` VALUES ('162749810', '162749810', 'アイドル', '0', null, '2034742057');
 INSERT INTO `wangyialbum` VALUES ('162764391', '162764391', '勇往直前的勇士', '0', null, '2034809526');
@@ -9411,6 +9453,7 @@ INSERT INTO `wangyialbum` VALUES ('162973866', '162973866', '明明我', '0', nu
 INSERT INTO `wangyialbum` VALUES ('163171160', '163171160', '声生不息·宝岛季 第5期', '0', null, '2038508476');
 INSERT INTO `wangyialbum` VALUES ('163180059', '163180059', '精卫（戏腔）', '0', null, '2019279516');
 INSERT INTO `wangyialbum` VALUES ('163436359', '163436359', '五月天', '0', null, '2038163355');
+INSERT INTO `wangyialbum` VALUES ('164167988', '164167988', '小巷', '0', null, '2041253165');
 INSERT INTO `wangyialbum` VALUES ('164273950', '164273950', '普通人生', '0', null, '2041799838');
 INSERT INTO `wangyialbum` VALUES ('164305610', '164305610', '风驶过的声音是（说唱版）', '0', null, '2041974276');
 INSERT INTO `wangyialbum` VALUES ('164541493', '164541493', '天赐的声音第四季 第1期', '0', null, '2043125519');
@@ -9422,6 +9465,7 @@ INSERT INTO `wangyialbum` VALUES ('165073679', '165073679', '中国说唱巅峰�
 INSERT INTO `wangyialbum` VALUES ('165075863', '165075863', '天赐的声音第四季 第2期', '0', null, '2045089372');
 INSERT INTO `wangyialbum` VALUES ('165077053', '165077053', '我们的民谣小镇 第8期', '0', null, '2045090557');
 INSERT INTO `wangyialbum` VALUES ('165077177', '165077177', '季节', '0', null, '2045093937');
+INSERT INTO `wangyialbum` VALUES ('165079720', '165079720', '忽远忽近', '0', null, '2045111116');
 INSERT INTO `wangyialbum` VALUES ('165081123', '165081123', '想想就烦', '0', null, '2045117743');
 INSERT INTO `wangyialbum` VALUES ('165133632', '165133632', '中国说唱巅峰对决2023 先导片', '0', null, '2045332156');
 INSERT INTO `wangyialbum` VALUES ('165211433', '165211433', '崩坏星穹铁道-雪融于烬 Of Snow and Ember', '0', null, '2045806409');
@@ -9430,6 +9474,7 @@ INSERT INTO `wangyialbum` VALUES ('165241118', '165241118', '妈妈的二十岁'
 INSERT INTO `wangyialbum` VALUES ('165284810', '165284810', 'ROLL THE DICE (Prod. Gesaffelstein)', '0', null, '2046096661');
 INSERT INTO `wangyialbum` VALUES ('165314330', '165314330', '城外', '0', null, '2046186937');
 INSERT INTO `wangyialbum` VALUES ('165315852', '165315852', '中国说唱巅峰对决2023 第二期', '0', null, '2046864131');
+INSERT INTO `wangyialbum` VALUES ('165321153', '165321153', '世界两个我', '0', null, '2046234800');
 INSERT INTO `wangyialbum` VALUES ('165382807', '165382807', 'I feel', '0', null, '2046817456');
 INSERT INTO `wangyialbum` VALUES ('165391556', '165391556', '雨下', '0', null, '2046474588');
 INSERT INTO `wangyialbum` VALUES ('165458727', '165458727', '声生不息·宝岛季 第9期', '0', null, '2046805446');
@@ -9437,12 +9482,19 @@ INSERT INTO `wangyialbum` VALUES ('165474903', '165474903', 'The Show', '0', nul
 INSERT INTO `wangyialbum` VALUES ('165482443', '165482443', '翠花', '0', null, '2046829307');
 INSERT INTO `wangyialbum` VALUES ('165492039', '165492039', '不问', '0', null, '2046851439');
 INSERT INTO `wangyialbum` VALUES ('165533216', '165533216', '天赐的声音第四季 第3期', '0', null, '2046990697');
+INSERT INTO `wangyialbum` VALUES ('165548039', '165548039', '我恋爱了·2023', '0', null, '2047048974');
+INSERT INTO `wangyialbum` VALUES ('165620469', '165620469', 'On My Soul', '0', null, '2047307308');
+INSERT INTO `wangyialbum` VALUES ('165673448', '165673448', '致：黯淡星', '0', null, '2047787698');
+INSERT INTO `wangyialbum` VALUES ('165697062', '165697062', '拾忆·2023', '0', null, '2047736243');
+INSERT INTO `wangyialbum` VALUES ('165698955', '165698955', 'Alive', '0', null, '2047743493');
 INSERT INTO `wangyialbum` VALUES ('165700598', '165700598', '推开世界的门', '0', null, '2047756673');
 INSERT INTO `wangyialbum` VALUES ('165705271', '165705271', '春夏·流连忘返', '0', null, '2030208420');
 INSERT INTO `wangyialbum` VALUES ('165707014', '165707014', '沉溺', '0', null, '2047777147');
 INSERT INTO `wangyialbum` VALUES ('165721182', '165721182', 'I\'ll Do It (Sped Up Version)', '0', null, '2047856930');
 INSERT INTO `wangyialbum` VALUES ('165876939', '165876939', '中国说唱巅峰对决2023 第三期', '0', null, '2048371124');
+INSERT INTO `wangyialbum` VALUES ('165936374', '165936374', '麋鹿', '0', null, '2048570550');
 INSERT INTO `wangyialbum` VALUES ('165939450', '165939450', '天赐的声音第四季 第4期', '0', null, '2048584480');
+INSERT INTO `wangyialbum` VALUES ('165966755', '165966755', 'Void (Radio Edit)', '0', null, '2048700343');
 INSERT INTO `wangyialbum` VALUES ('165990125', '165990125', 'FAST X (Original Motion Picture Soundtrack)', '0', null, '2048760838');
 INSERT INTO `wangyialbum` VALUES ('165997418', '165997418', 'Say Yes To Heaven', '0', null, '2048783798');
 INSERT INTO `wangyialbum` VALUES ('165997690', '165997690', '电梯战神', '0', null, '2048786994');
@@ -9453,39 +9505,75 @@ INSERT INTO `wangyialbum` VALUES ('166151164', '166151164', '时空观影券', '
 INSERT INTO `wangyialbum` VALUES ('166153252', '166153252', '挚友', '0', null, '2049541052');
 INSERT INTO `wangyialbum` VALUES ('166229354', '166229354', '开往早晨的午夜 (男声正式版)', '0', null, '2049804421');
 INSERT INTO `wangyialbum` VALUES ('166240377', '166240377', '她不是我的唯一', '0', null, '2050058466');
+INSERT INTO `wangyialbum` VALUES ('166301501', '166301501', 'West 4K', '0', null, '2050062770');
 INSERT INTO `wangyialbum` VALUES ('166372534', '166372534', '声生不息·宝岛季 第11期', '0', null, '2050323274');
 INSERT INTO `wangyialbum` VALUES ('166386535', '166386535', '天赐的声音第四季 第5期', '0', null, '2050391293');
 INSERT INTO `wangyialbum` VALUES ('166398912', '166398912', 'Post Child', '0', null, '2050453744');
+INSERT INTO `wangyialbum` VALUES ('166405428', '166405428', 'CRUSH', '0', null, '2050483869');
 INSERT INTO `wangyialbum` VALUES ('166435890', '166435890', 'Midnights (The Til Dawn Edition)', '0', null, '2050561749');
 INSERT INTO `wangyialbum` VALUES ('166438715', '166438715', '冠军相', '0', null, '2050571020');
 INSERT INTO `wangyialbum` VALUES ('166450015', '166450015', '迄今为止的生命里', '0', null, '2050620264');
+INSERT INTO `wangyialbum` VALUES ('166453261', '166453261', 'RACE MODE(赛道模式)', '0', null, '2050633180');
 INSERT INTO `wangyialbum` VALUES ('166457568', '166457568', '中国说唱巅峰对决2023 第四期加更', '0', null, '2050722054');
 INSERT INTO `wangyialbum` VALUES ('166458220', '166458220', '中国说唱巅峰对决2023 第四期', '0', null, '2050721765');
 INSERT INTO `wangyialbum` VALUES ('166461976', '166461976', '爱？', '0', null, '2050684657');
 INSERT INTO `wangyialbum` VALUES ('166514246', '166514246', '月光拯救计划', '0', null, '2050954543');
 INSERT INTO `wangyialbum` VALUES ('166516167', '166516167', '以爱为囚', '0', null, '2050912767');
 INSERT INTO `wangyialbum` VALUES ('166572457', '166572457', '上心', '0', null, '2051276018');
+INSERT INTO `wangyialbum` VALUES ('166628413', '166628413', '一起向前', '0', null, '2051492856');
 INSERT INTO `wangyialbum` VALUES ('166643860', '166643860', '你是我最爱的 (By Far)', '0', null, '2051575368');
+INSERT INTO `wangyialbum` VALUES ('166645775', '166645775', 'Astrologically Illogical', '0', null, '2051587676');
 INSERT INTO `wangyialbum` VALUES ('166646445', '166646445', '童话', '0', null, '2051580537');
 INSERT INTO `wangyialbum` VALUES ('166671878', '166671878', 'Self Destruction Mode', '0', null, '2051690913');
 INSERT INTO `wangyialbum` VALUES ('166697576', '166697576', '难诀别', '0', null, '2051752291');
+INSERT INTO `wangyialbum` VALUES ('166704857', '166704857', 'Before Summer', '0', null, '2051789190');
+INSERT INTO `wangyialbum` VALUES ('166731485', '166731485', '爱之物语·迷失森林', '0', null, '2052123773');
+INSERT INTO `wangyialbum` VALUES ('166739551', '166739551', 'My Stupid Heart', '0', null, '2051943422');
 INSERT INTO `wangyialbum` VALUES ('166748821', '166748821', 'Mona Lisa - Spider-Man: Across the Spider-Verse (Deluxe Edition)', '0', null, '2051976677');
 INSERT INTO `wangyialbum` VALUES ('166774589', '166774589', '东莨菪碱', '0', null, '2052036486');
 INSERT INTO `wangyialbum` VALUES ('166798370', '166798370', '山间有歌', '0', null, '2052150225');
 INSERT INTO `wangyialbum` VALUES ('166812378', '166812378', 'Lost At Sea', '0', null, '2052203115');
+INSERT INTO `wangyialbum` VALUES ('166824341', '166824341', '《荼蘼清梦》——孙策初见日主题曲', '0', null, '2052440838');
 INSERT INTO `wangyialbum` VALUES ('166859846', '166859846', 'Popular (From The Idol Vol. 1 (Music from the HBO Original Series))', '0', null, '2052348113');
 INSERT INTO `wangyialbum` VALUES ('166859847', '166859847', 'Popular (From The Idol Vol. 1 (Music from the HBO Original Series))', '0', null, '2052348927');
 INSERT INTO `wangyialbum` VALUES ('166859913', '166859913', 'METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE)', '0', null, '2052349052');
 INSERT INTO `wangyialbum` VALUES ('166863134', '166863134', '声生不息·宝岛季 第12期', '0', null, '2052368814');
+INSERT INTO `wangyialbum` VALUES ('166867273', '166867273', 'You Ain\'t Right', '0', null, '2052387456');
 INSERT INTO `wangyialbum` VALUES ('166869646', '166869646', '天赐的声音第四季 第6期', '0', null, '2052403826');
 INSERT INTO `wangyialbum` VALUES ('166869932', '166869932', '七月七日晴', '0', null, '2052404492');
 INSERT INTO `wangyialbum` VALUES ('166870949', '166870949', '中国说唱巅峰对决2023 第五期', '0', null, '2052404597');
 INSERT INTO `wangyialbum` VALUES ('166876971', '166876971', '中国说唱巅峰对决2023 第五期加更', '0', null, '2052441038');
 INSERT INTO `wangyialbum` VALUES ('166877280', '166877280', '火棍', '0', null, '2052442439');
+INSERT INTO `wangyialbum` VALUES ('166898307', '166898307', '金汤匙（금수저）', '0', null, '2052524882');
+INSERT INTO `wangyialbum` VALUES ('166916889', '166916889', 'BABYDOLL (Speed) (希林娜依·高 Remix)', '0', null, '2052590105');
 INSERT INTO `wangyialbum` VALUES ('166930895', '166930895', '在意 - Single', '0', null, '2052879853');
 INSERT INTO `wangyialbum` VALUES ('166941911', '166941911', '海风', '0', null, '2052709234');
 INSERT INTO `wangyialbum` VALUES ('166950675', '166950675', '流浪·地球', '0', null, '2052782758');
 INSERT INTO `wangyialbum` VALUES ('166975549', '166975549', '花一匁', '0', null, '2052933626');
+INSERT INTO `wangyialbum` VALUES ('167005280', '167005280', '越来越不懂', '0', null, '2053100690');
+INSERT INTO `wangyialbum` VALUES ('167006301', '167006301', '让风告诉你', '0', null, '2053099516');
+INSERT INTO `wangyialbum` VALUES ('167006658', '167006658', '种地吧', '0', null, '2053110957');
+INSERT INTO `wangyialbum` VALUES ('167054073', '167054073', 'METRO BOOMIN PRESENTS SPIDER-MAN: ACROSS THE SPIDER-VERSE (SOUNDTRACK FROM AND INSPIRED BY THE MOTION PICTURE / DELUXE EDITION)', '0', null, '2053289347');
+INSERT INTO `wangyialbum` VALUES ('167063509', '167063509', 'Tell Me', '0', null, '2053318886');
+INSERT INTO `wangyialbum` VALUES ('167078716', '167078716', '惯性反应', '0', null, '2053388691');
+INSERT INTO `wangyialbum` VALUES ('167086028', '167086028', '走不出来', '0', null, '2053420961');
+INSERT INTO `wangyialbum` VALUES ('167086181', '167086181', '耻辱柱', '0', null, '2053422698');
+INSERT INTO `wangyialbum` VALUES ('167086845', '167086845', '巴士站', '0', null, '2053428806');
+INSERT INTO `wangyialbum` VALUES ('167141766', '167141766', '剧好听的歌 第1期', '0', null, '2053617878');
+INSERT INTO `wangyialbum` VALUES ('167158084', '167158084', 'Miss u Goodbye', '0', null, '2053700248');
+INSERT INTO `wangyialbum` VALUES ('167189283', '167189283', 'POST CHILD', '0', null, '2053842430');
+INSERT INTO `wangyialbum` VALUES ('167202816', '167202816', 'West Coast Weekend', '0', null, '2053873946');
+INSERT INTO `wangyialbum` VALUES ('167210268', '167210268', '命中注定', '0', null, '2053894553');
+INSERT INTO `wangyialbum` VALUES ('167212401', '167212401', '差生', '0', null, '2054066570');
+INSERT INTO `wangyialbum` VALUES ('167219587', '167219587', '洛希极限', '0', null, '2053935560');
+INSERT INTO `wangyialbum` VALUES ('167225668', '167225668', '可不可以', '0', null, '2053961482');
+INSERT INTO `wangyialbum` VALUES ('167226699', '167226699', 'Can’t Go Yet', '0', null, '2053970362');
+INSERT INTO `wangyialbum` VALUES ('167229246', '167229246', '莽夫', '0', null, '2053983754');
+INSERT INTO `wangyialbum` VALUES ('167230697', '167230697', '光合作用', '0', null, '2053985442');
+INSERT INTO `wangyialbum` VALUES ('167244470', '167244470', 'Hollywood Bowl', '0', null, '2054045363');
+INSERT INTO `wangyialbum` VALUES ('167280048', '167280048', 'VULGAR', '0', null, '2054162649');
+INSERT INTO `wangyialbum` VALUES ('167289551', '167289551', 'The Idol Episode 1 (Music from the HBO Original Series)', '0', null, '2054207130');
+INSERT INTO `wangyialbum` VALUES ('167290042', '167290042', 'WHAT THE HELL ARE WE DYING FOR ?', '0', null, '2054207127');
 
 -- ----------------------------
 -- Table structure for wangyicontent
@@ -9558,14 +9646,29 @@ CREATE TABLE `wangyimusic` (
 -- Records of wangyimusic
 -- ----------------------------
 INSERT INTO `wangyimusic` VALUES ('65800', '65800', '最佳损友', '2116', '6452', '', 'http://m801.music.126.net/20230605212726/224906bddff0779815131f4380430ef5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481666310/1a9c/b1de/af82/bd3df1a29b4113a5e132468e2edd2064.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('191081', '191081', '包围', '6472', '19298', '', 'http://m701.music.126.net/20230610230351/4d7e0d5362c94fdb4f7b8cfd1b95afac/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096621213/f971/4d0d/7ed2/6725f873b75398c2d4515bbb073554be.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('191248', '191248', '明天过后', '6472', '19318', '', 'http://m801.music.126.net/20230610230356/aaa84e6fcf56f1f5c4fc6c8d4f10620c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481688216/9d3d/df92/9a92/2bfc43fa8cd39d2a004c47674d12f1c2.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('208891', '208891', 'Letting Go', '7214', '21250', '', null, 'http://p1.music.126.net/VTZde5VdBm_u2WH0Pc9HQQ==/109951165561227373.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('208902', '208902', '红色高跟鞋', '7214', '21252', '电影《爱情呼叫转移2》主题曲', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('208933', '208933', '达尔文', '7214', '21257', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('208950', '208950', '达尔文 II 进化版', '7214', '21257', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('209397', '209397', '太聪明', '7217', '21302', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('234014', '234014', '写不完的温柔', '7763', '2400479', '', 'http://m701.music.126.net/20230605214315/80c2892b5b6243c34e740a3d33ecbec7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481676994/e6bf/f775/fdbf/b2cd8e31775c3d849a5bd8bdf0ee0c02.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('247644', '247644', '被风吹过的夏天', '3684,8259', '24808', '电视剧《最佳前男友》插曲', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('247821', '247821', '阳光下的星星', '8151', '24826', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('247936', '247936', '最后一页', '8153', '24837', '', 'http://m801.music.126.net/20230605212717/f39cc50c503f0263a22fdd741c0d4dce/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096481238/8744/da69/ad16/423f1db9c4e5f86e224807e08a737e68.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('255574', '255574', '恶作剧', '8335', '25525', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('287063', '287063', '我怀念的', '9272', '28520', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('287749', '287749', '天黑黑', '9272', '28562', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('306855', '306855', '苏州河', '9944', '30471', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('329336', '329336', '原谅', '10578', '32548', '', 'http://m701.music.126.net/20230610230355/18e620939bfa785ab6f09d0a50d24904/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/10789356111/232b/0f98/ac8d/038e92cd2fe093efc9c58e3143c916f1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('18228464', '18228464', 'I\'ll Do It', '60228', '1674111', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('19292984', '19292984', 'Love Story', '44266', '1770438', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('25642952', '25642952', '我们的歌', '5346', '2263157', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('25657348', '25657348', '幸福了 然后呢', '7063', '2270070', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('26387325', '26387325', '拉过勾的', '3793', '2453010', '电视剧《我家有喜》插曲', 'http://m701.music.126.net/20230605212728/2a9ff1a7e508716c939e412ea274ecf9/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481672646/80d7/c609/9a8e/0f8c6c09cdc90ba3d0ad0ebcc11cd6c4.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('26428032', '26428032', 'Baby, Don\'t Cry (人鱼的眼泪)', '759509', '2495077', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('27591236', '27591236', '命运', '690001', '2617007', '', 'http://m801.music.126.net/20230610230349/861b20f0cfe0f259faa5938aae7bbe71/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/23236712206/9672/6d4c/ac1b/09f9c9f51d90377f74fdeb0e3cfb2c93.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('28059417', '28059417', '他不懂', '6472', '2643348', '', 'http://m801.music.126.net/20230605212722/8bccf19b81db9abea94d9602d84cc197/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481683094/ec00/33c7/7709/fb7dcc7e3c4e20356048e6dc3c8babb2.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('28181103', '28181103', '步步', '13193', '2740205', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('28285910', '28285910', '岁月神偷', '893259', '34985451', '', 'http://m801.music.126.net/20230605212728/8931360c37bfc7475694a44a4f15d9db/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26669817868/1771/dce7/029e/271e4ddcccb2cb68690d71ed078ca233.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9583,11 +9686,14 @@ INSERT INTO `wangyimusic` VALUES ('436346833', '436346833', '凄美地', '2843',
 INSERT INTO `wangyimusic` VALUES ('438204707', '438204707', '天若有情', '7063', '34928767', '电视剧《锦绣未央》主题曲', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('440317244', '440317244', 'Dangerously', '90331', '34971711', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('441491828', '441491828', '水星记', '2843', '35005583', '', 'http://m801.music.126.net/20230605212712/0834b52822cecad15e5c447052ab7bf2/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19844359355/66d6/a1ef/0101/f93fb43c55e05a273e01e0acb03add41.mp3', 'http://p1.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('445154140', '445154140', '最后一页（完整版）', '12205120', '142155911', '爱只能在回忆里完整', 'http://m801.music.126.net/20230610230349/021c55f002ea0dfa1815149b38a31c86/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/13577773025/5893/4d29/9eba/5aa2ddc733bce0b53019b7ad0e802f08.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('449577636', '449577636', '开往早晨的午夜', '1024308', '35092172', '', 'http://m801.music.126.net/20230605212711/6b34f8916a0c11c1f1b5a40f28e05b52/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25732170494/0947/48a7/135e/d69d54dae4a3bcb3e364b0241620bf7e.mp3', 'http://p1.music.126.net/GEpjDKW2JikzF0sy-3LCPg==/109951163940907760.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('465921195', '465921195', '还是分开', '12213291', '35287063', '', 'http://m701.music.126.net/20230605212716/be9a393c6e2853b96ae2d106a7b2754c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096407555/d87d/c228/403a/9e4ee76f5023e19f3ebbc9c56925f568.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('475479888', '475479888', '在你的身边', '12395355', '35438746', '', 'http://m701.music.126.net/20230605212709/0a603c483506ce8070fb52966cf4223f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481682270/c071/3672/d103/f50b08cb9f224109a61a8e62fa4d0503.mp3', 'http://p2.music.126.net/AYNBdRxJ8EdZo4xFjp7b4Q==/109951163191178425.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('479422063', '479422063', '年轮', '1024308,12440107', '35543068', '', 'http://m701.music.126.net/20230610230357/72a8e4472499025eb91fd2bbee33e749/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481829450/7f59/0bb5/97d4/9838aea912241f1ba40037027a415094.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('480579393', '480579393', '桃花诺', '7763', '35689357', '电视剧《上古情歌》片尾曲', 'http://m801.music.126.net/20230605212726/672c3a43cbec0a26ab79aa2b9497204d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481674646/9af5/663a/764d/ee0d50bf8b457e8afc7c7d54009eb7b6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('480769623', '480769623', 'Anchor', '904041', '35562140', '', '/music/W7qZU9WnxH1685971099019.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('488249475', '488249475', '哪里都是你', '1143033', '35702116', '', 'http://m701.music.126.net/20230610230342/fd075a814967d32198552972ef239aa4/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28557968797/f007/d7d6/9941/cebf809b4df6c3a4793c12fcc7508fd0.mp3', 'http://p2.music.126.net/lnOnBbP_H-052Hv5ls-QjA==/109951162964628408.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('496370620', '496370620', '断线', '1132749,12335367', '35890405', '', 'http://m701.music.126.net/20230605212727/aeabd6157e502e7b872814d33759a37a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096425645/01e5/1c53/8c81/f1889644d814b698594777f0f80d4a1a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('502043537', '502043537', '第三人称', '12085562', '36067044', '', 'http://m701.music.126.net/20230605212714/ea99c7cdceecd625c20a0521e74dbd45/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481671223/d0d6/0d8b/d9ca/b73e0502440829c8891a251280b4b5d6.mp3', 'http://p2.music.126.net/nOVxBaX0IG1PsV4WfSoodA==/109951164379891919.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('518682659', '518682659', '泡沫', '12276665', '36789325', 'Swang Remix说唱版', 'http://m701.music.126.net/20230605212730/87186e0e6210e7ac462b657380c22efa/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481665504/4851/0156/610d/f90c8af57d5db1d636130573025ffc5b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9618,7 +9724,10 @@ INSERT INTO `wangyimusic` VALUES ('1333335583', '1333335583', 'Scared of the Dar
 INSERT INTO `wangyimusic` VALUES ('1333336513', '1333336513', 'Let Go', '13604456', '74878945', '', 'http://m701.music.126.net/20230605214311/db1f3984719bfd66c54c2aff518e8c3c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19289247604/97ea/11cc/eb6d/f0741315240a5387b61c3a9f361773d1.mp3', 'http://p1.music.126.net/z0IO1vEsowL9mD_5yzUjeA==/109951163936068098.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1336789771', '1336789771', '晚婚 (Live)', '9489', '74992183', '', null, 'http://p1.music.126.net/2dGPkCjcv3-jq9XvWc3-vw==/109951163779048639.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1336856864', '1336856864', '形容', '12002248', '78232124', '', 'http://m701.music.126.net/20230605212715/36b5042ec07195580a0e426beb6de3c2/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096411294/75eb/c3be/7378/e75972795b8b28a89813af114c3df686.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1340006512', '1340006512', 'I\'ll Do It', '60228', '75199404', '', 'http://m801.music.126.net/20230610230348/726c64138d2b3f17095411df47e9710e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17091399025/9fd6/1eec/d9d1/9443b0a5478577fe83ffd211e0e3bd54.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1347702308', '1347702308', 'Lick', '832703', '75666656', '', '/music/9QSjrybjPI1685971097081.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1348367103', '1348367103', 'R&B Girl Feat. J.Sheon', '13200,187010', '75698876', 'R&B Girl Feat. J.Sheon', '/music/t4bnoT8oiI1686411475587.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1349964388', '1349964388', 'Running Up That Hill', '388484', '75765638', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1356658022', '1356658022', 'Slow Down', '896042,13080654', '78333509', '', 'http://m801.music.126.net/20230605212715/736b108d2d4017fa701d578186367bca/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19849508833/ce6a/aae9/8adf/976c0702ad2e6feaa74c1cd964cf35a7.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1359356908', '1359356908', '晚安', '31376161', '78570420', '', 'http://m801.music.126.net/20230605212719/3dd009c82dddf79aa56beb873e1ccaad/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096446195/dec8/bf82/b45a/5c91b6bae9dd7d29dcc283633c2e76a4.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1360512113', '1360512113', '记得', '10559', '78691451', '', 'http://m701.music.126.net/20230605212728/d2ab91f8bc612420b5d220653e6b8d7b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17261189165/cfd9/784b/9cd1/4aa8b06f7ba14d8ece8ddcae6547531b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9642,12 +9751,16 @@ INSERT INTO `wangyimusic` VALUES ('1410647903', '1410647903', '带我去找夜�
 INSERT INTO `wangyimusic` VALUES ('1413142894', '1413142894', '大眠 (完整版)', '34035556', '84622631', '', 'http://m701.music.126.net/20230605212725/7213067cc24906b3314bb29c4c9a6192/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096409120/3885/79c5/21b9/6dbf3497b72297f93c18873052327b0d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1413585838', '1413585838', '与我无关', '30116848', '84664836', '', 'http://m701.music.126.net/20230605212717/fc20bc0280ce226f3d2d3e8d20e7d351/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096426128/d7a9/d197/ef6c/493b534113158f59be669bad52104ca6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1413863166', '1413863166', '想去海边', '12383009', '84029595', '', 'http://m701.music.126.net/20230605212717/e35e881923cc2d7be5e270c39df7ca5c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096442961/0219/71c6/d867/eca80101c2239842e0929e3c06e8ca8e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1416353252', '1416353252', '先走的人', '3442', '84946377', '', '/music/RWiEYPXXnE1686411476877.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1417862046', '1417862046', '呓语', '12138269', '83823905', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1426112587', '1426112587', '下雨天', '35037364,12195788', '85998494', '', 'http://m801.music.126.net/20230605212723/521ecd121adccb9f62da37c7e44718f8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096409484/9dfd/64ef/1db0/4b06141859832cac0e3cc4d3c6a4aef1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1430303185', '1430303185', '我知道', '11097', '86439889', '电视剧《比赛开始》片尾曲', 'http://m801.music.126.net/20230605212723/1be0ec4064781bd6be9065e7a26f078a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/9560389511/35c6/d404/98b5/0a3cc1f160e913cfb87889d0c10df364.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1430583016', '1430583016', '海底', '33694141', '86447217', '', 'http://m701.music.126.net/20230605212728/5fb93e24fc310435a4fe99d37772dc21/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096436041/b811/9137/4055/7f761d9d6e630bcab156a1496f648ffd.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1430657585', '1430657585', '说唱入门教学', '13112601', '86475703', '', 'http://m701.music.126.net/20230610230355/50192620fd03d7b4aaa71826dbb5c4e8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28122340016/8f0e/bdb1/97fe/79b6211b8e9b2f1bb93cb8b79d3a0581.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1434244328', '1434244328', '处处吻 (合唱版)', '32897193,34539310', '86861985', '原唱：杨千嬅', '/music/s93YPuo16r1686411476210.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1435661824', '1435661824', 'One Last Time (feat. Corey Gray)', '13978564,31058', '87080555', '', 'http://m701.music.126.net/20230605214315/6a9c0547825858220b8dc3a5d095c6d2/jdymusic/obj/w5zDlMODwrDDiGjCn8Ky/1986939899/2f39/506b/9188/13643cc7963eeb8d618759f1a0acd1e2.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1435828582', '1435828582', 'Empty Love', '1115185,34704316', '87122489', '', 'http://m701.music.126.net/20230605212714/1d1ab778e898d8003bd944fd2f8fcacf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/13261956536/467f/20e2/c32f/c06edbca060dba447cdfad9c9fb88aff.mp3', 'http://p1.music.126.net/xrWSChs7pIOWFjOz5eQIzw==/109951164855840145.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1436081452', '1436081452', '爱要怎么说出口', '28066477', '147841903', '女声版', 'http://m801.music.126.net/20230610230349/d06d332c71f97ae064589d995e4b8628/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/15542109304/b6c1/ad6b/94f1/6c5fb25f0710edc5863af4f28b46f2ee.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1436709403', '1436709403', '夏天的风', '34522800', '87339204', '', 'http://m801.music.126.net/20230605212720/4a236a3d52d3e36fdac68b50a33afe4c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096452405/8441/db44/f13a/2d5ede48413609f291f78ecb9a2d21fb.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1440570723', '1440570723', 'Normal No More', '12278200', '88010289', '', 'http://m801.music.126.net/20230605212718/39813b6720fd2f6f5a282fcc9948da18/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17193594562/9e9a/305a/455f/d39696380b8c002a3000507e36681e17.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1441758494', '1441758494', '晚风', '32897995,12138038', '88188476', '', 'http://m801.music.126.net/20230605212714/a0f593b549429ca0c271fc5f160b6e94/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096431911/f66a/74d2/d8f4/480f7bf07d7e7897d35898c1c05421ad.mp3', 'http://p2.music.126.net/lCblKUB1hLND5FxiVI1_Lw==/109951164919449758.jpg', null);
@@ -9663,14 +9776,19 @@ INSERT INTO `wangyimusic` VALUES ('1492584510', '1492584510', '沉沦与遐想',
 INSERT INTO `wangyimusic` VALUES ('1497588709', '1497588709', '给你呀（又名：for ya）', '37540088', '98659782', '', 'http://m701.music.126.net/20230605212714/9c0736c9f45832d94a77e4e3cec2ec9f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096405233/2405/084f/6b79/75ee50eba5e2c21cbedc9b9ae16161a1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1807799505', '1807799505', '唯一', '12676697', '120954841', '', null, 'http://p2.music.126.net/5URIeP6GjMFg_hKhGloNTA==/109951165585701063.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1808492017', '1808492017', '错位时空', '12174057', '121076375', '', 'http://m701.music.126.net/20230605212721/e86eb5e2fe42007bb8486d3807460487/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/15755693612/b983/5f8b/4f00/60764f5cd06ba4482d98842a58e69d69.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1811921555', '1811921555', '星辰大海', '14077324', '121630728', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1815725297', '1815725297', 'Dehors', '338718', '122257911', '', 'http://m701.music.126.net/20230605212716/1535e4e3e7f0bedf33fef85d37e5a0bf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25128990242/6a8b/d94e/1862/1cb25036c245fb965ffc81512d69e454.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1824045033', '1824045033', '再见莫妮卡', '30644200,12338185', '123723319', '', 'http://m701.music.126.net/20230605212715/1e73b4e285d9a61b962b36f14d0821d7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/7694527251/63ec/873e/32f7/4a70fbc4f0781ed22f437fb8e46db613.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1826189041', '1826189041', '花,太阳,彩虹,你', '6309,865007,32743623,36623116', '124139046', '', 'http://m801.music.126.net/20230605212730/b5d4cc427f29a94be5a8693568ac111b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096484904/ae93/a5fd/9cef/83e8e9b314f422c4c127d1cc12b03b2c.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1826613971', '1826613971', 'Future Love', '33356655', '124213075', '', 'http://m801.music.126.net/20230605214318/af992bab8169d31d65456e01769e7173/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/7845439910/e524/71db/a498/e835a2d9ae9650d9baf52bce411f9f5d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1827600686', '1827600686', '还是会想你', '15199791,12631485', '124309279', '', 'http://m801.music.126.net/20230605212711/0dfa27b9439fd7610cec318f922bd26c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096417167/048c/4cb1/7dd0/a6e99101597f8b95b23244d4c7ec35c7.mp3', 'http://p2.music.126.net/9FhSEQtMhP-JP3_U84YfWQ==/109951165798773745.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1833391733', '1833391733', '人体解冻', '14077329', '125309153', '', 'http://m701.music.126.net/20230610230357/9498ccd5410a636506e64f7506b61cd8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/8146879632/2ca8/1a05/886b/ef3cb8408c204c407f3f2070d577a3f1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1840750472', '1840750472', 'Walk Thru Fire Breakbeat', '47112858', '126639532', '', 'http://m801.music.126.net/20230610230354/647def458a024313edf3eb1cd2dd71f0/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/8693912260/0950/862b/5c2e/0490075fcdba3dbf4dc6e0403dd0f957.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1842728629', '1842728629', '如果呢', '29051613', '126985670', '', 'http://m701.music.126.net/20230605212709/6ce43f164e7d662a1f1f07b403b7f69b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096409750/c03d/febc/44e4/75fd37e0a1749f30e7cb0b58cde89154.mp3', 'http://p1.music.126.net/-xMsNLpquZTmMZlIztTgHg==/109951165953469081.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1845426540', '1845426540', '快乐的扑满', '29808974', '127487355', '电视剧 巴啦啦小魔仙 片尾曲', 'http://m701.music.126.net/20230605214318/76900e984624c59b635f358763fe233c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/8981743130/86c1/fe34/a10f/51d307526cf155b6e46a05d23de9324e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1848550739', '1848550739', 'Eminem ft Clean Bandit Rather Be Without Me Full Version', '53654637', '128083704', '', 'http://m701.music.126.net/20230610230354/b400ab94a08fb1d8599054599aca7739/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/7465208243/ebf2/f39b/6da4/7de778c2a726d7bc0009565f72da931b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1851652156', '1851652156', '忘不掉的你', '12631485', '128666473', '', 'http://m701.music.126.net/20230605212713/fb8f0035c3757b9b991827b5a472da52/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096412060/add8/8868/addf/16aaffa8e47bfbe1fd4ce87e26c8cd52.mp3', 'http://p1.music.126.net/4BCskpY6Rmm-QReHnY8W6Q==/109951166071009318.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1858897067', '1858897067', 'Balenciaga', '36987470', '129961468', '', 'http://m701.music.126.net/20230610230347/f8897ce5367a04006ca99c4d9c4f65ab/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19596927318/5c36/1a45/61ea/ab3503eae510eb8a3346cdd6b37c3992.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1859245776', '1859245776', 'STAY', '32795025,35531', '130016223', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1867217766', '1867217766', '致你', '36032190', '131405806', '女声版', 'http://m701.music.126.net/20230605212715/f6868dc433a164d793cfe3736f300a85/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096413425/82df/32e7/56cf/09585b98f4ded2fe770af6a2b6b0c147.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1873049720', '1873049720', '初恋', '27730224', '132354811', '', 'http://m701.music.126.net/20230605212719/7407f7709004b26ddb02694a0813b6b8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096429824/46ec/9cd3/be19/8eb09572c010a16984aff27fafdb0f78.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9686,10 +9804,12 @@ INSERT INTO `wangyimusic` VALUES ('1891469546', '1891469546', '删了吧', '4993
 INSERT INTO `wangyimusic` VALUES ('1894094482', '1894094482', '漠河舞厅·2022', '1060132', '135992033', '', 'http://m801.music.126.net/20230605212723/cbaa3139452dda70c18b8b1e2288304e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096443301/0652/fb34/bad3/cffcc3878a943877fef35903ed5fef48.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1895330088', '1895330088', '予你', '1143033', '136184367', '巫哲小说《解药》官方主题曲Ⅱ', 'http://m701.music.126.net/20230605212711/27ffb47b5cc3989e37da3347011c141b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096412579/a56d/b679/d160/c69335efd8762f54b410a513dafe2d66.mp3', 'http://p2.music.126.net/yxVm_vRFOode6yP67NmMcA==/109951166625738075.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1896178370', '1896178370', '簇拥烈日的花', '1081577,34489282', '136310641', '', 'http://m701.music.126.net/20230605212729/14144d663cd4facab2702076f35848cb/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096441296/e92c/4fed/0188/7999b19d0e517402cc7157d1103426cc.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1901319325', '1901319325', '我的美丽', '1192268', '137137613', '', 'http://m701.music.126.net/20230610230354/1ec2d129e824cb8159d106b653c03bb3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/11968745631/da3f/7796/b803/e91cdf6ff6d5311c1476e8402acbfe36.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1901371647', '1901371647', '孤勇者', '2116', '137142551', '动画剧集《英雄联盟：双城之战》中文主题曲', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1907765990', '1907765990', 'CD盒', '12275767,12002030', '138162094', '', 'http://m701.music.126.net/20230605214313/de7fb4d190ac7bb315ca5314764c41ba/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/12380481008/de39/b9cb/6a1d/d9d465c2d5c5c67f9adfd20e114317d0.mp3', 'http://p1.music.126.net/PasgSazbBKrKdpKprIrpxw==/109951166868074221.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1907766514', '1907766514', '11', '1143033,1019154', '138162415', '', 'http://m701.music.126.net/20230605212715/7f044daf61d6ac017a52d19832b9c751/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096417088/7201/4169/7c75/e4a63c65d9acbf03940d32540d1996e2.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1908049566', '1908049566', '算了吧', '29235210,12030367,33371675', '138203677', '', '/music/IfwqzPXskN1685970144010.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1910515224', '1910515224', '黑马', '51059147', '138591858', '', 'http://m701.music.126.net/20230610230354/ac85ebfe9f8827508d894fbec2e5cd59/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/12568304963/bb53/88e7/d159/aa9f626b3e2d138c0e4434b2b9bc3393.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1916909342', '1916909342', '平行线', '48497149', '139766108', '', '/music/VLTbHiVCbQ1685971096516.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1918576268', '1918576268', '红', '33863232', '140087138', '', 'http://m801.music.126.net/20230605212730/bebdf2689a85c2ef6ae8df6ce47fbae8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14121053502/6b63/1d22/85f2/2ace29b354663cec088e1c7c85022669.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1922888354', '1922888354', '苦茶子', '36772893,31002901,51613721', '151125530', '', 'http://m701.music.126.net/20230605212710/c9157152fcc7013d023dfe7d07bb32e8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096434364/7f8f/6769/6d1c/e0a223e6eed390bc9778945f89d0aa3b.mp3', 'http://p1.music.126.net/VjXYNoGC3lXajZDs0r35XQ==/109951167852652412.jpg', null);
@@ -9704,13 +9824,17 @@ INSERT INTO `wangyimusic` VALUES ('1932769322', '1932769322', 'BABYDOLL (Speed)'
 INSERT INTO `wangyimusic` VALUES ('1934251776', '1934251776', '小城夏天', '12277194', '142885776', '', 'http://m701.music.126.net/20230605212715/5be8e5c6b4da8d9264d8500cd30fdefd/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14159874622/0ccd/7576/d815/0483ee7a8bdf4bb03f559551dbe98c7e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1938756186', '1938756186', 'Bet On Me (Organic Version)', '105493,33516005', '143578679', '', 'http://m701.music.126.net/20230605212729/e89a8f3d1223d34bb43ca065b6e314a9/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/13976189858/1667/f89c/7741/40804b475e37ada54f7fc2e07d9cbe19.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1940074698', '1940074698', 'I Wish My Mind Would Shut Up', '29403986', '143763608', '', 'http://m701.music.126.net/20230605212722/6ecf71a7b3bfab62f9931dc48b2a199d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/22259965725/dd5f/e5a0/bb20/2f1cf67215cace92d444727a93b57b19.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1940115041', '1940115041', 'Here\'s to Starting Over', '31973045', '143769648', '', 'http://m701.music.126.net/20230610230354/2a4216784dd16fd3ae8f4a6ea18905d1/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14043424089/18b6/a35a/5379/0f44fdd384c368e0256217368478684f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1942041775', '1942041775', '命运', '35309151', '144086940', '', 'http://m801.music.126.net/20230605212726/e204acd892c2871516aae0f66b37ad8e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14142427631/e132/55dc/b0c2/fa068ca938388e64f9054595a907a695.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1942576027', '1942576027', 'One More Last Time', '54729374,27856257', '144179714', '', 'http://m701.music.126.net/20230605212727/bea275e553eb27be9fde1b7d015e3e0f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14173797389/f472/ff1d/e881/84b73edba6122b384484ac26a7d2cc97.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1943043408', '1943043408', '篇章', '10562,47091532', '144252333', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1945875426', '1945875426', '不甘 (Live)', '9939,34035556', '144679616', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1947948874', '1947948874', '三国恋', '32399227', '145054600', '', 'http://m801.music.126.net/20230605212721/a8f6c45359282b1959daab2403433cef/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14538194214/062c/0798/dc82/a41e8f7d748aea3f04046c345ec6c38b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1948572170', '1948572170', '五百二十赫兹', '12193174', '145187611', '', 'http://m701.music.126.net/20230605212725/6392f19ebabefddd0d5853c99d9a49a7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14550489658/b867/c48d/7395/497c6d874a60d984b5c1026a4666f4fe.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1950343972', '1950343972', '可能', '7424', '145469501', '', 'http://m701.music.126.net/20230605212710/c9e766d75734e74ee6e8497213921352/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16672040292/1f33/8dcd/e4ab/fc3c42b47e36e7b5510921aa32d67a78.mp3', 'http://p1.music.126.net/Lk26KqRDPVbbhB4rQRGnPw==/109951167570919875.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1951069525', '1951069525', '精卫', '32099752', '137950781', '', 'http://m801.music.126.net/20230605212709/d429e0bac92bc1b519a014976f30a83f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14713256911/9cd0/6171/6508/16e9ac53173b008d0c0f7a66da49b34f.mp3', 'http://p2.music.126.net/jSH_ikeooxveWl0BTc3Xkg==/109951166786983190.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1956440993', '1956440993', 'After Hours', '47142705', '146613268', '', 'http://m701.music.126.net/20230605214317/2309cf9e14f56659b147e5a776c62cab/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19283990446/db22/f6c4/9e2f/3dc1cf44dc5971a7a14bdd80c66d06b3.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1957926942', '1957926942', 'Running Up That Hill (a deal with god)', '813315', '146870611', '', 'http://m801.music.126.net/20230610230355/901cd54683bc175c180effcc88b21522/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/15153130159/84b7/ca0e/01e3/919eb5c52c911e0206801b0e9faac3ff.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1958031074', '1958031074', '或许', '12277194', '146902486', '', 'http://m801.music.126.net/20230605212726/231eb77f26fc097d9694e10babb7e6ea/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/15158150000/8cb5/140e/2ab4/7d768931edb672617f91ccba88858585.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1958232600', '1958232600', '起伏压声', '47971578,53018550', '143573677', '', 'http://m801.music.126.net/20230605214314/c3d7dbfc25a1c6f2ed0f8658217ef34c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/15170655482/fe4c/bad9/4155/1a1e03ff0392b8518d2bc56eb950e184.mp3', 'http://p2.music.126.net/-fA4HS-W2gpPlKU-EGQS-g==/109951167300247372.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1958404869', '1958404869', '时间旅客Time Passengers', '31652014', '146975454', '', 'http://m801.music.126.net/20230605214315/c5e1e9622d82e19305b3b85385169bee/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/15179353937/047a/5886/cdcf/7731579f8f12ebd51d933723121cd36d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9721,12 +9845,14 @@ INSERT INTO `wangyimusic` VALUES ('1964443044', '1964443044', '隆里电丝 (Liv
 INSERT INTO `wangyimusic` VALUES ('1965392316', '1965392316', 'Doja', '31996349', '148352363', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1965928052', '1965928052', '小河淌水1952', '865007,7785', '149257265', '', 'http://m701.music.126.net/20230605212713/67c877dd2e52554c63d49581bb788cac/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16488331376/0e98/3717/6b4d/0f4e780ca772d227cdba78e659760b7c.mp3', 'http://p2.music.126.net/cK3Rm-WaJwNw9pOWg7DX-A==/109951167750223899.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1966162185', '1966162185', '是你', '9039', '148523000', '', 'http://m801.music.126.net/20230605212718/ac1ae03d7fc00d40a91f1c9243fbba44/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16160625029/3114/1623/5555/5d2a62fa9bf57d85d7279c63c6aa614d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1966889776', '1966889776', 'Every Time We Touch', '53132067', '148638597', '', 'http://m701.music.126.net/20230610230356/f80a2a2e5f590fa250e98f0cdcf9dfcf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16306214177/06f4/47d8/9bae/09fd954338aebf7877f9dcea37d4a2e2.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1968781675', '1968781675', '一直很安静', '14312549', '149013204', '', 'http://m801.music.126.net/20230605212718/747103426bce32b255fdaf1913c3bad1/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16689238591/9e66/c247/ed1a/22202613c9369bc73e1ddc3e15736376.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1968791360', '1968791360', 'Shadow Of The Sun', '27871957', '149014920', '', 'http://m801.music.126.net/20230605212717/d90f9686429dd7c3409c3f8f16ec1ec8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17137444757/d8d2/a8c1/d67b/36850e32f3cc739a357200d7af241261.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1968869187', '1968869187', 'As It Was', '12031126', '149026734', '', 'http://m801.music.126.net/20230605212729/75d4a6e0daeb2dda0b47e9cde84c8065/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19084370278/5ee1/45b5/9618/f2f7087180b332f01d6a5d347d367553.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1969292604', '1969292604', '东北的冬', '5793', '149126911', '', 'http://m801.music.126.net/20230605214319/94ded1f0f3b3571687551c2095ca1de1/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16730925497/7b7c/4827/f4cf/ed4661099b960f3daa98fd001b151b47.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1969320038', '1969320038', '三拜红尘凉', '12316248', '149130767', '', 'http://m801.music.126.net/20230605212713/a1ebe650ec741187176555ac572f821b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16734562913/e465/4367/7b61/9613b9e3114d8421acba1dee868a13dd.mp3', 'http://p1.music.126.net/uuGMRSMzaULlWyGbG-99MQ==/109951167743445530.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1970396862', '1970396862', '忏悔录', '50275485,12570417,53092750', '149341557', '听我说妈妈', 'http://m801.music.126.net/20230605212720/7b6f4d3d80a13724e8bcb850c4249934/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/16962628885/60e8/2665/269d/2caf9047b083cafd73d27557cc8534ca.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1973046704', '1973046704', '热恋情节', '13008205,36624209', '149874091', '', 'http://m801.music.126.net/20230610230349/5e432e36c1008f29db5687ddb2877148/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17447668296/bb75/d324/0905/c5fea2064ee37c91b5b9f69238224508.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1974125151', '1974125151', 'As It Was', '35142748', '150086089', '', 'http://m701.music.126.net/20230605214318/02c4e73ea5747e6630f93f606c3848b9/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17650144789/c5f7/3d68/438a/265b3652677be790b7984f8122260819.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1974443814', '1974443814', '我记得', '6731', '150127127', '', 'http://m701.music.126.net/20230605212708/80f38fd0850bbf7c141f1fc002c6afc7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17718433824/acca/41eb/8112/efa4dce840121844afcb957bcb2d4fd1.mp3', 'http://p2.music.126.net/FCWD6ibS2JK2B3QAnXuzwQ==/109951167805892385.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1975589384', '1975589384', '爱似水仙', '46966451', '150377096', '温柔女声版', 'http://m701.music.126.net/20230605212722/cb833940a1e355a07d7ae81b283d49f6/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/17961177541/044d/ff58/f3a2/75ca1ae0574c34126cd7dbf068b2fb05.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9737,6 +9863,7 @@ INSERT INTO `wangyimusic` VALUES ('1979417838', '1979417838', '我的美丽feat.
 INSERT INTO `wangyimusic` VALUES ('1981557398', '1981557398', '孤雏', '33850806', '151635853', '', 'http://m701.music.126.net/20230605212718/d21cfae3bc928bd06cf044bd8a734148/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19028116360/66dc/63fc/877b/5be9c6e819583884d5bb2dce8064aa24.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1981613252', '1981613252', 'ไม่ได้ก็ไม่เอา', '46819454,13579145', '151645020', '', 'http://m701.music.126.net/20230605214313/44e739c4f0d0752b3d9e15bdc52a7a25/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19037219244/677a/00f6/9d38/81a79237e0fb2f383a3536e8198bf15f.mp3', 'http://p1.music.126.net/Pv3NVBaK85v2ow8Xx5bS9g==/109951167879829957.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1982285682', '1982285682', '风驶过的声音是', '37123911', '151778320', '', 'http://m801.music.126.net/20230605212728/cb1acfb62132f729ea756a853f2c6718/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19176267194/8618/5ac0/d3fc/5bd28f33dbf16b51b9bdc3545413da91.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('1982939899', '1982939899', '第几个秋天', '32674400,13447730', '151895418', '', 'http://m801.music.126.net/20230610230357/86cf37f58ec86a91d3e47c61da671ba4/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/19284546534/f5f7/21af/bb32/569b2f026091c90313706ca704c41642.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1984475097', '1984475097', '就让这大雨全都落下', '9269', '152222837', '汪苏泷概念创作集《联名》作品', null, 'http://p2.music.126.net/8z_iZXGnImAXLFAFTbu0iw==/109951168296440959.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1988532821', '1988532821', '我曾遇到一束光', '12149035', '153017852', '', 'http://m801.music.126.net/20230605212724/4e0ae00ec8b45e674c57efa9d73166b3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/20303782841/da63/3f0c/dbad/69cbadcde1f6d6d27dd6a484b846e87f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('1988564487', '1988564487', '会魔法的老人', '865007,50275485', '153023757', '', 'http://m801.music.126.net/20230605212721/60987ddfc8e9825a222cf731ee8e4fe1/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/20311030825/e0dd/6af1/f099/70a48b4c83b92b8468ce285ba70930db.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9748,6 +9875,9 @@ INSERT INTO `wangyimusic` VALUES ('1997438791', '1997438791', '乌梅子酱', '4
 INSERT INTO `wangyimusic` VALUES ('2003582433', '2003582433', '不介意', '35901488', '155896400', '', 'http://m701.music.126.net/20230605214315/e94f697eebde2d0a2a00a20e14275e4a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/22665038046/dd65/8579/c5cb/c015a3d2f9d30e97b53093380ab1023b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2006448864', '2006448864', '失语者', '29588305', '156500627', '我们总在爱情里死不悔改', 'http://m701.music.126.net/20230605212724/66fa16cc8a2d8eced5ec8e7451978442/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/23362161663/065f/c716/9361/040ab39db90d24d35dd5c9ab93dc8f77.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2008268313', '2008268313', '神仙住山林（God in the woods）', '30377220', '156908599', '', 'http://m801.music.126.net/20230605214313/25459a50d5df10bfa9e2d5ec33f2858d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/23397663483/b5d7/7dda/f064/b4a9de8ed3191ce51553602b7135e3c0.mp3', 'http://p1.music.126.net/hyqUjax-scfJRk1_er-xgw==/109951168163242761.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2014046738', '2014046738', '飞天茅台', '12124013,187624', '158137922', '', 'http://m701.music.126.net/20230610230357/a0356b168c7809c887332e226a8a643a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/23865697463/a662/2b34/08fd/bb2f7f1f97aca7c889c7a726dd2a05d1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2016388265', '2016388265', '歌曲：是妈妈是女儿', '7946,12664439', '158472921', '', 'http://m701.music.126.net/20230610230352/9023d343cddefca8a59c74ea3b4ecb54/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24201207569/1a98/7769/9714/9d00f364d96c45a436cc8e8fb616741e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2016688503', '2016688503', '是妈妈是女儿', '7946,12664439', '158733346', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2018432856', '2018432856', '循迹', '12382128', '159124745', '', 'http://m701.music.126.net/20230605212716/cafded14a267f1241775f136b51f9ba0/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24417729720/bdcb/e012/b45a/dd71ace92540ad1783bad3f0f18d8763.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2018733994', '2018733994', '遐想', '29051613', '160692469', '', 'http://m801.music.126.net/20230605212718/b30b594712c72e857f5ce56c37b08b01/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24446584873/7fea/fd10/7bb7/8dc97f03b536bca4902284d7f5ddfa30.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2019279516', '2019279516', '精卫', '34787967', '163180059', '你与我先谈养心殿', 'http://m701.music.126.net/20230605212729/bd90e6f800215eec0201a8d22853903d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26492093163/14cf/c379/d02b/fc014b70c21d9d03123b65050d998ef6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9758,6 +9888,7 @@ INSERT INTO `wangyimusic` VALUES ('2021343439', '2021343439', 'If We Ever Broke 
 INSERT INTO `wangyimusic` VALUES ('2021373243', '2021373243', '如果爱忘了', '14312549', '159832858', '', 'http://m701.music.126.net/20230605212715/35ef3e0b62006e54ca3eb3125807b6c1/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24828872053/db40/5aea/bcb3/18d30ec05afa35223fc20d9f6c4117f0.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2021379728', '2021379728', '乐园', '37058226,36080509,31062035', '159834139', 'time is due', 'http://m801.music.126.net/20230605212722/91ad6184227418bb7da3e2390f738a1c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24752341154/9847/0851/6016/309ad20e721ec93000b9b242a5fff02e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2021434589', '2021434589', '落泪', '12875936,12730273', '159842657', '', 'http://m701.music.126.net/20230605212719/c6d7c562f70e9fa9ef14a544a838aab6/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25134701555/0033/2f11/78f5/e487514a9c14e4a23fe89cd18e0a40f5.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2021437775', '2021437775', 'My Stupid Heart (Kids Version)', '105493,55669182', '159843058', '', 'http://m701.music.126.net/20230610230346/de0b923b49a9718ec372d36caa70cc95/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24757141747/3757/fad0/77b2/74ac0fffb7f7ee25961c41343aa3500a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2022196813', '2022196813', '姑娘在远方', '48918817', '159991634', '', 'http://m801.music.126.net/20230605212712/7282ad1a2df88ecfae66fcc4d270053a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/24885111237/d12c/362e/4ad7/74fde05bde3aecd3687c90db3658e10c.mp3', 'http://p1.music.126.net/69MfQfl-rA0IwEuRSCEyNw==/109951168307420773.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2024035483', '2024035483', '就让这大雨全都落下', '29051613', '160410750', '深情版', 'http://m701.music.126.net/20230605212710/62d5bbb23ad81652a9fd59b5a40c3019/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25079094413/8a75/9379/a93b/043a37c4180128c8e2c9f314f6128541.mp3', 'http://p2.music.126.net/vl7-imSenv69AQeoMulFfA==/109951168326085019.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2024225492', '2024225492', '谁家', '36775590', '160463838', '', 'http://m701.music.126.net/20230605212720/c98c4f0615e3f83e39b4ca9d1b8a06bf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25109968923/2055/9b03/7ca0/5ec8285a058b3de0ce970e277dab315e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9768,11 +9899,14 @@ INSERT INTO `wangyimusic` VALUES ('2025533834', '2025533834', '我们的歌', '2
 INSERT INTO `wangyimusic` VALUES ('2026224214', '2026224214', '雪 Distance', '12193174,33863232', '160890405', '', 'http://m801.music.126.net/20230605212708/8852d88dd70db1700021b9395c75996f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25358070960/0c23/1e94/f335/e256582282cad4d51161905234e4dd08.mp3', 'http://p2.music.126.net/cGTKkFl5qcXIDYPo7PrmDA==/109951168431655039.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2026812798', '2026812798', '谁', '14312549', '161031103', '', 'http://m701.music.126.net/20230605212720/6e3b26ca40f8c574d78eb612fdfb9a57/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25525479602/5983/fa20/95e7/9e688d00becc8de91ed1491e582c3ead.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2028588765', '2028588765', 'Die For You', '37148993', '161466884', '', 'http://m801.music.126.net/20230605214319/90817c889b3174d19dcf4b09c70dd595/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25604146713/c560/2357/3388/b24a41dcf76138cad8d97bbef12530d1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2029256151', '2029256151', '失温', '49748070,31164169', '161569602', '', 'http://m801.music.126.net/20230610230357/afd7062d87c58aad669b7a4578a8bf59/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25665323125/0d44/b2e8/aaf6/74216f9938e3a33638debdffc1bcadcc.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2029470264', '2029470264', '褪', '47702431,46525135,15062518', '161660990', '', 'http://m801.music.126.net/20230605214314/a82b79bb14b376520934c64e25fe98fe/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25687118441/5e76/a436/cb2c/0d9db6ba6ee8fe6039fff2f6babe056f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2029479894', '2029479894', '小镇音乐家', '32675091,46548148', '161652400', '', 'http://m801.music.126.net/20230610230355/d2fb9da07e66ddc6a7608ee808ba3e5b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25687842992/baec/7c28/b95d/ba76926bd83249cc10f14df13ece94a4.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2030208420', '2030208420', '春日呓语', '12308369', '165705271', '', 'http://m701.music.126.net/20230605214317/ba390542dd509881ebbad7982dae151f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26782953037/73e6/c296/800f/4b61bef9b3390c58f6e6b0d1a0daf852.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2030491060', '2030491060', 'hey', '12287611', '161857823', '', 'http://m701.music.126.net/20230605214316/ceefe93e5827aedc3edc2bf07bbeed6c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25789861031/6f24/ff8a/2e96/36b7a796ebed31406ea3d8467c307938.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2031085185', '2031085185', '声音', '12037117,12798217', '161996623', '', 'http://m801.music.126.net/20230605212718/f5e0daf610c4e7e07335f777a61a1ac3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25840897342/abe6/4fa4/3cb3/1bf1bd6ad6c26fb3c6d05757a6c00177.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2031912194', '2031912194', '雨过天不晴', '48918817', '162130122', '', 'http://m701.music.126.net/20230605212725/98f398120092915c389ef271f7ef178f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26289295416/f455/e096/9b06/26a803e20bbea239f2bd624c75929f6b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2032480036', '2032480036', '南诏之子', '12536560,33937972', '162273355', '', 'http://m701.music.126.net/20230610230404/e2a62e9cc191e98754b1fd18ae5f9f5a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28484156900/dc10/0da1/fc74/956cde2c44d9fdfca2582b8a42a05a80.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2033823422', '2033823422', '沉默会杀死爱', '52256114,56943217', '159505266', '', 'http://m801.music.126.net/20230605214318/34146fe58e6e23d632f108e140bd1a9a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26148532717/92ca/ed58/bb84/70c6f96e3290c51aa7bc6d2be823ec63.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2034742057', '2034742057', 'アイドル', '33927412', '162749810', 'TV动画《【我推的孩子】》片头曲', 'http://m801.music.126.net/20230605212718/f6c20f956d08f18fa4f2893a19ba51fc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26244205567/2334/6f73/f5a4/a5a0d5de01548555fc7c361e7755b97e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2034809526', '2034809526', '勇往直前的勇士', '51862646', '162764391', '', 'http://m801.music.126.net/20230605214313/f7ac7b980398aa30cb0c6bfd3af43e55/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26253631145/6000/1532/6df0/9db1868197dc23f74d019c8e7b5dac54.mp3', 'http://p1.music.126.net/0_olszMDk7SeHW2e3XIz0w==/109951168507063724.jpg', null);
@@ -9780,6 +9914,7 @@ INSERT INTO `wangyimusic` VALUES ('2034881346', '2034881346', '吻得太逼真',
 INSERT INTO `wangyimusic` VALUES ('2036257021', '2036257021', '明明我', '13790742,12491709', '162973866', '', 'http://m801.music.126.net/20230605214317/f75ec11062fad50eb87905ed176f753d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26432095820/d38c/b905/7ad3/8db778edb01f83db052f6cebf8a03c1b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2038163355', '2038163355', '五月天', '28862362', '163436359', '', 'http://m801.music.126.net/20230605212720/790c1224034e243dc3961d6ebcf04a2a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26978208695/44af/1d30/abf3/6993b9ddaf73cc583db873b183cede4d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2038508476', '2038508476', '身骑白马 (Live版)', '6472', '163171160', '', 'http://m801.music.126.net/20230605212720/ad0d895cdf83569276f8f3dc941d3277/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/26705269884/141c/86f5/bef7/9e446f908614c64584180bd909afd40f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2041253165', '2041253165', '小巷', '33914460,36985903', '164167988', '', 'http://m801.music.126.net/20230610230403/6ed35d5900a3e8822e95e7c87c582baa/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27417993737/375b/b1a4/f15c/8ded67c0cd4a958a060baead634d3711.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2041799838', '2041799838', '普通人生', '36985903', '164273950', '', 'http://m801.music.126.net/20230605212710/61c927dfb2f4000c3863197cb8bc0705/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27452762139/00cf/98cb/1ae6/0b15fe78f36e7d57f674283d37dd3f5c.mp3', 'http://p2.music.126.net/Z7SFxeQ5LH4YQP_7gOjWbw==/109951168565288639.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2041974276', '2041974276', '风驶过的声音是', '36985903,12178015,37123911', '164305610', '', 'http://m801.music.126.net/20230605212708/c6b3134c9d557ccd5641d26bf9efc4d5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27184292766/5566/4408/8e87/26a053cc0889a9e09fc20e06a52abe46.mp3', 'http://p1.music.126.net/gfLR-3TEncp1cOog8oUaFA==/109951168567036973.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2043125519', '2043125519', '就让这大雨全都落下 (Live版)', '5538,9269', '164541493', '', 'http://m801.music.126.net/20230605212717/43320f3e6e033d088160180ccfb07e02/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27226744577/2521/e344/d58f/946e7b24f6f891d76be396d026fc882a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9791,6 +9926,7 @@ INSERT INTO `wangyimusic` VALUES ('2044853934', '2044853934', '风驶过之后',
 INSERT INTO `wangyimusic` VALUES ('2045089372', '2045089372', '你要的全拿走 (Live版)', '816248,166018', '165075863', '', 'http://m801.music.126.net/20230605212719/f8cf91b81f078b0584c7edf2a03f16c5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27449662059/e512/a0f4/2227/1d1797b19ede1263de46019f5189f722.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2045090557', '2045090557', '一次就好', '1050282', '165077053', '', 'http://m801.music.126.net/20230605215008/27403c8b172e6d976d44c19b2ac83e8e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27447283113/d6bd/5121/4785/23ff3ddf8163633b9d72356939194a7c.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2045093937', '2045093937', 'Emotion', '14116746,12127362', '165077177', '', 'http://m701.music.126.net/20230605214315/d8e8f1b54944200096e6d06e7f322a52/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27452564660/5778/9eac/0800/a6a51c7c3ac8ce4f75f412a1fb77876b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2045111116', '2045111116', '忽远忽近', '31148973', '165079720', '', 'http://m801.music.126.net/20230610230356/ccb75c461b678083e2c602586e67dfb7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27450422735/21af/4302/a78b/c9ce8e41c77c315fa32cd53b3cc15f19.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2045117743', '2045117743', '想想就烦', '48577041,32870452,36563082', '165081123', '', 'http://m801.music.126.net/20230605212711/917aef154737e47f2848c151979b5a26/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28089805612/29b4/5ad5/c864/e136890d9559de4842cf3775a5c9e131.mp3', 'http://p1.music.126.net/K3HidYAsQG6J6eMfthxVDw==/109951168593212640.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2045332156', '2045332156', '彩虹 (LIVE版)', '847107', '165133632', '', 'http://m801.music.126.net/20230605215005/52e7d7031471083c2a3435b591015182/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27473623577/3378/661a/c372/c2a91b0b7b5593cd8bd1999b2485ef1d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2045332345', '2045332345', 'Ghost Face (鬼脸) (LIVE版)', '865007', '165073679', '', 'http://m801.music.126.net/20230605212727/089fc0365b2dca0185397d6c63422870/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27473803182/b7e2/f322/6679/db1ca25ea9721ffe839ce26210f7ca60.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9801,12 +9937,14 @@ INSERT INTO `wangyimusic` VALUES ('2045946501', '2045946501', '妈妈的二十�
 INSERT INTO `wangyimusic` VALUES ('2046035293', '2046035293', '白日梦', '1161122', '162870766', '', 'http://m701.music.126.net/20230605215007/dc832670cfeab71993990f7b990af030/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27554903110/66a0/5cd8/45bd/11cb3dca5ec4b8c9a3f9f1f75126c6f1.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046096661', '2046096661', 'ROLL THE DICE (Prod. Gesaffelstein)', '28553455', '165284810', '', 'http://m801.music.126.net/20230605214315/652525b0e9d318662eb5f286c6d69435/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27563668432/43fa/d180/8059/a496b71662df9bbd2282a1833fbbe5ac.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046186937', '2046186937', '城外', '29051613', '165314330', '', 'http://m701.music.126.net/20230605215003/cfa52fd3b6640d365c21218689503db1/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27891743525/6389/9c5e/5dd5/35bfc49196a9d3dd8d9b25c8ee301ffe.mp3', 'http://p1.music.126.net/-lf_WeSqPvYa0qpv42fqrA==/109951168623971110.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2046234800', '2046234800', '世界两个我', '46524011', '165321153', '', 'http://m701.music.126.net/20230610230356/981b69849d9569ba5d9315d418ffcf06/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27599255546/68a4/3e9d/fd93/af7f6b11487e87e9b0f4e37203121f6b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046474588', '2046474588', '雨下', '35022283', '165391556', '', 'http://m701.music.126.net/20230605214317/223b236b5c595b8f89ce8c4a52d750bd/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27603814490/581f/85d6/74c3/6ea71136c90ef385a5e8be4781567247.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046562196', '2046562196', '缸', '1161122', '162870766', '', 'http://m701.music.126.net/20230605215002/69fc68e76d0b1a07386741906bb04ae5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27611672714/03a7/19c1/d323/9f977abab6b6e931d697d89187180496.mp3', 'http://p2.music.126.net/m2uGF_-L70GUIB1MOpeaug==/109951168605260513.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046562197', '2046562197', '空', '1161122', '162870766', '', 'http://m701.music.126.net/20230605215006/c2db8c5ce269c9ddcb2f6ecad46b3ec9/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27611671921/7971/533c/c75b/33017c814a7de2aa01a11176347cb58f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046562202', '2046562202', '老张', '1161122', '162870766', '', 'http://m701.music.126.net/20230605215006/ba8dfe460c58768ba4553906bea9d99d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27611676524/b86f/0af3/1640/b6b5d7e4fdf64fd5000fa00f65aafe09.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046796566', '2046796566', 'The Show', '43608,3684', '165474903', '', 'http://m701.music.126.net/20230605215006/fb0b0b27105fe03db918cbe777ad663e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27641364643/81f9/f3b8/00f5/d0c4b7dc2d0947f4864421a785e72cfa.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046805446', '2046805446', '天黑黑 (Live版)', '8926,181007', '165458727', '', 'http://m801.music.126.net/20230605215001/b8f2f664fec9d927d6d3282af8e474ac/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27704422963/f5b0/7c95/eaae/cf24a9ea6a787b2c9e6f9538c3292274.mp3', 'http://p1.music.126.net/X6H5FpUmmK3VPNmTwVR4_w==/109951168606553864.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2046805487', '2046805487', '没那么简单 (Live版)', '9061,6472', '165458727', '', 'http://m701.music.126.net/20230610230402/dc3640996024b6df9976e2e6f3c43960/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27704438884/03e9/f805/a3d4/adcf6dc617f6594e256255d6c83eecc6.mp3', 'http://p1.music.126.net/X6H5FpUmmK3VPNmTwVR4_w==/109951168606553864.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046817456', '2046817456', '퀸카 (Queencard)', '14055085', '165382807', '', null, 'http://p2.music.126.net/QWdCMZjI1H37hCgs7EF1Ow==/109951168616322601.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046817458', '2046817458', 'Allergy', '14055085', '165382807', '', null, 'http://p1.music.126.net/QWdCMZjI1H37hCgs7EF1Ow==/109951168616322601.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046817470', '2046817470', 'All Night', '14055085', '165382807', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9816,8 +9954,13 @@ INSERT INTO `wangyimusic` VALUES ('2046864095', '2046864095', '过山车 (LIVE�
 INSERT INTO `wangyimusic` VALUES ('2046864101', '2046864101', 'LONELY GOD (LIVE版)', '188141', '165315852', '', 'http://m801.music.126.net/20230605215007/b433a219d6a42b8e69b5f684a11d21ad/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27701073089/2352/c0b8/1d2b/b346ba3c264abaad03d2fe9014563d7e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046864131', '2046864131', 'Don\'t Worry About Me (别担心我) (LIVE版)', '33012152', '165315852', '', 'http://m701.music.126.net/20230605215003/ef05a1d03e92b9c29f8aa61014ab45b6/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27701066840/3ce5/278c/d61f/f971ce96f8616c960b11f848de1a685b.mp3', 'http://p2.music.126.net/Tj3WxZ9noS_vTI5X5w5zAg==/109951168602610747.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2046990697', '2046990697', '字字句句 (Live版)', '1024308,47091532', '165533216', '', 'http://m701.music.126.net/20230605212714/c148034ed781de1ca4444243a8023ca6/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27666410057/3339/ee51/444b/353c15c18be0e0ec6f15eca36c1097e0.mp3', 'http://p1.music.126.net/aYlvK62cltFabwV4Cf-9pg==/109951168608653311.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2047048974', '2047048974', '我恋爱了·2023', '28862362', '165548039', '', 'http://m701.music.126.net/20230610230403/769612a20991c12f38b89862e91c5ed0/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27763500890/88b2/5291/508b/833d830a2b9ddf7ea0806cd83baa9be8.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2047307308', '2047307308', 'On My Soul', '28262310,40424,1015032', '165620469', '电影《变形金刚7：超能勇士崛起》原声', 'http://m701.music.126.net/20230610230355/d092bf30323be5ca800689f88d4c5a21/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27703837845/02c1/b08b/ca30/581f6e010fd9e7098ede2a7870ec916e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2047736243', '2047736243', '拾忆·2023', '3793', '165697062', '', 'http://m701.music.126.net/20230610230401/1c6f84e60d506f5173a8ca36d61c16d3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27895650895/f260/a9eb/bba7/5b5711c4e0ba7cbcdb4e63e06781bcaf.mp3', 'http://p2.music.126.net/UbQhdxgl6F39FgJPr9X_4A==/109951168624158862.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2047743493', '2047743493', 'Alive', '1047015', '165698955', '', 'http://m801.music.126.net/20230610230359/565f5f5523a3612cb368caf1e2a87a67/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27764656331/103c/a753/e496/df87b2bb90d50511699a7a709323d2f9.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2047756673', '2047756673', '推开世界的门', '14312549', '165700598', '', 'http://m701.music.126.net/20230605215008/4f9a734206fc3b6de4fa72394a3f2514/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27765397216/8b36/34c7/a168/9e53f7201894f98f0a3807582e9e1382.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2047777147', '2047777147', '沉溺', '48631904', '165707014', '', 'http://m801.music.126.net/20230605215008/12f1ecb89227b52f55671a3172dbebfe/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27768017438/a9fc/b5af/ce4a/d84b20200b4845d6e58b80431f8da3ea.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2047787698', '2047787698', '致：黯淡星', '13145036,1085108', '165673448', '', 'http://m801.music.126.net/20230610230403/cd48e963ecca5eecc17751b0fd1a6d85/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27769613417/206a/0e53/8d68/67582044886c9cb95db78dd89cdf4524.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2047856930', '2047856930', 'I\'ll Do It (Sped Up Version)', '60228', '165721182', '', 'http://m801.music.126.net/20230605214312/4b9a93ed4799309ff993cad0f4446ee4/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27777224496/91ca/cbff/40e4/4d4aa281ca3fea9733df078851fc1d2c.mp3', 'http://p2.music.126.net/sKqy2D_eautIrnacZ6EfrQ==/109951168617245144.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048370921', '2048370921', 'Ten Toes Down (脚踏十地) (LIVE版)', '12119618', '165876939', '', 'http://m701.music.126.net/20230605215004/7619a4438df97e4eb90a838d009f4e3e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27922197225/f06d/f8f2/6358/dd92c0d21f319943c288160035caf80d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048370958', '2048370958', '风口浪尖 (LIVE版)', '12275767', '165876939', '', 'http://m701.music.126.net/20230605215007/55475d4305989699af142f9cc69d44bf/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27922189296/df1b/45d9/bc6e/082dfc3a21ea24a215724e3f83d5751a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9825,8 +9968,11 @@ INSERT INTO `wangyimusic` VALUES ('2048370978', '2048370978', '嘉陵 (LIVE版)'
 INSERT INTO `wangyimusic` VALUES ('2048371124', '2048371124', '说唱入门教学2.0 (LIVE版)', '13112601', '165876939', '', 'http://m801.music.126.net/20230605215001/f72c9155a0961b26653b13a3f3f81c67/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27922205643/8ad7/4a02/0abb/75d96f22042916f9c9d6ebf4bf716aae.mp3', 'http://p2.music.126.net/62tZBnoML4MEnfZaEAoCsg==/109951168620779856.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048371190', '2048371190', 'Know My Name (我的名字) (LIVE版)', '12967449', '165876939', '', 'http://m701.music.126.net/20230605215007/d98116abf23546f55e7f21b8e043f342/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27922221794/4203/479d/2f2c/5b263e96f19debcf7ff83b337f654a6d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048371219', '2048371219', '电梯战神 (LIVE版)', '12084497', '165876939', '', 'http://m801.music.126.net/20230605215003/f2fb9e0ecc3743b8c6d14a30dbe38f1d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27922221264/234d/b84f/7108/9067541858bb14fb789d288d5e276e9e.mp3', 'http://p1.music.126.net/62tZBnoML4MEnfZaEAoCsg==/109951168620779856.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2048570550', '2048570550', '大人', '8325', '165936374', '', 'http://m701.music.126.net/20230610230404/3b2d8e9f462a42aed16d99912812d0b7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27871293220/ef6c/0166/8447/2abbdc3cada31b6ab360e5adcde23b0b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048584480', '2048584480', 'Letting Go (Live版)', '166018,5538', '165939450', '', 'http://m701.music.126.net/20230605212709/b3e0eac64b998cacda2508a3ca24ef66/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27896531040/4c6d/e536/203b/36f1859c208b6e227897b7d62e963606.mp3', 'http://p1.music.126.net/4CH5UGoUznqVVMM3k69-QA==/109951168622343007.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2048584487', '2048584487', '白玫瑰 (Live版)', '9269,10561', '165939450', '', 'http://m701.music.126.net/20230610230403/1d0b189ec98ab66cc2a9f846f755ee07/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27896518081/5a92/de17/c2fe/257397ca51e3b2c3a0c0cc8f008fab2e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048586091', '2048586091', '三国恋 (Live版)', '1211046,1124151', '165939450', '', 'http://m701.music.126.net/20230605215007/55e78c0a92e397d268ec0abf5112d85a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27896407562/3b03/8ebf/e13d/286271fa97c93b2bfb16efb6b28608c6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2048700343', '2048700343', 'Void (Radio Edit)', '54131214', '165966755', '', 'http://m701.music.126.net/20230610230353/e7edea5eb629c04b6d6d4523efb2b663/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27877640990/5331/7ee9/1d67/8476a9774625c6d9e738273aae16ae9e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048760838', '2048760838', 'My City', '31081554,1177068,12197270', '165990125', '电影《速度与激情10》原声', 'http://m801.music.126.net/20230605215002/64e1950ccd90afc500f4177a14487699/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27888032467/bd01/e8e4/5d96/619fdb601227a92a595f914de48a2944.mp3', 'http://p2.music.126.net/8h8_sYVjzszjoK-MYpoRHA==/109951168623704203.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048783798', '2048783798', 'Say Yes To Heaven', '66212', '165997418', '', 'http://m801.music.126.net/20230605215008/9ea1d9fe2d44d1bc7e58a62b33284a63/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27890416337/f77a/5fdd/5590/98fd1e28efdd3a9ecb905fcc2db49275.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2048786994', '2048786994', '电梯战神', '12084497', '165997690', '', 'http://m801.music.126.net/20230605212714/587b5f6e34318242f3dc68da441e9de2/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27894890288/8139/c013/459a/e89c1e732591191cb6edbee95e34320e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9837,13 +9983,17 @@ INSERT INTO `wangyimusic` VALUES ('2049529248', '2049529248', '时空观影券',
 INSERT INTO `wangyimusic` VALUES ('2049541052', '2049541052', '挚友', '980025', '166153252', '', 'http://m701.music.126.net/20230605215002/ca3389b303dfaec8c30c755fc699ee8f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/27994271260/01fb/61dd/ca2a/2acdb120c035dddb11876da2fa35dd85.mp3', 'http://p2.music.126.net/_QvycF0dxvVb7YNsl1nkPg==/109951168631133913.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2049804421', '2049804421', '开往早晨的午夜 (男声正式版)', '48918817', '166229354', '', 'http://m701.music.126.net/20230605215007/05c7a1edc5954de477c5899b06e230bc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28029969563/d02e/9419/3ace/b66b397feee49a31019945011d7b29aa.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050058466', '2050058466', '她不是我的唯一', '53621768,0,33913095', '166240377', '', 'http://m801.music.126.net/20230605215005/822521bf67a1a69112c103952274fccc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28123394231/45c3/4186/6bc4/01dd17cb539c7415dde23fbb2ed9b3b8.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2050062752', '2050062752', '街上的另一边儿', '12158158', '166301501', '', 'http://m701.music.126.net/20230610230356/40793fc3d40303e3875be2cea9824280/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28059834135/1f0b/c61c/99ac/517a61ddb20d37c4c0ac0c3cca6f460a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2050062770', '2050062770', 'Just do 8', '12158158,5610', '166301501', '', 'http://m801.music.126.net/20230610230352/3321716e26a4d58fa3b2d14447fc0253/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28059860571/b890/16a8/9840/3dbad5a5954c81f363cb5acb2745acd4.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050323274', '2050323274', '静止 (Live版)', '9609,861777,6453', '166372534', '', 'http://m701.music.126.net/20230605215008/eafde670b4febb82e47108acbb34735b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28169962717/b7ce/18eb/836c/306481ee370fa585ff656d47fd5aecbc.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050390513', '2050390513', '别问很可怕 (Live版)', '3066,5538', '166386535', '', 'http://m701.music.126.net/20230605215007/262c55e8244837ead0a3088b4651c80c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28124064140/574b/5439/803e/717de5c7bdc946ffa82325896d4935bb.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050391293', '2050391293', '是你 (Live版)', '47091532,10561', '166386535', '', 'http://m701.music.126.net/20230605215004/b7af7246a253d0be8cc4dc48cae52c81/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28124070275/49a7/23f9/8524/51cafce8ad9cf7f33461ec65c905a61d.mp3', 'http://p2.music.126.net/3z_w3vfEbTAap3AXVVmPHQ==/109951168636982036.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050453744', '2050453744', '唉 Sigh', '12193174,34288614', '166398912', '', 'http://m701.music.126.net/20230605215002/8a4b119cc5b2bb26d4ef0cbfee4656da/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28105990942/3a16/89ce/475c/5b6cd796503b87cbd267a1f00ba450aa.mp3', 'http://p1.music.126.net/9xqVHs_GPyBQ3VABlo-9Bw==/109951168637514274.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2050483869', '2050483869', 'CRUSH', '13145283', '166405428', '', 'http://m701.music.126.net/20230610230400/637c2a7fb612251125ff7e8e4462952c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28109769847/470b/55c6/9a25/936029573a3524f18f25ebd4548f330a.mp3', 'http://p2.music.126.net/aaz1boRflOxuY1VgeKE7IQ==/109951168650431532.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050561749', '2050561749', 'Snow On The Beach (feat. More Lana Del Rey)', '44266,66212', '166435890', '', null, 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050571020', '2050571020', '冠军相', '12065096,13899303', '166438715', '', 'http://m701.music.126.net/20230605215005/57134a0a571b4b1f63e7a71de045ea93/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28122269590/b07f/dcf3/d346/04677e9367dfe56806df770dafdfe321.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050620264', '2050620264', '迄今为止的生命里', '1198123', '166450015', '', 'http://m701.music.126.net/20230605212709/df45ae6de1de242a358002d2e48aaebc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28316832914/e65c/7831/3a77/953e30a8377ce582ca0e417b811f8bb7.mp3', 'http://p1.music.126.net/yfPmJYEpSgEMG_y5u0MtIA==/109951168649207060.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2050633180', '2050633180', 'RACE MODE(赛道模式)', '188141,13112601', '166453261', '', 'http://m701.music.126.net/20230610230402/3ee52a6b9bffc5c1af52541df638a6d3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28129686964/3825/c839/17d9/96746d9d51aa19ed58b9dfb1fa6718bd.mp3', 'http://p2.music.126.net/3cVeen3JadeNM64UWz6xUQ==/109951168638687754.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050684657', '2050684657', 'Say goodbye', '12484112', '166461976', '', 'http://m701.music.126.net/20230605215007/868e450b196f28e53299901ac04760b8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28135498801/0601/c7ec/f39c/03d59dcaade7257960ca1a1a47378428.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050717192', '2050717192', 'Last 9 On Earth (地球最后一夜) (LIVE版)', '12119618,47409571', '166458220', '', 'http://m701.music.126.net/20230605215004/858b5fc83a75c8c975aaa52126e04ad3/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28159144538/c23b/0564/d06f/630b25dd80227f1215aafd773f89dc3b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050717254', '2050717254', 'RACE MODE (赛道模式) (LIVE版)', '13112601,188141', '166458220', '', 'http://m701.music.126.net/20230605215005/c3c521a33aa062b19a8a3edf9cd1717d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28159175416/b97a/af4c/e4ea/4c136f2142d90699b2d8fde3c44b2c61.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9855,12 +10005,17 @@ INSERT INTO `wangyimusic` VALUES ('2050722130', '2050722130', '冠军相 (LIVE�
 INSERT INTO `wangyimusic` VALUES ('2050912767', '2050912767', '以爱为囚', '33927385', '166516167', '中俄文版', 'http://m701.music.126.net/20230605214312/df268dad9c474ca9b5d12e367f4d5919/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28169936439/acb6/aef7/80dc/c9e69239ff33b11d4c4c2b28e36ddbee.mp3', 'http://p2.music.126.net/ewwJL-aOCfD7fa_lepvUkA==/109951168641121654.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2050954543', '2050954543', '月光拯救计划', '48497149', '166514246', '', 'http://m801.music.126.net/20230605214316/47edfc5b91e6d87c14ea5ca02cbd1739/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28193125707/8689/338c/7e19/fbbcce52600b4aeaa246579d7883dfa6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2051276018', '2051276018', '上心', '1049681', '166572457', '', 'http://m801.music.126.net/20230605214312/eb31610c005d8bd9da786931bd91a7ff/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28234195744/0762/8fb1/0b63/e211032485c72b40d9d811cad717a470.mp3', 'http://p2.music.126.net/AP0qww0JgB5ADdSuiOnVLA==/109951168650459047.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2051492856', '2051492856', '一起向前', '12977', '166628413', '', 'http://m801.music.126.net/20230610230401/6d0eb091e5c3f5863c28a71034242284/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28263805835/7ac5/12c6/2f01/babb5dbb39ca7490275f736862c4e2ad.mp3', 'http://p1.music.126.net/reTEDK0UooEiwzmYUNRC-w==/109951168646858908.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2051575368', '2051575368', '你是我最爱的 (By Far)', '32959015', '166643860', '', 'http://m801.music.126.net/20230605214316/408cea92bb80adf5f55540455d67fc02/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28372730341/26c6/6b2e/1194/66d008ac7055a13ab6a5491f6a28bbf7.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2051580537', '2051580537', '童话', '29588305,13447730,34659452', '166646445', '', 'http://m801.music.126.net/20230605214311/f5be4960ff157cdbaa3026d7e2e42198/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28279252057/c22d/b787/6526/ab9696d84c48ce3743759e76230392b8.mp3', 'http://p1.music.126.net/QsEcRA6Mmf4vr5DgP7oOlA==/109951168647497239.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2051587676', '2051587676', 'Astrologically Illogical', '32624368', '166645775', '', 'http://m801.music.126.net/20230610230351/71afd4f0bb5f8aadd4a5305fb2e4d379/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28279433358/4dd4/e1a4/c921/1c7d9a64d146192e247c0a9f580e7acf.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2051690913', '2051690913', 'Self Destruction Mode', '893484,49848068', '166671878', '', 'http://m801.music.126.net/20230605215008/7d9081ef5af453f77e95d68f0db663ae/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28294637421/23e6/2912/6a68/7676b51b9c840fd31232cda25701369f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2051752291', '2051752291', '难诀别', '9939,31055052', '166697576', '', 'http://m801.music.126.net/20230605214314/1a175680654c6de6b120b1dcd9063808/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28304757140/e07d/c801/e051/f6e4d37c3c8c900b99343d04ad34299f.mp3', 'http://p2.music.126.net/-mhdTaggjlL0LWOl4WrG_Q==/109951168648612134.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2051789190', '2051789190', 'Before Summer', '32540734,13600644,48037536', '166704857', '', 'http://m701.music.126.net/20230610230353/93df60576ff681140071fb5a26299597/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28310771174/5739/eb03/65b8/fe1b2c4a62f27e8f8a22312fed2ebda9.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2051943422', '2051943422', 'My Stupid Heart (Organic Version)', '105493,55669182', '166739551', '', 'http://m801.music.126.net/20230610230352/19ca1b1533de4b4babd66d002d20b2b8/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28330837965/2ad9/d254/2017/e56c2bd5ea2df4dc76ce95ec49596123.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2051976677', '2051976677', 'Mona Lisa - Spider-Man: Across the Spider-Verse (Deluxe Edition)', '28684457', '166748821', '电影《蜘蛛侠：纵横宇宙》原声', 'http://m701.music.126.net/20230605214312/e16745ef91bd3ce1c3f25672e08a1446/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28334119259/1dce/b5d4/5dcb/7a6757242a7c9c63dae7bbd035ccb859.mp3', 'http://p1.music.126.net/pnQT83EK6Ncs6yRnwEDkrg==/109951168650156096.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052036486', '2052036486', '东莨菪碱', '34514656,12570417', '166774589', '', 'http://m801.music.126.net/20230605215004/0240f82757925023db97d2c1f2256242/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28341926617/a1ce/96fd/7d6b/ee0bc83a751e0e871e156a88281182aa.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052123773', '2052123773', '迷失森林', '55066357,33425481,49320762', '166731485', '', 'http://m801.music.126.net/20230610230403/b24e29e72f65875201bf4c2710e76d34/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28350258630/e316/c9c3/94af/86db70e7eabd7b594c30f0bd58d563d8.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052150225', '2052150225', '山间有歌', '12382128', '166798370', '', 'http://m801.music.126.net/20230605215007/7d1121f85d6ae1775c7d7b59fc5737e9/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28352575962/93e6/30fa/4b48/d41ef48dcdcf912b7a0b24ac9cd9d6f0.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052203115', '2052203115', 'Lost at Sea', '34384702,66212', '166812378', '', 'http://m801.music.126.net/20230605214315/7807f052a006ef2f9f19665844e4040a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28358537499/a97d/64c3/f488/e7f5a5a78acdf8bf7638bc303fce16a2.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052348113', '2052348113', 'Popular', '185858,12068095,66364', '166859846', '剧集《偶像漩涡》原声', 'http://m801.music.126.net/20230605215005/3c00beb08476ad643ceafaeb998477aa/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28377029197/3c4e/0472/9790/f73e9a79db5266d7cb597be22ddd3414.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9876,6 +10031,7 @@ INSERT INTO `wangyimusic` VALUES ('2052368029', '2052368029', '对面的女孩�
 INSERT INTO `wangyimusic` VALUES ('2052368104', '2052368104', '明天会更好 (Live版)', '3056,6454,9061,8926,3090,6066,7064,10562,9609,6472,861777,12520339,12676697', '166863134', '', 'http://m701.music.126.net/20230605214310/b8b2e76ea9ec3a3176092b3c19146a27/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28410064695/8758/d8a3/cb6e/8dd9af47361bff8601740fa20c5f587a.mp3', 'http://p2.music.126.net/PvCGnfEjm5O-16VDrqiNfw==/109951168652391588.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052368796', '2052368796', '爱人错过 (Live版)', '12676697', '166863134', '', 'http://m801.music.126.net/20230605214310/6e12f7a36c2c80502a8890ee144ccaae/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28409712897/a917/000a/981b/990c931638e9a04ae35f604851f9e3bb.mp3', 'http://p1.music.126.net/PvCGnfEjm5O-16VDrqiNfw==/109951168652391588.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052368814', '2052368814', '带我去找夜生活 (Live版)', '6472,12676697', '166863134', '', 'http://m701.music.126.net/20230605214310/fdebc2f3b1e99ea6c4ef9fcd72f9c459/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28409888946/6c14/9379/b646/dc98c953679419b60d48ae4d8d53b06d.mp3', 'http://p2.music.126.net/PvCGnfEjm5O-16VDrqiNfw==/109951168652391588.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052387456', '2052387456', 'You Ain\'t Right', '10561', '166867273', '', 'http://m801.music.126.net/20230610230402/12f19844cd2f545330e1023d292de394/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28379569948/fbe0/8c95/1326/2c69dfecd1c06eecccfb2677e4ac0031.mp3', 'http://p2.music.126.net/Q0yIlPo3OUeLlH8L_PpibA==/109951168652461070.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052399114', '2052399114', '蔓延 (Live版)', '5538,9944', '166869646', '', 'http://m701.music.126.net/20230605215004/61f015c1fcb398eecc65601662952523/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28380760701/4730/bc6f/c70f/d73f15750c4251dd06fb57486814cabf.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052403824', '2052403824', '往事随风 (Live版)', '3066,31633639', '166869646', '', 'http://m801.music.126.net/20230605215004/76e86bcbe469c5992b82853eb309a15c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28380772634/e4a5/e05e/d7a7/8cc4ae7f384d3bc4e5a073d3f1a87663.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052403826', '2052403826', '怎么会忘记你 (Live版)', '12664439,47091532', '166869646', '', 'http://m701.music.126.net/20230605214319/43a44d459f70b7b62f1868614b32daf5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28380774231/4386/57d8/d287/698f3dac33a3b92b078058263ec94e67.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
@@ -9887,16 +10043,54 @@ INSERT INTO `wangyimusic` VALUES ('2052405885', '2052405885', 'POW!!!!!!!!!!!!!�
 INSERT INTO `wangyimusic` VALUES ('2052405901', '2052405901', '奥特曼Drill (LIVE版)', '12965215,12851112,865007', '166870949', '', 'http://m801.music.126.net/20230605214310/1e1bdb103653fc6267ac62a886ea3b47/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28414057854/f067/202a/fd40/219c3c6437e2bc54123352ffaba80752.mp3', 'http://p2.music.126.net/CFFoq3w99ND5OkD-tQuIpA==/109951168652559524.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052405911', '2052405911', 'Be Alright (心跳节拍) (LIVE版)', '33012152,4694,12079219', '166870949', '', 'http://m701.music.126.net/20230605212720/487ca38e72b7944679c33736f5594b7a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28414051219/9520/67a8/b29d/66e00c1fd1b8f19bd338696c10ac1538.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052408650', '2052408650', '必杀技 (LIVE版)', '188141,13112601,33630934', '166870949', '', 'http://m801.music.126.net/20230605214310/9130c1b2d0038e934edfc31248f57046/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28414054476/faae/4ab6/e70e/d8f1914b2fa849d03a4a880fe03366c1.mp3', 'http://p1.music.126.net/CFFoq3w99ND5OkD-tQuIpA==/109951168652559524.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052440838', '2052440838', '《荼蘼清梦》——孙策初见日主题曲', '52733509', '166824341', '', 'http://m701.music.126.net/20230610230400/fa1febbcb24b2c359ee575e0311e18bc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28389447585/28d8/50d9/0aae/587d243b31f236e7b8d1b4b333765bec.mp3', 'http://p2.music.126.net/2gp4fTHUeOBJgpf0CJm08w==/109951168652788522.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052441038', '2052441038', '一般的一天 (LIVE版)', '13112601', '166876971', '', 'http://m701.music.126.net/20230605212716/fbbe9bffd204923343d2b304a4dc7285/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28417129619/b212/9afc/1e79/c6c04e2a4f1b060ee743aea6dd66ac70.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052441059', '2052441059', '讲述者的金价 (LIVE版)', '12065096', '166876971', '', 'http://m701.music.126.net/20230605214312/6cc7ca6caac2cbb2252e506dd905327b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28417157536/89e6/04a3/9a5f/4714b359ac64eececea6c868fbc3735f.mp3', 'http://p2.music.126.net/7ZXU0awLL4xN9ZPGFYcXTw==/109951168652792403.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052441994', '2052441994', '中间人 (LIVE版)', '12967449', '166876971', '', 'http://m801.music.126.net/20230605214313/339811791e705fac369db6e7ceb62629/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28417155085/4786/f88d/ecc1/84e572e4ad82fb0b05cbb2c8021a80c9.mp3', 'http://p2.music.126.net/7ZXU0awLL4xN9ZPGFYcXTw==/109951168652792403.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052442010', '2052442010', 'BACK TO SCHOOL (返校日) (LIVE版)', '12453329', '166876971', '', 'http://m801.music.126.net/20230605214311/6990d287dc6b216957bf4354f853a5ae/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28417160675/b935/1a04/d9b7/73963334150a243cebace715570b68d4.mp3', 'http://p1.music.126.net/7ZXU0awLL4xN9ZPGFYcXTw==/109951168652792403.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052442439', '2052442439', '火棍', '48674859,53849891', '166877280', '', 'http://m701.music.126.net/20230605214312/ddc25bb6309cfc2f495fca8c1ff9525a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28430899436/29b7/d6cd/c1ba/3b2b6d21712e27fd2c88cb8f0643e88e.mp3', 'http://p1.music.126.net/ORgk5SfdrVtHRqwcVWd07A==/109951168652832713.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052523307', '2052523307', 'U87', '48277407', '166898307', '', 'http://m701.music.126.net/20230610230352/15ebab263f1d17da012ca50f9628b432/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28394469543/5355/9938/243f/f1009cb9250a7075976f931d4d574bdd.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052523310', '2052523310', '黑白蒙口 Ft.Omajor', '48277407,30285305', '166898307', '', 'http://m801.music.126.net/20230610230354/3152e0605b255906e3691ba7ac788aa0/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28394463910/fb02/c19c/3994/dd8d946bfd8ef07e90c9ffad3153cea6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052523312', '2052523312', '影子 Ft.Lsgcsikoriot', '48277407,33097968', '166898307', '', 'http://m801.music.126.net/20230610230353/cd53c9e9667bb1fa35e81068958d28dc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28394457684/5f2b/2ca6/ece3/5289253d55fc0d96b715227e70554d1e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052524881', '2052524881', '葬礼上的陌生人', '48277407', '166898307', '', 'http://m701.music.126.net/20230610230352/25517625f1c2cf353fc0e195d42e289a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28394475974/9205/ad3e/6d7f/2e382571604efd082a954c4ee3c02166.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052524882', '2052524882', '六月九日晴 Ft.Uzzy', '48277407,46921476', '166898307', '', 'http://m801.music.126.net/20230610230351/c2f074e42f750c5d719609e16bb55d26/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28394486485/281d/58e5/1c97/199399cf56dcdbf31160c65b30249842.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052524884', '2052524884', 'Father Master Daddy Ft.孟子', '48277407,31917276', '166898307', '', 'http://m801.music.126.net/20230610230353/f505373641993bbb3ed6c25206ba3287/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28394468705/faf8/f080/14d8/20f0f47ccf79702638c3830fe55b991f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2052590105', '2052590105', 'BABYDOLL (Speed) (希林娜依·高 Remix)', '51316343,12664439', '166916889', '', 'http://m701.music.126.net/20230610230354/eaba1224d62d920c1d9ff82f571ff813/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28403734577/df59/137c/c9f8/3d40f0c82b8fb1db66a9d9b3e4e1dcb6.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052642244', '2052642244', '离开地球表面（Live版）', '861777,12520339', '166863134', '', 'http://m801.music.126.net/20230605214311/8a7c561e182c287f26bba344f54c16ed/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28410079741/6be9/b5fa/2c82/75f6e7338691bd6e27be1c01ac031241.mp3', 'http://p2.music.126.net/PvCGnfEjm5O-16VDrqiNfw==/109951168652391588.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052709234', '2052709234', '海风', '33202309,34442313', '166941911', '', 'http://m801.music.126.net/20230605214318/376b2b7b8152bee4029fa9344128d206/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28417158820/496a/c518/5eb0/53eb9ae443d01fb59fe11d7da965dd43.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052782758', '2052782758', '流浪·地球', '12967449,12288442,30855870', '166950675', '', 'http://m801.music.126.net/20230605212723/db9c5a39f515d0cd4d152c8d34349b78/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28426982870/df89/5a44/cb88/843551ad533b94a5bbbbd5d7d1c8d895.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052879853', '2052879853', '在意MSTR', '13152751,12256230,15060505', '166930895', '', 'http://m801.music.126.net/20230605214315/bba7c206f0a40238ffda426364025b40/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28446156609/0806/b6d6/3d2f/764ed1554391f8f970a5fabad8b66c1a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 INSERT INTO `wangyimusic` VALUES ('2052933626', '2052933626', '花一匁', '15021101', '166975549', '', 'http://m701.music.126.net/20230605214314/912c6fc130d650855dfac3b1c59308cc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28450604106/ba68/08a9/e50e/b078173aa6bee9ab1a0316dd135d9319.mp3', 'http://p1.music.126.net/bmjKC1odG-1spq20rjjebg==/109951168657437538.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053099516', '2053099516', '让风告诉你', '13113858', '167006301', '', 'http://m801.music.126.net/20230610230349/11552248d3b6f529a490309f5dc87e80/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28477629005/322b/8e8c/d4ad/7f494fbda9e33f28a8fe89bd60c0ed63.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053100690', '2053100690', '越来越不懂', '14312549', '167005280', '', 'http://m801.music.126.net/20230610230350/deae51e0978c0921ee2ad80ccc3cfc12/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28473607962/8f29/07cc/a993/c4c9717a3c70fd81c852768e2cdde874.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053110957', '2053110957', '麦芒', '57031080', '167006658', '综艺《种地吧》十个勤天企业推广曲', 'http://m701.music.126.net/20230610230401/ee97073758459b14b5a1085ffdd2fe26/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28475248336/e731/e6cc/812b/b0c6e8aeb84c62b3700e25607907912b.mp3', 'http://p1.music.126.net/F39WX4gFXc1BeIEr4QBRIg==/109951168659108142.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053289347', '2053289347', 'Another Dimension', '50877771', '167054073', '电影《蜘蛛侠：纵横宇宙》原声', 'http://m801.music.126.net/20230610230403/9be9ac7b94f264b059f2028578a4a671/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28471484463/f4bc/4e27/9e58/e3f5670397266c99b26ec00af16a002a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053318886', '2053318886', 'Tell Me', '30892288', '167063509', '', 'http://m801.music.126.net/20230610230357/eac78a45fbf62d1e88b0613bee0c2872/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28501379958/171c/3efc/92ff/2983ffa8ba470dea9efe7d4614b61f7a.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053388691', '2053388691', '惯性反应', '12206844', '167078716', '', 'http://m701.music.126.net/20230610230357/4674eed03c002da3b1ec3ea59917c8af/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28508540283/5530/3628/90d6/5066aea7573450ab88f80dbe37c13c25.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053420961', '2053420961', '走不出来', '12157330', '167086028', '', 'http://m801.music.126.net/20230610230353/42627df70c5842450316011c30399e4f/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28510711576/c97b/72d0/b1d5/b508a9b90e2f6de6c8196085136c5c3f.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053422698', '2053422698', '耻辱柱', '12798217', '167086181', '', 'http://m801.music.126.net/20230610230347/d9334af5eef0c4895ca0b90d89dfd289/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28510864020/c0f7/7bc3/2750/e3a0530cb4e2e9fe54f5d094016e2488.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053427275', '2053427275', '脑壳上的种子', '31312385', '167086845', '', 'http://m701.music.126.net/20230610230352/2a0a539e291a7f76993603b41a630cf7/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28512062419/3c4a/3d57/7f51/7f4ef37e2e6c6a02ef2786aa6ff15924.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053428804', '2053428804', '巴士站', '31312385', '167086845', '', 'http://m801.music.126.net/20230610230351/f0c0f635553be6f8fc1f2b9806d302a6/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28512061909/f838/4535/6510/ed2cac7339e03bc2bbc6f5dba969f50d.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053428805', '2053428805', '匠人', '31312385', '167086845', '', 'http://m801.music.126.net/20230610230351/e758246d7f9f824a6356fbb4bb30277a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28512057526/db5c/1575/3995/00cf214937ffbd65f6c5ea7f0d278cbc.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053428806', '2053428806', 'Summer Summer', '31312385', '167086845', '', 'http://m801.music.126.net/20230610230350/0ace4c2ac74d5875795719c38ee9e4ff/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28512060114/5216/9763/c376/7464a14941349cc377adb2beec54da6b.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053428807', '2053428807', 'It\'s gonna be alright', '31312385', '167086845', '', 'http://m701.music.126.net/20230610230351/6c17b0ad58439e068bafb938782f4162/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28512069364/36a8/df70/b2bd/3bedeb30cdea474bac3d1eed11e06068.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053471504', '2053471504', '送你的歌', '1198123,12038304', '166450015', '', 'http://m801.music.126.net/20230610230346/b3eaab9552601e0e110c04baa7458cd6/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28556084410/24b9/f6b8/129f/09dd37348da9f2add45fea688cf9020e.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053616406', '2053616406', '让她降落 (Live版)', '29802127', '167141766', '', 'http://m701.music.126.net/20230610230355/71dd11771c58ee08cdb0875504391a7a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28535690912/a6f0/86d9/2692/2c9149705bb9a9ade550a4de32c6f836.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053617878', '2053617878', '一直很安静 (Live版)', '12138269', '167141766', '', 'http://m701.music.126.net/20230610230350/c2e144585f30dfba9fcff7892eecf74e/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28535687420/698d/c0a0/cd74/242cdcd6dbde9d15d08b18e8fe274ab7.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053700248', '2053700248', 'Miss u Goodbye', '768208', '167158084', '', 'http://m701.music.126.net/20230610230402/3df3a5c575f896405cfd798cd06fe146/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28545042190/5d17/1636/7dda/c61c47c4f9362c1b338ebdaa9269ad7b.mp3', 'http://p1.music.126.net/eQqtLUGOXNs-G0J6hE78Kg==/109951168663576712.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053842430', '2053842430', '乐透 Lötto', '34288614', '167189283', '', 'http://m701.music.126.net/20230610230351/0487f624b94d0a67e2abff7e4629aa5b/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28567538415/8581/091f/523e/734040757ea2454b57594a04e9d16d94.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053873946', '2053873946', 'West Coast Weekend', '45033,50377395,31100277', '167202816', '', 'http://m801.music.126.net/20230610230356/bca63066a1229536aeabd1985a89e551/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28612206310/69ea/94d9/5438/bb1877c5c4a319d9ab00f16b14e77379.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053894553', '2053894553', '命中注定', '31310684,32438384,1201004', '167210268', '', 'http://m801.music.126.net/20230610230356/40d46f56e8462cc04b814abb6ddc3491/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28582953010/3fc0/83de/4725/493e643aaacbdc63c20233a5d3a99374.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053935560', '2053935560', '洛希极限', '12606242', '167219587', '', 'http://m801.music.126.net/20230610230351/61dec42851dd8fd46a2482a876effe01/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28580005954/45ef/6c06/3401/889828becab44605efddc370647fb2ba.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053961482', '2053961482', '可不可以', '29235210,35724302,35949435', '167225668', '', 'http://m701.music.126.net/20230610230354/269cd8441d6b3793fe9f2daabd9bea29/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28583350565/2a10/1b68/f123/b00fe52448fd35f9e7cd7f9a88544378.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053970362', '2053970362', 'Can’t Go Yet', '1011016,13421558', '167226699', '', 'http://m701.music.126.net/20230610230351/4839f67c7c11c60437542608e028af2a/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28584380966/487d/5913/af40/a80277810e6d85bc4d93e932ffc9c0bf.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053983754', '2053983754', '莽夫', '13899303', '167229246', '', 'http://m701.music.126.net/20230610230350/c3a992d4db5efeb7e3cddb8d154c2b10/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28584990621/0ad9/1955/b447/187957561719ba579ec78cd0e206c876.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2053985442', '2053985442', '光合作用', '12372899,12184568', '167230697', 'Love Growth', 'http://m701.music.126.net/20230610230352/cdad4adac2bc857e876480c242c64af5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28585914784/12e3/0d2c/8d16/b9c5305ba129a249d0baa52eb7cad019.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2054045363', '2054045363', 'Hollywood Bowl', '34384702,66212', '167244470', '', 'http://m701.music.126.net/20230610230350/09617454472c0e1f258708d5c22f0c2c/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28593618237/1818/5a7e/4396/2a2104437cb1e3bbdf66a64883bc7058.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2054066570', '2054066570', '差生', '12498266', '167212401', '', 'http://m801.music.126.net/20230610230356/bfaf33c04c3a33cb5c8c648969ebf1e5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28625034041/000e/3ed0/698c/c86e542e0c7499f2db0c19d13a3afb39.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2054162649', '2054162649', 'VULGAR', '740216,66364', '167280048', '', 'http://m701.music.126.net/20230610230353/d3d0bf6618ba5d75901b3ae8a4f5d91d/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28611347697/ba05/a571/6729/6cf05a2c7098c9258426393737411de4.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2054207127', '2054207127', 'WHAT THE HELL ARE WE DYING FOR ?', '956238', '167290042', '', 'http://m701.music.126.net/20230610230351/5ba3e1384f6551415681aa8fc9f10312/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28615725773/385a/f997/6e2b/d2ba2c767e8a103e7bb61fff7c2d6b51.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
+INSERT INTO `wangyimusic` VALUES ('2054207130', '2054207130', 'World Class Sinner / I’m A Freak', '31849592', '167289551', '剧集《偶像漩涡》原声', 'http://m701.music.126.net/20230610230352/78405438583d3d95ad16428cad669000/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28615746609/f19f/2aa0/9d35/5d0152003548e3b4fb4cc24500b97a41.mp3', 'http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg', null);
 
 -- ----------------------------
 -- Table structure for wangyisinger
@@ -9923,12 +10117,14 @@ INSERT INTO `wangyisinger` VALUES ('2843', '2843', '郭顶', '436346833');
 INSERT INTO `wangyisinger` VALUES ('3056', '3056', '胡德夫', '2052368104');
 INSERT INTO `wangyisinger` VALUES ('3066', '3066', '胡彦斌', '529668356');
 INSERT INTO `wangyisinger` VALUES ('3090', '3090', '何炅', '2052368104');
+INSERT INTO `wangyisinger` VALUES ('3442', '3442', '胡海泉', '1416353252');
 INSERT INTO `wangyisinger` VALUES ('3684', '3684', '林俊杰', '2019573476');
 INSERT INTO `wangyisinger` VALUES ('3793', '3793', '陆虎', '26387325');
 INSERT INTO `wangyisinger` VALUES ('4292', '4292', '李荣浩', '1997438791');
 INSERT INTO `wangyisinger` VALUES ('4694', '4694', '欧阳靖', '2052405911');
 INSERT INTO `wangyisinger` VALUES ('5346', '5346', '王力宏', '25642952');
 INSERT INTO `wangyisinger` VALUES ('5538', '5538', '汪苏泷', '2048584480');
+INSERT INTO `wangyisinger` VALUES ('5610', '5610', '王波', '2050062770');
 INSERT INTO `wangyisinger` VALUES ('5781', '5781', '薛之谦', '1463165983');
 INSERT INTO `wangyisinger` VALUES ('5793', '5793', '小沈阳', '1969292604');
 INSERT INTO `wangyisinger` VALUES ('6066', '6066', '杨宗纬', '2052368104');
@@ -9940,10 +10136,15 @@ INSERT INTO `wangyisinger` VALUES ('6731', '6731', '赵雷', '1974443814');
 INSERT INTO `wangyisinger` VALUES ('7063', '7063', '黄丽玲', '438204707');
 INSERT INTO `wangyisinger` VALUES ('7064', '7064', '阿雅', '2052368104');
 INSERT INTO `wangyisinger` VALUES ('7214', '7214', '蔡健雅', '208891');
+INSERT INTO `wangyisinger` VALUES ('7217', '7217', '陈绮贞', '209397');
 INSERT INTO `wangyisinger` VALUES ('7424', '7424', '程响', '1950343972');
 INSERT INTO `wangyisinger` VALUES ('7763', '7763', 'G.E.M.邓紫棋', '30612793');
 INSERT INTO `wangyisinger` VALUES ('7785', '7785', '龚琳娜', '1965928052');
+INSERT INTO `wangyisinger` VALUES ('7946', '7946', '黄绮珊', '2016688503');
+INSERT INTO `wangyisinger` VALUES ('8151', '8151', '金海心', '247821');
 INSERT INTO `wangyisinger` VALUES ('8153', '8153', '江语晨', '247936');
+INSERT INTO `wangyisinger` VALUES ('8259', '8259', '金莎', '247644');
+INSERT INTO `wangyisinger` VALUES ('8325', '8325', '梁静茹', '2048570550');
 INSERT INTO `wangyisinger` VALUES ('8329', '8329', '梁咏琪', '1959528822');
 INSERT INTO `wangyisinger` VALUES ('8335', '8335', '林依晨', '255574');
 INSERT INTO `wangyisinger` VALUES ('8926', '8926', '莫文蔚', '2052368104');
@@ -9951,6 +10152,7 @@ INSERT INTO `wangyisinger` VALUES ('8982', '8982', '马吟吟', '1294951288');
 INSERT INTO `wangyisinger` VALUES ('9039', '9039', '梦然', '1966162185');
 INSERT INTO `wangyisinger` VALUES ('9061', '9061', '那英', '2052368029');
 INSERT INTO `wangyisinger` VALUES ('9269', '9269', '容祖儿', '1984475097');
+INSERT INTO `wangyisinger` VALUES ('9272', '9272', '孙燕姿', '287749');
 INSERT INTO `wangyisinger` VALUES ('9489', '9489', '谭维维', '1336789771');
 INSERT INTO `wangyisinger` VALUES ('9609', '9609', '魏如萱', '2052368029');
 INSERT INTO `wangyisinger` VALUES ('9939', '9939', '弦子', '2051752291');
@@ -9958,8 +10160,11 @@ INSERT INTO `wangyisinger` VALUES ('9944', '9944', '薛凯琪', '2052399114');
 INSERT INTO `wangyisinger` VALUES ('10559', '10559', '张惠妹', '1360512113');
 INSERT INTO `wangyisinger` VALUES ('10561', '10561', '张靓颖', '2050391293');
 INSERT INTO `wangyisinger` VALUES ('10562', '10562', '张韶涵', '2052368104');
+INSERT INTO `wangyisinger` VALUES ('10578', '10578', '张玉华', '329336');
 INSERT INTO `wangyisinger` VALUES ('11097', '11097', 'By2', '1430303185');
+INSERT INTO `wangyisinger` VALUES ('12977', '12977', '逃跑计划', '2051492856');
 INSERT INTO `wangyisinger` VALUES ('13193', '13193', '五月天', '28181103');
+INSERT INTO `wangyisinger` VALUES ('13200', '13200', '顽童MJ116', '1348367103');
 INSERT INTO `wangyisinger` VALUES ('29100', '29100', 'A$AP Rocky', '2052348232');
 INSERT INTO `wangyisinger` VALUES ('31058', '31058', 'Corey Gray', '1435661824');
 INSERT INTO `wangyisinger` VALUES ('31211', '31211', 'David Guetta', '521416693');
@@ -9969,8 +10174,10 @@ INSERT INTO `wangyisinger` VALUES ('35531', '35531', 'Justin Bieber', '185924577
 INSERT INTO `wangyisinger` VALUES ('36851', '36851', 'James Blake', '2052348233');
 INSERT INTO `wangyisinger` VALUES ('36910', '36910', 'J. Cole', '2044734734');
 INSERT INTO `wangyisinger` VALUES ('38118', '38118', 'Lil Wayne', '2052349046');
+INSERT INTO `wangyisinger` VALUES ('40424', '40424', 'Nas', '2047307308');
 INSERT INTO `wangyisinger` VALUES ('43608', '43608', 'Steve Aoki', '2046796566');
 INSERT INTO `wangyisinger` VALUES ('44266', '44266', 'Taylor Swift', '1382576173');
+INSERT INTO `wangyisinger` VALUES ('45033', '45033', 'Tyga', '2053873946');
 INSERT INTO `wangyisinger` VALUES ('60228', '60228', 'Heidi Montag', '18228464');
 INSERT INTO `wangyisinger` VALUES ('66212', '66212', 'Lana Del Rey', '2052203115');
 INSERT INTO `wangyisinger` VALUES ('66364', '66364', 'Madonna', '2052348927');
@@ -9982,14 +10189,21 @@ INSERT INTO `wangyisinger` VALUES ('141813', '141813', 'Jamie Scott', '521416693
 INSERT INTO `wangyisinger` VALUES ('166018', '166018', '吉克隽逸', '2048584480');
 INSERT INTO `wangyisinger` VALUES ('181007', '181007', '窦靖童', '2046805446');
 INSERT INTO `wangyisinger` VALUES ('185858', '185858', 'The Weeknd', '2052348927');
+INSERT INTO `wangyisinger` VALUES ('187010', '187010', 'J. Sheon', '1348367103');
+INSERT INTO `wangyisinger` VALUES ('187624', '187624', 'Q.luv', '2014046738');
 INSERT INTO `wangyisinger` VALUES ('188141', '188141', '满舒克', '2052408650');
 INSERT INTO `wangyisinger` VALUES ('338718', '338718', 'JORDANN', '1815725297');
+INSERT INTO `wangyisinger` VALUES ('388484', '388484', 'Meg Myers', '1349964388');
 INSERT INTO `wangyisinger` VALUES ('688618', '688618', 'Just Kiddin', '1376075781');
+INSERT INTO `wangyisinger` VALUES ('690001', '690001', '家家', '27591236');
+INSERT INTO `wangyisinger` VALUES ('740216', '740216', 'Sam Smith', '2054162649');
 INSERT INTO `wangyisinger` VALUES ('757209', '757209', 'Lil Durk', '2044734734');
+INSERT INTO `wangyisinger` VALUES ('759509', '759509', 'EXO', '26428032');
 INSERT INTO `wangyisinger` VALUES ('768208', '768208', 'AGA', '421486605');
 INSERT INTO `wangyisinger` VALUES ('775054', '775054', 'WMD', '1301573957');
 INSERT INTO `wangyisinger` VALUES ('780003', '780003', 'Martin Garrix', '521416693');
 INSERT INTO `wangyisinger` VALUES ('789235', '789235', 'Ty Dolla $ign', '1333335583');
+INSERT INTO `wangyisinger` VALUES ('813315', '813315', 'Barton', '1957926942');
 INSERT INTO `wangyisinger` VALUES ('816248', '816248', '于文文', '2045089372');
 INSERT INTO `wangyisinger` VALUES ('832703', '832703', 'Offset', '2052349046');
 INSERT INTO `wangyisinger` VALUES ('835002', '835002', 'Hillsong Young & Free', '1873321491');
@@ -10000,18 +10214,23 @@ INSERT INTO `wangyisinger` VALUES ('893259', '893259', '金玟岐', '28285910');
 INSERT INTO `wangyisinger` VALUES ('893484', '893484', 'The Chainsmokers', '2051690913');
 INSERT INTO `wangyisinger` VALUES ('896042', '896042', 'Madnap', '1356658022');
 INSERT INTO `wangyisinger` VALUES ('904041', '904041', 'Novo Amor', '480769623');
+INSERT INTO `wangyisinger` VALUES ('956238', '956238', 'Shawn Mendes', '2054207127');
 INSERT INTO `wangyisinger` VALUES ('976120', '976120', 'Metro Boomin', '2052349052');
 INSERT INTO `wangyisinger` VALUES ('980025', '980025', '周兴哲', '523250334');
 INSERT INTO `wangyisinger` VALUES ('1007170', '1007170', '陈粒', '421423806');
+INSERT INTO `wangyisinger` VALUES ('1011016', '1011016', '刘逸云 Amber Liu', '2053970362');
+INSERT INTO `wangyisinger` VALUES ('1015032', '1015032', 'Jacob Banks', '2047307308');
 INSERT INTO `wangyisinger` VALUES ('1019154', '1019154', '黄礼格', '1907766514');
 INSERT INTO `wangyisinger` VALUES ('1024308', '1024308', '张碧晨', '449577636');
 INSERT INTO `wangyisinger` VALUES ('1038099', '1038099', 'VaVa毛衍七', '2052405885');
+INSERT INTO `wangyisinger` VALUES ('1047015', '1047015', '张艺兴', '2047743493');
 INSERT INTO `wangyisinger` VALUES ('1049681', '1049681', '阿细', '2051276018');
 INSERT INTO `wangyisinger` VALUES ('1050282', '1050282', '房东的猫', '2045090557');
 INSERT INTO `wangyisinger` VALUES ('1057092', '1057092', 'Post Malone', '1318733599');
 INSERT INTO `wangyisinger` VALUES ('1060132', '1060132', '柳爽', '1894094482');
 INSERT INTO `wangyisinger` VALUES ('1081577', '1081577', 'Morerare', '1896178370');
 INSERT INTO `wangyisinger` VALUES ('1085047', '1085047', '棱镜乐队', '1303027499');
+INSERT INTO `wangyisinger` VALUES ('1085108', '1085108', '哦漏', '2047787698');
 INSERT INTO `wangyisinger` VALUES ('1115185', '1115185', 'Lulleaux', '1435828582');
 INSERT INTO `wangyisinger` VALUES ('1124151', '1124151', '刘柏辛Lexie', '2048586091');
 INSERT INTO `wangyisinger` VALUES ('1132749', '1132749', 'Shang', '496370620');
@@ -10024,6 +10243,7 @@ INSERT INTO `wangyisinger` VALUES ('1177068', '1177068', 'Kane Brown', '20487608
 INSERT INTO `wangyisinger` VALUES ('1180075', '1180075', 'Lil Uzi Vert', '2052349047');
 INSERT INTO `wangyisinger` VALUES ('1192268', '1192268', '小霞', '2049512697');
 INSERT INTO `wangyisinger` VALUES ('1198123', '1198123', '姜云升', '2050620264');
+INSERT INTO `wangyisinger` VALUES ('1201004', '1201004', 'BBPOPSTARR', '2053894553');
 INSERT INTO `wangyisinger` VALUES ('1203045', '1203045', '艾热 AIR', '2045332353');
 INSERT INTO `wangyisinger` VALUES ('1211046', '1211046', 'GAI周延', '2052403827');
 INSERT INTO `wangyisinger` VALUES ('11998053', '11998053', 'Dion Timmer', '1329938686');
@@ -10032,6 +10252,7 @@ INSERT INTO `wangyisinger` VALUES ('12002248', '12002248', '沈以诚', '1336856
 INSERT INTO `wangyisinger` VALUES ('12030367', '12030367', '刘思达LOFTHESTAR', '1975753397');
 INSERT INTO `wangyisinger` VALUES ('12031126', '12031126', 'PREP', '1968869187');
 INSERT INTO `wangyisinger` VALUES ('12037117', '12037117', 'YOUNG', '2031085185');
+INSERT INTO `wangyisinger` VALUES ('12038304', '12038304', '温政贤SeanWen', '2053471504');
 INSERT INTO `wangyisinger` VALUES ('12039173', '12039173', '李尔新', '2050717448');
 INSERT INTO `wangyisinger` VALUES ('12060040', '12060040', '杜宣达', '1887139866');
 INSERT INTO `wangyisinger` VALUES ('12065096', '12065096', '黄旭', '2052405885');
@@ -10046,17 +10267,23 @@ INSERT INTO `wangyisinger` VALUES ('12107627', '12107627', 'LAKEY INSPIRED', '52
 INSERT INTO `wangyisinger` VALUES ('12107961', '12107961', 'XXXTENTACION', '1333335583');
 INSERT INTO `wangyisinger` VALUES ('12107966', '12107966', 'A Boogie Wit da Hoodie', '2052349049');
 INSERT INTO `wangyisinger` VALUES ('12119618', '12119618', '派克特（PACT）', '2052404580');
+INSERT INTO `wangyisinger` VALUES ('12124013', '12124013', '俞天时KOZAY', '2014046738');
 INSERT INTO `wangyisinger` VALUES ('12127362', '12127362', 'GALI', '2045093937');
 INSERT INTO `wangyisinger` VALUES ('12127564', '12127564', '艾福杰尼', '2052404580');
 INSERT INTO `wangyisinger` VALUES ('12136078', '12136078', '葛东琪', '1397345903');
 INSERT INTO `wangyisinger` VALUES ('12138038', '12138038', 'BT07', '1441758494');
 INSERT INTO `wangyisinger` VALUES ('12138269', '12138269', '毛不易', '569213220');
 INSERT INTO `wangyisinger` VALUES ('12149035', '12149035', '叶斯淳', '1988532821');
+INSERT INTO `wangyisinger` VALUES ('12157330', '12157330', '周星星', '2053420961');
+INSERT INTO `wangyisinger` VALUES ('12158158', '12158158', '鱼头_killa4nia', '2050062770');
 INSERT INTO `wangyisinger` VALUES ('12174057', '12174057', '艾辰', '1808492017');
 INSERT INTO `wangyisinger` VALUES ('12178015', '12178015', '费米Frieme', '2041974276');
+INSERT INTO `wangyisinger` VALUES ('12184568', '12184568', 'SHARK卫彬月', '2053985442');
 INSERT INTO `wangyisinger` VALUES ('12193174', '12193174', 'Capper', '2026224214');
 INSERT INTO `wangyisinger` VALUES ('12195788', '12195788', '芝麻Mochi', '1426112587');
 INSERT INTO `wangyisinger` VALUES ('12197270', '12197270', 'G Herbo', '2048760838');
+INSERT INTO `wangyisinger` VALUES ('12205120', '12205120', '洛尘鞅_', '445154140');
+INSERT INTO `wangyisinger` VALUES ('12206844', '12206844', '丁芙妮', '2053388691');
 INSERT INTO `wangyisinger` VALUES ('12213291', '12213291', '张叶蕾', '465921195');
 INSERT INTO `wangyisinger` VALUES ('12236125', '12236125', '王以太', '1877996649');
 INSERT INTO `wangyisinger` VALUES ('12256230', '12256230', 'MISTERK', '2052879853');
@@ -10073,21 +10300,26 @@ INSERT INTO `wangyisinger` VALUES ('12333145', '12333145', 'DP龙猪', '20468293
 INSERT INTO `wangyisinger` VALUES ('12335367', '12335367', 'lil sophy', '496370620');
 INSERT INTO `wangyisinger` VALUES ('12338185', '12338185', 'Franky弗兰奇', '1824045033');
 INSERT INTO `wangyisinger` VALUES ('12364156', '12364156', 'Swae Lee', '1318733599');
+INSERT INTO `wangyisinger` VALUES ('12372899', '12372899', '曾涵江Cup', '2053985442');
 INSERT INTO `wangyisinger` VALUES ('12382128', '12382128', '王子健', '2018432856');
 INSERT INTO `wangyisinger` VALUES ('12383009', '12383009', '夏日入侵企画', '1413863166');
 INSERT INTO `wangyisinger` VALUES ('12395355', '12395355', '盛哲', '475479888');
 INSERT INTO `wangyisinger` VALUES ('12408182', '12408182', '薛黛霏', '1365898499');
 INSERT INTO `wangyisinger` VALUES ('12417065', '12417065', 'Gunna', '1322227243');
+INSERT INTO `wangyisinger` VALUES ('12440107', '12440107', '唐倩', '479422063');
 INSERT INTO `wangyisinger` VALUES ('12453329', '12453329', '功夫胖KungFuPen', '2052442010');
 INSERT INTO `wangyisinger` VALUES ('12459208', '12459208', 'MushrooM『蘑菇兄弟』', '1447584994');
 INSERT INTO `wangyisinger` VALUES ('12475227', '12475227', 'The Arcturians', '1329938686');
 INSERT INTO `wangyisinger` VALUES ('12484112', '12484112', 'Nxmad诺曼德', '2050684657');
 INSERT INTO `wangyisinger` VALUES ('12487174', '12487174', 'HOYO-MiX', '2045806409');
 INSERT INTO `wangyisinger` VALUES ('12491709', '12491709', 'HYPEEZY', '1395222212');
+INSERT INTO `wangyisinger` VALUES ('12498266', '12498266', '卦者灵风', '2054066570');
 INSERT INTO `wangyisinger` VALUES ('12499721', '12499721', 'Kirsty刘瑾睿', '865632948');
 INSERT INTO `wangyisinger` VALUES ('12520339', '12520339', '马嘉祺', '2052368029');
+INSERT INTO `wangyisinger` VALUES ('12536560', '12536560', 'Moseee', '2032480036');
 INSERT INTO `wangyisinger` VALUES ('12570417', '12570417', '那奇沃夫', '1970396862');
 INSERT INTO `wangyisinger` VALUES ('12605500', '12605500', '盛宇D-SHINE', '1964443044');
+INSERT INTO `wangyisinger` VALUES ('12606242', '12606242', '8bite', '2053935560');
 INSERT INTO `wangyisinger` VALUES ('12631485', '12631485', 'h3R3', '1827600686');
 INSERT INTO `wangyisinger` VALUES ('12664439', '12664439', '希林娜依高', '2043126974');
 INSERT INTO `wangyisinger` VALUES ('12676697', '12676697', '告五人', '1807799505');
@@ -10105,18 +10337,23 @@ INSERT INTO `wangyisinger` VALUES ('12928046', '12928046', 'the girl next door',
 INSERT INTO `wangyisinger` VALUES ('12936258', '12936258', '果妹', '2044853934');
 INSERT INTO `wangyisinger` VALUES ('12965215', '12965215', '邓典果DDG', '2052405901');
 INSERT INTO `wangyisinger` VALUES ('12967449', '12967449', 'TangoZ', '2052404597');
+INSERT INTO `wangyisinger` VALUES ('13008205', '13008205', '吴子健REmi', '1973046704');
 INSERT INTO `wangyisinger` VALUES ('13022016', '13022016', '廖俊涛', '566436427');
 INSERT INTO `wangyisinger` VALUES ('13080654', '13080654', 'Pauline Herr', '1356658022');
 INSERT INTO `wangyisinger` VALUES ('13112601', '13112601', 'Wiz_H张子豪', '1456890009');
+INSERT INTO `wangyisinger` VALUES ('13113858', '13113858', '林宝馨', '2053099516');
+INSERT INTO `wangyisinger` VALUES ('13145036', '13145036', '傲七爷', '2047787698');
 INSERT INTO `wangyisinger` VALUES ('13145283', '13145283', 'ICE', '1964443044');
 INSERT INTO `wangyisinger` VALUES ('13152751', '13152751', 'Tphunk', '2052879853');
 INSERT INTO `wangyisinger` VALUES ('13157086', '13157086', 'Adam Christopher', '1313584359');
 INSERT INTO `wangyisinger` VALUES ('13159084', '13159084', 'Max Oazo', '1299570939');
 INSERT INTO `wangyisinger` VALUES ('13226292', '13226292', 'Camden Cox', '1376075781');
+INSERT INTO `wangyisinger` VALUES ('13421558', '13421558', 'Scott Hoying', '2053970362');
 INSERT INTO `wangyisinger` VALUES ('13447730', '13447730', '刘兆宇', '2051580537');
 INSERT INTO `wangyisinger` VALUES ('13579145', '13579145', 'Zom Marie', '1981613252');
 INSERT INTO `wangyisinger` VALUES ('13581233', '13581233', 'Juice WRLD', '1333335582');
 INSERT INTO `wangyisinger` VALUES ('13581257', '13581257', '王理文', '2024855424');
+INSERT INTO `wangyisinger` VALUES ('13600644', '13600644', 'Adam Gubman', '2051789190');
 INSERT INTO `wangyisinger` VALUES ('13604456', '13604456', 'Beau Young Prince', '1333336513');
 INSERT INTO `wangyisinger` VALUES ('13699781', '13699781', '马赫mood', '1464823473');
 INSERT INTO `wangyisinger` VALUES ('13705550', '13705550', '好乐团', '1992746370');
@@ -10125,6 +10362,8 @@ INSERT INTO `wangyisinger` VALUES ('13899303', '13899303', '杨和苏KeyNG', '20
 INSERT INTO `wangyisinger` VALUES ('13906123', '13906123', '张紫豪', '553755659');
 INSERT INTO `wangyisinger` VALUES ('13978564', '13978564', 'Ebony Day', '1435661824');
 INSERT INTO `wangyisinger` VALUES ('14055085', '14055085', '(G)I-DLE', '2046817456');
+INSERT INTO `wangyisinger` VALUES ('14077324', '14077324', '黄霄雲', '1811921555');
+INSERT INTO `wangyisinger` VALUES ('14077329', '14077329', '姜涵John Senco', '1833391733');
 INSERT INTO `wangyisinger` VALUES ('14116746', '14116746', '黄格雷', '2045093937');
 INSERT INTO `wangyisinger` VALUES ('14312549', '14312549', '王贰浪', '1403318151');
 INSERT INTO `wangyisinger` VALUES ('15021101', '15021101', 'ずっと真夜中でいいのに。', '2052933626');
@@ -10136,7 +10375,9 @@ INSERT INTO `wangyisinger` VALUES ('15289310', '15289310', 'Robbe', '1886229233'
 INSERT INTO `wangyisinger` VALUES ('27730224', '27730224', '回春丹', '1873049720');
 INSERT INTO `wangyisinger` VALUES ('27856257', '27856257', 'Ashley Alisha', '1942576027');
 INSERT INTO `wangyisinger` VALUES ('27871957', '27871957', '王OK', '1968791360');
+INSERT INTO `wangyisinger` VALUES ('28066477', '28066477', '澪恩Seiwen', '1436081452');
 INSERT INTO `wangyisinger` VALUES ('28083351', '28083351', 'CORSAK胡梦周', '1294951288');
+INSERT INTO `wangyisinger` VALUES ('28262310', '28262310', 'Tobe Nwigwe', '2047307308');
 INSERT INTO `wangyisinger` VALUES ('28553455', '28553455', 'KayCyy', '2046096661');
 INSERT INTO `wangyisinger` VALUES ('28684353', '28684353', 'Dylan Matthew', '1401671455');
 INSERT INTO `wangyisinger` VALUES ('28684457', '28684457', 'Dominic Fike', '2051976677');
@@ -10149,38 +10390,55 @@ INSERT INTO `wangyisinger` VALUES ('29392693', '29392693', '邵帅', '1371780785
 INSERT INTO `wangyisinger` VALUES ('29403986', '29403986', 'Ivoris', '1940074698');
 INSERT INTO `wangyisinger` VALUES ('29436789', '29436789', 'Christian Kuria', '1992911596');
 INSERT INTO `wangyisinger` VALUES ('29588305', '29588305', '刘大拿', '2025533834');
+INSERT INTO `wangyisinger` VALUES ('29802127', '29802127', '单依纯', '2053616406');
 INSERT INTO `wangyisinger` VALUES ('29808974', '29808974', '邵丽棠', '1845426540');
 INSERT INTO `wangyisinger` VALUES ('29834706', '29834706', 'Moonessa', '1299570939');
 INSERT INTO `wangyisinger` VALUES ('30116848', '30116848', '阿冗', '1413585838');
+INSERT INTO `wangyisinger` VALUES ('30285305', '30285305', '吕富贵', '2052523310');
 INSERT INTO `wangyisinger` VALUES ('30377220', '30377220', '陈麒名', '2008268313');
 INSERT INTO `wangyisinger` VALUES ('30436298', '30436298', '艾达AYDA', '1464823473');
 INSERT INTO `wangyisinger` VALUES ('30644200', '30644200', '彭席彦', '1824045033');
 INSERT INTO `wangyisinger` VALUES ('30855870', '30855870', '谢可寅', '2052404597');
+INSERT INTO `wangyisinger` VALUES ('30892288', '30892288', 'FANTASTICS from EXILE TRIBE', '2053318886');
 INSERT INTO `wangyisinger` VALUES ('31002901', '31002901', 'MoreLearn 27', '1922888354');
 INSERT INTO `wangyisinger` VALUES ('31055052', '31055052', 'ycccc', '2051752291');
 INSERT INTO `wangyisinger` VALUES ('31062035', '31062035', '曲甲', '2021379728');
 INSERT INTO `wangyisinger` VALUES ('31081554', '31081554', '24kGoldn', '2048760838');
+INSERT INTO `wangyisinger` VALUES ('31100277', '31100277', 'Blxst', '2053873946');
+INSERT INTO `wangyisinger` VALUES ('31148973', '31148973', '九姨太', '2045111116');
+INSERT INTO `wangyisinger` VALUES ('31164169', '31164169', 'Piggy K', '2029256151');
 INSERT INTO `wangyisinger` VALUES ('31213402', '31213402', 'Hayd', '1878812258');
 INSERT INTO `wangyisinger` VALUES ('31310684', '31310684', 'xxxmiracle', '2043177973');
+INSERT INTO `wangyisinger` VALUES ('31312385', '31312385', 'AK刘彰', '2053428806');
 INSERT INTO `wangyisinger` VALUES ('31376161', '31376161', '颜人中', '1482867143');
 INSERT INTO `wangyisinger` VALUES ('31446467', '31446467', 'RAMBO GANG', '1477144603');
 INSERT INTO `wangyisinger` VALUES ('31571835', '31571835', '袁小葳', '1958442675');
 INSERT INTO `wangyisinger` VALUES ('31633639', '31633639', '伯远', '2052403824');
 INSERT INTO `wangyisinger` VALUES ('31652014', '31652014', '鹿洐人HumanHart', '1958404869');
 INSERT INTO `wangyisinger` VALUES ('31802946', '31802946', '程佳佳', '1381755293');
+INSERT INTO `wangyisinger` VALUES ('31849592', '31849592', 'Lily-Rose Depp', '2054207130');
 INSERT INTO `wangyisinger` VALUES ('31876221', '31876221', '柏松', '1363948882');
+INSERT INTO `wangyisinger` VALUES ('31917276', '31917276', 'Mengzi', '2052524884');
+INSERT INTO `wangyisinger` VALUES ('31973045', '31973045', 'CHPTRS', '1940115041');
 INSERT INTO `wangyisinger` VALUES ('31996349', '31996349', 'Central Cee', '1965392316');
 INSERT INTO `wangyisinger` VALUES ('32099752', '32099752', '30年前，50年后', '1951069525');
 INSERT INTO `wangyisinger` VALUES ('32175874', '32175874', 'SEEZYN', '1333335582');
 INSERT INTO `wangyisinger` VALUES ('32399227', '32399227', '王巨星', '1947948874');
+INSERT INTO `wangyisinger` VALUES ('32438384', '32438384', 'JumJum', '2053894553');
+INSERT INTO `wangyisinger` VALUES ('32540734', '32540734', '塞壬唱片-MSR', '2051789190');
+INSERT INTO `wangyisinger` VALUES ('32624368', '32624368', 'Stephanie Poetri', '2051587676');
+INSERT INTO `wangyisinger` VALUES ('32674400', '32674400', '是二智呀', '1982939899');
+INSERT INTO `wangyisinger` VALUES ('32675091', '32675091', '孙睡觉', '2029479894');
 INSERT INTO `wangyisinger` VALUES ('32743623', '32743623', '肯迪仔', '1826189041');
 INSERT INTO `wangyisinger` VALUES ('32795025', '32795025', 'The Kid LAROI', '1859245776');
 INSERT INTO `wangyisinger` VALUES ('32870452', '32870452', '缪礼丞', '2045117743');
+INSERT INTO `wangyisinger` VALUES ('32897193', '32897193', '林一', '1434244328');
 INSERT INTO `wangyisinger` VALUES ('32897995', '32897995', '7copy', '1441758494');
 INSERT INTO `wangyisinger` VALUES ('32899709', '32899709', 'Lil笑笑', '2019620319');
 INSERT INTO `wangyisinger` VALUES ('32959015', '32959015', '阿达娃', '2051575368');
 INSERT INTO `wangyisinger` VALUES ('32988392', '32988392', 'JVKE', '1958557540');
 INSERT INTO `wangyisinger` VALUES ('33012152', '33012152', '瘦子E.SO', '2052405911');
+INSERT INTO `wangyisinger` VALUES ('33097968', '33097968', 'LSGCsikoriot', '2052523312');
 INSERT INTO `wangyisinger` VALUES ('33202309', '33202309', '冯泳', '1395222212');
 INSERT INTO `wangyisinger` VALUES ('33230219', '33230219', '阿梨粤', '1929370102');
 INSERT INTO `wangyisinger` VALUES ('33259235', '33259235', '梨冻紧', '1456890009');
@@ -10188,6 +10446,7 @@ INSERT INTO `wangyisinger` VALUES ('33356655', '33356655', 'MALIA', '1826613971'
 INSERT INTO `wangyisinger` VALUES ('33371675', '33371675', '张天枢', '1908049566');
 INSERT INTO `wangyisinger` VALUES ('33373401', '33373401', 'handsome lau', '1395222212');
 INSERT INTO `wangyisinger` VALUES ('33420510', '33420510', '鸟森', '2043177973');
+INSERT INTO `wangyisinger` VALUES ('33425481', '33425481', '张自力JaysonChang', '2052123773');
 INSERT INTO `wangyisinger` VALUES ('33516005', '33516005', 'D Smoke', '1938756186');
 INSERT INTO `wangyisinger` VALUES ('33581921', '33581921', '陷阱表哥', '2046829307');
 INSERT INTO `wangyisinger` VALUES ('33630934', '33630934', '小春Kenzy', '2052408650');
@@ -10197,8 +10456,10 @@ INSERT INTO `wangyisinger` VALUES ('33850806', '33850806', '高睿', '1979417838
 INSERT INTO `wangyisinger` VALUES ('33863232', '33863232', '罗言', '2026224214');
 INSERT INTO `wangyisinger` VALUES ('33900743', '33900743', '高旭', '1443838552');
 INSERT INTO `wangyisinger` VALUES ('33913095', '33913095', 'KIND', '2050058466');
+INSERT INTO `wangyisinger` VALUES ('33914460', '33914460', 'Zzh', '2041253165');
 INSERT INTO `wangyisinger` VALUES ('33927385', '33927385', '卡捷琳娜（凯丽）', '2050912767');
 INSERT INTO `wangyisinger` VALUES ('33927412', '33927412', 'YOASOBI', '2034742057');
+INSERT INTO `wangyisinger` VALUES ('33937972', '33937972', 'CashTrippy', '2032480036');
 INSERT INTO `wangyisinger` VALUES ('34035556', '34035556', '小乐哥（王唯乐）', '1413142894');
 INSERT INTO `wangyisinger` VALUES ('34172520', '34172520', 'C.HØPE', '1492584510');
 INSERT INTO `wangyisinger` VALUES ('34288614', '34288614', 'Cool-Aid陈轶伦', '2050453744');
@@ -10208,6 +10469,7 @@ INSERT INTO `wangyisinger` VALUES ('34489282', '34489282', '迟里乌布', '1896
 INSERT INTO `wangyisinger` VALUES ('34500818', '34500818', '龍猛寺寬度', '1891431677');
 INSERT INTO `wangyisinger` VALUES ('34514656', '34514656', '月蚀', '2052036486');
 INSERT INTO `wangyisinger` VALUES ('34522800', '34522800', '火羊瞌睡了', '1436709403');
+INSERT INTO `wangyisinger` VALUES ('34539310', '34539310', '贝贝帅', '1434244328');
 INSERT INTO `wangyisinger` VALUES ('34624664', '34624664', '王云宏', '2046829307');
 INSERT INTO `wangyisinger` VALUES ('34659452', '34659452', 'AFMC黑子', '2051580537');
 INSERT INTO `wangyisinger` VALUES ('34704316', '34704316', 'Kid Princess', '1435828582');
@@ -10218,54 +10480,75 @@ INSERT INTO `wangyisinger` VALUES ('35023883', '35023883', 'Connor Price', '1979
 INSERT INTO `wangyisinger` VALUES ('35037364', '35037364', '与少年他', '1426112587');
 INSERT INTO `wangyisinger` VALUES ('35142748', '35142748', 'Harry Grover', '1974125151');
 INSERT INTO `wangyisinger` VALUES ('35309151', '35309151', '粉太狼', '2049529248');
+INSERT INTO `wangyisinger` VALUES ('35724302', '35724302', '2Night夜里', '2053961482');
 INSERT INTO `wangyisinger` VALUES ('35901488', '35901488', '鶴 The Crane', '2003582433');
+INSERT INTO `wangyisinger` VALUES ('35949435', '35949435', '王梓琪', '2053961482');
 INSERT INTO `wangyisinger` VALUES ('36032190', '36032190', 'yihuik苡慧', '1867217766');
 INSERT INTO `wangyisinger` VALUES ('36080509', '36080509', '虎皮蛋', '2021379728');
 INSERT INTO `wangyisinger` VALUES ('36288270', '36288270', 'Trakin(Tk酱(*^o^*))', '1477144603');
 INSERT INTO `wangyisinger` VALUES ('36563082', '36563082', 'SevenJ李百万', '2045117743');
 INSERT INTO `wangyisinger` VALUES ('36623116', '36623116', 'NoLabelCrew', '1826189041');
+INSERT INTO `wangyisinger` VALUES ('36624209', '36624209', 'kiya', '1973046704');
 INSERT INTO `wangyisinger` VALUES ('36772893', '36772893', 'Starling8', '1922888354');
 INSERT INTO `wangyisinger` VALUES ('36775590', '36775590', '池鱼', '2024225492');
 INSERT INTO `wangyisinger` VALUES ('36985903', '36985903', '海洋Bo', '2049512697');
+INSERT INTO `wangyisinger` VALUES ('36987470', '36987470', 'T3nzu', '1858897067');
 INSERT INTO `wangyisinger` VALUES ('37058226', '37058226', '沧桑Cang333', '2021379728');
 INSERT INTO `wangyisinger` VALUES ('37123911', '37123911', 'Zy', '2041974276');
 INSERT INTO `wangyisinger` VALUES ('37148993', '37148993', 'Anarosa', '2028588765');
 INSERT INTO `wangyisinger` VALUES ('37540088', '37540088', '蒋小呢', '1497588709');
 INSERT INTO `wangyisinger` VALUES ('37678523', '37678523', 'entoy', '1978692717');
+INSERT INTO `wangyisinger` VALUES ('46524011', '46524011', '二两', '2046234800');
 INSERT INTO `wangyisinger` VALUES ('46525135', '46525135', '凯夫藤', '2029470264');
+INSERT INTO `wangyisinger` VALUES ('46548148', '46548148', '四七', '2029479894');
 INSERT INTO `wangyisinger` VALUES ('46819454', '46819454', 'PiXXiE', '1981613252');
+INSERT INTO `wangyisinger` VALUES ('46921476', '46921476', 'Uzzy', '2052524882');
 INSERT INTO `wangyisinger` VALUES ('46966451', '46966451', '苏星婕', '1975589384');
 INSERT INTO `wangyisinger` VALUES ('47060060', '47060060', '既定偏离', '1882589249');
 INSERT INTO `wangyisinger` VALUES ('47091532', '47091532', '王赫野', '2046990697');
+INSERT INTO `wangyisinger` VALUES ('47112858', '47112858', '鹤楠', '1840750472');
 INSERT INTO `wangyisinger` VALUES ('47142705', '47142705', 'charlieonnafriday', '1956440993');
 INSERT INTO `wangyisinger` VALUES ('47409571', '47409571', '大渊MUTA', '2052404580');
 INSERT INTO `wangyisinger` VALUES ('47702431', '47702431', 'Pencil-S', '2029470264');
 INSERT INTO `wangyisinger` VALUES ('47971578', '47971578', '潮音沐轩', '1958232600');
+INSERT INTO `wangyisinger` VALUES ('48037536', '48037536', 'Matilda Stray', '2051789190');
+INSERT INTO `wangyisinger` VALUES ('48277407', '48277407', 'BOBBYNOPEACE', '2052524882');
 INSERT INTO `wangyisinger` VALUES ('48497149', '48497149', '柠安', '2050954543');
 INSERT INTO `wangyisinger` VALUES ('48577041', '48577041', 'Mikey-18', '2045117743');
 INSERT INTO `wangyisinger` VALUES ('48631904', '48631904', '王小草', '2047777147');
 INSERT INTO `wangyisinger` VALUES ('48674859', '48674859', '浮萍草', '2052442439');
 INSERT INTO `wangyisinger` VALUES ('48918817', '48918817', '柯柯柯啊', '2022196813');
+INSERT INTO `wangyisinger` VALUES ('49320762', '49320762', '珑熹音上', '2052123773');
+INSERT INTO `wangyisinger` VALUES ('49748070', '49748070', '子桉Zian', '2029256151');
 INSERT INTO `wangyisinger` VALUES ('49848068', '49848068', 'bludnymph', '2051690913');
 INSERT INTO `wangyisinger` VALUES ('49937403', '49937403', '烟(许佳豪)', '1891469546');
 INSERT INTO `wangyisinger` VALUES ('50275485', '50275485', 'KKECHO', '1970396862');
+INSERT INTO `wangyisinger` VALUES ('50377395', '50377395', 'YG', '2053873946');
 INSERT INTO `wangyisinger` VALUES ('50485303', '50485303', 'Mae Stephens', '2021343439');
+INSERT INTO `wangyisinger` VALUES ('50877771', '50877771', 'Pop Money', '2053289347');
+INSERT INTO `wangyisinger` VALUES ('51059147', '51059147', '顾', '1910515224');
 INSERT INTO `wangyisinger` VALUES ('51316343', '51316343', 'Ari Abdul', '1932769322');
 INSERT INTO `wangyisinger` VALUES ('51613721', '51613721', 'FIVESTAR', '1922888354');
 INSERT INTO `wangyisinger` VALUES ('51862646', '51862646', '精彩威Sir', '2034809526');
 INSERT INTO `wangyisinger` VALUES ('51953770', '51953770', '高杰杰杰杰', '1931994283');
 INSERT INTO `wangyisinger` VALUES ('52256114', '52256114', '蜡笔小兴', '2033823422');
 INSERT INTO `wangyisinger` VALUES ('52637913', '52637913', 'Tiko', '2049529248');
+INSERT INTO `wangyisinger` VALUES ('52733509', '52733509', '浅酌酣欢', '2052440838');
 INSERT INTO `wangyisinger` VALUES ('53018550', '53018550', '盲', '1958232600');
 INSERT INTO `wangyisinger` VALUES ('53092750', '53092750', 'REDBOI', '1970396862');
+INSERT INTO `wangyisinger` VALUES ('53132067', '53132067', 'Dream Tunes', '1966889776');
 INSERT INTO `wangyisinger` VALUES ('53621768', '53621768', '安定區Stable zone', '2050058466');
+INSERT INTO `wangyisinger` VALUES ('53654637', '53654637', '9DIUZ', '1848550739');
 INSERT INTO `wangyisinger` VALUES ('53849891', '53849891', '东北宣传部', '2052442439');
 INSERT INTO `wangyisinger` VALUES ('53933880', '53933880', 'suru', '1978692717');
+INSERT INTO `wangyisinger` VALUES ('54131214', '54131214', 'Prog Monster', '2048700343');
 INSERT INTO `wangyisinger` VALUES ('54729374', '54729374', 'Henry Young', '1942576027');
 INSERT INTO `wangyisinger` VALUES ('54746300', '54746300', 'FIFTY FIFTY', '2025227742');
 INSERT INTO `wangyisinger` VALUES ('55066357', '55066357', '江楠江楠_', '1477144603');
+INSERT INTO `wangyisinger` VALUES ('55669182', '55669182', 'Luminati Suns', '2021437775');
 INSERT INTO `wangyisinger` VALUES ('56820557', '56820557', '王鑫', '2046851439');
 INSERT INTO `wangyisinger` VALUES ('56943217', '56943217', '旺仔旺仔', '2033823422');
+INSERT INTO `wangyisinger` VALUES ('57031080', '57031080', '十个勤天', '2053110957');
 DROP TRIGGER IF EXISTS `goodTrigger_insert`;
 DELIMITER ;;
 CREATE TRIGGER `goodTrigger_insert` AFTER INSERT ON `goodcritic` FOR EACH ROW BEGIN

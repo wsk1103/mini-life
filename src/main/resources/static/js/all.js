@@ -34,7 +34,7 @@ $(function () {
                 var user = "";
                 var html = "" +
                     "<div class='show_message_title'>" +
-                    "<a class='show_message_title_name' style='display: inline' href='/information?id=" + data.fid + "'>" +
+                    "<a class='show_message_title_name' style='display: inline' href='/find/information?id=" + data.fid + "'>" +
                     "<span id='show_message_title_username'>" + data.name + "</span></a>" +
                     "<div class='show_message_title_close'>×</div>" +
                     "</div>" +
@@ -42,7 +42,7 @@ $(function () {
                     "   <div>";
                 for (var i = 0; i < data.contents.length; i++) {
                     user +=
-                        " <div class='show_message_content_name'><a href='/information?id=" + data.contents[i].uid + "'> &nbsp;" + data.contents[i].name + "</a>" +
+                        " <div class='show_message_content_name'><a href='/find/information?id=" + data.contents[i].uid + "'> &nbsp;" + data.contents[i].name + "</a>" +
                         "<span style='color: #8b8b8b;'> " + data.contents[i].time + "</span></div>" +
                         "  <div class='show_message_content_content' style='font-size: .9em;padding: .5em;'><span>" + data.contents[i].content + "</span></div>";
                 }
@@ -101,7 +101,7 @@ $(document).on('click', 'span.show_action', function () {
 });
 $(document).on('click', 'img.friends_image_header,span.friends_username,.all_friends_username,button.my_friends_information', function () {
     var uid = $(this).attr("value");
-    window.location.href = "information?id=" + uid;
+    window.location.href = "/find/information?id=" + uid;
 });
 $(document).on('click', 'div.findMoreComment', function () {
     var pid = $(this).attr("value");
@@ -253,7 +253,7 @@ $(document).on("click", "button#show_message_to_button", function () {
                 var myId = $("#myId").val();
                 $content.val("");
                 var user =
-                    " <div class='show_message_content_name'><a href='/information?id=" + myId + "'>" + name + "</a><span style='color: #8b8b8b;'> " + timeStamp2String() + "</span></div>" +
+                    " <div class='show_message_content_name'><a href='/find/information?id=" + myId + "'>" + name + "</a><span style='color: #8b8b8b;'> " + timeStamp2String() + "</span></div>" +
                     "  <div class='show_message_content_content' style='font-size: .9em;padding: .5em;'><span>" + content + "</span></div>";
                 $(".show_message_content").append(user);
             } else if (data === 2) {
