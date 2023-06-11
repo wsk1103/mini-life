@@ -275,9 +275,9 @@ public class Tool {
 
     //色情图片识别
     //设置APPID/AK/SK
-    private static final String APP_ID = "10608004";
-    private static final String API_KEY = "AXwR2FvqCinmL1rxPDeLZF7N";
-    private static final String SECRET_KEY = "9SuYaXw5mttPo2O05i42VDCOiAyudInt";
+    private static final String APP_ID = "APP_ID";
+    private static final String API_KEY = "API_KEY";
+    private static final String SECRET_KEY = "SECRET_KEY";
 
     /**
      * 色情图片识别
