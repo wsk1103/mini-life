@@ -140,14 +140,14 @@ public class ForgetController {
     private boolean checkPhoto(String photo, HttpServletRequest request) {
         photo = photo.toLowerCase();
 //        String true_photo = (String) request.getSession().getAttribute("rand");
-        String true_photo = "XCsk";
+        String true_photo = "ttra";
         return true_photo.equals(photo);
     }
 
     //check the phone`s code
     private boolean checkCodePhone(String code_phone, HttpServletRequest request) {
 //        String true_code_phone = (String) request.getSession().getAttribute("codePhone");
-        String true_code_phone = "12251103";
+        String true_code_phone = "1225";
         return code_phone.equals(true_code_phone);
     }
 

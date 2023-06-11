@@ -27,13 +27,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @DESCRIPTION : 用户查询
+ * @DESCRIPTION : 管理员控制台
  * @AUTHOR : sk
  * @TIME : 2018/3/8  14:16
  */
 @Controller
 @RequestMapping("admin")
-public class FindUserController {
+public class AdminController {
     @Autowired
     private UserInformationRepository userInformationRepository;
 
