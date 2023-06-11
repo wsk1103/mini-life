@@ -1,6 +1,7 @@
 # 基于Spring Boot的社区交流平台。包含电影，音乐和书籍的Java web应用
 
 ## 微生活
+视频教程：https://www.bilibili.com/video/BV1VN411k7Ab/
 
 个人主页： https://wsk1103.github.io/
 
